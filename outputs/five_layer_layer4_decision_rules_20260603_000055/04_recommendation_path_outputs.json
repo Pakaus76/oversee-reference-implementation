@@ -1,0 +1,69 @@
+{
+  "bundle_id": "recommendation_paths_DF_COMP_001_CONTROLLED_MONITORING",
+  "case_id": "DF_COMP_001_CONTROLLED_MONITORING",
+  "asset_id": "COMP-001",
+  "decision_rule_evaluation_id": "dmn_like_eval_DF_COMP_001_CONTROLLED_MONITORING",
+  "path_outputs": [
+    {
+      "path_name": "deterministic_anchor",
+      "path_type": "existing_recommendation_path",
+      "status": "completed",
+      "recommendation": {
+        "recommendation_id": "det_anchor_DF_COMP_001_CONTROLLED_MONITORING",
+        "asset_id": "COMP-001",
+        "action": "Plan immediate inspection and maintenance preparation.",
+        "rationale": "deterministic anchor baseline urgency assessment: 'medium'. deterministic anchor operational importance assessment: 'high'. deterministic anchor evidence reliability assessment: 'acceptable'. deterministic anchor final consolidated priority: 'high'.",
+        "priority": "high",
+        "dmn_like_final_priority": "high",
+        "recommended_execution_mode": "controlled_planning",
+        "human_review_required": true
+      },
+      "input_refs": [
+        "canonical_context_DF_COMP_001_CONTROLLED_MONITORING",
+        "DF_COMP_001_CONTROLLED_MONITORING",
+        "dmn_like_eval_DF_COMP_001_CONTROLLED_MONITORING"
+      ],
+      "governance_refs": [
+        "compressor_human_review_policy",
+        "compressor_final_priority"
+      ],
+      "notes": [
+        "The deterministic anchor is executed after explicit DMN-like rule evaluation.",
+        "DMN-like rule outputs are preserved as governance context; they do not overwrite the anchor recommendation."
+      ]
+    },
+    {
+      "path_name": "dmn_like_governance_summary",
+      "path_type": "rule_governance_summary",
+      "status": "completed",
+      "recommendation": {
+        "case_id": "DF_COMP_001_CONTROLLED_MONITORING",
+        "asset_id": "COMP-001",
+        "final_priority": "high",
+        "recommended_execution_mode": "controlled_planning",
+        "human_review_required": true,
+        "intervention_feasible": true,
+        "decision_ready": true,
+        "triggered_rule_count": 6
+      },
+      "input_refs": [
+        "canonical_context_DF_COMP_001_CONTROLLED_MONITORING",
+        "DF_COMP_001_CONTROLLED_MONITORING",
+        "dmn_like_eval_DF_COMP_001_CONTROLLED_MONITORING"
+      ],
+      "governance_refs": [
+        "DMN_R001",
+        "DMN_R002",
+        "DMN_R003",
+        "DMN_R004",
+        "DMN_R005",
+        "DMN_R006"
+      ],
+      "notes": [
+        "This output summarizes explicit rule evaluation before final governed packaging."
+      ]
+    }
+  ],
+  "bundle_version": "0.1.0",
+  "path_count": 2
+}
