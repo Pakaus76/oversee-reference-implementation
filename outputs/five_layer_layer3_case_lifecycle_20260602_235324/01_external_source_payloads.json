@@ -1,0 +1,177 @@
+{
+  "package_id": "external_sources_DF_COMP_001_CONTROLLED_MONITORING",
+  "case_id": "DF_COMP_001_CONTROLLED_MONITORING",
+  "asset_id": "COMP-001",
+  "line_id": "PKG-LINE-01",
+  "created_at": "2026-06-02T21:53:24.463301+00:00",
+  "payloads": [
+    {
+      "source_name": "asset_registry",
+      "source_system": "enterprise_asset_registry",
+      "source_type": "master_data",
+      "endpoint": "GET /assets/COMP-001",
+      "generated_at": "2026-06-02T21:53:24.463301+00:00",
+      "case_id": "DF_COMP_001_CONTROLLED_MONITORING",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "asset_id": "COMP-001",
+        "asset_name": null,
+        "asset_type": "industrial_air_compressor",
+        "line_id": "PKG-LINE-01",
+        "site_id": null,
+        "criticality": "high",
+        "process_role": null,
+        "operational_dependency": null
+      },
+      "normalized_fields": {
+        "asset_id": "COMP-001",
+        "line_id": "PKG-LINE-01",
+        "asset_type": "industrial_air_compressor",
+        "asset_criticality": "high",
+        "criticality_score": 5
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "sensor_historian",
+      "source_system": "industrial_data_historian",
+      "source_type": "time_series_summary",
+      "endpoint": "GET /historian/assets/COMP-001/windows/latest",
+      "generated_at": "2026-06-02T21:53:24.463301+00:00",
+      "case_id": "DF_COMP_001_CONTROLLED_MONITORING",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "asset_id": "COMP-001",
+        "window_hours": 24,
+        "vibration_trend": "increasing",
+        "temperature_trend": "stable",
+        "severity": "high",
+        "source_note": "Digital Factory generated sensor summary."
+      },
+      "normalized_fields": {
+        "vibration_trend": "increasing",
+        "temperature_trend": "stable",
+        "sensor_severity": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "predictive_maintenance",
+      "source_system": "predictive_maintenance_service",
+      "source_type": "predictive_alert",
+      "endpoint": "GET /predictive-alerts/assets/COMP-001/latest",
+      "generated_at": "2026-06-02T21:53:24.463301+00:00",
+      "case_id": "DF_COMP_001_CONTROLLED_MONITORING",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "alert_id": "ALERT-COMP-001-DF_COMP_001_CONTROLLED_MONITORING",
+        "asset_id": "COMP-001",
+        "alert_type": "early_degradation",
+        "estimated_time_to_failure_hours": 72.0,
+        "confidence_score": 0.86,
+        "severity": "high",
+        "model_name": null,
+        "model_version": null
+      },
+      "normalized_fields": {
+        "alert_type": "early_degradation",
+        "estimated_time_to_failure_hours": 72.0,
+        "confidence_score": 0.86,
+        "alert_severity": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "maintenance_history",
+      "source_system": "cmms_maintenance_history",
+      "source_type": "maintenance_history_summary",
+      "endpoint": "GET /maintenance-history/assets/COMP-001?lookback_days=90",
+      "generated_at": "2026-06-02T21:53:24.463301+00:00",
+      "case_id": "DF_COMP_001_CONTROLLED_MONITORING",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "asset_id": "COMP-001",
+        "lookback_days": 90,
+        "recent_repeated_failures": true,
+        "last_intervention_type": "inspection",
+        "source_note": "Digital Factory generated maintenance history summary."
+      },
+      "normalized_fields": {
+        "recent_repeated_failures": true,
+        "lookback_days": 90
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "production_planning",
+      "source_system": "production_planning_system",
+      "source_type": "operational_context",
+      "endpoint": "GET /production-plan/lines/PKG-LINE-01/latest",
+      "generated_at": "2026-06-02T21:53:24.463301+00:00",
+      "case_id": "DF_COMP_001_CONTROLLED_MONITORING",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "line_id": "PKG-LINE-01",
+        "asset_id": "COMP-001",
+        "production_load_pct": 92.0,
+        "next_planned_downtime_hours": 36.0,
+        "business_impact_if_unavailable": null
+      },
+      "normalized_fields": {
+        "production_load_pct": 92.0,
+        "next_planned_downtime_hours": 36.0,
+        "production_pressure": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "inventory_and_resources",
+      "source_system": "inventory_and_workforce_system",
+      "source_type": "resource_availability",
+      "endpoint": "GET /inventory/assets/COMP-001/availability",
+      "generated_at": "2026-06-02T21:53:24.463301+00:00",
+      "case_id": "DF_COMP_001_CONTROLLED_MONITORING",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "asset_id": "COMP-001",
+        "spare_part_available": true,
+        "specialist_technician_available_next_shift": true
+      },
+      "normalized_fields": {
+        "spare_part_available": true,
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "policy_governance",
+      "source_system": "maintenance_governance_policy_service",
+      "source_type": "policy_constraints",
+      "endpoint": "GET /policies/assets/COMP-001/maintenance-decision",
+      "generated_at": "2026-06-02T21:53:24.463301+00:00",
+      "case_id": "DF_COMP_001_CONTROLLED_MONITORING",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "asset_id": "COMP-001",
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_basis": "High-criticality maintenance decisions require accountable human review."
+      },
+      "normalized_fields": {
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true
+      },
+      "data_quality_flags": []
+    }
+  ],
+  "package_version": "0.1.0",
+  "source_count": 7
+}

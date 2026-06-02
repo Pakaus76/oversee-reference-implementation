@@ -46,7 +46,7 @@ def build_compressor_external_source_package(
         "protected_facts.line_id",
         "asset.line_id",
         "industrial_context.line_id",
-    )
+    ) or "PKG-LINE-01"
     created_at = _utc_now()
 
     payloads = [
@@ -605,3 +605,4 @@ def _production_pressure(production_load_pct: float) -> str:
     if production_load_pct >= 70:
         return "medium"
     return "low"
+
