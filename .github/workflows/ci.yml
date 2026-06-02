@@ -1,0 +1,48 @@
+﻿name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate OVERSEE reference implementation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Compile OVERSEE package
+        run: |
+          python -m compileall src/oversee
+
+      - name: Run OVERSEE tests
+        env:
+          PYTHONPATH: src
+        run: |
+          python -m pytest tests/oversee -q
+
+      - name: Run reviewer-facing demo package
+        env:
+          PYTHONPATH: src
+        run: |
+          python scripts/run_oversee_reviewer_demo.py
