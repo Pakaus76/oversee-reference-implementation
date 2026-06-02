@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-06-02T17:11:15",
+  "artifact_count": 10,
+  "artifacts": [
+    {
+      "artifact_name": "01_digital_factory_scenarios.json",
+      "path": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\deterministic_generative_comparison_20260602_171115\\01_digital_factory_scenarios.json",
+      "exists": true,
+      "size_bytes": 9162,
+      "sha256": "1a401f518a1abe40e40d294f2b86f0231d306cdd031e5cf0027e7e0ffd3e35a8",
+      "description": "Digital Factory scenarios used as executable input cases."
+    },
+    {
+      "artifact_name": "02_oversee_input_candidates.json",
+      "path": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\deterministic_generative_comparison_20260602_171115\\02_oversee_input_candidates.json",
+      "exists": true,
+      "size_bytes": 11749,
+      "sha256": "a5b6a6639a1f5ef8c26f0238054714dd8907cc882cdf18dd3981ee55da19a7a3",
+      "description": "OVERSEE input candidates mapped from Digital Factory scenarios."
+    },
+    {
+      "artifact_name": "03_deterministic_anchor_results.json",
+      "path": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\deterministic_generative_comparison_20260602_171115\\03_deterministic_anchor_results.json",
+      "exists": true,
+      "size_bytes": 4144,
+      "sha256": "015f83b7d92c44523877c7370ba42cba04c5ea2c513df919a8882ff359731cbe",
+      "description": "Deterministic anchor recommendations."
+    },
+    {
+      "artifact_name": "04_live_generative_path_results.json",
+      "path": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\deterministic_generative_comparison_20260602_171115\\04_live_generative_path_results.json",
+      "exists": true,
+      "size_bytes": 8284,
+      "sha256": "0e0eac0eb8bd3b50ca7adc81d48b3d01ee8842e6b36424fde694ab2c2a8c539e",
+      "description": "Live generative path recommendations."
+    },
+    {
+      "artifact_name": "05_deterministic_generative_comparison.json",
+      "path": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\deterministic_generative_comparison_20260602_171115\\05_deterministic_generative_comparison.json",
+      "exists": true,
+      "size_bytes": 7657,
+      "sha256": "be55f53b85ea54dd2c3f3c51ea6cfea37079985280ace3e962a6c8bab69da9c1",
+      "description": "Case-by-case deterministic-versus-generative comparison in JSON format."
+    },
+    {
+      "artifact_name": "05_deterministic_generative_comparison.csv",
+      "path": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\deterministic_generative_comparison_20260602_171115\\05_deterministic_generative_comparison.csv",
+      "exists": true,
+      "size_bytes": 5770,
+      "sha256": "5261d7eac5bd75bed43480a0947750a80d3ff47d1e38bf06609e3cbd5ee7d26f",
+      "description": "Case-by-case deterministic-versus-generative comparison in CSV format."
+    },
+    {
+      "artifact_name": "06_comparison_summary.json",
+      "path": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\deterministic_generative_comparison_20260602_171115\\06_comparison_summary.json",
+      "exists": true,
+      "size_bytes": 299,
+      "sha256": "5cf3c10e63ef8e683c859bd2658128e6f01f8056b1c93f3caaf337246014e223",
+      "description": "Summary metrics for the comparison run."
+    },
+    {
+      "artifact_name": "07_reviewer_summary.md",
+      "path": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\deterministic_generative_comparison_20260602_171115\\07_reviewer_summary.md",
+      "exists": true,
+      "size_bytes": 2880,
+      "sha256": "08dd734eff378751605482fa341f9fd15cc4a8e8dfb7f1beb56fdcca4a427579",
+      "description": "Human-readable reviewer summary."
+    },
+    {
+      "artifact_name": "08_traceability_index.json",
+      "path": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\deterministic_generative_comparison_20260602_171115\\08_traceability_index.json",
+      "exists": true,
+      "size_bytes": 4743,
+      "sha256": "cdedf035bd6d22127c7d8c2555cf29a31be61f0d1af9b35a126f8703a46aea8c",
+      "description": "Traceability index for generated artifacts."
+    },
+    {
+      "artifact_name": "09_execution_manifest.json",
+      "path": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\deterministic_generative_comparison_20260602_171115\\09_execution_manifest.json",
+      "exists": true,
+      "size_bytes": 1249,
+      "sha256": "f6d9dfe459cc4eb116ef8640546014f2589b2bee17792cc8bfc28259df8ac9ad",
+      "description": "Execution manifest for the reviewer demo."
+    }
+  ]
+}

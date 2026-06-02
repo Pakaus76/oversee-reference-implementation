@@ -1,0 +1,30 @@
+{
+  "artifact": "OVERSEE reviewer demo package",
+  "generated_at": "2026-06-02T17:11:15",
+  "run_folder": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\deterministic_generative_comparison_20260602_171115",
+  "force_offline": true,
+  "external_model_call_expected": false,
+  "execution_note": "Offline-safe mode removes OPENAI_API_KEY from the local process before execution, so live generative fallback behavior is expected.",
+  "summary": {
+    "case_count": 3,
+    "action_differences": 0,
+    "priority_differences": 0,
+    "rationale_differences": 3,
+    "live_generative_fallback_count": 3,
+    "live_generative_model_response_count": 0,
+    "live_generative_evidence_reference_count": 0,
+    "live_generative_priority_governance_count": 0
+  },
+  "expected_artifacts": [
+    "01_digital_factory_scenarios.json",
+    "02_oversee_input_candidates.json",
+    "03_deterministic_anchor_results.json",
+    "04_live_generative_path_results.json",
+    "05_deterministic_generative_comparison.json",
+    "05_deterministic_generative_comparison.csv",
+    "06_comparison_summary.json",
+    "07_reviewer_summary.md",
+    "08_traceability_index.json",
+    "09_execution_manifest.json"
+  ]
+}

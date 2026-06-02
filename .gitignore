@@ -1,0 +1,57 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary setup scripts
+run_step_*.ps1
+
+# Migration backups and temporary audit bundles
+paper_artifacts/migration_backups/
+paper_artifacts/documentation_backups/
+paper_artifacts/provisional_scaffold_archive/
+
+# Python build artifacts
+build/
+dist/
+*.egg-info/
+
+# Internal working artifacts
+paper_artifacts/
+
+# Old provisional/demo outputs
+outputs/demo_run_*/
+outputs/deterministic_generative_comparison_20260602_164823/
+outputs/.gitkeep
+
+# Legacy provisional data and unvalidated scaffold files
+data/
+docs/01_artifact_overview.md
+docs/02_demo_walkthrough.md
+docs/03_layer_mapping_to_paper.md
+docs/04_case_and_decision_logic.md
+docs/05_traceability_and_outputs.md
+docs/06_limitations.md
+docs/dev_log.md
+scripts/clean_outputs.py
+scripts/run_demo.py
+tests/test_case_lifecycle.py
+tests/test_decision_tables.py
+tests/test_full_pipeline.py
+tests/test_layer_1_ingestion.py
+tests/test_layer_2_contextualization.py

@@ -1,0 +1,221 @@
+[
+  {
+    "case_id": "DF_COMP_001_CONTROLLED_MONITORING",
+    "scenario_family": "compressor_degradation_decision_posture",
+    "asset_context": {
+      "asset_id": "COMP-001",
+      "asset_type": "compressor",
+      "criticality": "high",
+      "location": "Line A - utilities area",
+      "production_dependency": "Feeds compressed air to a production-critical line.",
+      "maintenance_history_summary": "Recurring vibration observations during the last month, with no completed corrective intervention yet."
+    },
+    "sensor_evidence": {
+      "vibration_mm_s": 6.8,
+      "temperature_c": 74.0,
+      "pressure_bar": 7.1,
+      "current_draw_a": 42.0,
+      "alarm_count_24h": 2,
+      "signal_consistency": "consistent"
+    },
+    "predictive_alert": {
+      "alert_type": "early_degradation",
+      "predicted_failure_mode": "bearing_wear",
+      "time_to_failure_hours": 96,
+      "confidence_score": 0.86,
+      "model_uncertainty": "low",
+      "supporting_signals": [
+        "vibration_trend",
+        "temperature_trend"
+      ]
+    },
+    "operational_context": {
+      "production_pressure": "moderate",
+      "shift": "day",
+      "demand_urgency": "normal",
+      "downtime_window": "available within 48 hours",
+      "line_dependency": "high but manageable with planning",
+      "customer_impact": "limited if intervention is planned"
+    },
+    "maintenance_context": {
+      "spare_part_status": "available",
+      "spare_part_eta_hours": 0,
+      "technician_available": true,
+      "maintenance_window_available": true,
+      "workaround_available": true,
+      "inspection_required": true
+    },
+    "uncertainty_context": {
+      "data_quality": "good",
+      "conflicting_evidence": false,
+      "diagnosis_clarity": "clear",
+      "model_confidence_comment": "Signals are consistent with early bearing degradation."
+    },
+    "narrative_context": {
+      "technician_note": "The compressor is noisier than usual but remains stable.",
+      "supervisor_note": "Production can tolerate a short planned inspection.",
+      "maintenance_log_excerpt": "Previous observation recorded mild vibration increase.",
+      "shift_handover_note": "Monitor vibration trend and prepare inspection work order."
+    },
+    "expected_decision": {
+      "expected_decision_posture": "controlled_monitoring",
+      "expected_review_focus": "planned inspection and trend monitoring",
+      "expected_human_review_required": false,
+      "expectation_rationale": "Risk is relevant but controlled: evidence is consistent, parts are available, and there is a feasible maintenance window."
+    },
+    "generation_metadata": {
+      "generator_name": "digital_factory_compressor_scenario_generator",
+      "generator_version": "0.1.0",
+      "generation_mode": "deterministic",
+      "uses_generative_ai": false,
+      "scenario_family": "compressor_degradation_decision_posture",
+      "scenario_variant": "controlled_monitoring"
+    }
+  },
+  {
+    "case_id": "DF_COMP_002_CONSTRAINED_EXECUTION",
+    "scenario_family": "compressor_degradation_decision_posture",
+    "asset_context": {
+      "asset_id": "COMP-001",
+      "asset_type": "compressor",
+      "criticality": "high",
+      "location": "Line A - utilities area",
+      "production_dependency": "Feeds compressed air to a production-critical line.",
+      "maintenance_history_summary": "Recurring vibration observations during the last month, with no completed corrective intervention yet."
+    },
+    "sensor_evidence": {
+      "vibration_mm_s": 9.4,
+      "temperature_c": 82.5,
+      "pressure_bar": 6.6,
+      "current_draw_a": 48.0,
+      "alarm_count_24h": 7,
+      "signal_consistency": "consistent"
+    },
+    "predictive_alert": {
+      "alert_type": "accelerated_degradation",
+      "predicted_failure_mode": "bearing_wear",
+      "time_to_failure_hours": 24,
+      "confidence_score": 0.88,
+      "model_uncertainty": "low",
+      "supporting_signals": [
+        "vibration_spike",
+        "temperature_increase",
+        "alarm_frequency"
+      ]
+    },
+    "operational_context": {
+      "production_pressure": "high",
+      "shift": "night",
+      "demand_urgency": "critical customer order",
+      "downtime_window": "not available in the next 24 hours",
+      "line_dependency": "critical",
+      "customer_impact": "high if the line stops unexpectedly"
+    },
+    "maintenance_context": {
+      "spare_part_status": "delayed",
+      "spare_part_eta_hours": 48,
+      "technician_available": true,
+      "maintenance_window_available": false,
+      "workaround_available": false,
+      "inspection_required": true
+    },
+    "uncertainty_context": {
+      "data_quality": "good",
+      "conflicting_evidence": false,
+      "diagnosis_clarity": "clear",
+      "model_confidence_comment": "Signals support accelerated degradation, but execution is constrained."
+    },
+    "narrative_context": {
+      "technician_note": "The compressor shows clear deterioration.",
+      "supervisor_note": "Stopping the line now would affect a critical customer order.",
+      "maintenance_log_excerpt": "Alarm frequency increased sharply during the last shift.",
+      "shift_handover_note": "Escalate to operations and confirm spare part ETA."
+    },
+    "expected_decision": {
+      "expected_decision_posture": "constrained_execution",
+      "expected_review_focus": "operational constraint and spare part risk",
+      "expected_human_review_required": true,
+      "expectation_rationale": "Technical risk is high and evidence is clear, but execution is constrained by production pressure and delayed spare part availability."
+    },
+    "generation_metadata": {
+      "generator_name": "digital_factory_compressor_scenario_generator",
+      "generator_version": "0.1.0",
+      "generation_mode": "deterministic",
+      "uses_generative_ai": false,
+      "scenario_family": "compressor_degradation_decision_posture",
+      "scenario_variant": "constrained_execution"
+    }
+  },
+  {
+    "case_id": "DF_COMP_003_DIAGNOSTIC_REVIEW",
+    "scenario_family": "compressor_degradation_decision_posture",
+    "asset_context": {
+      "asset_id": "COMP-001",
+      "asset_type": "compressor",
+      "criticality": "high",
+      "location": "Line A - utilities area",
+      "production_dependency": "Feeds compressed air to a production-critical line.",
+      "maintenance_history_summary": "Recurring vibration observations during the last month, with no completed corrective intervention yet."
+    },
+    "sensor_evidence": {
+      "vibration_mm_s": 8.1,
+      "temperature_c": 70.0,
+      "pressure_bar": 7.0,
+      "current_draw_a": 40.5,
+      "alarm_count_24h": 4,
+      "signal_consistency": "conflicting"
+    },
+    "predictive_alert": {
+      "alert_type": "possible_degradation",
+      "predicted_failure_mode": "uncertain_rotating_component_issue",
+      "time_to_failure_hours": 72,
+      "confidence_score": 0.58,
+      "model_uncertainty": "high",
+      "supporting_signals": [
+        "vibration_anomaly"
+      ]
+    },
+    "operational_context": {
+      "production_pressure": "moderate",
+      "shift": "day",
+      "demand_urgency": "normal",
+      "downtime_window": "available within 72 hours",
+      "line_dependency": "high but not immediately critical",
+      "customer_impact": "moderate if inspection is delayed"
+    },
+    "maintenance_context": {
+      "spare_part_status": "unknown",
+      "spare_part_eta_hours": null,
+      "technician_available": true,
+      "maintenance_window_available": true,
+      "workaround_available": true,
+      "inspection_required": true
+    },
+    "uncertainty_context": {
+      "data_quality": "mixed",
+      "conflicting_evidence": true,
+      "diagnosis_clarity": "uncertain",
+      "model_confidence_comment": "Vibration is abnormal, but other signals do not confirm a clear pattern."
+    },
+    "narrative_context": {
+      "technician_note": "The vibration reading looks abnormal, but supporting symptoms are weak.",
+      "supervisor_note": "Do not rush into a full intervention without confirming the failure mode.",
+      "maintenance_log_excerpt": "Previous similar event was caused by a sensor mounting issue.",
+      "shift_handover_note": "Validate sensor condition and repeat measurement."
+    },
+    "expected_decision": {
+      "expected_decision_posture": "diagnostic_review",
+      "expected_review_focus": "diagnostic uncertainty and evidence validation",
+      "expected_human_review_required": true,
+      "expectation_rationale": "The alert is relevant, but evidence is conflicting and confidence is lower. A diagnostic review should precede execution."
+    },
+    "generation_metadata": {
+      "generator_name": "digital_factory_compressor_scenario_generator",
+      "generator_version": "0.1.0",
+      "generation_mode": "deterministic",
+      "uses_generative_ai": false,
+      "scenario_family": "compressor_degradation_decision_posture",
+      "scenario_variant": "diagnostic_review"
+    }
+  }
+]

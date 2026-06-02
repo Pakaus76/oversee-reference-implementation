@@ -1,0 +1,10 @@
+{
+  "case_count": 3,
+  "action_differences": 0,
+  "priority_differences": 0,
+  "rationale_differences": 3,
+  "live_generative_fallback_count": 3,
+  "live_generative_model_response_count": 0,
+  "live_generative_evidence_reference_count": 0,
+  "live_generative_priority_governance_count": 0
+}

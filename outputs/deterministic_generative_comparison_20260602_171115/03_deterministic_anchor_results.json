@@ -1,0 +1,92 @@
+[
+  {
+    "candidate_id": "OVERSEE_INPUT_DF_COMP_001_CONTROLLED_MONITORING",
+    "source_case_id": "DF_COMP_001_CONTROLLED_MONITORING",
+    "recommendation_id": "det_anchor_DF_COMP_001_CONTROLLED_MONITORING",
+    "asset_id": "COMP-001",
+    "priority": "medium",
+    "action": "Schedule near-term inspection and maintenance review.",
+    "rationale": "deterministic anchor baseline urgency assessment: 'low'. deterministic anchor operational importance assessment: 'high'. deterministic anchor evidence reliability assessment: 'acceptable'. deterministic anchor final consolidated priority: 'medium'.",
+    "expected_decision_posture": "controlled_monitoring",
+    "expected_human_review_required": false,
+    "normalized_criticality": 5,
+    "predicted_issue_source": "alert_type_fallback",
+    "deterministic_anchor_invoked": true,
+    "adapter_metadata": {
+      "adapter_name": "digital_factory_deterministic_anchor_adapter",
+      "adapter_version": "0.1.0",
+      "deterministic": true,
+      "uses_generative_ai": false,
+      "deterministic_anchor_adapter_invoked": true,
+      "deterministic_anchor_modified": false,
+      "live_generative_path_modified": false,
+      "prompt_modified": false,
+      "criticality_mapping": {
+        "low": 1,
+        "medium": 3,
+        "high": 5
+      },
+      "predicted_issue_fallback_allowed": true
+    }
+  },
+  {
+    "candidate_id": "OVERSEE_INPUT_DF_COMP_002_CONSTRAINED_EXECUTION",
+    "source_case_id": "DF_COMP_002_CONSTRAINED_EXECUTION",
+    "recommendation_id": "det_anchor_DF_COMP_002_CONSTRAINED_EXECUTION",
+    "asset_id": "COMP-001",
+    "priority": "high",
+    "action": "Plan immediate inspection and maintenance preparation.",
+    "rationale": "deterministic anchor baseline urgency assessment: 'high'. deterministic anchor operational importance assessment: 'high'. deterministic anchor evidence reliability assessment: 'acceptable'. deterministic anchor final consolidated priority: 'high'.",
+    "expected_decision_posture": "constrained_execution",
+    "expected_human_review_required": true,
+    "normalized_criticality": 5,
+    "predicted_issue_source": "alert_type_fallback",
+    "deterministic_anchor_invoked": true,
+    "adapter_metadata": {
+      "adapter_name": "digital_factory_deterministic_anchor_adapter",
+      "adapter_version": "0.1.0",
+      "deterministic": true,
+      "uses_generative_ai": false,
+      "deterministic_anchor_adapter_invoked": true,
+      "deterministic_anchor_modified": false,
+      "live_generative_path_modified": false,
+      "prompt_modified": false,
+      "criticality_mapping": {
+        "low": 1,
+        "medium": 3,
+        "high": 5
+      },
+      "predicted_issue_fallback_allowed": true
+    }
+  },
+  {
+    "candidate_id": "OVERSEE_INPUT_DF_COMP_003_DIAGNOSTIC_REVIEW",
+    "source_case_id": "DF_COMP_003_DIAGNOSTIC_REVIEW",
+    "recommendation_id": "det_anchor_DF_COMP_003_DIAGNOSTIC_REVIEW",
+    "asset_id": "COMP-001",
+    "priority": "high",
+    "action": "Plan immediate inspection and maintenance preparation.",
+    "rationale": "deterministic anchor baseline urgency assessment: 'medium'. deterministic anchor operational importance assessment: 'high'. deterministic anchor evidence reliability assessment: 'acceptable'. deterministic anchor final consolidated priority: 'high'.",
+    "expected_decision_posture": "diagnostic_review",
+    "expected_human_review_required": true,
+    "normalized_criticality": 5,
+    "predicted_issue_source": "alert_type_fallback",
+    "deterministic_anchor_invoked": true,
+    "adapter_metadata": {
+      "adapter_name": "digital_factory_deterministic_anchor_adapter",
+      "adapter_version": "0.1.0",
+      "deterministic": true,
+      "uses_generative_ai": false,
+      "deterministic_anchor_adapter_invoked": true,
+      "deterministic_anchor_modified": false,
+      "live_generative_path_modified": false,
+      "prompt_modified": false,
+      "criticality_mapping": {
+        "low": 1,
+        "medium": 3,
+        "high": 5
+      },
+      "predicted_issue_fallback_allowed": true
+    }
+  }
+]

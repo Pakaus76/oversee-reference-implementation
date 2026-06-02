@@ -1,0 +1,12 @@
+[project]
+name = "oversee-reference-implementation"
+version = "0.1.0"
+description = "Executable reference implementation of the OVERSEE artifact."
+requires-python = ">=3.10"
+dependencies = [
+    "pydantic>=2.0.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
