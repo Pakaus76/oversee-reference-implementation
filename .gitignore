@@ -55,3 +55,7 @@ tests/test_decision_tables.py
 tests/test_full_pipeline.py
 tests/test_layer_1_ingestion.py
 tests/test_layer_2_contextualization.py
+
+# Local secrets and environment variables
+.env
+.env.*
