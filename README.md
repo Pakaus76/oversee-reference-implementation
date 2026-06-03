@@ -1,5 +1,54 @@
 # OVERSEE Reference Implementation
 
+<!-- BEGIN: V0.5.0_FERNANDO_ALL_LAYERS_DEMO -->
+## v0.5.0 - Fernando-aligned five-layer compressor demo
+
+The current reviewer-facing milestone is:
+
+```text
+v0.5.0 - Fernando-aligned five-layer OVERSEE compressor demo
+```
+
+This version provides a concrete, executable, end-to-end demonstration of the OVERSEE artifact using a single industrial compressor case:
+
+```text
+COMP-001 - industrial air compressor
+Predictive alert: bearing degradation risk
+Case ID: FERNANDO_ALERT-COMP-001-20260603
+```
+
+The official demo command is:
+
+```powershell
+$env:PYTHONPATH = "src"
+python scripts\run_fernando_all_layers_demo.py
+```
+
+The demo executes the full five-layer flow:
+
+```text
+Predictive maintenance alert
+-> Layer 1: evidence intake, simulated enterprise APIs, aggregation and validation
+-> Layer 2: DMN-like contextualization rules
+-> Layer 3: CMMN-inspired case lifecycle
+-> Layer 4: DMN-like decision rules, deterministic path and live generative path
+-> Layer 5: governed recommendation package, traceability and reviewer summary
+```
+
+The expected output folder is:
+
+```text
+outputs/fernando_all_layers_demo_YYYYMMDD_HHMMSS/
+```
+
+The final output is not an uncontrolled generative AI answer. It is a governed package that preserves evidence, contextualization rules, case lifecycle state, deterministic and generative recommendation outputs, comparison metadata and traceability.
+
+For the detailed walkthrough, see:
+
+```text
+docs/fernando_all_layers_demo_guide.md
+```
+<!-- END: V0.5.0_FERNANDO_ALL_LAYERS_DEMO -->
 This repository contains an executable reference implementation of **OVERSEE** for governed industrial asset-management decision support.
 
 The current milestone is:

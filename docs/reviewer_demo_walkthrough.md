@@ -189,3 +189,43 @@ In the validated v0.4.0 run:
 - deterministic and generative priorities aligned;
 - the generative recommendation added richer operational wording;
 - Layer 5 preserved the comparison and metadata.
+
+<!-- BEGIN: V0.5.0_FERNANDO_ALL_LAYERS_DEMO -->
+## v0.5.0 reviewer walkthrough - Fernando all-layers demo
+
+For Fernando's review, the recommended demo is now the all-layers compressor walkthrough:
+
+```powershell
+$env:PYTHONPATH = "src"
+python scripts\run_fernando_all_layers_demo.py
+```
+
+The demo is based on a single compressor case, `COMP-001`, and shows how a predictive maintenance alert becomes a governed recommendation package.
+
+Recommended file opening order:
+
+```text
+00_predictive_alert_request.json
+01_enterprise_api_calls.json
+01_aggregated_evidence_package.json
+01_validation_report.json
+02_contextualization_rule_trace.json
+02_canonical_case_context.json
+03_case_management_state.json
+04_dmn_decision_evaluation.json
+04_live_generative_recommendation.json
+04_deterministic_vs_generative_comparison.json
+05_governed_recommendation_package.json
+05_reviewer_summary.md
+05_full_layer_trace_summary.md
+```
+
+Reviewer message:
+
+```text
+The demo takes the compressor example from a predictive alert to a governed recommendation.
+It does not claim to implement production APIs, a formal DMN engine or a formal CMMN engine.
+It demonstrates an executable reference implementation where each layer has a concrete input,
+mechanism, output and traceable artifact.
+```
+<!-- END: V0.5.0_FERNANDO_ALL_LAYERS_DEMO -->

@@ -82,3 +82,45 @@ The strongest closing statement is:
 ```text
 This workbench shows that generative AI can be used in industrial decision support without turning the decision process into a black box. The generated data, the model recommendation, the deterministic anchor, the rules, the lifecycle and the final package are all visible and traceable.
 ```
+
+<!-- BEGIN: V0.5.0_FERNANDO_ALL_LAYERS_DEMO -->
+## Relationship between v0.4.0 and v0.5.0
+
+`v0.4.0` demonstrated the advanced generative workbench, including the Generative Digital Factory and live generative recommendation path.
+
+`v0.5.0` adds a Fernando-aligned, five-layer compressor demo that makes the artifact more concrete and reviewer-friendly.
+
+The main difference is focus:
+
+```text
+v0.4.0 - shows the advanced generative workbench capability.
+v0.5.0 - shows how the OVERSEE layers operate on one concrete compressor case from alert intake to governed package.
+```
+
+Use `v0.5.0` for Fernando's Friday demo because it directly addresses the requested "how" questions:
+
+```text
+How does the alert enter OVERSEE?
+What JSON is received?
+Which enterprise APIs are consulted?
+How are evidences aggregated and validated?
+How does contextualization work?
+How does the lifecycle become decision-ready?
+How are deterministic and generative outputs compared?
+How is the final recommendation governed and traced?
+```
+<!-- END: V0.5.0_FERNANDO_ALL_LAYERS_DEMO -->
+
+## v0.5.0 Fernando demo validation anchors
+
+The advanced workbench documentation now distinguishes the v0.4.0 generative workbench from the v0.5.0 Fernando-aligned compressor demo.
+
+```text
+Version: v0.5.0
+Demo case: COMP-001
+Official command: python scripts\run_fernando_all_layers_demo.py
+Layer 2: DMN-like contextualization rules
+Layer 3: CMMN-inspired case lifecycle
+Layer 4: DMN-like decision rules and generative comparison
+Layer 5: governed recommendation package
+```
