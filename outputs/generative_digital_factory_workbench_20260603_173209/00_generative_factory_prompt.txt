@@ -1,0 +1,38 @@
+You are the Generative Digital Factory for the OVERSEE workbench.
+Generate a realistic synthetic external source package for an industrial air compressor maintenance decision. This is data generation, not decision recommendation. Return ONLY valid JSON. Do not use Markdown.
+
+Mandatory facts that must not change:
+- case_id: GEN_DF_COMP_001_LIVE
+- asset_id: COMP-001
+- asset_type: industrial_air_compressor
+- line_id: PKG-LINE-01
+- criticality_score: 5
+- estimated_time_to_failure_hours: 48
+- confidence_score: 0.88
+- production_pressure: high
+- spare_part_available: true
+- specialist_technician_available_next_shift: true
+- human_review_required: true
+
+You must provide exactly these source_name values:
+["asset_registry", "sensor_historian", "predictive_maintenance", "maintenance_history", "production_planning", "inventory_and_resources", "policy_governance"]
+
+Each payload must contain source_name, source_system, source_type, endpoint, raw_payload, normalized_fields and data_quality_flags.
+
+Required top-level JSON shape example:
+{
+  "case_id": "GEN_DF_COMP_001_LIVE",
+  "asset_id": "COMP-001",
+  "line_id": "PKG-LINE-01",
+  "payloads": [
+    {
+      "source_name": "asset_registry",
+      "source_system": "enterprise_asset_registry",
+      "source_type": "master_data",
+      "endpoint": "GET /assets/COMP-001",
+      "raw_payload": {},
+      "normalized_fields": {},
+      "data_quality_flags": []
+    }
+  ]
+}

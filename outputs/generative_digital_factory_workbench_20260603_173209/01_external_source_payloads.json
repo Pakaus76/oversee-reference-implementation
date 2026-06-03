@@ -1,0 +1,228 @@
+{
+  "package_id": "generative_external_sources_GEN_DF_COMP_001_LIVE",
+  "case_id": "GEN_DF_COMP_001_LIVE",
+  "asset_id": "COMP-001",
+  "line_id": "PKG-LINE-01",
+  "created_at": "2026-06-03T15:32:38.033074+00:00",
+  "payloads": [
+    {
+      "source_name": "asset_registry",
+      "source_system": "enterprise_asset_registry",
+      "source_type": "master_data",
+      "endpoint": "GET /assets/COMP-001",
+      "generated_at": "2026-06-03T15:32:38.033074+00:00",
+      "case_id": "GEN_DF_COMP_001_LIVE",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "assetId": "COMP-001",
+        "type": "industrial_air_compressor",
+        "manufacturer": "Atlas Copco",
+        "model": "GA75 VSD+",
+        "installDate": "2018-05-14T00:00:00Z",
+        "location": "Plant 1 - Packaging Line",
+        "criticalityScore": 5,
+        "lastInspectionDate": "2024-05-10T08:30:00Z",
+        "maintenanceWindowHours": 4
+      },
+      "normalized_fields": {
+        "asset_id": "COMP-001",
+        "asset_type": "industrial_air_compressor",
+        "criticality_score": 5,
+        "installation_date": "2018-05-14",
+        "last_inspection_date": "2024-05-10",
+        "location": "PKG-LINE-01",
+        "asset_criticality": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "sensor_historian",
+      "source_system": "plant_sensor_network",
+      "source_type": "time_series_data",
+      "endpoint": "GET /sensors/COMP-001/data?last_hours=24",
+      "generated_at": "2026-06-03T15:32:38.033074+00:00",
+      "case_id": "GEN_DF_COMP_001_LIVE",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "timestamp": "2024-06-04T07:00:00Z",
+        "pressure_psi": [
+          120,
+          118,
+          115,
+          110,
+          105
+        ],
+        "temperature_celsius": [
+          75,
+          78,
+          80,
+          82,
+          85
+        ],
+        "vibration_mms": [
+          2.1,
+          2.3,
+          2.8,
+          3.5,
+          4.2
+        ]
+      },
+      "normalized_fields": {
+        "pressure": "high",
+        "temperature_celsius_average": 78,
+        "vibration_trend": "increasing",
+        "last_24h_data_points": 5,
+        "temperature_trend": "increasing",
+        "sensor_severity": "medium"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "predictive_maintenance",
+      "source_system": "pdm_platform_v2",
+      "source_type": "prediction_model_output",
+      "endpoint": "GET /predictions/COMP-001/next_failure",
+      "generated_at": "2026-06-03T15:32:38.033074+00:00",
+      "case_id": "GEN_DF_COMP_001_LIVE",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "estimated_time_to_failure_hours": 48,
+        "failure_probability": 0.88,
+        "recommended_action": "Schedule immediate maintenance",
+        "model_version": "v3.2.1"
+      },
+      "normalized_fields": {
+        "estimated_time_to_failure_hours": 48,
+        "confidence_score": 0.88,
+        "key_recommendation": "maintenance_scheduling",
+        "alert_type": "predictive_degradation_alert",
+        "alert_severity": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "maintenance_history",
+      "source_system": "cmms_system",
+      "source_type": "historical_maintenance_records",
+      "endpoint": "GET /maintenance_records?asset_id=COMP-001&limit=5",
+      "generated_at": "2026-06-03T15:32:38.033074+00:00",
+      "case_id": "GEN_DF_COMP_001_LIVE",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "records": [
+          {
+            "jobId": "MT-2023-1001",
+            "date": "2023-11-21",
+            "type": "Preventive",
+            "duration_hours": 3,
+            "technician": "John Doe",
+            "comments": "Replaced air filters and lubricated bearings"
+          },
+          {
+            "jobId": "MT-2023-0607",
+            "date": "2023-06-07",
+            "type": "Corrective",
+            "duration_hours": 5,
+            "technician": "Jane Smith",
+            "comments": "Repaired leak in pressure valve"
+          }
+        ]
+      },
+      "normalized_fields": {
+        "last_maintenance_date": "2023-11-21",
+        "last_maintenance_type": "Preventive",
+        "last_maintenance_duration_hours": 3,
+        "recent_repeated_failures": false
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "production_planning",
+      "source_system": "erp_manufacturing_module",
+      "source_type": "planning_schedule",
+      "endpoint": "GET /production_schedule/PKG-LINE-01?date=2024-06-04",
+      "generated_at": "2026-06-03T15:32:38.033074+00:00",
+      "case_id": "GEN_DF_COMP_001_LIVE",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "lineId": "PKG-LINE-01",
+        "date": "2024-06-04",
+        "planned_production_pressure": "high",
+        "scheduled_downtime_hours": 1,
+        "production_target_units": 1200
+      },
+      "normalized_fields": {
+        "line_id": "PKG-LINE-01",
+        "production_pressure": "high",
+        "scheduled_downtime_hours": 1,
+        "production_target": 1200,
+        "production_load_pct": 92.0,
+        "next_planned_downtime_hours": 1.0
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "inventory_and_resources",
+      "source_system": "erp_inventory_module",
+      "source_type": "stock_and_personnel_data",
+      "endpoint": "GET /inventory/COMP-001-spare-parts",
+      "generated_at": "2026-06-03T15:32:38.033074+00:00",
+      "case_id": "GEN_DF_COMP_001_LIVE",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "spare_part_available": true,
+        "available_spares": [
+          {
+            "part_id": "SP-VALVE-09",
+            "description": "Pressure valve replacement",
+            "quantity_on_hand": 3
+          }
+        ],
+        "specialist_technician_available_next_shift": true,
+        "next_shift_start": "2024-06-04T14:00:00Z"
+      },
+      "normalized_fields": {
+        "spare_part_available": true,
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "policy_governance",
+      "source_system": "compliance_management_system",
+      "source_type": "regulatory_and_internal_policies",
+      "endpoint": "GET /policies/maintenance/COMP-001",
+      "generated_at": "2026-06-03T15:32:38.033074+00:00",
+      "case_id": "GEN_DF_COMP_001_LIVE",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "mandatory_human_review": true,
+        "safety_standards": [
+          "ISO 9001",
+          "OSHA 1910"
+        ],
+        "maintenance_window_policy_hours": 4
+      },
+      "normalized_fields": {
+        "human_review_required": true,
+        "applicable_standards": [
+          "ISO 9001",
+          "OSHA 1910"
+        ],
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true
+      },
+      "data_quality_flags": []
+    }
+  ],
+  "package_version": "0.1.0",
+  "source_count": 7
+}

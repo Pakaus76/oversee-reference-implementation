@@ -1,0 +1,42 @@
+{
+  "manifest_version": "0.1.0",
+  "created_at": "2026-06-03T15:32:44.899404+00:00",
+  "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\generative_digital_factory_workbench_20260603_173209",
+  "case_id": "GEN_DF_COMP_001_LIVE",
+  "asset_id": "COMP-001",
+  "package_id": "governed_package_GEN_DF_COMP_001_LIVE",
+  "generated_files": [
+    "00_generative_factory_result.json",
+    "00_generative_factory_prompt.txt",
+    "00_generative_factory_raw_response.txt",
+    "00_generative_factory_parsed_sources.json",
+    "01_external_source_payloads.json",
+    "02_canonical_case_context.json",
+    "03_case_lifecycle_trace.json",
+    "03_case_management_state.json",
+    "04_dmn_decision_evaluation.json",
+    "04_recommendation_path_outputs.json",
+    "04_live_generative_recommendation.json",
+    "04_deterministic_vs_generative_comparison.json",
+    "05_governed_recommendation_package.json",
+    "05_traceability_index.json",
+    "05_reviewer_summary.md",
+    "05_execution_manifest.json"
+  ],
+  "layer_completion": {
+    "layer_1_external_sources": true,
+    "layer_2_canonical_context": true,
+    "layer_3_case_lifecycle": true,
+    "layer_4_decision_rules": true,
+    "layer_5_governed_package": true
+  },
+  "traceability_count": 6,
+  "status": "completed",
+  "generative_digital_factory_result_id": "generative_digital_factory_GEN_DF_COMP_001_LIVE",
+  "factory_model_call_successful": true,
+  "factory_fallback_used": false,
+  "oversee_live_generative_result_id": "live_generative_GEN_DF_COMP_001_LIVE",
+  "oversee_model_call_successful": true,
+  "oversee_fallback_used": false,
+  "comparison_id": "det_vs_gen_GEN_DF_COMP_001_LIVE"
+}
