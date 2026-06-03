@@ -1,0 +1,53 @@
+{
+  "endpoint": "POST /oversee/api/v1/predictive-alerts",
+  "received_at": "2026-06-03T20:51:40.017585+00:00",
+  "accepted": true,
+  "validation_errors": [],
+  "request_payload": {
+    "alert": {
+      "alert_id": "ALERT-COMP-001-20260603",
+      "asset_id": "COMP-001",
+      "asset_type": "industrial_air_compressor",
+      "line_id": "PKG-LINE-01",
+      "suspected_failure_mode": "bearing_degradation",
+      "alert_type": "predictive_degradation_alert",
+      "predictive_horizon_hours": 48,
+      "confidence_score": 0.88,
+      "model_name": "compressor_failure_risk_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T08:30:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        1.4,
+        1.7,
+        2.1,
+        2.6,
+        2.9
+      ],
+      "temperature_celsius": [
+        74.0,
+        77.5,
+        81.2,
+        85.0,
+        88.5
+      ],
+      "pressure_bar": [
+        7.8,
+        7.6,
+        7.4,
+        7.1,
+        6.9
+      ],
+      "alarm_count": 3,
+      "last_sensor_timestamp": "2026-06-03T08:25:00Z"
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 72,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    }
+  }
+}
