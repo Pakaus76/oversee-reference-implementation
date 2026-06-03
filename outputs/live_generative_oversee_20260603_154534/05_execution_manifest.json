@@ -1,0 +1,36 @@
+{
+  "manifest_version": "0.1.0",
+  "created_at": "2026-06-03T13:45:58.911093+00:00",
+  "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\live_generative_oversee_20260603_154534",
+  "case_id": "DF_COMP_001_CONTROLLED_MONITORING",
+  "asset_id": "COMP-001",
+  "package_id": "governed_package_DF_COMP_001_CONTROLLED_MONITORING",
+  "generated_files": [
+    "01_external_source_payloads.json",
+    "02_canonical_case_context.json",
+    "03_case_lifecycle_trace.json",
+    "03_case_management_state.json",
+    "04_dmn_decision_evaluation.json",
+    "04_recommendation_path_outputs.json",
+    "04_live_generative_recommendation.json",
+    "04_deterministic_vs_generative_comparison.json",
+    "05_governed_recommendation_package.json",
+    "05_traceability_index.json",
+    "05_reviewer_summary.md",
+    "05_execution_manifest.json"
+  ],
+  "layer_completion": {
+    "layer_1_external_sources": true,
+    "layer_2_canonical_context": true,
+    "layer_3_case_lifecycle": true,
+    "layer_4_decision_rules": true,
+    "layer_5_governed_package": true
+  },
+  "traceability_count": 6,
+  "status": "completed",
+  "live_generative_result_id": "live_generative_DF_COMP_001_CONTROLLED_MONITORING",
+  "model_call_attempted": true,
+  "model_call_successful": true,
+  "fallback_used": false,
+  "comparison_id": "det_vs_gen_DF_COMP_001_CONTROLLED_MONITORING"
+}

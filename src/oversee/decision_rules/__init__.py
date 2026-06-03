@@ -12,13 +12,19 @@ from oversee.decision_rules.decision_rule_contracts import (
     RuleEvaluation,
 )
 from oversee.decision_rules.dmn_like_rules import evaluate_dmn_like_rules
+from oversee.decision_rules.live_generative_recommendation import (
+    LiveGenerativeRecommendationResult,
+    run_live_generative_recommendation,
+)
 from oversee.decision_rules.recommendation_path_runner import run_recommendation_paths
 
 __all__ = [
     "DecisionRuleEvaluation",
+    "LiveGenerativeRecommendationResult",
     "RecommendationPathBundle",
     "RecommendationPathOutput",
     "RuleEvaluation",
     "evaluate_dmn_like_rules",
+    "run_live_generative_recommendation",
     "run_recommendation_paths",
 ]

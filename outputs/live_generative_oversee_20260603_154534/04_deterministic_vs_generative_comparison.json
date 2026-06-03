@@ -1,0 +1,17 @@
+{
+  "comparison_id": "det_vs_gen_DF_COMP_001_CONTROLLED_MONITORING",
+  "case_id": "DF_COMP_001_CONTROLLED_MONITORING",
+  "asset_id": "COMP-001",
+  "deterministic_priority": "high",
+  "generative_priority": "high",
+  "priority_alignment": true,
+  "deterministic_action": "Plan immediate inspection and maintenance preparation.",
+  "generative_action": "Prepare and execute a controlled maintenance inspection and potential intervention on the industrial air compressor COMP-001 within the next planned downtime window of 36 hours, ensuring all specialist technicians and spare parts are ready before intervention.",
+  "action_alignment": "different",
+  "human_review_alignment": true,
+  "model_call_successful": true,
+  "fallback_used": false,
+  "protected_fact_violation_count": 0,
+  "rationale_difference": true,
+  "comparison_version": "0.1.0"
+}
