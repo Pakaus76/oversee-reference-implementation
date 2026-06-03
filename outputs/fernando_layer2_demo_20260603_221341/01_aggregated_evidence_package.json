@@ -1,0 +1,213 @@
+{
+  "package_id": "layer1_evidence_package_FERNANDO_ALERT-COMP-001-20260603",
+  "case_id": "FERNANDO_ALERT-COMP-001-20260603",
+  "asset_id": "COMP-001",
+  "line_id": "PKG-LINE-01",
+  "created_at": "2026-06-03T20:13:41.726540+00:00",
+  "payloads": [
+    {
+      "source_name": "asset_registry",
+      "source_system": "enterprise_asset_registry_api",
+      "source_type": "master_data",
+      "endpoint": "/enterprise/asset-registry/assets/{asset_id}",
+      "generated_at": "2026-06-03T20:13:41.726540+00:00",
+      "case_id": "FERNANDO_ALERT-COMP-001-20260603",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "asset_id": "COMP-001",
+        "asset_type": "industrial_air_compressor",
+        "line_id": "PKG-LINE-01",
+        "asset_criticality": "high",
+        "criticality_score": 5,
+        "manufacturer": "Reference Compressor Systems",
+        "model": "RC-5500",
+        "location": "Packaging area - line 1"
+      },
+      "normalized_fields": {
+        "asset_type": "industrial_air_compressor",
+        "asset_criticality": "high",
+        "criticality_score": 5
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "sensor_historian",
+      "source_system": "predictive_agent_payload",
+      "source_type": "raw_sensor_context",
+      "endpoint": "embedded_in_predictive_alert_request",
+      "generated_at": "2026-06-03T20:13:41.726540+00:00",
+      "case_id": "FERNANDO_ALERT-COMP-001-20260603",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "sampling_window_hours": 24,
+        "vibration_mms": [
+          1.4,
+          1.7,
+          2.1,
+          2.6,
+          2.9
+        ],
+        "temperature_celsius": [
+          74.0,
+          77.5,
+          81.2,
+          85.0,
+          88.5
+        ],
+        "pressure_bar": [
+          7.8,
+          7.6,
+          7.4,
+          7.1,
+          6.9
+        ],
+        "alarm_count": 3,
+        "last_sensor_timestamp": "2026-06-03T08:25:00Z"
+      },
+      "normalized_fields": {
+        "vibration_trend": "increasing",
+        "temperature_trend": "increasing",
+        "sensor_severity": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "predictive_maintenance",
+      "source_system": "predictive_maintenance_agent",
+      "source_type": "model_inference",
+      "endpoint": "POST /oversee/api/v1/predictive-alerts",
+      "generated_at": "2026-06-03T20:13:41.726540+00:00",
+      "case_id": "FERNANDO_ALERT-COMP-001-20260603",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "alert_id": "ALERT-COMP-001-20260603",
+        "asset_id": "COMP-001",
+        "asset_type": "industrial_air_compressor",
+        "line_id": "PKG-LINE-01",
+        "suspected_failure_mode": "bearing_degradation",
+        "alert_type": "predictive_degradation_alert",
+        "predictive_horizon_hours": 48,
+        "confidence_score": 0.88,
+        "model_name": "compressor_failure_risk_model",
+        "model_version": "v1.0-reference",
+        "triggered_at": "2026-06-03T08:30:00Z"
+      },
+      "normalized_fields": {
+        "alert_type": "predictive_degradation_alert",
+        "estimated_time_to_failure_hours": 48.0,
+        "confidence_score": 0.88,
+        "alert_severity": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "maintenance_history",
+      "source_system": "enterprise_cmms_api",
+      "source_type": "work_order_history",
+      "endpoint": "/enterprise/cmms/assets/{asset_id}/work-orders",
+      "generated_at": "2026-06-03T20:13:41.726540+00:00",
+      "case_id": "FERNANDO_ALERT-COMP-001-20260603",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "asset_id": "COMP-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": true,
+        "work_orders": [
+          {
+            "work_order_id": "WO-2026-0418",
+            "type": "corrective",
+            "failure_mode": "vibration_anomaly",
+            "duration_hours": 2.0
+          },
+          {
+            "work_order_id": "WO-2026-0522",
+            "type": "corrective",
+            "failure_mode": "bearing_noise",
+            "duration_hours": 3.5
+          }
+        ]
+      },
+      "normalized_fields": {
+        "recent_repeated_failures": true
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "production_planning",
+      "source_system": "enterprise_mes_api",
+      "source_type": "operational_context",
+      "endpoint": "/enterprise/mes/lines/{line_id}/operational-context",
+      "generated_at": "2026-06-03T20:13:41.726540+00:00",
+      "case_id": "FERNANDO_ALERT-COMP-001-20260603",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "asset_id": "COMP-001",
+        "line_id": "PKG-LINE-01",
+        "horizon_hours": 72,
+        "production_pressure": "high",
+        "production_load_pct": 92.0,
+        "next_planned_downtime_hours": 36.0,
+        "customer_impact": "medium",
+        "shift_demand": "high"
+      },
+      "normalized_fields": {
+        "production_load_pct": 92.0,
+        "next_planned_downtime_hours": 36.0,
+        "production_pressure": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "inventory_and_resources",
+      "source_system": "enterprise_inventory_api",
+      "source_type": "resource_availability",
+      "endpoint": "/enterprise/inventory/assets/{asset_id}/resources",
+      "generated_at": "2026-06-03T20:13:41.726540+00:00",
+      "case_id": "FERNANDO_ALERT-COMP-001-20260603",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "asset_id": "COMP-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-COMP-BEARING-KIT",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "normalized_fields": {
+        "spare_part_available": true,
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "policy_governance",
+      "source_system": "enterprise_policy_governance_api",
+      "source_type": "governance_policy",
+      "endpoint": "/enterprise/policy-governance/assets/{asset_type}",
+      "generated_at": "2026-06-03T20:13:41.726540+00:00",
+      "case_id": "FERNANDO_ALERT-COMP-001-20260603",
+      "asset_id": "COMP-001",
+      "line_id": "PKG-LINE-01",
+      "raw_payload": {
+        "asset_type": "industrial_air_compressor",
+        "criticality_score": 5,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_id": "POL-COMP-HIGH-CRIT-001"
+      },
+      "normalized_fields": {
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true
+      },
+      "data_quality_flags": []
+    }
+  ],
+  "package_version": "0.1.0",
+  "source_count": 7
+}
