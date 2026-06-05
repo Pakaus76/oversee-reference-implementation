@@ -1,0 +1,80 @@
+﻿{
+  "scenario_id": "COMP-001",
+  "title": "Paper compressor case",
+  "description": "Industrial air compressor with bearing degradation risk. This is the default case aligned with Figure 3 and Section 4.",
+  "asset_id": "COMP-001",
+  "asset_type": "industrial_air_compressor",
+  "failure_mode": "bearing_degradation",
+  "paper_aligned": true,
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Bearing degradation alert; confidence 0.88; 48h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Rising vibration and temperature trend"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Industrial air compressor; high criticality; utility area"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "Repeated bearing interventions in past 6 months"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "High production pressure; next feasible stop in 36h"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Bearing kit available; technician available next shift"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review mandatory for high-criticality intervention"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Case owner assigned; review queue active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Preparation feasible for next downtime window"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "High-priority rule: degradation risk + narrow downtime window"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Reviewer summary prepared for maintenance lead"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Work-order proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: alert, condition trends, asset criticality, and maintenance history",
+    "layer2": "Contextualized decision profile: high urgency, near downtime window, intervention feasible, review required",
+    "layer3": "Decision-ready case: open, 2 tasks active, 5 milestones reached, no blockers",
+    "layer4": "Decision record: high priority, controlled planning, human review retained",
+    "layer5": "Governed recommendation package: reviewer summary, traceability index, and work-order proposal"
+  }
+}

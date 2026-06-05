@@ -1,0 +1,80 @@
+﻿{
+  "scenario_id": "PUMP-001",
+  "title": "Resource-constrained pump case",
+  "description": "Alternative pump case where risk exists but intervention feasibility is limited by spare-part and technician constraints.",
+  "asset_id": "PUMP-001",
+  "asset_type": "industrial_pump",
+  "failure_mode": "seal_degradation",
+  "paper_aligned": false,
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Seal degradation alert; confidence 0.82; 72h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Increasing leakage indicator and vibration drift"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Industrial pump; high criticality; process area"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "Recent seal replacement and recurring leakage notes"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "High production pressure; no planned downtime within 48h"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Seal kit not available; specialist technician unavailable next shift"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review mandatory for high-criticality intervention"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Case owner assigned; escalation task active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Planning blocked until spare and specialist are confirmed"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "High risk with constrained feasibility requires escalation planning"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Escalation summary prepared for maintenance and production leads"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Escalation work-order proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Constraint traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: seal degradation alert, condition trends, criticality, and maintenance history",
+    "layer2": "Contextualized decision profile: high urgency, no near downtime window, intervention not feasible, review required",
+    "layer3": "Decision-ready case: open, escalation task active, planning blocker visible",
+    "layer4": "Decision record: high priority, escalation planning recommended, human review retained",
+    "layer5": "Governed recommendation package: escalation summary, traceability index, and constrained work-order proposal"
+  }
+}
