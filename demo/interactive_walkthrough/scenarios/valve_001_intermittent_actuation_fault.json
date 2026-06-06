@@ -1,0 +1,189 @@
+{
+  "scenario_id": "VALVE-001",
+  "title": "Intermittent critical valve fault case",
+  "description": "Coverage case where a critical valve shows intermittent actuation evidence. It demonstrates diagnostic review before intervention.",
+  "asset_id": "VALVE-001",
+  "asset_type": "critical_valve",
+  "failure_mode": "intermittent_actuation_fault",
+  "paper_aligned": false,
+  "master_case": false,
+  "master_case_role": "coverage_case_intermittent_evidence_diagnostic",
+  "decision_pattern": "diagnostic_action_before_intervention",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Intermittent valve actuation alert; confidence 0.69; 96h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Actuation delay appears intermittently; pressure stable"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Critical valve; medium-high criticality; process isolation function"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "No confirmed recent failure"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "Medium production pressure; diagnostic test can be planned"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Diagnostic tools available; spare decision pending"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review recommended for intermittent critical valve evidence"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Diagnostic review task active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Intervention not released until diagnostic test is confirmed"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "Intermittent evidence should trigger diagnostic review before intervention"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Diagnostic summary prepared"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Valve diagnostic inspection proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Diagnostic traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Evidence package with quality flags: intermittent valve actuation evidence, stable pressure, and asset context",
+    "layer2": "Contextualized decision profile: medium urgency, evidence quality concern, diagnostic review recommended",
+    "layer3": "Decision-ready case: open, diagnostic task active, evidence blocker visible",
+    "layer4": "Decision record: medium priority, diagnostic review before intervention",
+    "layer5": "Governed recommendation package: diagnostic summary, traceability index, and inspection proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-VALVE-001-20260603",
+      "asset_id": "VALVE-001",
+      "asset_type": "critical_valve",
+      "line_id": "PROC-LINE-04",
+      "suspected_failure_mode": "intermittent_actuation_fault",
+      "alert_type": "intermittent_valve_actuation_alert",
+      "predictive_horizon_hours": 96,
+      "confidence_score": 0.69,
+      "model_name": "valve_actuation_monitoring_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T13:00:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        0.7,
+        0.7,
+        0.8,
+        0.7,
+        0.8
+      ],
+      "temperature_celsius": [
+        44.0,
+        44.1,
+        44.0,
+        44.2,
+        44.1
+      ],
+      "pressure_bar": [
+        6.5,
+        6.5,
+        6.4,
+        6.5,
+        6.5
+      ],
+      "alarm_count": 1,
+      "last_sensor_timestamp": "2026-06-03T12:55:00Z",
+      "actuation_delay_ms": [
+        120,
+        180,
+        130,
+        260,
+        125
+      ],
+      "data_quality_flags": [
+        "intermittent_actuation_signal_requires_confirmation"
+      ]
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 96,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "VALVE-001",
+        "asset_type": "critical_valve",
+        "line_id": "PROC-LINE-04",
+        "asset_criticality": "medium",
+        "criticality_score": 4,
+        "manufacturer": "Reference Valve Systems",
+        "model": "RV-90",
+        "location": "Process isolation loop"
+      },
+      "maintenance_history": {
+        "asset_id": "VALVE-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": false,
+        "work_orders": [
+          {
+            "work_order_id": "WO-VALVE-001-2026-0309",
+            "type": "preventive",
+            "failure_mode": "none",
+            "duration_hours": 0.9
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "VALVE-001",
+        "line_id": "PROC-LINE-04",
+        "horizon_hours": 96,
+        "production_pressure": "medium",
+        "production_load_pct": 76.0,
+        "next_planned_downtime_hours": 72.0,
+        "customer_impact": "medium",
+        "shift_demand": "medium"
+      },
+      "inventory_and_resources": {
+        "asset_id": "VALVE-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-VALVE-ACTUATOR-STD",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "policy_governance": {
+        "asset_type": "critical_valve",
+        "criticality_score": 4,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_id": "POL-VALVE-DIAG-001"
+      }
+    }
+  }
+}

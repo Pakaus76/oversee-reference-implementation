@@ -1,0 +1,186 @@
+{
+  "scenario_id": "CIP-001",
+  "title": "CIP cleaning reliability case",
+  "description": "Coverage case where cleaning cycle reliability affects both quality and availability.",
+  "asset_id": "CIP-001",
+  "asset_type": "cip_system",
+  "failure_mode": "cleaning_cycle_reliability_issue",
+  "paper_aligned": false,
+  "master_case": false,
+  "master_case_role": "coverage_case_quality_availability_coordination",
+  "decision_pattern": "quality_and_availability_coordination",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Cleaning cycle reliability alert; confidence 0.79; 72h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Cleaning temperature and pressure variability increasing"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "CIP system; high quality relevance; utility/process interface"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "Recent cleaning deviation notes"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "Medium production pressure; cleaning schedule affects line availability"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Valve and sensor checks feasible"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review required if quality risk is present"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Quality-maintenance coordination task active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Diagnostic check must align with cleaning schedule"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "Quality and availability issue requires coordinated planning"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Quality-maintenance summary prepared"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "CIP diagnostic proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Quality coordination traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: cleaning reliability alert, process trends, quality relevance, and deviation history",
+    "layer2": "Contextualized decision profile: medium-high urgency, quality concern, feasible diagnostic action",
+    "layer3": "Decision-ready case: open, quality coordination task active, no blockers",
+    "layer4": "Decision record: medium priority, coordinated planning recommended",
+    "layer5": "Governed recommendation package: quality-maintenance summary, traceability index, and diagnostic proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-CIP-001-20260603",
+      "asset_id": "CIP-001",
+      "asset_type": "cip_system",
+      "line_id": "CIP-LINE-01",
+      "suspected_failure_mode": "cleaning_cycle_reliability_issue",
+      "alert_type": "cip_cleaning_reliability_alert",
+      "predictive_horizon_hours": 72,
+      "confidence_score": 0.79,
+      "model_name": "cip_reliability_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T13:30:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        0.6,
+        0.6,
+        0.7,
+        0.7,
+        0.8
+      ],
+      "temperature_celsius": [
+        68.0,
+        70.0,
+        66.0,
+        73.0,
+        69.0
+      ],
+      "pressure_bar": [
+        2.5,
+        2.8,
+        2.2,
+        3.0,
+        2.4
+      ],
+      "alarm_count": 2,
+      "last_sensor_timestamp": "2026-06-03T13:25:00Z",
+      "cleaning_cycle_deviation_index": [
+        0.1,
+        0.2,
+        0.35,
+        0.42,
+        0.55
+      ]
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 72,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "CIP-001",
+        "asset_type": "cip_system",
+        "line_id": "CIP-LINE-01",
+        "asset_criticality": "high",
+        "criticality_score": 5,
+        "manufacturer": "Reference CIP Systems",
+        "model": "RCIP-400",
+        "location": "Cleaning-in-place utility skid"
+      },
+      "maintenance_history": {
+        "asset_id": "CIP-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": true,
+        "work_orders": [
+          {
+            "work_order_id": "WO-CIP-001-2026-0524",
+            "type": "corrective",
+            "failure_mode": "cleaning_deviation",
+            "duration_hours": 2.0
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "CIP-001",
+        "line_id": "CIP-LINE-01",
+        "horizon_hours": 72,
+        "production_pressure": "medium",
+        "production_load_pct": 80.0,
+        "next_planned_downtime_hours": 48.0,
+        "customer_impact": "high",
+        "shift_demand": "medium"
+      },
+      "inventory_and_resources": {
+        "asset_id": "CIP-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-CIP-VALVE-SENSOR-KIT",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "policy_governance": {
+        "asset_type": "cip_system",
+        "criticality_score": 5,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_id": "POL-CIP-QUALITY-001"
+      }
+    }
+  }
+}

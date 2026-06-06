@@ -1,0 +1,186 @@
+{
+  "scenario_id": "MIXER-001",
+  "title": "Mixer product quality instability case",
+  "description": "Coverage case where a mixer issue threatens product quality and requires governed controlled planning.",
+  "asset_id": "MIXER-001",
+  "asset_type": "industrial_mixer",
+  "failure_mode": "mixing_instability",
+  "paper_aligned": false,
+  "master_case": false,
+  "master_case_role": "coverage_case_product_quality_intervention",
+  "decision_pattern": "product_quality_driven_intervention",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Mixing instability alert; confidence 0.85; 48h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Torque variability and vibration increasing"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Industrial mixer; high quality relevance; process bottleneck"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "Recent quality adjustment notes"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "High production pressure; quality risk affects release"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Mixer inspection kit and technician available"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review required due to product quality impact"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Quality review and maintenance task active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Intervention feasible in next controlled stop"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "Quality risk and feasible intervention require controlled planning"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Quality-impact summary prepared"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Mixer intervention proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Quality traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: mixer instability alert, torque/vibration trends, quality context, and maintenance history",
+    "layer2": "Contextualized decision profile: high urgency, product quality concern, intervention feasible, review required",
+    "layer3": "Decision-ready case: open, quality-maintenance task active, no blockers",
+    "layer4": "Decision record: high priority, controlled planning recommended",
+    "layer5": "Governed recommendation package: quality-impact summary, traceability index, and intervention proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-MIXER-001-20260603",
+      "asset_id": "MIXER-001",
+      "asset_type": "industrial_mixer",
+      "line_id": "PROC-MIX-01",
+      "suspected_failure_mode": "mixing_instability",
+      "alert_type": "mixing_instability_alert",
+      "predictive_horizon_hours": 48,
+      "confidence_score": 0.85,
+      "model_name": "mixer_quality_risk_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T14:20:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        1.3,
+        1.6,
+        2.0,
+        2.5,
+        3.0
+      ],
+      "temperature_celsius": [
+        50.0,
+        52.0,
+        55.0,
+        58.0,
+        61.0
+      ],
+      "pressure_bar": [
+        3.0,
+        3.0,
+        2.9,
+        2.9,
+        2.8
+      ],
+      "alarm_count": 3,
+      "last_sensor_timestamp": "2026-06-03T14:15:00Z",
+      "torque_variability_pct": [
+        4.0,
+        6.0,
+        9.0,
+        12.0,
+        15.0
+      ]
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 72,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "MIXER-001",
+        "asset_type": "industrial_mixer",
+        "line_id": "PROC-MIX-01",
+        "asset_criticality": "high",
+        "criticality_score": 5,
+        "manufacturer": "Reference Mixing Systems",
+        "model": "RMX-500",
+        "location": "Main mixing process"
+      },
+      "maintenance_history": {
+        "asset_id": "MIXER-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": true,
+        "work_orders": [
+          {
+            "work_order_id": "WO-MIXER-001-2026-0521",
+            "type": "corrective",
+            "failure_mode": "mixing_variability",
+            "duration_hours": 2.0
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "MIXER-001",
+        "line_id": "PROC-MIX-01",
+        "horizon_hours": 72,
+        "production_pressure": "high",
+        "production_load_pct": 91.0,
+        "next_planned_downtime_hours": 36.0,
+        "customer_impact": "high",
+        "shift_demand": "high"
+      },
+      "inventory_and_resources": {
+        "asset_id": "MIXER-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-MIXER-SEAL-INSPECTION-KIT",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "policy_governance": {
+        "asset_type": "industrial_mixer",
+        "criticality_score": 5,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_id": "POL-MIXER-QUALITY-001"
+      }
+    }
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "scenario_id": "GEAR-001",
+  "title": "Repeated gearbox wear case",
+  "description": "Coverage case where recurring gearbox wear increases operational risk. It demonstrates recurrence-driven intervention planning.",
+  "asset_id": "GEAR-001",
+  "asset_type": "gearbox",
+  "failure_mode": "repeated_gear_wear",
+  "paper_aligned": false,
+  "master_case": false,
+  "master_case_role": "coverage_case_recurrence_driven_intervention",
+  "decision_pattern": "high_recurrence_risk_intervention",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Gear wear alert; confidence 0.86; 60h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Vibration and oil temperature increasing"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Gearbox; high criticality; drive train component"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "Repeated gear wear events in recent history"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "Medium production pressure; feasible stop in 48h"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Gear inspection kit and technician available"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review mandatory due to high recurrence risk"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Review case opened; recurrence analysis task active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Inspection feasible in the next planned stop"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "Repeated failure history raises priority and review need"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Recurrence summary prepared"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Inspection and corrective action proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Recurrence traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: gearbox wear alert, condition trends, recurrence history, and asset criticality",
+    "layer2": "Contextualized decision profile: high recurrence concern, feasible intervention, review required",
+    "layer3": "Decision-ready case: open, recurrence task active, no blockers",
+    "layer4": "Decision record: high priority, controlled planning recommended",
+    "layer5": "Governed recommendation package: recurrence summary, traceability index, and corrective action proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-GEAR-001-20260603",
+      "asset_id": "GEAR-001",
+      "asset_type": "gearbox",
+      "line_id": "DRIVE-LINE-01",
+      "suspected_failure_mode": "repeated_gear_wear",
+      "alert_type": "gear_wear_alert",
+      "predictive_horizon_hours": 60,
+      "confidence_score": 0.86,
+      "model_name": "gearbox_wear_risk_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T12:20:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        1.7,
+        2.0,
+        2.5,
+        2.9,
+        3.2
+      ],
+      "temperature_celsius": [
+        64.0,
+        67.0,
+        71.0,
+        75.0,
+        79.0
+      ],
+      "pressure_bar": [
+        2.8,
+        2.8,
+        2.7,
+        2.7,
+        2.6
+      ],
+      "alarm_count": 2,
+      "last_sensor_timestamp": "2026-06-03T12:15:00Z",
+      "oil_particle_index": [
+        0.2,
+        0.3,
+        0.45,
+        0.58,
+        0.74
+      ]
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 72,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "GEAR-001",
+        "asset_type": "gearbox",
+        "line_id": "DRIVE-LINE-01",
+        "asset_criticality": "high",
+        "criticality_score": 5,
+        "manufacturer": "Reference Gear Systems",
+        "model": "RG-800",
+        "location": "Main drive train"
+      },
+      "maintenance_history": {
+        "asset_id": "GEAR-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": true,
+        "work_orders": [
+          {
+            "work_order_id": "WO-GEAR-001-2026-0412",
+            "type": "corrective",
+            "failure_mode": "gear_wear",
+            "duration_hours": 4.0
+          },
+          {
+            "work_order_id": "WO-GEAR-001-2026-0526",
+            "type": "corrective",
+            "failure_mode": "oil_contamination",
+            "duration_hours": 2.5
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "GEAR-001",
+        "line_id": "DRIVE-LINE-01",
+        "horizon_hours": 72,
+        "production_pressure": "high",
+        "production_load_pct": 84.0,
+        "next_planned_downtime_hours": 48.0,
+        "customer_impact": "high",
+        "shift_demand": "high"
+      },
+      "inventory_and_resources": {
+        "asset_id": "GEAR-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-GEAR-INSPECTION-KIT",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "policy_governance": {
+        "asset_type": "gearbox",
+        "criticality_score": 5,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_id": "POL-GEAR-HIGH-CRIT-001"
+      }
+    }
+  }
+}

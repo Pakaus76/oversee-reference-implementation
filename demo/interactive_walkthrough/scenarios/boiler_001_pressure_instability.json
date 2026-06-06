@@ -1,0 +1,179 @@
+{
+  "scenario_id": "BOILER-001",
+  "title": "Boiler pressure instability case",
+  "description": "Coverage case where boiler pressure instability creates a safety and compliance-sensitive escalation case.",
+  "asset_id": "BOILER-001",
+  "asset_type": "boiler_system",
+  "failure_mode": "pressure_instability",
+  "paper_aligned": false,
+  "master_case": false,
+  "master_case_role": "coverage_case_compliance_safety_escalation",
+  "decision_pattern": "compliance_and_safety_escalation",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Pressure instability alert; confidence 0.89; 24h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Pressure oscillation and temperature rise"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Boiler; high criticality; regulated utility asset"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "Recent pressure valve adjustment"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "High production pressure; utility stop has broad impact"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Inspection team available; safety permit required"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review mandatory due to safety and compliance"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Compliance escalation task active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Intervention requires permit and safety review"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "Safety and compliance risk requires escalation and controlled planning"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Compliance escalation summary prepared"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Safety inspection proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Compliance traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: pressure instability alert, condition trends, regulated asset context, and maintenance history",
+    "layer2": "Contextualized decision profile: critical urgency, safety/compliance review required, intervention conditional",
+    "layer3": "Decision-ready case: open, compliance escalation active, permit requirement visible",
+    "layer4": "Decision record: critical priority, compliance escalation recommended",
+    "layer5": "Governed recommendation package: compliance summary, traceability index, and safety inspection proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-BOILER-001-20260603",
+      "asset_id": "BOILER-001",
+      "asset_type": "boiler_system",
+      "line_id": "UTIL-BOILER-01",
+      "suspected_failure_mode": "pressure_instability",
+      "alert_type": "pressure_instability_alert",
+      "predictive_horizon_hours": 24,
+      "confidence_score": 0.89,
+      "model_name": "boiler_pressure_risk_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T12:50:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        1.0,
+        1.1,
+        1.2,
+        1.3,
+        1.5
+      ],
+      "temperature_celsius": [
+        142.0,
+        146.0,
+        151.0,
+        158.0,
+        164.0
+      ],
+      "pressure_bar": [
+        9.0,
+        9.6,
+        8.8,
+        10.2,
+        8.5
+      ],
+      "alarm_count": 5,
+      "last_sensor_timestamp": "2026-06-03T12:45:00Z"
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 72,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "BOILER-001",
+        "asset_type": "boiler_system",
+        "line_id": "UTIL-BOILER-01",
+        "asset_criticality": "high",
+        "criticality_score": 5,
+        "manufacturer": "Reference Thermal Systems",
+        "model": "RB-700",
+        "location": "Boiler house"
+      },
+      "maintenance_history": {
+        "asset_id": "BOILER-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": false,
+        "work_orders": [
+          {
+            "work_order_id": "WO-BOILER-001-2026-0520",
+            "type": "corrective",
+            "failure_mode": "pressure_valve_adjustment",
+            "duration_hours": 2.2
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "BOILER-001",
+        "line_id": "UTIL-BOILER-01",
+        "horizon_hours": 72,
+        "production_pressure": "high",
+        "production_load_pct": 93.0,
+        "next_planned_downtime_hours": 24.0,
+        "customer_impact": "high",
+        "shift_demand": "high"
+      },
+      "inventory_and_resources": {
+        "asset_id": "BOILER-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-BOILER-VALVE-KIT",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "policy_governance": {
+        "asset_type": "boiler_system",
+        "criticality_score": 5,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_id": "POL-BOILER-SAFETY-001"
+      }
+    }
+  }
+}
