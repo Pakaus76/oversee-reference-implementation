@@ -1,0 +1,164 @@
+{
+  "scenario_id": "DATA-001",
+  "title": "Evidence-quality stop case",
+  "description": "Master case where the system receives technically valid but contradictory evidence. It demonstrates that OVERSEE can represent an evidence-review path instead of forcing immediate execution.",
+  "asset_id": "DATA-001",
+  "asset_type": "electric_motor",
+  "failure_mode": "contradictory_thermal_vibration_evidence",
+  "paper_aligned": false,
+  "master_case": true,
+  "master_case_role": "evidence_quality_stop_case",
+  "decision_pattern": "evidence_quality_review_before_action",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Moderate anomaly alert; confidence 0.66; 120h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Thermal rise appears significant but vibration remains stable"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Electric motor; medium criticality; process support asset"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "No recent repeated mechanical failures"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "Moderate production pressure; feasible stop in 72h"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Inspection tools available; spare part decision not confirmed"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review recommended for contradictory evidence"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Evidence review task active; diagnostic clarification required"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Intervention not released until evidence quality is clarified"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "Contradictory evidence requires diagnostic review before action"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Evidence-quality summary prepared"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Diagnostic inspection proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Evidence-quality traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: moderate anomaly, contradictory condition indicators, asset context, and maintenance history",
+    "layer2": "Contextualized decision profile: medium urgency, evidence quality concern, diagnostic review recommended",
+    "layer3": "Decision-ready case: open, evidence review task active, diagnostic clarification required",
+    "layer4": "Decision record: medium priority, diagnostic review before intervention",
+    "layer5": "Governed recommendation package: evidence-quality summary, traceability index, and diagnostic inspection proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-DATA-001-20260603",
+      "asset_id": "DATA-001",
+      "asset_type": "electric_motor",
+      "line_id": "PROC-LINE-02",
+      "suspected_failure_mode": "contradictory_thermal_vibration_evidence",
+      "alert_type": "moderate_anomaly_with_conflicting_evidence",
+      "predictive_horizon_hours": 120,
+      "confidence_score": 0.66,
+      "model_name": "motor_condition_risk_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T11:30:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [1.0, 1.0, 1.1, 1.0, 1.1],
+      "temperature_celsius": [70.0, 76.0, 84.0, 91.0, 96.0],
+      "pressure_bar": [4.0, 4.0, 4.0, 4.0, 4.0],
+      "current_amp": [30.0, 30.4, 30.1, 30.2, 30.3],
+      "sensor_health": "thermal_channel_requires_review",
+      "evidence_quality_note": "Temperature trend increases while vibration and current remain stable.",
+      "alarm_count": 1,
+      "last_sensor_timestamp": "2026-06-03T11:25:00Z"
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 120,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "DATA-001",
+        "asset_type": "electric_motor",
+        "line_id": "PROC-LINE-02",
+        "asset_criticality": "medium",
+        "criticality_score": 3,
+        "manufacturer": "Reference Motor Systems",
+        "model": "RM-180",
+        "location": "Process support area"
+      },
+      "maintenance_history": {
+        "asset_id": "DATA-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": false,
+        "work_orders": [
+          {
+            "work_order_id": "WO-DATA-001-2026-0320",
+            "type": "preventive",
+            "failure_mode": "none",
+            "duration_hours": 1.0
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "DATA-001",
+        "line_id": "PROC-LINE-02",
+        "horizon_hours": 120,
+        "production_pressure": "medium",
+        "production_load_pct": 72.0,
+        "next_planned_downtime_hours": 72.0,
+        "customer_impact": "medium",
+        "shift_demand": "medium"
+      },
+      "inventory_and_resources": {
+        "asset_id": "DATA-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-MOTOR-BEARING-STD",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "policy_governance": {
+        "asset_type": "electric_motor",
+        "criticality_score": 3,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": false,
+        "policy_id": "POL-MOTOR-MEDIUM-CRIT-001"
+      }
+    }
+  }
+}

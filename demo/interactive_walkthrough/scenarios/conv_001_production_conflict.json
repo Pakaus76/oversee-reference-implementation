@@ -1,0 +1,169 @@
+{
+  "scenario_id": "CONV-001",
+  "title": "Production-constrained conveyor case",
+  "description": "Master case where a conveyor belt-drive degradation risk is technically actionable but conflicts with production availability. It demonstrates production-maintenance escalation.",
+  "asset_id": "CONV-001",
+  "asset_type": "conveyor_system",
+  "failure_mode": "belt_drive_degradation",
+  "paper_aligned": false,
+  "master_case": true,
+  "master_case_role": "production_maintenance_conflict_case",
+  "decision_pattern": "high_risk_production_maintenance_conflict",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Belt-drive degradation alert; confidence 0.84; 36h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Increasing motor current, vibration, and belt temperature"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Main conveyor; high criticality; packaging flow bottleneck"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "Recent tension adjustments and recurring belt tracking notes"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "Very high production pressure; no planned downtime within 96h"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Belt-drive kit available; technician available next shift"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review mandatory for high-criticality bottleneck assets"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Case owner assigned; production-maintenance escalation active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Intervention requires negotiated production slot"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "High risk with no production window requires escalation planning"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Escalation summary prepared for production and maintenance leads"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Conditional work-order proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Production constraint traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: conveyor degradation alert, condition trends, bottleneck criticality, and maintenance history",
+    "layer2": "Contextualized decision profile: high urgency, no near downtime window, intervention technically feasible, review required",
+    "layer3": "Decision-ready case: open, escalation task active, production slot blocker visible",
+    "layer4": "Decision record: high priority, escalation planning recommended, human review retained",
+    "layer5": "Governed recommendation package: escalation summary, traceability index, and conditional work-order proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-CONV-001-20260603",
+      "asset_id": "CONV-001",
+      "asset_type": "conveyor_system",
+      "line_id": "PACK-LINE-01",
+      "suspected_failure_mode": "belt_drive_degradation",
+      "alert_type": "belt_drive_degradation_alert",
+      "predictive_horizon_hours": 36,
+      "confidence_score": 0.84,
+      "model_name": "conveyor_drive_risk_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T11:00:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [1.9, 2.2, 2.7, 3.0, 3.4],
+      "temperature_celsius": [58.0, 61.5, 65.0, 68.5, 72.0],
+      "pressure_bar": [6.0, 6.0, 5.9, 5.9, 5.8],
+      "motor_current_amp": [18.0, 19.4, 21.1, 23.0, 24.8],
+      "belt_tracking_deviation_mm": [2.0, 3.5, 5.0, 7.0, 9.0],
+      "alarm_count": 4,
+      "last_sensor_timestamp": "2026-06-03T10:55:00Z"
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 96,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "CONV-001",
+        "asset_type": "conveyor_system",
+        "line_id": "PACK-LINE-01",
+        "asset_criticality": "high",
+        "criticality_score": 5,
+        "manufacturer": "Reference Conveyor Systems",
+        "model": "RCV-900",
+        "location": "Packaging line - main product transfer"
+      },
+      "maintenance_history": {
+        "asset_id": "CONV-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": true,
+        "work_orders": [
+          {
+            "work_order_id": "WO-CONV-001-2026-0415",
+            "type": "corrective",
+            "failure_mode": "belt_tracking_issue",
+            "duration_hours": 1.5
+          },
+          {
+            "work_order_id": "WO-CONV-001-2026-0529",
+            "type": "corrective",
+            "failure_mode": "drive_vibration",
+            "duration_hours": 2.0
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "CONV-001",
+        "line_id": "PACK-LINE-01",
+        "horizon_hours": 96,
+        "production_pressure": "high",
+        "production_load_pct": 96.0,
+        "next_planned_downtime_hours": 96.0,
+        "customer_impact": "high",
+        "shift_demand": "high"
+      },
+      "inventory_and_resources": {
+        "asset_id": "CONV-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-CONV-BELT-DRIVE-KIT",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "policy_governance": {
+        "asset_type": "conveyor_system",
+        "criticality_score": 5,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_id": "POL-CONV-HIGH-CRIT-001"
+      }
+    }
+  }
+}
