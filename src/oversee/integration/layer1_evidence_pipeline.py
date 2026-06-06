@@ -39,8 +39,24 @@ class Layer1EvidencePipelineResult:
         }
 
 
-def run_layer1_evidence_pipeline(alert_request: dict[str, Any]) -> Layer1EvidencePipelineResult:
-    """Run Layer 1 intake, enterprise lookup, aggregation and validation."""
+def run_layer1_evidence_pipeline(
+    alert_request: dict[str, Any],
+    *,
+    api_client: Any | None = None,
+    case_id_prefix: str = "PAPER_ALIGNED",
+) -> Layer1EvidencePipelineResult:
+    """Run Layer 1 intake, enterprise lookup, aggregation and validation.
+
+    Parameters
+    ----------
+    alert_request:
+        Predictive alert request received by the Layer 1 API.
+    api_client:
+        Optional enterprise API client. When omitted, the deterministic
+        SimulatedEnterpriseApiClient is used to preserve backward compatibility.
+    case_id_prefix:
+        Prefix used to build the generated case identifier.
+    """
 
     receipt = receive_predictive_alert(alert_request)
 
@@ -75,7 +91,8 @@ def run_layer1_evidence_pipeline(alert_request: dict[str, Any]) -> Layer1Evidenc
     lookback_days = int(requested_context["maintenance_history_lookback_days"])
     horizon_hours = int(requested_context["production_context_horizon_hours"])
 
-    api_client = SimulatedEnterpriseApiClient()
+    if api_client is None:
+        api_client = SimulatedEnterpriseApiClient()
 
     asset_metadata = api_client.get_asset_metadata(asset_id=asset_id)
     maintenance_history = api_client.get_maintenance_history(
@@ -94,7 +111,8 @@ def run_layer1_evidence_pipeline(alert_request: dict[str, Any]) -> Layer1Evidenc
     )
 
     created_at = datetime.now(timezone.utc).isoformat()
-    case_id = f"PAPER_ALIGNED_{alert['alert_id']}"
+    normalized_case_id_prefix = case_id_prefix.strip() if case_id_prefix else "CASE"
+    case_id = f"{normalized_case_id_prefix}_{alert['alert_id']}"
     payloads = [
         _payload(
             source_name="asset_registry",
