@@ -1,13 +1,11 @@
-﻿"""Layer presenters for the interactive OVERSEE walkthrough."""
+"""Layer presenters for the interactive OVERSEE walkthrough."""
 
 from __future__ import annotations
 
 from demo.interactive_walkthrough.adapters.placeholder_adapter import record_expected_layer_output
-from demo.interactive_walkthrough.adapters.real_layer1_adapter import run_real_layer1
-from demo.interactive_walkthrough.adapters.real_layer2_adapter import run_real_layer2
-from demo.interactive_walkthrough.adapters.real_layer3_adapter import run_real_layer3
-from demo.interactive_walkthrough.adapters.real_layer4_adapter import run_real_layer4
-from demo.interactive_walkthrough.adapters.real_layer5_adapter import run_real_layer5
+from demo.interactive_walkthrough.adapters.scenario_all_layers_adapter import (
+    run_real_scenario_layer,
+)
 from demo.interactive_walkthrough.demo_state import DemoRunState
 from demo.interactive_walkthrough.display import print_bullets, print_key_values, print_section
 from demo.interactive_walkthrough.presenters.common import maybe_pause, present_layer_inputs
@@ -63,6 +61,7 @@ def present_layer(
     show_artifacts: bool = False,
 ) -> None:
     """Present one layer and record its output."""
+
     title = LAYER_TITLES[layer_id]
     inputs = state.scenario.layer_inputs[layer_id]
 
@@ -96,20 +95,28 @@ def _present_real_artifact_summary(
     show_artifacts: bool,
 ) -> None:
     """Present a concise summary of copied real artifacts."""
-    copied_files = artifact.get("copied_files", [])
-    manifest_key = f"{layer_id}_real_execution_manifest"
-    manifest_path = state.generated_artifacts.get(manifest_key)
 
-    print("\nReal OVERSEE source output directory:")
-    print(artifact["source_output_dir"])
+    copied_files = artifact.get("copied_files", [])
+    execution_result = artifact.get("scenario_execution_result", {})
+
+    print("\nReal OVERSEE scenario execution:")
+    if isinstance(execution_result, dict):
+        print_key_values(
+            {
+                "case_id": execution_result.get("case_id"),
+                "priority": execution_result.get("dmn_decision_final_priority"),
+                "execution_mode": execution_result.get("recommended_execution_mode"),
+                "intervention_feasible": execution_result.get("intervention_feasible"),
+                "human_review_required": execution_result.get("human_review_required"),
+            }
+        )
 
     print("\nInteractive demo capture:")
-    print(f"- Copied real artifacts: {len(copied_files)}")
-    if manifest_path is not None:
-        print(f"- Layer execution manifest: {manifest_path}")
+    print(f"- Copied real artifacts for this layer: {len(copied_files)}")
+    print("- Temporary scenario runner output copied into this demo folder and cleaned.")
 
     if show_artifacts:
-        print("\nCopied real artifacts:")
+        print("\nCopied real artifacts for this layer:")
         for file_path in copied_files:
             print(f"- {file_path}")
     else:
@@ -117,36 +124,19 @@ def _present_real_artifact_summary(
 
 
 def _execute_layer(state: DemoRunState, layer_id: str) -> dict[str, object]:
-    """Execute one walkthrough layer.
-
-    Layers 1 to 5 use existing OVERSEE execution paths for the paper-aligned
-    COMP-001 scenario. Alternative scenarios remain in presentation mode.
-    """
-    if state.scenario.scenario_id == "COMP-001":
-        if layer_id == "layer1":
-            print("\nExecuting existing OVERSEE Layer 1 path...")
-            return run_real_layer1(state)
-
-        if layer_id == "layer2":
-            print("\nExecuting existing OVERSEE Layer 2 path...")
-            return run_real_layer2(state)
-
-        if layer_id == "layer3":
-            print("\nExecuting existing OVERSEE Layer 3 path...")
-            return run_real_layer3(state)
-
-        if layer_id == "layer4":
-            print("\nExecuting existing OVERSEE Layer 4 path...")
-            return run_real_layer4(state)
-
-        if layer_id == "layer5":
-            print("\nExecuting existing OVERSEE Layer 5 path...")
-            return run_real_layer5(state)
+    """Execute one walkthrough layer using the real scenario runner when possible."""
 
     if layer_id in {"layer1", "layer2", "layer3", "layer4", "layer5"}:
+        if "executable_inputs" in state.scenario.raw:
+            if state.scenario_execution_result is None:
+                print("\nExecuting real OVERSEE multi-scenario path...")
+            else:
+                print("\nReusing real OVERSEE scenario execution artifacts...")
+            return run_real_scenario_layer(state, layer_id)
+
         print(
-            f"\n{layer_id} real execution is currently enabled only for the "
-            "paper-aligned COMP-001 scenario. This scenario uses a presentation placeholder."
+            f"\n{layer_id} has no executable_inputs section. "
+            "This scenario uses a presentation placeholder."
         )
 
     return record_expected_layer_output(state, layer_id)
@@ -157,11 +147,32 @@ def present_final_summary(
     show_artifacts: bool = False,
 ) -> None:
     """Present the final walkthrough summary."""
+
     print_section("End-to-end walkthrough summary")
 
     print("Layer outputs:")
     for layer_id, output in state.layer_outputs.items():
         print(f"- {layer_id}: {output}")
+
+    if state.scenario_execution_result is not None:
+        print("\nScenario execution result:")
+        print_key_values(
+            {
+                "case_id": state.scenario_execution_result.get("case_id"),
+                "priority": state.scenario_execution_result.get(
+                    "dmn_decision_final_priority"
+                ),
+                "execution_mode": state.scenario_execution_result.get(
+                    "recommended_execution_mode"
+                ),
+                "intervention_feasible": state.scenario_execution_result.get(
+                    "intervention_feasible"
+                ),
+                "human_review_required": state.scenario_execution_result.get(
+                    "human_review_required"
+                ),
+            }
+        )
 
     print("\nDemo output folder:")
     print(state.output_dir)
@@ -183,7 +194,7 @@ def present_final_summary(
         print("\nDetailed artifact list hidden. Use --show-artifacts for expert inspection.")
 
     print(
-        "\nCurrent integration status: Layers 1 to 5 are connected to existing "
-        "OVERSEE execution paths for the paper-aligned COMP-001 scenario. "
-        "Alternative scenarios remain available in presentation mode."
+        "\nCurrent integration status: executable scenarios are connected to the "
+        "real OVERSEE multi-scenario all-layers runner. Scenarios without "
+        "executable_inputs remain available in presentation mode."
     )

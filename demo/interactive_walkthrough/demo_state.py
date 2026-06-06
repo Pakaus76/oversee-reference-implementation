@@ -1,4 +1,4 @@
-﻿"""Runtime state for the interactive OVERSEE walkthrough."""
+"""Runtime state for the interactive OVERSEE walkthrough."""
 
 from __future__ import annotations
 
@@ -18,17 +18,23 @@ class DemoRunState:
     generated_artifacts: dict[str, Path] = field(default_factory=dict)
     layer_outputs: dict[str, str] = field(default_factory=dict)
     notes: list[str] = field(default_factory=list)
+    scenario_execution_result: dict[str, Any] | None = None
+    scenario_source_output_dir: Path | None = None
+    scenario_layer_artifacts: dict[str, list[Path]] = field(default_factory=dict)
 
     def record_artifact(self, key: str, path: Path) -> None:
         """Register a generated artifact path."""
+
         self.generated_artifacts[key] = path
 
     def record_layer_output(self, layer_id: str, summary: str) -> None:
         """Register the paper-facing output summary for a layer."""
+
         self.layer_outputs[layer_id] = summary
 
     def to_manifest(self) -> dict[str, Any]:
         """Return a serializable manifest for the demo run."""
+
         return {
             "scenario_id": self.scenario.scenario_id,
             "scenario_title": self.scenario.title,
@@ -42,4 +48,14 @@ class DemoRunState:
             },
             "layer_outputs": self.layer_outputs,
             "notes": self.notes,
+            "scenario_execution_result": self.scenario_execution_result,
+            "scenario_source_output_dir": (
+                str(self.scenario_source_output_dir)
+                if self.scenario_source_output_dir is not None
+                else None
+            ),
+            "scenario_layer_artifacts": {
+                key: [str(path) for path in paths]
+                for key, paths in self.scenario_layer_artifacts.items()
+            },
         }
