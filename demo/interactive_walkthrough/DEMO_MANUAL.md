@@ -1,32 +1,39 @@
 # OVERSEE Interactive Walkthrough Demo Manual
 
-## Purpose
-
-This manual explains how to run the interactive OVERSEE walkthrough demo created in version `v0.5.2`.
-
-The walkthrough is a presentation layer for explaining the OVERSEE architecture step by step. It follows the same logic represented in Figure 3 of the paper:
-
-```text
-Enterprise sources -> API access layer -> Layer 1 -> Layer 2 -> Layer 3 -> Layer 4 -> Layer 5 -> final governed recommendation package
-```
-
-The demo is intentionally isolated from the OVERSEE core.
-
-```text
-demo -> src/oversee
-```
-
-Never:
-
-```text
-src/oversee -> demo
-```
-
-If the `demo/` folder is removed, the OVERSEE core should continue to work.
+Version baseline: `v0.6.0`  
+Scope: 20 executable scenarios, with 5 master cases for guided explanation
 
 ---
 
-## Repository location
+## 1. Purpose
+
+This manual explains how to run and explain the interactive OVERSEE walkthrough demo.
+
+The walkthrough helps a non-programmer reviewer understand how OVERSEE transforms industrial maintenance evidence into a governed recommendation package.
+
+The key idea is simple:
+
+```text
+A predictive alert is not enough to make a decision.
+OVERSEE builds the decision step by step.
+```
+
+The demo follows the OVERSEE architecture:
+
+```text
+Enterprise sources
+-> API access layer
+-> Layer 1
+-> Layer 2
+-> Layer 3
+-> Layer 4
+-> Layer 5
+-> final governed recommendation package
+```
+
+---
+
+## 2. Repository location
 
 Use the repository root:
 
@@ -34,23 +41,21 @@ Use the repository root:
 cd C:\Users\franc\OneDrive\Documentos\oversee-reference-implementation
 ```
 
-Set the repository root as part of the Python import path before running the launcher:
+Set the repository root as part of the Python import path:
 
 ```powershell
 $env:PYTHONPATH = "."
 ```
 
-This is important because the launcher is located in `scripts/`, while the demo package is located in `demo/`.
-
 ---
 
-## Main launcher
+## 3. Main launcher
 
 ```powershell
 python scripts\run_interactive_oversee_demo.py
 ```
 
-The launcher supports these options:
+The launcher supports:
 
 ```text
 --scenario <SCENARIO_ID>
@@ -61,62 +66,72 @@ The launcher supports these options:
 
 ---
 
-## Available scenarios
+## 4. What the demo does
 
-### `COMP-001`
+When a scenario is executed, the interactive walkthrough does two things.
 
-Paper-aligned compressor case.
-
-This is the main demo case and the one to use first in a reviewer-facing walkthrough.
+First, it executes the selected scenario through the real all-layers runner:
 
 ```text
-Asset: COMP-001
-Asset type: industrial_air_compressor
-Failure mode: bearing_degradation
-Execution mode: real OVERSEE Layers 1 to 5
+scenario JSON
+-> executable_inputs
+-> scenario-backed enterprise APIs
+-> Layer 1
+-> Layer 2
+-> Layer 3
+-> Layer 4
+-> Layer 5
 ```
 
-For this scenario, the walkthrough executes the real paper-aligned layer scripts:
+Second, it presents the generated artifacts layer by layer.
 
-```text
-scripts/run_layer1_paper_aligned_demo.py
-scripts/run_layer2_paper_aligned_demo.py
-scripts/run_layer3_paper_aligned_demo.py
-scripts/run_layer4_paper_aligned_demo.py
-scripts/run_layer5_paper_aligned_demo.py
-```
-
-### `COMP-002`
-
-Alternative lower-urgency compressor case.
-
-```text
-Asset: COMP-002
-Asset type: industrial_air_compressor
-Failure mode: early_vibration_anomaly
-Execution mode: presentation mode
-```
-
-This scenario is useful to explain that not every predictive alert must become a high-priority maintenance case.
-
-### `PUMP-001`
-
-Alternative resource-constrained pump case.
-
-```text
-Asset: PUMP-001
-Asset type: industrial_pump
-Failure mode: seal_degradation
-Execution mode: presentation mode
-```
-
-This scenario is useful to explain how operational constraints and resource availability can change the decision profile.
+This is like building a car first and then walking through the factory to explain what each station did.
 
 ---
 
-# Demo options
+## 5. Available scenarios
 
-## Option 1 — List available scenarios
+At v0.6.0, the demo contains 20 executable scenarios.
+
+### 5.1 Master cases
+
+Use these 5 cases for manuals, reviewer sessions and deep explanations.
+
+| Scenario | Description | Demonstrates |
+|---|---|---|
+| `COMP-001` | Paper-aligned compressor case | Critical risk, feasible intervention, controlled planning |
+| `COMP-002` | Lower-urgency compressor case | Early warning without overreaction |
+| `PUMP-001` | Resource-constrained pump case | High risk with blocked execution |
+| `CONV-001` | Production-constrained conveyor case | Production-maintenance conflict |
+| `DATA-001` | Evidence-quality stop case | Diagnostic review due to contradictory evidence |
+
+### 5.2 Coverage cases
+
+Use these cases for broader testing and industrial coverage.
+
+| Scenario | Description |
+|---|---|
+| `FAN-001` | Low-criticality fan monitoring |
+| `MOTOR-001` | Moderate motor overheating |
+| `GEAR-001` | Repeated gearbox wear |
+| `ROBOT-001` | Safety-sensitive robot axis abnormality |
+| `CHILLER-001` | Chiller energy efficiency degradation |
+| `BOILER-001` | Boiler pressure instability |
+| `VALVE-001` | Intermittent critical valve fault |
+| `AGV-001` | Redundant AGV battery degradation |
+| `PACK-001` | Packaging bottleneck stoppages |
+| `CIP-001` | CIP cleaning reliability issue |
+| `HVAC-001` | Industrial HVAC degradation |
+| `PUMP-002` | Pump spare available but technician unavailable |
+| `COMP-003` | Rapid compressor degradation with missing specialist |
+| `SENSOR-001` | Critical sensor drift suspected |
+| `MIXER-001` | Mixer product quality instability |
+
+---
+
+# 6. Demo options
+
+## Option 1 - List available scenarios
 
 ### Command
 
@@ -128,13 +143,7 @@ python scripts\run_interactive_oversee_demo.py --list-scenarios
 
 ### What this shows
 
-This option lists the available walkthrough scenarios:
-
-```text
-COMP-001
-COMP-002
-PUMP-001
-```
+This lists the 20 executable scenarios available in the walkthrough.
 
 ### When to use it
 
@@ -142,7 +151,7 @@ Use it at the beginning if the reviewer asks what cases are available.
 
 ---
 
-## Option 2 — Run the guided COMP-001 walkthrough
+## Option 2 - Run the guided `COMP-001` walkthrough
 
 ### Command
 
@@ -154,39 +163,30 @@ python scripts\run_interactive_oversee_demo.py --scenario COMP-001
 
 ### What this shows
 
-This is the main live demo.
+This is the main paper-aligned case.
 
-The walkthrough pauses after each step so that the architecture can be explained gradually.
+It shows a compressor with bearing degradation risk. The system receives a predictive alert, enriches it with enterprise context, checks operational feasibility and produces a governed recommendation.
 
-### Recommended use
+### Recommended explanation
 
-Use this in the review meeting.
-
-This is the most didactic mode because it allows you to stop after each layer and explain:
+Use this case to explain:
 
 ```text
-1. Which enterprise/API inputs enter the layer.
-2. What the layer does.
-3. What output the layer generates.
-4. Which real artifacts are captured.
+This is not just predictive maintenance.
+This is prediction-to-decision governance.
 ```
 
-### Expected flow
+The key output is:
 
 ```text
-Intro
-Figure 3 walkthrough path
-Layer 1 - Evidence intake, aggregation and validation
-Layer 2 - Contextualization
-Layer 3 - Case lifecycle
-Layer 4 - Decision logic
-Layer 5 - Governed packaging and traceability
-End-to-end walkthrough summary
+high priority
+controlled planning
+human review retained
 ```
 
 ---
 
-## Option 3 — Run COMP-001 without pauses
+## Option 3 - Run `COMP-001` without pauses
 
 ### Command
 
@@ -196,19 +196,13 @@ $env:PYTHONPATH = "."
 python scripts\run_interactive_oversee_demo.py --scenario COMP-001 --no-pause
 ```
 
-### What this shows
-
-This runs the full paper-aligned case without requiring the user to press Enter.
-
 ### When to use it
 
-Use it to test quickly before the meeting.
-
-It is also useful if the reviewer wants to see the complete flow once without interruption.
+Use it to test quickly before a meeting.
 
 ---
 
-## Option 4 — Run COMP-001 and show all artifacts
+## Option 4 - Run with artifact details
 
 ### Command
 
@@ -220,56 +214,19 @@ python scripts\run_interactive_oversee_demo.py --scenario COMP-001 --no-pause --
 
 ### What this shows
 
-This shows the full list of copied artifacts generated by each layer.
+This reveals the copied real artifacts generated by the executable runner and captured by the interactive demo.
 
-### When to use it
-
-Use this only if the reviewer asks:
+Use this when the reviewer asks:
 
 ```text
-Where are the actual files?
-Where is the evidence?
-Where is the rule trace?
-Where is the governed package?
+Where is the evidence stored?
+Where is the decision trace?
+Where is the final package?
 ```
-
-### Important
-
-Do not use this as the first live demo mode. It is more technical and less didactic.
 
 ---
 
-## Option 5 — Run the lower-urgency COMP-002 scenario
-
-### Command
-
-```powershell
-cd C:\Users\franc\OneDrive\Documentos\oversee-reference-implementation
-$env:PYTHONPATH = "."
-python scripts\run_interactive_oversee_demo.py --scenario COMP-002 --no-pause
-```
-
-### What this shows
-
-This scenario runs in presentation mode.
-
-It explains a lower-urgency compressor case:
-
-```text
-Longer failure horizon
-Moderate production pressure
-No repeated recent failures
-Medium priority
-Planned inspection
-```
-
-### When to use it
-
-Use it after the main COMP-001 demo if the reviewer asks whether the architecture can represent a less urgent case.
-
----
-
-## Option 6 — Run the resource-constrained PUMP-001 scenario
+## Option 5 - Run `PUMP-001`
 
 ### Command
 
@@ -281,237 +238,368 @@ python scripts\run_interactive_oversee_demo.py --scenario PUMP-001 --no-pause
 
 ### What this shows
 
-This scenario runs in presentation mode.
+This case shows that a high-risk condition does not automatically mean direct execution.
 
-It explains a case where technical risk exists but intervention feasibility is limited:
+The pump has a serious seal degradation risk, but the spare part or specialist resource situation blocks normal execution.
+
+Expected result:
 
 ```text
-High risk
-No near downtime window
-Spare not available
-Specialist technician not available
-Escalation planning required
+high priority
+constrained execution
+human review retained
 ```
 
-### When to use it
+### Recommended explanation
 
-Use it if the reviewer asks whether the architecture can represent constraints, not just simple positive decisions.
+Use this phrase:
+
+```text
+OVERSEE does not only ask whether there is a risk.
+It also asks whether the organization is ready to act safely and realistically.
+```
 
 ---
 
-## Option 7 — Inspect the latest interactive output folder
+## Option 6 - Run `DATA-001`
 
 ### Command
 
 ```powershell
 cd C:\Users\franc\OneDrive\Documentos\oversee-reference-implementation
-
-Get-ChildItem outputs -Directory |
-    Where-Object { $_.Name -like "interactive_demo_*" } |
-    Sort-Object LastWriteTime -Descending |
-    Select-Object -First 1 Name,FullName,LastWriteTime
+$env:PYTHONPATH = "."
+python scripts\run_interactive_oversee_demo.py --scenario DATA-001 --no-pause
 ```
 
 ### What this shows
 
-This identifies the most recent interactive demo output folder.
+This is the strongest governance case.
 
-Each walkthrough run creates a folder such as:
+The system receives contradictory evidence. Temperature rises, but vibration and current remain stable. The evidence package contains data quality flags.
+
+Expected result:
+
+```text
+layer1_evidence_package_valid = false
+evidence_review
+diagnostic_review
+human review required
+```
+
+### Recommended explanation
+
+Use this phrase:
+
+```text
+OVERSEE does not automate blindly.
+When evidence quality is questionable, it stops the operational recommendation and asks for diagnostic review.
+```
+
+---
+
+## Option 7 - Run `SENSOR-001`
+
+### Command
+
+```powershell
+cd C:\Users\franc\OneDrive\Documentos\oversee-reference-implementation
+$env:PYTHONPATH = "."
+python scripts\run_interactive_oversee_demo.py --scenario SENSOR-001 --no-pause
+```
+
+### What this shows
+
+This scenario is useful to explain that not every alert means the asset is failing.
+
+Sometimes the real issue is the measurement system.
+
+Expected result:
+
+```text
+diagnostic_review
+sensor validation before asset intervention
+```
+
+---
+
+## Option 8 - Run `MIXER-001`
+
+### Command
+
+```powershell
+cd C:\Users\franc\OneDrive\Documentos\oversee-reference-implementation
+$env:PYTHONPATH = "."
+python scripts\run_interactive_oversee_demo.py --scenario MIXER-001 --no-pause
+```
+
+### What this shows
+
+This case links maintenance decisions with product quality.
+
+Expected result:
+
+```text
+high priority
+controlled planning
+human review retained
+```
+
+Use it to show that OVERSEE is not limited to equipment availability. It can also represent quality-driven maintenance decisions.
+
+---
+
+## Option 9 - Run the scenario runner directly
+
+### Command
+
+```powershell
+cd C:\Users\franc\OneDrive\Documentos\oversee-reference-implementation
+$env:PYTHONPATH = "."
+python scripts\run_scenario_all_layers_demo.py --scenario COMP-001
+```
+
+### What this does
+
+This runs the selected scenario through the real Layer 1 to Layer 5 path without the guided presentation.
+
+Use this when you want the raw execution result quickly.
+
+---
+
+## Option 10 - Run the formal scenario library test
+
+### Command
+
+```powershell
+cd C:\Users\franc\OneDrive\Documentos\oversee-reference-implementation
+$env:PYTHONPATH = "."
+python -m pytest tests\oversee\integration\test_full_executable_scenario_library.py -q
+```
+
+Expected result:
+
+```text
+21 passed
+```
+
+This validates:
+
+```text
+1 catalog test
+20 scenario execution tests
+```
+
+---
+
+## 7. How to explain the five layers
+
+### Layer 1 - Evidence intake, aggregation and validation
+
+Layer 1 receives the predictive alert and collects supporting information.
+
+It brings together:
+
+```text
+predictive alert
+sensor context
+asset metadata
+maintenance history
+production context
+inventory and resources
+policy governance
+```
+
+Output:
+
+```text
+validated evidence package
+```
+
+Simple explanation:
+
+```text
+Layer 1 builds the evidence folder.
+```
+
+---
+
+### Layer 2 - Contextualization
+
+Layer 2 interprets the evidence in its operational context.
+
+It asks:
+
+```text
+How urgent is the risk?
+How critical is the asset?
+Is there a production window?
+Are resources available?
+Is human review required?
+```
+
+Output:
+
+```text
+contextualized decision profile
+```
+
+Simple explanation:
+
+```text
+Layer 2 turns raw evidence into operational meaning.
+```
+
+---
+
+### Layer 3 - Case lifecycle
+
+Layer 3 manages the case state.
+
+It identifies:
+
+```text
+open tasks
+milestones
+blockers
+case lifecycle stage
+whether the case is ready for decision or needs review
+```
+
+Output:
+
+```text
+case management state
+```
+
+Simple explanation:
+
+```text
+Layer 3 decides whether the organization is ready to move.
+```
+
+---
+
+### Layer 4 - Decision logic
+
+Layer 4 applies explicit DMN-like rules.
+
+It decides:
+
+```text
+final priority
+execution mode
+intervention feasibility
+human review requirement
+```
+
+Possible execution modes include:
+
+```text
+standard_planning
+controlled_planning
+constrained_execution
+diagnostic_review
+```
+
+Output:
+
+```text
+decision evaluation and recommendation record
+```
+
+Simple explanation:
+
+```text
+Layer 4 converts context into a governed decision.
+```
+
+---
+
+### Layer 5 - Governed packaging and traceability
+
+Layer 5 packages the final result.
+
+It creates:
+
+```text
+governed recommendation package
+traceability index
+execution manifest
+human-readable summary
+workflow handoff proposal
+```
+
+Output:
+
+```text
+governed recommendation package
+```
+
+Simple explanation:
+
+```text
+Layer 5 makes the decision auditable, reviewable and ready for handoff.
+```
+
+---
+
+## 8. Output folders
+
+Interactive demo outputs are written to:
 
 ```text
 outputs/interactive_demo_YYYYMMDD_HHMMSS/
 ```
 
----
-
-## Option 8 — Open the latest walkthrough summary
-
-### Command
-
-```powershell
-cd C:\Users\franc\OneDrive\Documentos\oversee-reference-implementation
-
-$Latest = Get-ChildItem outputs -Directory |
-    Where-Object { $_.Name -like "interactive_demo_*" } |
-    Sort-Object LastWriteTime -Descending |
-    Select-Object -First 1
-
-Get-Content "$($Latest.FullName)\demo_walkthrough_summary.md"
-```
-
-### What this shows
-
-This opens the concise summary generated by the demo.
-
-It is useful at the end of the walkthrough to show the final evidence-to-recommendation path in a clean format.
-
----
-
-## Option 9 — Open the latest run manifest
-
-### Command
-
-```powershell
-cd C:\Users\franc\OneDrive\Documentos\oversee-reference-implementation
-
-$Latest = Get-ChildItem outputs -Directory |
-    Where-Object { $_.Name -like "interactive_demo_*" } |
-    Sort-Object LastWriteTime -Descending |
-    Select-Object -First 1
-
-Get-Content "$($Latest.FullName)\demo_run_manifest.json"
-```
-
-### What this shows
-
-This opens the full run manifest.
-
-The manifest records:
+Direct scenario runner outputs are written to:
 
 ```text
-Scenario metadata
-Output directory
-Generated artifacts
-Layer outputs
+outputs/scenario_all_layers_<scenario_id>_YYYYMMDD_HHMMSS/
 ```
 
-Use it for technical inspection, not as the first didactic view.
+During automated tests, temporary outputs are removed to keep the repository clean.
 
 ---
 
-## Option 10 — Run the existing OVERSEE tests
+## 9. Recommended reviewer demo path
 
-### Command
+For a short meeting, use:
 
-```powershell
-cd C:\Users\franc\OneDrive\Documentos\oversee-reference-implementation
+```text
+1. COMP-001
+2. PUMP-001
+3. DATA-001
+```
 
+For a complete master-case explanation, use:
+
+```text
+1. COMP-001
+2. COMP-002
+3. PUMP-001
+4. CONV-001
+5. DATA-001
+```
+
+For technical validation, show:
+
+```text
 python -m pytest tests\oversee -q
 ```
 
-### Expected result
+Expected at v0.6.0:
 
 ```text
-46 passed
-```
-
-### What this proves
-
-This confirms that the interactive demo has not broken the OVERSEE core.
-
----
-
-## Option 11 — Clean generated demo outputs
-
-### Command
-
-```powershell
-cd C:\Users\franc\OneDrive\Documentos\oversee-reference-implementation
-
-Get-ChildItem outputs -Directory |
-    Where-Object {
-        $_.Name -like "interactive_demo_*" -or
-        $_.Name -like "paper_aligned_layer1_demo_*" -or
-        $_.Name -like "paper_aligned_layer2_demo_*" -or
-        $_.Name -like "paper_aligned_layer3_demo_*" -or
-        $_.Name -like "paper_aligned_layer4_demo_*" -or
-        $_.Name -like "paper_aligned_layer5_demo_*"
-    } |
-    Remove-Item -Recurse -Force
-```
-
-### When to use it
-
-Use it after testing if you want to keep the working tree clean.
-
-Do not run this if you want to preserve the outputs for review.
-
----
-
-# Recommended live sequence with the reviewer
-
-## Step 1 — Start from the paper
-
-Open Figure 3 and explain:
-
-```text
-This is the architecture we are going to execute.
-The demo follows the same path: sources, API access layer, five OVERSEE layers, and final governed package.
-```
-
-## Step 2 — List the scenarios
-
-```powershell
-$env:PYTHONPATH = "."
-python scripts\run_interactive_oversee_demo.py --list-scenarios
-```
-
-Explain:
-
-```text
-COMP-001 is the paper-aligned case and the one connected to real layer execution.
-The other two cases are available to explain alternative decision situations.
-```
-
-## Step 3 — Run the guided paper-aligned case
-
-```powershell
-$env:PYTHONPATH = "."
-python scripts\run_interactive_oversee_demo.py --scenario COMP-001
-```
-
-Stop after each layer and relate it to Figure 3.
-
-## Step 4 — If the reviewer asks for evidence
-
-```powershell
-python scripts\run_interactive_oversee_demo.py --scenario COMP-001 --no-pause --show-artifacts
-```
-
-Explain:
-
-```text
-The detailed artifacts are hidden in the normal demo to keep the walkthrough readable.
-They can be displayed when technical inspection is needed.
-```
-
-## Step 5 — If the reviewer asks for other cases
-
-```powershell
-python scripts\run_interactive_oversee_demo.py --scenario COMP-002 --no-pause
-python scripts\run_interactive_oversee_demo.py --scenario PUMP-001 --no-pause
-```
-
-Explain:
-
-```text
-These alternatives are currently presentation scenarios.
-They show that the architecture can represent different decision contexts without changing the core.
+88 passed
 ```
 
 ---
 
-# Recommended interpretation of the demo
+## 10. Key message
 
-The important message is:
-
-```text
-OVERSEE does not convert a predictive alert directly into a maintenance order.
-It transforms evidence step by step into a governed, reviewable, auditable recommendation package.
-```
-
-Layer by layer:
+The key message of the demo is:
 
 ```text
-Layer 1: What evidence do we have, and is it valid?
-Layer 2: What does that evidence mean in decision context?
-Layer 3: Is the case managed and ready for decision?
-Layer 4: What decision record should be formulated?
-Layer 5: How is the recommendation packaged for review, workflow, and audit?
-```
-
-Final sentence:
-
-```text
-The value of OVERSEE is not only the final recommendation, but the governed path through which the recommendation is produced.
+OVERSEE does not jump from prediction to action.
+It builds a governed decision through evidence, context, lifecycle state, explicit rules and traceability.
 ```

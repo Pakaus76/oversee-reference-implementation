@@ -1,164 +1,252 @@
 # OVERSEE Reference Implementation
 
-<!-- BEGIN: V0.5.0_PAPER_ALIGNED_ALL_LAYERS_DEMO -->
-## v0.5.0 - paper-aligned five-layer compressor demo
+## Current baseline
 
-The current reviewer-facing milestone is:
-
-```text
-v0.5.0 - paper-aligned five-layer OVERSEE compressor demo
-```
-
-This version provides a concrete, executable, end-to-end demonstration of the OVERSEE artifact using a single industrial compressor case:
+Current validated baseline:
 
 ```text
-COMP-001 - industrial air compressor
-Predictive alert: bearing degradation risk
-Case ID: COMP001_DEGRADATION_ALERT_20260603
+v0.6.0 - 20 executable OVERSEE scenarios formally validated
 ```
 
-The official demo command is:
+This repository contains an executable reference implementation of **OVERSEE** for governed industrial asset-management decision support.
+
+OVERSEE demonstrates how an industrial predictive alert can be transformed into a governed recommendation package through an explicit five-layer architecture:
+
+```text
+Enterprise sources
+-> API access layer
+-> Layer 1: evidence intake, aggregation and validation
+-> Layer 2: contextualization
+-> Layer 3: case lifecycle management
+-> Layer 4: decision logic and recommendation formulation
+-> Layer 5: governed packaging, traceability and workflow handoff
+```
+
+The current v0.6.0 baseline extends the earlier paper-aligned compressor case into a formally validated executable scenario library.
+
+---
+
+## What v0.6.0 adds
+
+The current milestone provides:
+
+- 20 executable industrial scenarios.
+- 5 master cases for detailed manuals and guided walkthroughs.
+- 15 additional coverage cases for broader industrial validation.
+- Scenario-backed enterprise API simulation.
+- A real multi-scenario Layer 1 to Layer 5 runner.
+- Interactive walkthrough support for executable scenarios.
+- Formal regression testing of the full scenario library.
+- Diagnostic review behaviour for evidence-quality cases such as `DATA-001` and `SENSOR-001`.
+
+---
+
+## Core execution paths
+
+### 1. Multi-scenario all-layers runner
+
+Use this runner when you want to execute one scenario through the real Layer 1 to Layer 5 OVERSEE path:
+
+```powershell
+$env:PYTHONPATH = "."
+python scripts\run_scenario_all_layers_demo.py --scenario COMP-001
+```
+
+List available scenarios:
+
+```powershell
+$env:PYTHONPATH = "."
+python scripts\run_scenario_all_layers_demo.py --list-scenarios
+```
+
+The runner creates a temporary output folder under:
+
+```text
+outputs/scenario_all_layers_<scenario_id>_YYYYMMDD_HHMMSS/
+```
+
+Each run generates evidence, context, case lifecycle, decision, recommendation and traceability artifacts.
+
+### 2. Interactive walkthrough
+
+Use this runner when you want to explain the architecture step by step:
+
+```powershell
+$env:PYTHONPATH = "."
+python scripts\run_interactive_oversee_demo.py --scenario COMP-001
+```
+
+Run without pauses:
+
+```powershell
+$env:PYTHONPATH = "."
+python scripts\run_interactive_oversee_demo.py --scenario DATA-001 --no-pause
+```
+
+Show copied artifacts:
+
+```powershell
+$env:PYTHONPATH = "."
+python scripts\run_interactive_oversee_demo.py --scenario SENSOR-001 --no-pause --show-artifacts
+```
+
+### 3. Earlier paper-aligned all-layers demo
+
+The earlier paper-aligned compressor demo remains available for continuity:
 
 ```powershell
 $env:PYTHONPATH = "src"
 python scripts\run_paper_aligned_all_layers_demo.py
 ```
 
-The demo executes the full five-layer flow:
+The recommended v0.6.0 demonstration path is now the multi-scenario runner and the interactive walkthrough.
+
+---
+
+## Scenario library
+
+The executable scenario library contains 20 scenarios.
+
+### Master cases
+
+The 5 master cases are intended for manuals, reviewer-facing explanations and detailed walkthroughs.
+
+| Scenario | Role | Expected behaviour |
+|---|---|---|
+| `COMP-001` | Paper-aligned compressor case | Critical risk, feasible intervention, controlled planning |
+| `COMP-002` | Lower-urgency compressor case | Early warning, standard planning, no overreaction |
+| `PUMP-001` | Resource-constrained pump case | High risk, execution constrained by unavailable resources |
+| `CONV-001` | Production-maintenance conflict case | High risk with production-window constraint |
+| `DATA-001` | Evidence-quality stop case | Contradictory evidence, diagnostic review before action |
+
+### Coverage cases
+
+The 15 additional coverage cases broaden the industrial decision space.
+
+| Scenario | Coverage pattern |
+|---|---|
+| `FAN-001` | Low-criticality monitoring |
+| `MOTOR-001` | Moderate overheating and planned inspection |
+| `GEAR-001` | Repeated wear and recurrence-driven intervention |
+| `ROBOT-001` | Safety-sensitive robot review |
+| `CHILLER-001` | Energy efficiency degradation |
+| `BOILER-001` | Safety and compliance escalation |
+| `VALVE-001` | Intermittent evidence requiring diagnostic review |
+| `AGV-001` | Redundant asset planned replacement |
+| `PACK-001` | Bottleneck-driven operational priority |
+| `CIP-001` | Quality and availability coordination |
+| `HVAC-001` | Environmental condition control |
+| `PUMP-002` | Spare available but technician unavailable |
+| `COMP-003` | High urgency with missing specialist |
+| `SENSOR-001` | Sensor drift validation before intervention |
+| `MIXER-001` | Product-quality-driven controlled planning |
+
+For the complete scenario matrix, see:
 
 ```text
-Predictive maintenance alert
--> Layer 1: evidence intake, simulated enterprise APIs, aggregation and validation
--> Layer 2: DMN-like contextualization rules
--> Layer 3: CMMN-inspired case lifecycle
--> Layer 4: DMN-like decision rules, deterministic path and live generative path
--> Layer 5: governed recommendation package, traceability and reviewer summary
+docs/scenario_coverage_matrix.md
 ```
 
-The expected output folder is:
+---
 
-```text
-outputs/paper_aligned_all_layers_demo_YYYYMMDD_HHMMSS/
-```
+## Main generated artifacts
 
-The final output is not an uncontrolled generative AI answer. It is a governed package that preserves evidence, contextualization rules, case lifecycle state, deterministic and generative recommendation outputs, comparison metadata and traceability.
-
-For the detailed walkthrough, see:
-
-```text
-docs/paper_aligned_all_layers_demo_guide.md
-```
-<!-- END: V0.5.0_PAPER_ALIGNED_ALL_LAYERS_DEMO -->
-This repository contains an executable reference implementation of **OVERSEE** for governed industrial asset-management decision support.
-
-The current milestone is:
-
-```text
-v0.4.0 - Generative Digital Factory and live generative OVERSEE workbench
-```
-
-The workbench demonstrates a full governed flow where generative AI is used in two controlled places:
-
-1. **Before OVERSEE**, inside the Generative Digital Factory, to generate synthetic external source payloads.
-2. **Inside OVERSEE**, as a live generative recommendation path compared against a deterministic anchor.
-
-The final result is not just a model response. It is a governed recommendation package with traceability, deterministic-vs-generative comparison, validation metadata and reviewer-facing outputs.
-
-## Current architecture
-
-The advanced workbench executes this flow:
-
-```text
-Generative Digital Factory
--> Layer 1: external source payloads
--> Layer 2: canonical compressor case context
--> Layer 3: CMMN-inspired case lifecycle
--> Layer 4: DMN-like rules
--> Layer 4: deterministic anchor
--> Layer 4: live generative recommendation path
--> Layer 5: advanced governed recommendation package
-```
-
-## What the workbench demonstrates
-
-The workbench shows that OVERSEE can:
-
-- generate synthetic industrial source data with generative AI;
-- transform generated source-level data into governed Layer 1 payloads;
-- normalize the case into a canonical compressor context;
-- manage the case through an explicit lifecycle inspired by CMMN;
-- evaluate explicit DMN-like decision rules;
-- execute a deterministic recommendation path;
-- execute a live generative recommendation path;
-- compare deterministic and generative recommendations;
-- preserve prompt hashes, model-call status, fallback status and validation metadata;
-- package the final recommendation as a governed and traceable artifact.
-
-## Main command
-
-From the repository root:
-
-```powershell
-$env:PYTHONPATH = "src"
-python scripts\run_generative_digital_factory_workbench_smoke.py
-```
-
-The script also loads the local `.env` file if present.
-
-The `.env` file is intentionally ignored by Git and must never be committed.
-
-## Expected successful live result
-
-A successful live execution should include:
-
-```json
-{
-  "factory_model_call_attempted": true,
-  "factory_model_call_successful": true,
-  "factory_fallback_used": false,
-  "oversee_model_call_attempted": true,
-  "oversee_model_call_successful": true,
-  "oversee_fallback_used": false,
-  "final_priority": "high",
-  "generative_priority": "high",
-  "priority_alignment": true
-}
-```
-
-## Generated output folder
-
-Each advanced workbench run creates a timestamped folder under:
-
-```text
-outputs/generative_digital_factory_workbench_YYYYMMDD_HHMMSS/
-```
-
-The v0.4.0 committed evidence package is:
-
-```text
-outputs/generative_digital_factory_workbench_20260603_173209/
-```
-
-## Generated artifacts
+A real all-layers scenario execution generates the following artifact types:
 
 | File | Meaning |
 |---|---|
-| `00_generative_factory_result.json` | Full Generative Digital Factory execution metadata, including model-call status and fallback status. |
-| `00_generative_factory_prompt.txt` | Prompt used to generate synthetic external sources. |
-| `00_generative_factory_raw_response.txt` | Raw model response from the Generative Digital Factory call. |
-| `00_generative_factory_parsed_sources.json` | Parsed source package generated or validated from the factory output. |
-| `01_external_source_payloads.json` | Layer 1 external source payload package. |
-| `02_canonical_case_context.json` | Layer 2 canonical compressor context. |
-| `03_case_lifecycle_trace.json` | Layer 3 ordered case lifecycle events. |
-| `03_case_management_state.json` | Layer 3 case-management state, tasks and milestones. |
-| `04_dmn_decision_evaluation.json` | Layer 4 explicit DMN-like rule evaluation. |
-| `04_recommendation_path_outputs.json` | Layer 4 deterministic path and rule-governance outputs. |
-| `04_live_generative_recommendation.json` | Layer 4 live generative recommendation result and validation metadata. |
-| `04_deterministic_vs_generative_comparison.json` | Comparison between deterministic and generative outputs. |
-| `05_governed_recommendation_package.json` | Layer 5 advanced governed recommendation package. |
-| `05_traceability_index.json` | Traceability index for the package. |
-| `05_reviewer_summary.md` | Reviewer-facing summary. |
-| `05_execution_manifest.json` | Execution manifest and metadata. |
+| `00_scenario.json` | Source scenario definition used for the run. |
+| `00_predictive_alert_request.json` | Alert request built from scenario executable inputs. |
+| `01_received_predictive_alert.json` | Layer 1 received alert. |
+| `01_enterprise_api_calls.json` | Scenario-backed enterprise API calls. |
+| `01_aggregated_evidence_package.json` | Layer 1 aggregated evidence package. |
+| `01_validation_report.json` | Evidence validation report. |
+| `02_canonical_case_context.json` | Canonical case context. |
+| `02_layer2_contextualization_result.json` | Layer 2 contextualization output. |
+| `03_case_management_state.json` | Case lifecycle and task state. |
+| `04_dmn_decision_evaluation.json` | DMN-like decision-rule evaluation. |
+| `04_recommendation_path_outputs.json` | Recommendation path outputs. |
+| `05_governed_recommendation_package.json` | Final governed recommendation package. |
+| `05_traceability_index.json` | Traceability index. |
+| `05_execution_manifest.json` | Execution metadata. |
+| `05_scenario_execution_summary.md` | Human-readable scenario summary. |
+
+---
+
+## Validation commands
+
+Run the full test suite:
+
+```powershell
+$env:PYTHONPATH = "."
+python -m pytest tests\oversee -q
+```
+
+Expected result at v0.6.0:
+
+```text
+88 passed
+```
+
+Run the formal full scenario library test only:
+
+```powershell
+$env:PYTHONPATH = "."
+python -m pytest tests\oversee\integration\test_full_executable_scenario_library.py -q
+```
+
+Expected result:
+
+```text
+21 passed
+```
+
+---
+
+## Main source packages
+
+```text
+src/oversee/
+â”œâ”€â”€ case_context/
+â”œâ”€â”€ case_management/
+â”œâ”€â”€ comparison/
+â”œâ”€â”€ config/
+â”œâ”€â”€ decision_rules/
+â”œâ”€â”€ deterministic_anchor/
+â”œâ”€â”€ digital_factory/
+â”œâ”€â”€ domain/
+â”œâ”€â”€ external_sources/
+â”œâ”€â”€ governance/
+â”œâ”€â”€ grounded_model_path/
+â”œâ”€â”€ integration/
+â”œâ”€â”€ live_generative_path/
+â”œâ”€â”€ model_backed_anchor/
+â”œâ”€â”€ reporting/
+â”œâ”€â”€ retrieval/
+â””â”€â”€ utils/
+```
+
+---
+
+## Important architectural boundary
+
+The interactive walkthrough is a demo/presentation layer.
+
+The dependency direction must remain:
+
+```text
+demo -> src/oversee
+```
+
+Never:
+
+```text
+src/oversee -> demo
+```
+
+If the `demo/` folder is removed, the OVERSEE core should continue to work.
+
+---
 
 ## Version history
 
@@ -168,71 +256,14 @@ outputs/generative_digital_factory_workbench_20260603_173209/
 | `v0.2.0` | Five-layer compressor execution. |
 | `v0.3.0` | Five-layer OVERSEE with live generative recommendation path. |
 | `v0.4.0` | Generative Digital Factory plus live generative OVERSEE workbench. |
-
-## Main source packages
-
-```text
-src/oversee/
-├── case_context/
-├── case_management/
-├── comparison/
-├── config/
-├── decision_rules/
-├── deterministic_anchor/
-├── digital_factory/
-├── domain/
-├── governance/
-├── grounded_model_path/
-├── live_generative_path/
-├── model_backed_anchor/
-├── reporting/
-├── retrieval/
-└── utils/
-```
-
-## Main modules
-
-| Area | Module |
-|---|---|
-| Generative Digital Factory | `src/oversee/digital_factory/generative_external_source_factory.py` |
-| External sources | `src/oversee/external_sources/` |
-| Canonical context | `src/oversee/case_context/` |
-| Case lifecycle | `src/oversee/case_management/` |
-| DMN-like rules | `src/oversee/decision_rules/dmn_like_rules.py` |
-| Live generative recommendation | `src/oversee/decision_rules/live_generative_recommendation.py` |
-| Deterministic-vs-generative comparison | `src/oversee/reporting/generative_comparison.py` |
-| Governed recommendation package | `src/oversee/reporting/governed_recommendation_package.py` |
-
-## Validation commands
-
-Run the full test suite:
-
-```powershell
-$env:PYTHONPATH = "src"
-python -m pytest tests\oversee -q
-```
-
-Expected result at v0.4.0:
-
-```text
-28 passed
-```
-
-Run the advanced workbench:
-
-```powershell
-$env:PYTHONPATH = "src"
-python scripts\run_generative_digital_factory_workbench_smoke.py
-```
-
-## Important governance note
-
-The generative model is not allowed to operate as an uncontrolled decision maker.
-
-In this implementation:
-
-- the Digital Factory model generates synthetic source data before Layer 1;
-- OVERSEE normalizes and governs the generated data through Layers 1 to 5;
-- the live generative recommendation path operates inside Layer 4;
-- Layer 5 records model-call status, fallback status, prompt hash, validation metadata and deterministic-vs-generative comparison;
-- human review remains required for the high-criticality compressor case.
+| `v0.5.0` | Paper-aligned five-layer compressor demo. |
+| `v0.5.1` | Documentation update for the paper-aligned demo. |
+| `v0.5.2` | Initial interactive walkthrough demo. |
+| `v0.5.3` | Interactive walkthrough demo manual. |
+| `v0.5.4` | Public naming cleanup. |
+| `v0.5.5` | Executable multi-scenario all-layers runner. |
+| `v0.5.6` | Scenario runner test-output cleanup. |
+| `v0.5.7` | Interactive walkthrough connected to the executable scenario runner. |
+| `v0.5.8` | Five executable master scenarios. |
+| `v0.5.9` | `DATA-001` diagnostic evidence-quality review case. |
+| `v0.6.0` | 20 executable OVERSEE scenarios formally validated. |
