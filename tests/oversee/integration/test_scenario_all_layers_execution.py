@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import shutil
 from pathlib import Path
 
 import pytest
@@ -40,27 +41,34 @@ def test_scenario_all_layers_runner_executes_current_master_scenarios(
 ) -> None:
     """Current master scenarios should execute through the real all-layers path."""
 
-    expected = EXPECTED_SCENARIO_OUTCOMES[scenario_id]
-    result = run_scenario_all_layers(scenario_id)
+    output_dir: Path | None = None
 
-    assert result["scenario_id"] == scenario_id
-    assert result["layer1_evidence_package_valid"] is True
-    assert result["layer2_decision_ready"] is True
+    try:
+        expected = EXPECTED_SCENARIO_OUTCOMES[scenario_id]
+        result = run_scenario_all_layers(scenario_id)
 
-    assert result["case_lifecycle_stage"] == expected["case_lifecycle_stage"]
-    assert result["dmn_decision_final_priority"] == expected["dmn_decision_final_priority"]
-    assert result["recommended_execution_mode"] == expected["recommended_execution_mode"]
-    assert result["intervention_feasible"] is expected["intervention_feasible"]
-    assert result["human_review_required"] is expected["human_review_required"]
+        assert result["scenario_id"] == scenario_id
+        assert result["layer1_evidence_package_valid"] is True
+        assert result["layer2_decision_ready"] is True
 
-    assert result["generated_file_count"] >= 10
+        assert result["case_lifecycle_stage"] == expected["case_lifecycle_stage"]
+        assert result["dmn_decision_final_priority"] == expected["dmn_decision_final_priority"]
+        assert result["recommended_execution_mode"] == expected["recommended_execution_mode"]
+        assert result["intervention_feasible"] is expected["intervention_feasible"]
+        assert result["human_review_required"] is expected["human_review_required"]
 
-    output_dir = Path(result["output_dir"])
+        assert result["generated_file_count"] >= 10
 
-    assert output_dir.exists()
-    assert (output_dir / "01_aggregated_evidence_package.json").exists()
-    assert (output_dir / "02_layer2_contextualization_result.json").exists()
-    assert (output_dir / "03_case_management_state.json").exists()
-    assert (output_dir / "04_dmn_decision_evaluation.json").exists()
-    assert (output_dir / "05_governed_recommendation_package.json").exists()
-    assert (output_dir / "05_scenario_execution_summary.md").exists()
+        output_dir = Path(result["output_dir"])
+
+        assert output_dir.exists()
+        assert (output_dir / "01_aggregated_evidence_package.json").exists()
+        assert (output_dir / "02_layer2_contextualization_result.json").exists()
+        assert (output_dir / "03_case_management_state.json").exists()
+        assert (output_dir / "04_dmn_decision_evaluation.json").exists()
+        assert (output_dir / "05_governed_recommendation_package.json").exists()
+        assert (output_dir / "05_scenario_execution_summary.md").exists()
+
+    finally:
+        if output_dir is not None and output_dir.exists():
+            shutil.rmtree(output_dir)
