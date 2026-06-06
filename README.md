@@ -146,6 +146,11 @@ For the complete scenario matrix, see:
 ```text
 docs/scenario_coverage_matrix.md
 ```
+For the master-case reviewer demo guide, see:
+
+```text
+docs/master_cases_demo_guide.md
+```
 
 ---
 
