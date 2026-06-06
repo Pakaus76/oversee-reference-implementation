@@ -252,18 +252,16 @@ No temporary validation outputs remain untracked.
 
 ## 10. Current milestone status
 
-At the time this document is created:
+At the time this document is updated:
 
 - `v0.5.4` cleaned public naming.
 - `v0.5.5` introduced the executable multi-scenario all-layers runner.
 - `v0.5.6` cleaned scenario runner test outputs.
 - `v0.5.7` connected the interactive walkthrough to the executable scenario runner.
-- The currently executable scenarios are:
-  - `COMP-001`
-  - `COMP-002`
-  - `PUMP-001`
+- `v0.5.8` added the five executable master scenarios.
+- `v0.5.9` made `DATA-001` a true diagnostic/evidence-quality review case.
+- The executable scenario library now contains 20 scenarios:
+  - 5 master scenarios for manuals and guided walkthroughs.
+  - 15 additional coverage scenarios for broader industrial validation.
 
-The next milestone is to add the two missing master cases:
-
-- `CONV-001`
-- `DATA-001`
+The next milestone is to formalize the complete 20-scenario validation baseline and prepare the documentation/manual layer.
