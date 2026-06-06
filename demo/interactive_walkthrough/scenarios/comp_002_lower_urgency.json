@@ -1,4 +1,4 @@
-﻿{
+{
   "scenario_id": "COMP-002",
   "title": "Lower urgency compressor case",
   "description": "Alternative compressor case with a longer failure horizon and lower operational pressure. It is useful to show that not every alert becomes a high-priority case.",
@@ -6,6 +6,9 @@
   "asset_type": "industrial_air_compressor",
   "failure_mode": "early_vibration_anomaly",
   "paper_aligned": false,
+  "master_case": true,
+  "master_case_role": "early_warning_planned_inspection_case",
+  "decision_pattern": "medium_urgency_planned_inspection",
   "layer_inputs": {
     "layer1": [
       {
@@ -76,5 +79,83 @@
     "layer3": "Decision-ready case: open, monitoring task active, no blockers",
     "layer4": "Decision record: medium priority, planned inspection recommended",
     "layer5": "Governed recommendation package: monitoring summary, traceability index, and inspection proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-COMP-002-20260603",
+      "asset_id": "COMP-002",
+      "asset_type": "industrial_air_compressor",
+      "line_id": "PKG-LINE-02",
+      "suspected_failure_mode": "early_vibration_anomaly",
+      "alert_type": "early_vibration_anomaly",
+      "predictive_horizon_hours": 168,
+      "confidence_score": 0.71,
+      "model_name": "compressor_failure_risk_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T09:10:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [1.1, 1.2, 1.3, 1.4, 1.5],
+      "temperature_celsius": [72.0, 72.2, 72.1, 72.3, 72.2],
+      "pressure_bar": [7.9, 7.8, 7.8, 7.7, 7.7],
+      "alarm_count": 0,
+      "last_sensor_timestamp": "2026-06-03T09:05:00Z"
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 168,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "COMP-002",
+        "asset_type": "industrial_air_compressor",
+        "line_id": "PKG-LINE-02",
+        "asset_criticality": "medium",
+        "criticality_score": 3,
+        "manufacturer": "Reference Compressor Systems",
+        "model": "RC-3200",
+        "location": "Packaging area - auxiliary compressor"
+      },
+      "maintenance_history": {
+        "asset_id": "COMP-002",
+        "lookback_days": 180,
+        "recent_repeated_failures": false,
+        "work_orders": [
+          {
+            "work_order_id": "WO-COMP-002-2026-0311",
+            "type": "preventive",
+            "failure_mode": "none",
+            "duration_hours": 1.5
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "COMP-002",
+        "line_id": "PKG-LINE-02",
+        "horizon_hours": 168,
+        "production_pressure": "medium",
+        "production_load_pct": 67.0,
+        "next_planned_downtime_hours": 96.0,
+        "customer_impact": "low",
+        "shift_demand": "medium"
+      },
+      "inventory_and_resources": {
+        "asset_id": "COMP-002",
+        "spare_part_available": true,
+        "spare_part_id": "SP-COMP-STANDARD-BEARING",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "policy_governance": {
+        "asset_type": "industrial_air_compressor",
+        "criticality_score": 3,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": false,
+        "policy_id": "POL-COMP-MEDIUM-CRIT-001"
+      }
+    }
   }
 }
