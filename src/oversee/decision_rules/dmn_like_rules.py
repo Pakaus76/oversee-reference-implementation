@@ -1,4 +1,4 @@
-﻿"""DMN-like decision rules for the compressor case.
+"""DMN-like decision rules for the compressor case.
 
 The rules are intentionally explicit. They behave like decision-table rows:
 inputs are visible, outputs are visible, and the rationale is persisted.
@@ -204,8 +204,16 @@ def _evaluate_execution_constraint_rule(context: CanonicalCaseContext) -> RuleEv
     production_pressure = context.operational_context.production_pressure
     downtime_hours = context.operational_context.next_planned_downtime_hours
     intervention_feasible = context.maintenance_resources.intervention_feasible
+    data_quality_flags = context.data_quality_flags
 
-    if production_pressure == "high" and intervention_feasible:
+    if data_quality_flags:
+        execution_mode = "diagnostic_review"
+        triggered = True
+        rationale = (
+            "Data quality flags are present. The case should remain in diagnostic "
+            "review before releasing an execution recommendation."
+        )
+    elif production_pressure == "high" and intervention_feasible:
         execution_mode = "controlled_planning"
         triggered = True
         rationale = (
@@ -230,6 +238,7 @@ def _evaluate_execution_constraint_rule(context: CanonicalCaseContext) -> RuleEv
             "production_pressure": production_pressure,
             "next_planned_downtime_hours": downtime_hours,
             "intervention_feasible": intervention_feasible,
+            "data_quality_flags": data_quality_flags,
         },
         output_fields={
             "recommended_execution_mode": execution_mode,
@@ -237,7 +246,6 @@ def _evaluate_execution_constraint_rule(context: CanonicalCaseContext) -> RuleEv
         triggered=triggered,
         rationale=rationale,
     )
-
 
 def _evaluate_final_priority_rule(
     *,

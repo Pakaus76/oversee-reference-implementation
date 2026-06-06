@@ -147,6 +147,9 @@ def run_layer1_evidence_pipeline(
                 if raw_sensor_context.get("alarm_count", 0) >= 1
                 else "medium",
             },
+            data_quality_flags=_as_text_list(
+                raw_sensor_context.get("data_quality_flags", [])
+            ),
         ),
         _payload(
             source_name="predictive_maintenance",
@@ -266,6 +269,7 @@ def _payload(
     line_id: str,
     raw_payload: dict[str, Any],
     normalized_fields: dict[str, Any],
+    data_quality_flags: list[str] | None = None,
 ) -> ExternalSourcePayload:
     """Create an external source payload."""
 
@@ -280,7 +284,7 @@ def _payload(
         line_id=line_id,
         raw_payload=raw_payload,
         normalized_fields=normalized_fields,
-        data_quality_flags=[],
+        data_quality_flags=list(data_quality_flags or []),
     )
 
 
@@ -309,6 +313,23 @@ def _validate_evidence_package(package: ExternalSourcePackage) -> dict[str, Any]
         "payload_count": len(package.payloads),
         "required_source_count": len(required_sources),
     }
+
+
+
+
+def _as_text_list(value: Any) -> list[str]:
+    """Return a defensive list of non-empty text flags."""
+
+    if value is None:
+        return []
+
+    if isinstance(value, str):
+        return [value] if value.strip() else []
+
+    if isinstance(value, list):
+        return [str(item) for item in value if str(item).strip()]
+
+    return [str(value)] if str(value).strip() else []
 
 
 def _trend(values: list[float]) -> str:

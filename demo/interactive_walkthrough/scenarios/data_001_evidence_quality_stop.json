@@ -96,12 +96,40 @@
     },
     "raw_sensor_context": {
       "sampling_window_hours": 24,
-      "vibration_mms": [1.0, 1.0, 1.1, 1.0, 1.1],
-      "temperature_celsius": [70.0, 76.0, 84.0, 91.0, 96.0],
-      "pressure_bar": [4.0, 4.0, 4.0, 4.0, 4.0],
-      "current_amp": [30.0, 30.4, 30.1, 30.2, 30.3],
+      "vibration_mms": [
+        1.0,
+        1.0,
+        1.1,
+        1.0,
+        1.1
+      ],
+      "temperature_celsius": [
+        70.0,
+        76.0,
+        84.0,
+        91.0,
+        96.0
+      ],
+      "pressure_bar": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "current_amp": [
+        30.0,
+        30.4,
+        30.1,
+        30.2,
+        30.3
+      ],
       "sensor_health": "thermal_channel_requires_review",
       "evidence_quality_note": "Temperature trend increases while vibration and current remain stable.",
+      "data_quality_flags": [
+        "contradictory_temperature_vibration_evidence",
+        "thermal_channel_requires_review"
+      ],
       "alarm_count": 1,
       "last_sensor_timestamp": "2026-06-03T11:25:00Z"
     },

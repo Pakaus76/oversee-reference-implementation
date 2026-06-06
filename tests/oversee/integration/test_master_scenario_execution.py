@@ -13,6 +13,14 @@ from scripts.run_scenario_all_layers_demo import run_scenario_all_layers
 
 MASTER_SCENARIOS = ["COMP-001", "COMP-002", "PUMP-001", "CONV-001", "DATA-001"]
 
+EXPECTED_LAYER1_VALIDITY = {
+    "COMP-001": True,
+    "COMP-002": True,
+    "PUMP-001": True,
+    "CONV-001": True,
+    "DATA-001": False,
+}
+
 
 def test_master_scenario_catalog_contains_five_master_cases() -> None:
     """The scenario catalog should expose the five master scenarios."""
@@ -37,7 +45,7 @@ def test_master_scenarios_execute_real_all_layers_path(scenario_id: str) -> None
         result = run_scenario_all_layers(scenario_id)
 
         assert result["scenario_id"] == scenario_id
-        assert result["layer1_evidence_package_valid"] is True
+        assert result["layer1_evidence_package_valid"] is EXPECTED_LAYER1_VALIDITY[scenario_id]
         assert result["layer2_decision_ready"] is True
         assert result["generated_file_count"] >= 10
 
