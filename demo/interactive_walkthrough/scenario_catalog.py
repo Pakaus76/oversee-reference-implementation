@@ -1,4 +1,4 @@
-﻿"""Scenario catalog for the interactive OVERSEE walkthrough."""
+"""Scenario catalog for the interactive OVERSEE walkthrough."""
 
 from __future__ import annotations
 
@@ -66,6 +66,6 @@ def get_scenario(scenario_id: str) -> DemoScenario:
 
 
 def get_default_scenario() -> DemoScenario:
-    """Return the default scenario for the Fernando walkthrough."""
+    """Return the default scenario for the reviewer-facing walkthrough."""
     return get_scenario("COMP-001")
 

@@ -94,7 +94,7 @@ def run_layer1_evidence_pipeline(alert_request: dict[str, Any]) -> Layer1Evidenc
     )
 
     created_at = datetime.now(timezone.utc).isoformat()
-    case_id = f"FERNANDO_{alert['alert_id']}"
+    case_id = f"PAPER_ALIGNED_{alert['alert_id']}"
     payloads = [
         _payload(
             source_name="asset_registry",

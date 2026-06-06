@@ -1,12 +1,12 @@
 # OVERSEE Reference Implementation
 
-<!-- BEGIN: V0.5.0_FERNANDO_ALL_LAYERS_DEMO -->
-## v0.5.0 - Fernando-aligned five-layer compressor demo
+<!-- BEGIN: V0.5.0_PAPER_ALIGNED_ALL_LAYERS_DEMO -->
+## v0.5.0 - paper-aligned five-layer compressor demo
 
 The current reviewer-facing milestone is:
 
 ```text
-v0.5.0 - Fernando-aligned five-layer OVERSEE compressor demo
+v0.5.0 - paper-aligned five-layer OVERSEE compressor demo
 ```
 
 This version provides a concrete, executable, end-to-end demonstration of the OVERSEE artifact using a single industrial compressor case:
@@ -14,14 +14,14 @@ This version provides a concrete, executable, end-to-end demonstration of the OV
 ```text
 COMP-001 - industrial air compressor
 Predictive alert: bearing degradation risk
-Case ID: FERNANDO_ALERT-COMP-001-20260603
+Case ID: COMP001_DEGRADATION_ALERT_20260603
 ```
 
 The official demo command is:
 
 ```powershell
 $env:PYTHONPATH = "src"
-python scripts\run_fernando_all_layers_demo.py
+python scripts\run_paper_aligned_all_layers_demo.py
 ```
 
 The demo executes the full five-layer flow:
@@ -38,7 +38,7 @@ Predictive maintenance alert
 The expected output folder is:
 
 ```text
-outputs/fernando_all_layers_demo_YYYYMMDD_HHMMSS/
+outputs/paper_aligned_all_layers_demo_YYYYMMDD_HHMMSS/
 ```
 
 The final output is not an uncontrolled generative AI answer. It is a governed package that preserves evidence, contextualization rules, case lifecycle state, deterministic and generative recommendation outputs, comparison metadata and traceability.
@@ -46,9 +46,9 @@ The final output is not an uncontrolled generative AI answer. It is a governed p
 For the detailed walkthrough, see:
 
 ```text
-docs/fernando_all_layers_demo_guide.md
+docs/paper_aligned_all_layers_demo_guide.md
 ```
-<!-- END: V0.5.0_FERNANDO_ALL_LAYERS_DEMO -->
+<!-- END: V0.5.0_PAPER_ALIGNED_ALL_LAYERS_DEMO -->
 This repository contains an executable reference implementation of **OVERSEE** for governed industrial asset-management decision support.
 
 The current milestone is:

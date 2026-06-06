@@ -1,6 +1,6 @@
-﻿"""Real Layer 5 adapter for the interactive walkthrough.
+"""Real Layer 5 adapter for the interactive walkthrough.
 
-The adapter calls the existing Fernando-aligned Layer 5 script as a subprocess.
+The adapter calls the existing paper-aligned Layer 5 script as a subprocess.
 It does not reimplement Layer 5 and does not modify the OVERSEE core.
 """
 
@@ -20,7 +20,7 @@ from demo.interactive_walkthrough.output_manager import write_json, write_text
 def run_real_layer5(state: DemoRunState) -> dict[str, Any]:
     """Run the existing Layer 5 script and capture its generated artifacts."""
     repo_root = Path.cwd()
-    script_path = repo_root / "scripts" / "run_layer5_fernando_demo.py"
+    script_path = repo_root / "scripts" / "run_layer5_paper_aligned_demo.py"
     outputs_dir = repo_root / "outputs"
 
     if not script_path.exists():
@@ -108,13 +108,13 @@ def run_real_layer5(state: DemoRunState) -> dict[str, Any]:
 
 
 def _find_layer5_output_dirs(outputs_dir: Path) -> set[Path]:
-    """Return known Layer 5 Fernando output directories."""
+    """Return known Layer 5 paper-aligned output directories."""
     if not outputs_dir.exists():
         return set()
 
     return {
         path.resolve()
-        for path in outputs_dir.glob("fernando_layer5_demo_*")
+        for path in outputs_dir.glob("paper_aligned_layer5_demo_*")
         if path.is_dir()
     }
 

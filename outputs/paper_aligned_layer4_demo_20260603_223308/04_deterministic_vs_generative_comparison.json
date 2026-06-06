@@ -1,0 +1,17 @@
+{
+  "comparison_id": "det_vs_gen_COMP001_DEGRADATION_ALERT_20260603",
+  "case_id": "COMP001_DEGRADATION_ALERT_20260603",
+  "asset_id": "COMP-001",
+  "deterministic_priority": "high",
+  "generative_priority": "high",
+  "priority_alignment": true,
+  "deterministic_action": "Plan immediate inspection and maintenance preparation.",
+  "generative_action": "Perform a controlled planned maintenance intervention on industrial air compressor COMP-001 within the next 36 hours before the estimated failure horizon of 48 hours, ensuring specialist technician involvement and spare part availability while strictly following safety and operational protocols.",
+  "action_alignment": "different",
+  "human_review_alignment": true,
+  "model_call_successful": true,
+  "fallback_used": false,
+  "protected_fact_violation_count": 0,
+  "rationale_difference": true,
+  "comparison_version": "0.1.0"
+}

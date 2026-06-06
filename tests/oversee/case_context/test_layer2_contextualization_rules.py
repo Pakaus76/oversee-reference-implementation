@@ -1,4 +1,4 @@
-"""Tests for Fernando-aligned Layer 2 contextualization rules."""
+"""Tests for paper-aligned Layer 2 contextualization rules."""
 
 from __future__ import annotations
 

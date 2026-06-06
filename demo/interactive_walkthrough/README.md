@@ -1,4 +1,4 @@
-﻿# OVERSEE Interactive Walkthrough
+# OVERSEE Interactive Walkthrough
 
 This folder contains an isolated demonstration layer for explaining the OVERSEE architecture step by step.
 
@@ -65,7 +65,7 @@ python scripts\run_interactive_oversee_demo.py --scenario COMP-002 --no-pause
 
 ## Current integration status
 
-- Layers 1 to 5 are connected to the existing Fernando-aligned execution scripts for `COMP-001`.
+- Layers 1 to 5 are connected to the existing paper-aligned execution scripts for `COMP-001`.
 - Alternative scenarios currently run in presentation mode.
 - The demo remains isolated from `src/oversee`.
 

@@ -1,4 +1,4 @@
-"""Simulated enterprise APIs used by the Fernando-aligned Layer 1 demo.
+"""Simulated enterprise APIs used by the paper-aligned Layer 1 demo.
 
 These deterministic functions represent external enterprise systems:
 asset registry, CMMS, MES/ERP, inventory/resources and governance policy services.

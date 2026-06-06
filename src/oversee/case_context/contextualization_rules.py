@@ -1,4 +1,4 @@
-"""Layer 2 contextualization rules for the Fernando-aligned OVERSEE demo.
+"""Layer 2 contextualization rules for the paper-aligned OVERSEE demo.
 
 Layer 2 receives the validated evidence package from Layer 1 through the
 canonical context builder. It then applies explicit DMN-like contextualization

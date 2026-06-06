@@ -1,4 +1,4 @@
-﻿# OVERSEE implementation status
+# OVERSEE implementation status
 
 ## Current milestone
 
@@ -126,8 +126,8 @@ Suggested review sequence:
 4. `outputs/generative_digital_factory_workbench_20260603_173209/05_governed_recommendation_package.json`
 5. `outputs/generative_digital_factory_workbench_20260603_173209/04_deterministic_vs_generative_comparison.json`
 
-<!-- BEGIN: V0.5.0_FERNANDO_ALL_LAYERS_DEMO -->
-## v0.5.0 implementation status - Fernando all-layers compressor demo
+<!-- BEGIN: V0.5.0_PAPER_ALIGNED_ALL_LAYERS_DEMO -->
+## v0.5.0 implementation status - paper-aligned all-layers compressor demo
 
 Status: completed and tagged as `v0.5.0`.
 
@@ -135,17 +135,17 @@ Implemented capability:
 
 | Layer | Implemented mechanism | Main script/output |
 |---|---|---|
-| Layer 1 | Simulated predictive alert API, simulated enterprise APIs, evidence aggregation and validation | `scripts/run_layer1_fernando_demo.py` |
-| Layer 2 | DMN-like contextualization rules | `scripts/run_layer2_fernando_demo.py` |
-| Layer 3 | CMMN-inspired case lifecycle | `scripts/run_layer3_fernando_demo.py` |
-| Layer 4 | DMN-like decision rules, deterministic path, live generative recommendation and comparison | `scripts/run_layer4_fernando_demo.py` |
-| Layer 5 | Governed recommendation package, traceability, manifest and reviewer summary | `scripts/run_layer5_fernando_demo.py` |
-| End-to-end | Official Fernando all-layers demo | `scripts/run_fernando_all_layers_demo.py` |
+| Layer 1 | Simulated predictive alert API, simulated enterprise APIs, evidence aggregation and validation | `scripts/run_layer1_paper_aligned_demo.py` |
+| Layer 2 | DMN-like contextualization rules | `scripts/run_layer2_paper_aligned_demo.py` |
+| Layer 3 | CMMN-inspired case lifecycle | `scripts/run_layer3_paper_aligned_demo.py` |
+| Layer 4 | DMN-like decision rules, deterministic path, live generative recommendation and comparison | `scripts/run_layer4_paper_aligned_demo.py` |
+| Layer 5 | Governed recommendation package, traceability, manifest and reviewer summary | `scripts/run_layer5_paper_aligned_demo.py` |
+| End-to-end | Official paper-aligned all-layers demo | `scripts/run_paper_aligned_all_layers_demo.py` |
 
 Validation status at creation:
 
 ```text
-Fernando all-layers OVERSEE demo completed.
+paper-aligned all-layers OVERSEE demo completed.
 46 passed
 ```
 
@@ -156,16 +156,16 @@ The prototype uses DMN-like rule structures and CMMN-inspired lifecycle structur
 It does not claim formal DMN or CMMN engine compliance.
 The enterprise APIs are simulated, deterministic interfaces used to make the architecture executable and inspectable.
 ```
-<!-- END: V0.5.0_FERNANDO_ALL_LAYERS_DEMO -->
+<!-- END: V0.5.0_PAPER_ALIGNED_ALL_LAYERS_DEMO -->
 
 ## v0.5.0 validation anchors
 
-This implementation status explicitly refers to the validated Fernando demo case:
+This implementation status explicitly refers to the validated paper-aligned demo case:
 
 ```text
 Version: v0.5.0
 Demo case: COMP-001
-Official command: python scripts\run_fernando_all_layers_demo.py
+Official command: python scripts\run_paper_aligned_all_layers_demo.py
 Rule framing: DMN-like contextualization and decision logic
 Lifecycle framing: CMMN-inspired case lifecycle
 Final output: governed recommendation package

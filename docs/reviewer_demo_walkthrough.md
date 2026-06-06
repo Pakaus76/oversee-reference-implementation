@@ -190,14 +190,14 @@ In the validated v0.4.0 run:
 - the generative recommendation added richer operational wording;
 - Layer 5 preserved the comparison and metadata.
 
-<!-- BEGIN: V0.5.0_FERNANDO_ALL_LAYERS_DEMO -->
-## v0.5.0 reviewer walkthrough - Fernando all-layers demo
+<!-- BEGIN: V0.5.0_PAPER_ALIGNED_ALL_LAYERS_DEMO -->
+## v0.5.0 reviewer walkthrough - paper-aligned all-layers demo
 
-For Fernando's review, the recommended demo is now the all-layers compressor walkthrough:
+For reviewer-facing assessment, the recommended demo is now the all-layers compressor walkthrough:
 
 ```powershell
 $env:PYTHONPATH = "src"
-python scripts\run_fernando_all_layers_demo.py
+python scripts\run_paper_aligned_all_layers_demo.py
 ```
 
 The demo is based on a single compressor case, `COMP-001`, and shows how a predictive maintenance alert becomes a governed recommendation package.
@@ -228,4 +228,4 @@ It does not claim to implement production APIs, a formal DMN engine or a formal 
 It demonstrates an executable reference implementation where each layer has a concrete input,
 mechanism, output and traceable artifact.
 ```
-<!-- END: V0.5.0_FERNANDO_ALL_LAYERS_DEMO -->
+<!-- END: V0.5.0_PAPER_ALIGNED_ALL_LAYERS_DEMO -->

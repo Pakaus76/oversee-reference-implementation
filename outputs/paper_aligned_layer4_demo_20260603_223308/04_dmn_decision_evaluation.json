@@ -1,0 +1,110 @@
+{
+  "evaluation_id": "dmn_like_eval_COMP001_DEGRADATION_ALERT_20260603",
+  "case_id": "COMP001_DEGRADATION_ALERT_20260603",
+  "asset_id": "COMP-001",
+  "source_context_id": "canonical_context_COMP001_DEGRADATION_ALERT_20260603",
+  "source_case_state": "decision_ready",
+  "rules": [
+    {
+      "rule_id": "DMN_R001",
+      "rule_name": "Failure horizon urgency",
+      "decision_table": "compressor_urgency_assessment",
+      "status": "evaluated",
+      "input_fields": {
+        "estimated_time_to_failure_hours": 48.0,
+        "alert_severity": "high"
+      },
+      "output_fields": {
+        "urgency": "high"
+      },
+      "triggered": true,
+      "rationale": "Estimated failure horizon is within 72 hours."
+    },
+    {
+      "rule_id": "DMN_R002",
+      "rule_name": "Asset criticality classification",
+      "decision_table": "compressor_criticality_assessment",
+      "status": "evaluated",
+      "input_fields": {
+        "asset_criticality_label": "high",
+        "asset_criticality_score": 5
+      },
+      "output_fields": {
+        "criticality_band": "high"
+      },
+      "triggered": true,
+      "rationale": "Asset criticality score is high."
+    },
+    {
+      "rule_id": "DMN_R003",
+      "rule_name": "Intervention feasibility",
+      "decision_table": "compressor_intervention_feasibility",
+      "status": "evaluated",
+      "input_fields": {
+        "spare_part_available": true,
+        "specialist_technician_available_next_shift": true
+      },
+      "output_fields": {
+        "intervention_feasible": true
+      },
+      "triggered": true,
+      "rationale": "Spare part and specialist support are available."
+    },
+    {
+      "rule_id": "DMN_R004",
+      "rule_name": "Accountable human review requirement",
+      "decision_table": "compressor_human_review_policy",
+      "status": "evaluated",
+      "input_fields": {
+        "computed_human_review_required": true,
+        "case_state_human_review_required": true
+      },
+      "output_fields": {
+        "human_review_required": true
+      },
+      "triggered": true,
+      "rationale": "High criticality or high-severity evidence requires accountable review."
+    },
+    {
+      "rule_id": "DMN_R005",
+      "rule_name": "Execution constraint assessment",
+      "decision_table": "compressor_execution_mode",
+      "status": "evaluated",
+      "input_fields": {
+        "production_pressure": "high",
+        "next_planned_downtime_hours": 36.0,
+        "intervention_feasible": true
+      },
+      "output_fields": {
+        "recommended_execution_mode": "controlled_planning"
+      },
+      "triggered": true,
+      "rationale": "Production pressure is high, but resources are available. Controlled planning is preferred over uncontrolled stop."
+    },
+    {
+      "rule_id": "DMN_R006",
+      "rule_name": "Final priority consolidation",
+      "decision_table": "compressor_final_priority",
+      "status": "evaluated",
+      "input_fields": {
+        "urgency": "high",
+        "criticality_band": "high",
+        "intervention_feasible": true,
+        "human_review_required": true,
+        "recommended_execution_mode": "controlled_planning"
+      },
+      "output_fields": {
+        "final_priority": "high",
+        "escalation_required": false
+      },
+      "triggered": true,
+      "rationale": "Final priority consolidated from urgency=high, criticality=high, intervention_feasible=True, human_review_required=True, execution_mode=controlled_planning."
+    }
+  ],
+  "final_priority": "high",
+  "recommended_execution_mode": "controlled_planning",
+  "human_review_required": true,
+  "intervention_feasible": true,
+  "decision_rule_version": "0.1.0",
+  "triggered_rule_count": 6
+}

@@ -1,6 +1,6 @@
-﻿"""Real Layer 1 adapter for the interactive walkthrough.
+"""Real Layer 1 adapter for the interactive walkthrough.
 
-The adapter calls the existing Fernando-aligned Layer 1 script as a subprocess.
+The adapter calls the existing paper-aligned Layer 1 script as a subprocess.
 It does not reimplement Layer 1 and does not modify the OVERSEE core.
 """
 
@@ -20,7 +20,7 @@ from demo.interactive_walkthrough.output_manager import write_json, write_text
 def run_real_layer1(state: DemoRunState) -> dict[str, Any]:
     """Run the existing Layer 1 script and capture its generated artifacts."""
     repo_root = Path.cwd()
-    script_path = repo_root / "scripts" / "run_layer1_fernando_demo.py"
+    script_path = repo_root / "scripts" / "run_layer1_paper_aligned_demo.py"
     outputs_dir = repo_root / "outputs"
 
     if not script_path.exists():
@@ -108,13 +108,13 @@ def run_real_layer1(state: DemoRunState) -> dict[str, Any]:
 
 
 def _find_layer1_output_dirs(outputs_dir: Path) -> set[Path]:
-    """Return known Layer 1 Fernando output directories."""
+    """Return known Layer 1 paper-aligned output directories."""
     if not outputs_dir.exists():
         return set()
 
     return {
         path.resolve()
-        for path in outputs_dir.glob("fernando_layer1_demo_*")
+        for path in outputs_dir.glob("paper_aligned_layer1_demo_*")
         if path.is_dir()
     }
 
