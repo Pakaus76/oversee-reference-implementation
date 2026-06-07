@@ -212,23 +212,23 @@ Expected result:
 
 ```text
 src/oversee/
-â”œâ”€â”€ case_context/
-â”œâ”€â”€ case_management/
-â”œâ”€â”€ comparison/
-â”œâ”€â”€ config/
-â”œâ”€â”€ decision_rules/
-â”œâ”€â”€ deterministic_anchor/
-â”œâ”€â”€ digital_factory/
-â”œâ”€â”€ domain/
-â”œâ”€â”€ external_sources/
-â”œâ”€â”€ governance/
-â”œâ”€â”€ grounded_model_path/
-â”œâ”€â”€ integration/
-â”œâ”€â”€ live_generative_path/
-â”œâ”€â”€ model_backed_anchor/
-â”œâ”€â”€ reporting/
-â”œâ”€â”€ retrieval/
-â””â”€â”€ utils/
+|-- case_context/
+|-- case_management/
+|-- comparison/
+|-- config/
+|-- decision_rules/
+|-- deterministic_anchor/
+|-- digital_factory/
+|-- domain/
+|-- external_sources/
+|-- governance/
+|-- grounded_model_path/
+|-- integration/
+|-- live_generative_path/
+|-- model_backed_anchor/
+|-- reporting/
+|-- retrieval/
+`-- utils/
 ```
 
 ---
