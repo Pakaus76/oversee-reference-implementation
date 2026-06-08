@@ -1,4 +1,17 @@
-﻿"""Build a CMMN-inspired lifecycle from the canonical compressor context."""
+"""Layer 3 CMMN-inspired case lifecycle builder.
+
+Purpose:
+    Build the case-management state from the canonical and contextualized case
+    information.
+
+Architectural role:
+    Layer 3 represents the case lifecycle: tasks, milestones, blockers,
+    review needs and decision-readiness status. It is inspired by CMMN concepts
+    but implemented as a lightweight Python reference model.
+
+Main output:
+    03_output_layer3_case_management_state.json
+"""
 
 from __future__ import annotations
 
@@ -17,7 +30,12 @@ from oversee.case_management.case_lifecycle import (
 def build_case_management_state(
     canonical_context: CanonicalCaseContext,
 ) -> CaseManagementState:
-    """Build Layer 3 case-management state from Layer 2 canonical context."""
+    """Build Layer 3 case-management state from Layer 2 context.
+    
+    The function creates lifecycle events, case tasks, milestones and blockers.
+    Its output tells the downstream decision logic whether the case is ready,
+    blocked, under review or constrained.
+    """
 
     timestamp = _utc_now()
     case_id = canonical_context.case_id

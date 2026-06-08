@@ -1,4 +1,4 @@
-﻿"""
+"""
 Deterministic compressor scenario generator for the Digital Factory.
 
 This module creates a first small batch of synthetic industrial scenarios for

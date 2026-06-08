@@ -1,4 +1,4 @@
-﻿"""Contracts for OVERSEE external source payloads.
+"""Contracts for OVERSEE external source payloads.
 
 Layer 1 represents information as coming from external industrial systems. The
 objects in this module are intentionally small and serializable so each payload

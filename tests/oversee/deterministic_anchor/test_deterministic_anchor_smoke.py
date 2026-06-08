@@ -1,4 +1,4 @@
-﻿"""Smoke tests for the OVERSEE deterministic anchor."""
+"""Smoke tests for the OVERSEE deterministic anchor."""
 
 from oversee.deterministic_anchor import run_deterministic_anchor
 from oversee.domain import Asset, DecisionCase, PredictiveAlert, Recommendation

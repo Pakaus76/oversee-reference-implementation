@@ -1,4 +1,4 @@
-﻿"""Tests for OVERSEE Layer 1 external sources and Layer 2 canonical context."""
+"""Tests for OVERSEE Layer 1 external sources and Layer 2 canonical context."""
 
 from __future__ import annotations
 

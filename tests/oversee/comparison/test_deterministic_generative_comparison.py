@@ -1,4 +1,4 @@
-﻿"""Tests for the OVERSEE deterministic-versus-generative comparison."""
+"""Tests for the OVERSEE deterministic-versus-generative comparison."""
 
 from __future__ import annotations
 

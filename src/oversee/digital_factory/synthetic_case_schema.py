@@ -1,4 +1,4 @@
-﻿"""
+"""
 Synthetic case schema for the Digital Factory scenario generator.
 
 This module defines the first stable, deterministic case structure used to

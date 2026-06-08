@@ -1,4 +1,4 @@
-﻿"""Canonical compressor case context contracts for OVERSEE Layer 2."""
+"""Canonical compressor case context contracts for OVERSEE Layer 2."""
 
 from __future__ import annotations
 

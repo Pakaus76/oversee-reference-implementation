@@ -1,4 +1,4 @@
-﻿"""
+"""
 Run the OVERSEE deterministic-versus-generative comparison.
 
 This script creates reviewer-facing JSON and CSV outputs comparing the

@@ -1,4 +1,17 @@
-﻿"""Run OVERSEE recommendation paths from Layer 4 inputs."""
+"""Layer 4 recommendation path runner for OVERSEE.
+
+Purpose:
+    Execute the available recommendation paths after DMN-like rule evaluation.
+
+Architectural role:
+    This module complements the Layer 4 decision-rule output with
+    recommendation-path outputs. The deterministic and governance-summary paths
+    produce structured recommendation data that Layer 5 packages with
+    traceability.
+
+Main output:
+    04_output_layer4_recommendation_path_outputs.json
+"""
 
 from __future__ import annotations
 
@@ -21,7 +34,12 @@ def run_recommendation_paths(
     case_state: CaseManagementState,
     rule_evaluation: DecisionRuleEvaluation,
 ) -> RecommendationPathBundle:
-    """Run currently available recommendation paths for the compressor case."""
+    """Run available recommendation paths for one OVERSEE case.
+    
+    The function receives the canonical context, case-management state and
+    decision-rule evaluation. It returns structured recommendation path outputs
+    that remain constrained by the governed Layer 4 decision fields.
+    """
 
     deterministic_output = _run_deterministic_anchor_path(
         canonical_context=canonical_context,

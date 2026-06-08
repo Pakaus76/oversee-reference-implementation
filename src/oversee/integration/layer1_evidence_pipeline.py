@@ -1,8 +1,18 @@
-"""Layer 1 evidence aggregation and validation pipeline.
+"""Layer 1 evidence intake, aggregation and validation pipeline.
 
-Layer 1 receives a predictive alert through the simulated API, retrieves
-supporting enterprise context through simulated external APIs, aggregates the
-evidence and emits an ExternalSourcePackage for Layer 2.
+Purpose:
+    Receive the predictive alert, retrieve the required scenario-backed
+    enterprise evidence, harmonize source payloads and validate the resulting
+    evidence package.
+
+Architectural role:
+    Layer 1 is the only implemented point where the executable demo interacts
+    with the scenario-backed enterprise API boundary. Downstream layers consume
+    the aggregated evidence package and derived context instead of calling
+    external sources directly.
+
+Main output:
+    01_output_layer1_aggregated_evidence_package.json
 """
 
 from __future__ import annotations
@@ -21,7 +31,12 @@ from oversee.integration.simulated_enterprise_apis import SimulatedEnterpriseApi
 
 @dataclass(slots=True)
 class Layer1EvidencePipelineResult:
-    """Result of the Layer 1 evidence pipeline."""
+    """Result object produced by the Layer 1 evidence pipeline.
+    
+    It groups the received alert, enterprise API call trace, aggregated evidence
+    package and validation report so the runner can persist each part as a
+    reviewable artifact.
+    """
 
     received_alert: PredictiveAlertReceipt
     enterprise_api_calls: list[dict[str, Any]]
@@ -46,16 +61,13 @@ def run_layer1_evidence_pipeline(
     case_id_prefix: str = "PAPER_ALIGNED",
 ) -> Layer1EvidencePipelineResult:
     """Run Layer 1 intake, enterprise lookup, aggregation and validation.
-
-    Parameters
-    ----------
-    alert_request:
-        Predictive alert request received by the Layer 1 API.
-    api_client:
-        Optional enterprise API client. When omitted, the deterministic
-        SimulatedEnterpriseApiClient is used to preserve backward compatibility.
-    case_id_prefix:
-        Prefix used to build the generated case identifier.
+    
+    The function receives the predictive alert request, calls the scenario-backed
+    enterprise API client, builds the aggregated evidence package and validates
+    whether the evidence is complete enough for downstream reasoning.
+    
+    The main inter-layer output is the aggregated evidence package consumed by
+    Layer 2 contextualization.
     """
 
     receipt = receive_predictive_alert(alert_request)

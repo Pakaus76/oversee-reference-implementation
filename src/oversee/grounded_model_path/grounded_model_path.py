@@ -1,4 +1,4 @@
-﻿"""
+"""
 Module: grounded_model_path.py
 
 Purpose:

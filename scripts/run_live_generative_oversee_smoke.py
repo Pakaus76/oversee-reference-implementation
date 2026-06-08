@@ -1,4 +1,4 @@
-﻿"""Run live generative OVERSEE smoke test.
+"""Run live generative OVERSEE smoke test.
 
 This script runs the full five-layer pipeline and adds:
 - live generative recommendation output

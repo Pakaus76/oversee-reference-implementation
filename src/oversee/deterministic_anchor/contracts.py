@@ -1,4 +1,4 @@
-﻿"""
+"""
 Module: contracts.py
 
 Purpose:

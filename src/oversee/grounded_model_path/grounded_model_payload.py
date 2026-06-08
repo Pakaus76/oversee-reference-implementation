@@ -1,4 +1,4 @@
-﻿"""
+"""
 Module: grounded_model_payload.py
 
 Purpose:

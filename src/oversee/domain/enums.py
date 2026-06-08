@@ -1,4 +1,4 @@
-﻿"""
+"""
 Module: enums.py
 
 Purpose:

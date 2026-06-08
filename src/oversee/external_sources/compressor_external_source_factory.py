@@ -1,4 +1,4 @@
-﻿"""Build external source payloads for the compressor case.
+"""Build external source payloads for the compressor case.
 
 The Digital Factory remains the synthetic origin of the case, but this module
 exposes the information as if it had been obtained from separate industrial

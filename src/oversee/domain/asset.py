@@ -1,4 +1,4 @@
-﻿"""
+"""
 Module: asset.py
 
 Purpose:

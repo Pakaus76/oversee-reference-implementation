@@ -1,4 +1,4 @@
-﻿"""Tests for OVERSEE Layer 3 CMMN-inspired case lifecycle."""
+"""Tests for OVERSEE Layer 3 CMMN-inspired case lifecycle."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""
+"""
 Module: deterministic_anchor.py
 
 Purpose:

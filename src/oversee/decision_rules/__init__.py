@@ -1,4 +1,4 @@
-﻿"""Decision rules layer for OVERSEE.
+"""Decision rules layer for OVERSEE.
 
 Layer 4 evaluates explicit DMN-like rules and connects them to recommendation
 paths. This is not a full DMN engine. It is an inspectable decision-table-style

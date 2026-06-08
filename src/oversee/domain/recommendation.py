@@ -1,4 +1,4 @@
-﻿"""
+"""
 Module: recommendation.py
 
 Purpose:

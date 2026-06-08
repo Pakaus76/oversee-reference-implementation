@@ -1,4 +1,4 @@
-﻿"""
+"""
 Module: live_generative_path.py
 
 Purpose:

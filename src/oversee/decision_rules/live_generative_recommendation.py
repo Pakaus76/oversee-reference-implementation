@@ -1,4 +1,4 @@
-﻿"""Live generative recommendation path for OVERSEE Layer 4.
+"""Live generative recommendation path for OVERSEE Layer 4.
 
 This module performs the first real generative AI integration inside OVERSEE.
 The model receives the already-governed case context from Layers 1 to 4 and

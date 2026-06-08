@@ -1,4 +1,4 @@
-﻿"""Build canonical compressor case context from external source payloads."""
+"""Build canonical compressor case context from external source payloads."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""External source simulation layer for OVERSEE.
+"""External source simulation layer for OVERSEE.
 
 This package exposes Digital Factory information as external source payloads.
 It intentionally avoids old bridge terminology. The purpose is to make Layer 1

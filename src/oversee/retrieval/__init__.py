@@ -1,4 +1,4 @@
-﻿"""Retrieval support for OVERSEE."""
+"""Retrieval support for OVERSEE."""
 
 from oversee.retrieval.evidence_bundle import (
     EvidenceBundle,

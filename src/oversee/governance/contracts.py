@@ -1,4 +1,4 @@
-﻿"""Shared execution contracts for OVERSEgrounded model path recommendation paths."""
+"""Shared execution contracts for OVERSEgrounded model path recommendation paths."""
 
 from __future__ import annotations
 

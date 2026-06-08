@@ -1,4 +1,4 @@
-﻿"""
+"""
 Module: live_generative_payload.py
 
 Purpose:

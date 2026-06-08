@@ -1,4 +1,4 @@
-﻿"""Tests for OVERSEE Layer 5 governed recommendation package."""
+"""Tests for OVERSEE Layer 5 governed recommendation package."""
 
 from __future__ import annotations
 

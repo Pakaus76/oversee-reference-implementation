@@ -1,4 +1,4 @@
-﻿"""
+"""
 Run the OVERSEE Digital Factory through the deterministic anchor.
 
 This script validates the migrated path:

@@ -1,4 +1,4 @@
-﻿"""
+"""
 Module: decision_case.py
 
 Purpose:

@@ -1,4 +1,4 @@
-﻿"""Comparison utilities for deterministic and generative OVERSEE outputs."""
+"""Comparison utilities for deterministic and generative OVERSEE outputs."""
 
 from __future__ import annotations
 

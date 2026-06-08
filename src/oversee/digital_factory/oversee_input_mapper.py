@@ -1,4 +1,4 @@
-﻿"""
+"""
 Read-only mapper from Digital Factory payloads to OVERSEE input candidates.
 
 This module prepares candidate input dictionaries for a future controlled

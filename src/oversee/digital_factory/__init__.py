@@ -1,4 +1,4 @@
-﻿"""Digital Factory package for OVERSEE.
+"""Digital Factory package for OVERSEE.
 
 The Digital Factory provides synthetic industrial cases and, in the advanced
 workbench, can also use live generative AI to produce source-level payloads that

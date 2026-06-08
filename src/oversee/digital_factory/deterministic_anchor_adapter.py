@@ -1,4 +1,4 @@
-﻿"""
+"""
 Deterministic deterministic anchor adapter for Digital Factory input candidates.
 
 This module translates Digital Factory OVERSEE input candidates into the

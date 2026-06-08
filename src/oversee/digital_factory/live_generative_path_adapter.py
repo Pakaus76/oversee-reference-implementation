@@ -1,4 +1,4 @@
-﻿"""
+"""
 Digital Factory adapter for the OVERSEE live generative path.
 
 This module translates Digital Factory OVERSEE input candidates into the

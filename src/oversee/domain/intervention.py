@@ -1,4 +1,4 @@
-﻿"""
+"""
 Module: intervention.py
 
 Purpose:

@@ -1,4 +1,4 @@
-﻿"""Command-line launcher for the interactive OVERSEE walkthrough."""
+"""Command-line launcher for the interactive OVERSEE walkthrough."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""Offline fallback tests for the OVERSEE live generative path."""
+"""Offline fallback tests for the OVERSEE live generative path."""
 
 from __future__ import annotations
 

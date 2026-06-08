@@ -1,4 +1,4 @@
-﻿"""
+"""
 Run the OVERSEE reviewer-facing demo package.
 
 This command generates a complete reviewer-facing output folder with comparison

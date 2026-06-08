@@ -1,4 +1,4 @@
-﻿"""Canonical case context layer for OVERSEE.
+"""Canonical case context layer for OVERSEE.
 
 Layer 2 takes external source payloads and builds a normalized, inspectable
 case context for the compressor decision.

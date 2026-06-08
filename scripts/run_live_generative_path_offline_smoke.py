@@ -1,4 +1,4 @@
-﻿"""
+"""
 Run an offline smoke test for the OVERSEE live generative path.
 
 This script intentionally removes OPENAI_API_KEY from the local process

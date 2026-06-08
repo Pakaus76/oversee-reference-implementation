@@ -1,9 +1,17 @@
-"""Layer 5 governed recommendation package for OVERSEE.
+"""Layer 5 governed packaging and traceability for OVERSEE.
 
-Layer 5 packages the complete evidence chain into an inspectable decision
-artifact. It does not execute new decision logic. It assembles the outputs from
-external sources, canonical context, case lifecycle, DMN-like rules and
-recommendation paths into a governed package with traceability.
+Purpose:
+    Assemble the final governed recommendation package from the evidence,
+    context, case lifecycle, decision-rule evaluation and recommendation-path
+    outputs.
+
+Architectural role:
+    Layer 5 does not decide the case again. It packages the already-governed
+    decision into a reviewer-facing and audit-ready structure, including
+    traceability entries, execution metadata and final recommendation fields.
+
+Final output:
+    05_final_governed_recommendation_package.json
 """
 
 from __future__ import annotations
@@ -20,7 +28,11 @@ from oversee.external_sources import ExternalSourcePackage
 
 @dataclass(slots=True)
 class TraceabilityEntry:
-    """One traceability entry linking layers, evidence and outputs."""
+    """One traceability entry linking sources, layers and generated artifacts.
+    
+    Traceability entries make it possible to see which layer produced which piece
+    of evidence or reasoning and where that information is persisted.
+    """
 
     trace_id: str
     layer: str
@@ -37,7 +49,12 @@ class TraceabilityEntry:
 
 @dataclass(slots=True)
 class GovernedRecommendationPackage:
-    """Complete Layer 5 governed package for one OVERSEE case."""
+    """Complete Layer 5 governed package for one OVERSEE case.
+    
+    The package combines the final recommendation, governance summary,
+    traceability index, reviewer summary and supporting references needed for
+    human review and workflow handoff.
+    """
 
     package_id: str
     case_id: str
@@ -78,7 +95,12 @@ def build_governed_recommendation_package(
     rule_evaluation: DecisionRuleEvaluation,
     recommendation_bundle: RecommendationPathBundle,
 ) -> GovernedRecommendationPackage:
-    """Build the Layer 5 governed recommendation package."""
+    """Build the Layer 5 governed recommendation package.
+    
+    The function receives all upstream layer outputs and assembles the final
+    reviewable package. It does not overwrite Layer 4 decisions; it preserves them
+    with traceability and reviewer-facing explanation.
+    """
 
     generated_at = _utc_now()
     deterministic_recommendation = _find_path_recommendation(
@@ -130,7 +152,11 @@ def build_governed_recommendation_package(
 
 
 def build_reviewer_summary_markdown(package: GovernedRecommendationPackage) -> str:
-    """Build a compact reviewer-facing Markdown summary."""
+    """Build a compact reviewer-facing Markdown summary.
+    
+    The summary translates the governed package into a human-readable view for
+    maintenance, operations or review stakeholders.
+    """
 
     recommendation = package.final_recommendation
     governance = package.governance_summary
@@ -200,7 +226,11 @@ def build_execution_manifest(
     package: GovernedRecommendationPackage,
     generated_files: list[str],
 ) -> dict[str, Any]:
-    """Build an execution manifest for the reviewer-facing output directory."""
+    """Build an execution manifest for the output directory.
+    
+    The manifest records generated files, scenario metadata and execution context
+    so reviewers can audit what was produced in one run.
+    """
 
     return {
         "manifest_version": "0.1.0",

@@ -1,4 +1,4 @@
-﻿"""Offline-safe tests for the live generative OVERSEE integration."""
+"""Offline-safe tests for the live generative OVERSEE integration."""
 
 from __future__ import annotations
 

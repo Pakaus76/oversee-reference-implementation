@@ -1,4 +1,4 @@
-﻿"""Run Layer 1, Layer 2 and Layer 3 smoke test for the compressor case.
+"""Run Layer 1, Layer 2 and Layer 3 smoke test for the compressor case.
 
 The script persists:
 - 01_external_source_payloads.json

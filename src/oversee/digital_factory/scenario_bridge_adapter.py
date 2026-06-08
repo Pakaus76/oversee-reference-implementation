@@ -1,4 +1,4 @@
-﻿"""
+"""
 Bridge-ready adapter for Digital Factory synthetic scenarios.
 
 This module converts validated Digital Factory synthetic scenarios into a

@@ -1,4 +1,4 @@
-﻿"""CMMN-inspired case lifecycle contracts for OVERSEE Layer 3."""
+"""CMMN-inspired case lifecycle contracts for OVERSEE Layer 3."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""
+"""
 Module: validators.py
 
 Purpose:

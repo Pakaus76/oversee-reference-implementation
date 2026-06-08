@@ -1,11 +1,16 @@
-"""Layer 2 contextualization rules for the paper-aligned OVERSEE demo.
+"""Layer 2 contextualization rules for the OVERSEE workbench.
 
-Layer 2 receives the validated evidence package from Layer 1 through the
-canonical context builder. It then applies explicit DMN-like contextualization
-rules to derive decision factors.
+Purpose:
+    Transform validated evidence and canonical case context into a contextual
+    decision profile.
 
-These rules do not produce the final recommendation. They explain what the
-aggregated evidence means in decision context.
+Architectural role:
+    Layer 2 applies DMN-like contextualization rules. It does not call external
+    enterprise APIs directly in the current reference implementation; it
+    consumes the evidence and canonical context prepared after Layer 1.
+
+Main output:
+    02_output_layer2_contextualization_result.json
 """
 
 from __future__ import annotations
@@ -18,7 +23,11 @@ from oversee.case_context import CanonicalCaseContext
 
 @dataclass(slots=True)
 class ContextualizationRuleResult:
-    """One DMN-like contextualization rule evaluation."""
+    """One DMN-like contextualization rule evaluation.
+    
+    Each instance records the rule name, the evaluated condition, whether it was
+    triggered and the output facts produced for the contextual decision profile.
+    """
 
     rule_id: str
     rule_name: str
@@ -36,7 +45,11 @@ class ContextualizationRuleResult:
 
 @dataclass(slots=True)
 class Layer2ContextualizationResult:
-    """Complete Layer 2 contextualization result."""
+    """Complete Layer 2 contextualization result.
+    
+    The result contains the contextualization rule trace, the derived context and
+    decision-readiness indicators consumed by the next layers.
+    """
 
     case_id: str
     asset_id: str
@@ -61,7 +74,12 @@ class Layer2ContextualizationResult:
 def run_layer2_contextualization(
     canonical_context: CanonicalCaseContext,
 ) -> Layer2ContextualizationResult:
-    """Apply DMN-like contextualization rules to a canonical context."""
+    """Apply DMN-like contextualization rules to a canonical context.
+    
+    The function is the public Layer 2 entry point. It evaluates the contextual
+    rules and returns the contextualized decision profile used by Layer 3 and Layer
+    4.
+    """
 
     rule_trace = apply_contextualization_rules(canonical_context)
     derived_context = _build_derived_context(rule_trace)
@@ -79,7 +97,12 @@ def run_layer2_contextualization(
 def apply_contextualization_rules(
     canonical_context: CanonicalCaseContext,
 ) -> list[ContextualizationRuleResult]:
-    """Apply explicit if-then contextualization rules."""
+    """Apply explicit if-then contextualization rules.
+    
+    The rule set converts operational facts such as urgency, feasibility,
+    production pressure, resource availability and evidence quality into a compact
+    derived context.
+    """
 
     asset = canonical_context.asset
     predictive = canonical_context.predictive_evidence

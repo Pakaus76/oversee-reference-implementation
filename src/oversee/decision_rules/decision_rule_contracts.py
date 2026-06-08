@@ -1,4 +1,4 @@
-﻿"""Contracts for OVERSEE Layer 4 decision rules and recommendation paths."""
+"""Contracts for OVERSEE Layer 4 decision rules and recommendation paths."""
 
 from __future__ import annotations
 

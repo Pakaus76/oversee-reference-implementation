@@ -1,4 +1,4 @@
-﻿"""
+"""
 Run the OVERSEE Digital Factory through the live generative path in offline mode.
 
 This script intentionally removes OPENAI_API_KEY from the local process

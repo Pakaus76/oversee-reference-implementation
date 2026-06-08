@@ -1,7 +1,16 @@
-"""DMN-like decision rules for the compressor case.
+"""Layer 4 DMN-like decision rules for OVERSEE.
 
-The rules are intentionally explicit. They behave like decision-table rows:
-inputs are visible, outputs are visible, and the rationale is persisted.
+Purpose:
+    Evaluate explicit decision rules that convert context and case state into
+    governed decision fields.
+
+Architectural role:
+    Layer 4 assigns priority, execution mode, intervention feasibility and
+    human-review requirements. These outputs constrain any recommendation
+    formulation and are later packaged by Layer 5.
+
+Main output:
+    04_output_layer4_dmn_decision_evaluation.json
 """
 
 from __future__ import annotations
@@ -18,7 +27,12 @@ def evaluate_dmn_like_rules(
     canonical_context: CanonicalCaseContext,
     case_state: CaseManagementState,
 ) -> DecisionRuleEvaluation:
-    """Evaluate explicit DMN-like rules for the compressor case."""
+    """Evaluate explicit DMN-like rules for one OVERSEE case.
+    
+    The function receives the canonical context and Layer 3 case state. It returns
+    a decision-rule evaluation bundle containing triggered rules and final decision
+    fields such as priority, execution mode and review requirement.
+    """
 
     urgency_rule = _evaluate_urgency_rule(canonical_context)
     criticality_rule = _evaluate_criticality_rule(canonical_context)

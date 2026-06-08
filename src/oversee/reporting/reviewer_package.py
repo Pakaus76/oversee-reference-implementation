@@ -1,4 +1,4 @@
-﻿"""
+"""
 Reviewer-facing OVERSEE demo package.
 
 This module builds a clean evidence package for reviewers. It runs the Digital

@@ -1,4 +1,4 @@
-﻿"""
+"""
 Module: predictive_alert.py
 
 Purpose:

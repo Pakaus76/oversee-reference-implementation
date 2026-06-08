@@ -1,11 +1,19 @@
-"""Utilities for turning executable scenario inputs into Layer 1 requests.
+"""Executable scenario input utilities for the OVERSEE workbench.
 
-The interactive walkthrough stores scenario data in JSON files. The narrative
-fields are useful for explaining the demo, while executable_inputs contains the
-structured data required to run the real OVERSEE pipeline.
+Purpose:
+    Convert controlled scenario JSON inputs into the predictive alert request
+    consumed by Layer 1.
 
-This module builds the predictive alert request expected by Layer 1 from those
-executable_inputs.
+Architectural role:
+    This module belongs to the scenario preparation and integration boundary.
+    It validates that every executable scenario contains the minimum structure
+    needed to run through the same OVERSEE Layer 1 to Layer 5 path.
+
+Inputs:
+    The executable_inputs section of a scenario JSON file.
+
+Outputs:
+    A validated predictive alert request and a stable case identifier prefix.
 """
 
 from __future__ import annotations
@@ -58,17 +66,10 @@ def build_alert_request_from_executable_inputs(
     executable_inputs: dict[str, Any],
 ) -> dict[str, Any]:
     """Build the Layer 1 predictive alert request from executable inputs.
-
-    Parameters
-    ----------
-    executable_inputs:
-        The executable_inputs dictionary from one scenario JSON file.
-
-    Returns
-    -------
-    dict[str, Any]
-        A dictionary with the same structure as
-        build_sample_predictive_alert_request().
+    
+    The function extracts the controlled alert payload from a scenario and adds the
+    case identifier expected by the Layer 1 pipeline. It is the bridge between
+    scenario data and the operational alert intake contract.
     """
 
     validate_executable_inputs(executable_inputs)
@@ -81,7 +82,12 @@ def build_alert_request_from_executable_inputs(
 
 
 def validate_executable_inputs(executable_inputs: dict[str, Any]) -> None:
-    """Validate the minimal structure required for executable scenarios."""
+    """Validate the minimal structure required for executable scenarios.
+    
+    The validation checks that the scenario can support the all-layers execution:
+    alert data, raw sensor context, requested context and enterprise source payloads
+    must be present before Layer 1 is allowed to run.
+    """
 
     if not isinstance(executable_inputs, dict):
         raise TypeError("executable_inputs must be a dictionary")
@@ -129,7 +135,11 @@ def validate_executable_inputs(executable_inputs: dict[str, Any]) -> None:
 
 
 def build_case_id_prefix_from_scenario_id(scenario_id: str) -> str:
-    """Build a stable, readable case ID prefix from a scenario identifier."""
+    """Build a stable, readable case ID prefix from a scenario identifier.
+    
+    The prefix is used to create deterministic case identifiers for scenario-based
+    runs, making generated artifacts easier to compare across executions.
+    """
 
     if not scenario_id or not scenario_id.strip():
         raise ValueError("scenario_id cannot be empty")

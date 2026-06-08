@@ -1,4 +1,4 @@
-﻿"""
+"""
 Deterministic-versus-generative comparison for OVERSEE.
 
 This module runs the Digital Factory scenarios through two OVERSEE paths:

@@ -1,11 +1,19 @@
-"""Scenario-backed enterprise API simulator for executable walkthrough scenarios.
+"""Scenario-backed enterprise API boundary for the OVERSEE workbench.
 
-This module provides the same enterprise API surface used by Layer 1, but it
-returns data from a scenario's executable_inputs section instead of returning a
-single fixed reference case.
+Purpose:
+    Simulate calls to enterprise information sources without connecting to real
+    ERP, MES, CMMS, MRO, workforce planning or policy systems.
 
-The goal is to make OVERSEE executable across multiple industrial scenarios
-while keeping the external API metaphor explicit and traceable.
+Architectural role:
+    This module represents the external-source access boundary used by the
+    executable demo. In a production deployment these methods could be replaced
+    by real connectors. In the reference implementation they return controlled
+    scenario-backed payloads so that runs are reproducible and testable.
+
+Important note:
+    The goal is not to build complex enterprise integrations. The goal is to
+    make clear which external information would be retrieved and how it enters
+    the OVERSEE evidence package.
 """
 
 from __future__ import annotations
@@ -18,7 +26,12 @@ from oversee.integration.simulated_enterprise_apis import EnterpriseApiCall
 
 
 class ScenarioBackedEnterpriseApiClient:
-    """Enterprise API client backed by one scenario's executable inputs."""
+    """Enterprise API client backed by one scenario's executable inputs.
+    
+    The class exposes simple methods that look like enterprise API calls from the
+    perspective of Layer 1. Each call returns a defensive copy of the corresponding
+    scenario source payload and records a trace entry for auditability.
+    """
 
     REQUIRED_ENTERPRISE_SOURCES = {
         "asset_metadata",
@@ -29,12 +42,11 @@ class ScenarioBackedEnterpriseApiClient:
     }
 
     def __init__(self, executable_inputs: dict[str, Any]) -> None:
-        """Create a scenario-backed client.
-
-        Parameters
-        ----------
-        executable_inputs:
-            The executable_inputs dictionary from one walkthrough scenario.
+        """Create a scenario-backed enterprise API client.
+        
+        The client receives the executable_inputs section of one scenario and extracts
+        its enterprise_sources block. All later source lookups are served from that
+        controlled source set.
         """
 
         self.executable_inputs = copy.deepcopy(executable_inputs)
@@ -42,7 +54,12 @@ class ScenarioBackedEnterpriseApiClient:
         self.calls: list[EnterpriseApiCall] = []
 
     def get_asset_metadata(self, *, asset_id: str) -> dict[str, Any]:
-        """Return scenario asset registry data."""
+        """Return asset registry and engineering master-data evidence.
+        
+        In a real implementation this method could query an asset registry or
+        engineering master-data system. In the demo it returns the scenario-backed
+        payload used by Layer 1 evidence aggregation.
+        """
 
         response = self._copy_source_payload("asset_metadata")
         self._assert_asset_match(response=response, asset_id=asset_id, source_name="asset_metadata")
@@ -58,7 +75,11 @@ class ScenarioBackedEnterpriseApiClient:
         return response
 
     def get_maintenance_history(self, *, asset_id: str, lookback_days: int) -> dict[str, Any]:
-        """Return scenario CMMS/EAM maintenance history data."""
+        """Return CMMS/EAM maintenance-history evidence.
+        
+        The method supplies historical work orders, repeated interventions and related
+        maintenance context for the requested asset.
+        """
 
         response = self._copy_source_payload("maintenance_history")
         self._assert_asset_match(
@@ -87,7 +108,11 @@ class ScenarioBackedEnterpriseApiClient:
         line_id: str,
         horizon_hours: int,
     ) -> dict[str, Any]:
-        """Return scenario MES/ERP operational context data."""
+        """Return ERP/MES production and operational-context evidence.
+        
+        The method supplies production pressure, downtime-window and planning context
+        needed for downstream contextualization and decision readiness.
+        """
 
         response = self._copy_source_payload("operational_context")
         self._assert_asset_match(
@@ -120,7 +145,11 @@ class ScenarioBackedEnterpriseApiClient:
         return response
 
     def get_inventory_and_resources(self, *, asset_id: str) -> dict[str, Any]:
-        """Return scenario inventory and resource availability data."""
+        """Return MRO inventory and workforce-availability evidence.
+        
+        The method supplies spare-part availability, technician availability and other
+        resource constraints used later by contextualization and decision logic.
+        """
 
         response = self._copy_source_payload("inventory_and_resources")
         self._assert_asset_match(
@@ -140,7 +169,11 @@ class ScenarioBackedEnterpriseApiClient:
         return response
 
     def get_policy_governance(self, *, asset_type: str, criticality_score: int) -> dict[str, Any]:
-        """Return scenario governance policy data."""
+        """Return policy-governance and compliance evidence.
+        
+        The method supplies review rules, criticality constraints and policy checks
+        that become part of the evidence package and downstream governed decision.
+        """
 
         response = self._copy_source_payload("policy_governance")
 
@@ -170,7 +203,12 @@ class ScenarioBackedEnterpriseApiClient:
         return response
 
     def call_trace(self) -> list[dict[str, Any]]:
-        """Return all scenario-backed API calls as dictionaries."""
+        """Return all scenario-backed enterprise API calls as dictionaries.
+        
+        The trace shows which simulated source methods were called and what payload was
+        returned. It helps reviewers distinguish source access from internal OVERSEE
+        reasoning.
+        """
 
         return [call.to_dict() for call in self.calls]
 

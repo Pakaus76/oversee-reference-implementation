@@ -1,4 +1,4 @@
-﻿"""Tests for OVERSEE Layer 4 DMN-like rules and recommendation paths."""
+"""Tests for OVERSEE Layer 4 DMN-like rules and recommendation paths."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""
+"""
 Module: openai_client.py
 
 Purpose:

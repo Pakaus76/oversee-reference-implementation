@@ -1,4 +1,4 @@
-﻿"""
+"""
 Module: model_backed_payload.py
 
 Purpose:

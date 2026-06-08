@@ -1,4 +1,4 @@
-﻿"""
+"""
 Run a smoke test for the OVERSEE deterministic anchor.
 
 This script builds a minimal structured decision case, executes the deterministic
