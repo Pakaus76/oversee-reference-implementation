@@ -46,10 +46,10 @@ scripts/run_scenario_all_layers_demo.py
 
 This is the file to open first during the review.
 
-The main function to inspect is currently:
+The main implementation function to inspect is now:
 
 ```text
-run_scenario_all_layers(scenario_id: str)
+run_all_layers_scenario_execution(scenario_id: str)
 ```
 
 This function performs the complete execution sequence:
@@ -320,13 +320,20 @@ This convention will make the flow easier to understand without overusing the wo
 
 ---
 
+
+### Compatibility note
+
+The runner still exposes `run_scenario_all_layers(scenario_id)` as a backward-compatible wrapper because existing tests, adapters and reports import that name. The implementation delegates to `run_all_layers_scenario_execution(scenario_id)`.
+
+---
+
 ## 10. Planned runner naming refinement
 
 The current runner is functional, but the main execution function should be easier to explain.
 
-The next refactor should split or rename functions so that the layer responsibility is visible from the function names.
+The runner has been refactored so that layer responsibility is visible from the function names.
 
-Recommended target structure:
+Implemented runner function structure:
 
 ```text
 all_layers_cli_main()
@@ -411,7 +418,7 @@ A consistency benchmark exists.
 ### Still needed
 
 ```text
-Improve runner function names so layer responsibility is visible.
+Runner function names now make layer responsibility visible.
 Add coordinated module headers and function docstrings.
 Rename only true inter-layer output artifacts with output_layer_X.
 Update affected tests and documentation.
