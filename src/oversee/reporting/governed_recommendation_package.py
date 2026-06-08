@@ -1,4 +1,4 @@
-﻿"""Layer 5 governed recommendation package for OVERSEE.
+"""Layer 5 governed recommendation package for OVERSEE.
 
 Layer 5 packages the complete evidence chain into an inspectable decision
 artifact. It does not execute new decision logic. It assembles the outputs from
