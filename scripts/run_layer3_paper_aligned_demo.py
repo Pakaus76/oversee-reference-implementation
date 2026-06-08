@@ -51,14 +51,14 @@ def main() -> None:
         "predictive_alert_request": output_dir / "00_predictive_alert_request.json",
         "received_predictive_alert": output_dir / "01_received_predictive_alert.json",
         "enterprise_api_calls": output_dir / "01_enterprise_api_calls.json",
-        "aggregated_evidence_package": output_dir / "01_aggregated_evidence_package.json",
+        "aggregated_evidence_package": output_dir / "01_output_layer1_aggregated_evidence_package.json",
         "validation_report": output_dir / "01_validation_report.json",
         "canonical_case_context": output_dir / "02_canonical_case_context.json",
         "contextualization_rule_trace": output_dir / "02_contextualization_rule_trace.json",
         "context_enrichment_summary": output_dir / "02_context_enrichment_summary.md",
-        "layer2_contextualization_result": output_dir / "02_layer2_contextualization_result.json",
+        "layer2_contextualization_result": output_dir / "02_output_layer2_contextualization_result.json",
         "case_lifecycle_trace": output_dir / "03_case_lifecycle_trace.json",
-        "case_management_state": output_dir / "03_case_management_state.json",
+        "case_management_state": output_dir / "03_output_layer3_case_management_state.json",
         "layer3_case_lifecycle_summary": output_dir / "03_layer3_case_lifecycle_summary.md",
     }
 

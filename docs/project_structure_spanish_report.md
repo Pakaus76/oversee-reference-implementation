@@ -128,23 +128,23 @@ El siguiente arbol usa solo caracteres ASCII para evitar problemas de codificaci
 |   |   |-- 01_external_source_payloads.json
 |   |   |-- 02_canonical_case_context.json
 |   |   |-- 03_case_lifecycle_trace.json
-|   |   `-- 03_case_management_state.json
+|   |   `-- 03_output_layer3_case_management_state.json
 |   |-- five_layer_layer4_decision_rules_20260603_000055/
 |   |   |-- 01_external_source_payloads.json
 |   |   |-- 02_canonical_case_context.json
 |   |   |-- 03_case_lifecycle_trace.json
-|   |   |-- 03_case_management_state.json
-|   |   |-- 04_dmn_decision_evaluation.json
-|   |   `-- 04_recommendation_path_outputs.json
+|   |   |-- 03_output_layer3_case_management_state.json
+|   |   |-- 04_output_layer4_dmn_decision_evaluation.json
+|   |   `-- 04_output_layer4_recommendation_path_outputs.json
 |   |-- five_layer_layer5_governed_package_20260603_000648/
 |   |   |-- 01_external_source_payloads.json
 |   |   |-- 02_canonical_case_context.json
 |   |   |-- 03_case_lifecycle_trace.json
-|   |   |-- 03_case_management_state.json
-|   |   |-- 04_dmn_decision_evaluation.json
-|   |   |-- 04_recommendation_path_outputs.json
+|   |   |-- 03_output_layer3_case_management_state.json
+|   |   |-- 04_output_layer4_dmn_decision_evaluation.json
+|   |   |-- 04_output_layer4_recommendation_path_outputs.json
 |   |   |-- 05_execution_manifest.json
-|   |   |-- 05_governed_recommendation_package.json
+|   |   |-- 05_final_governed_recommendation_package.json
 |   |   |-- 05_reviewer_summary.md
 |   |   `-- 05_traceability_index.json
 |   |-- generative_digital_factory_workbench_20260603_173209/
@@ -155,119 +155,119 @@ El siguiente arbol usa solo caracteres ASCII para evitar problemas de codificaci
 |   |   |-- 01_external_source_payloads.json
 |   |   |-- 02_canonical_case_context.json
 |   |   |-- 03_case_lifecycle_trace.json
-|   |   |-- 03_case_management_state.json
+|   |   |-- 03_output_layer3_case_management_state.json
 |   |   |-- 04_deterministic_vs_generative_comparison.json
-|   |   |-- 04_dmn_decision_evaluation.json
+|   |   |-- 04_output_layer4_dmn_decision_evaluation.json
 |   |   |-- 04_live_generative_recommendation.json
-|   |   |-- 04_recommendation_path_outputs.json
+|   |   |-- 04_output_layer4_recommendation_path_outputs.json
 |   |   |-- 05_execution_manifest.json
-|   |   |-- 05_governed_recommendation_package.json
+|   |   |-- 05_final_governed_recommendation_package.json
 |   |   |-- 05_reviewer_summary.md
 |   |   `-- 05_traceability_index.json
 |   |-- live_generative_oversee_20260603_154534/
 |   |   |-- 01_external_source_payloads.json
 |   |   |-- 02_canonical_case_context.json
 |   |   |-- 03_case_lifecycle_trace.json
-|   |   |-- 03_case_management_state.json
+|   |   |-- 03_output_layer3_case_management_state.json
 |   |   |-- 04_deterministic_vs_generative_comparison.json
-|   |   |-- 04_dmn_decision_evaluation.json
+|   |   |-- 04_output_layer4_dmn_decision_evaluation.json
 |   |   |-- 04_live_generative_recommendation.json
-|   |   |-- 04_recommendation_path_outputs.json
+|   |   |-- 04_output_layer4_recommendation_path_outputs.json
 |   |   |-- 05_execution_manifest.json
-|   |   |-- 05_governed_recommendation_package.json
+|   |   |-- 05_final_governed_recommendation_package.json
 |   |   |-- 05_reviewer_summary.md
 |   |   `-- 05_traceability_index.json
 |   |-- paper_aligned_all_layers_demo_20260603_225140/
 |   |   |-- 00_predictive_alert_request.json
-|   |   |-- 01_aggregated_evidence_package.json
+|   |   |-- 01_output_layer1_aggregated_evidence_package.json
 |   |   |-- 01_enterprise_api_calls.json
 |   |   |-- 01_received_predictive_alert.json
 |   |   |-- 01_validation_report.json
 |   |   |-- 02_canonical_case_context.json
 |   |   |-- 02_context_enrichment_summary.md
 |   |   |-- 02_contextualization_rule_trace.json
-|   |   |-- 02_layer2_contextualization_result.json
+|   |   |-- 02_output_layer2_contextualization_result.json
 |   |   |-- 03_case_lifecycle_trace.json
-|   |   |-- 03_case_management_state.json
+|   |   |-- 03_output_layer3_case_management_state.json
 |   |   |-- 03_layer3_case_lifecycle_summary.md
 |   |   |-- 04_deterministic_vs_generative_comparison.json
-|   |   |-- 04_dmn_decision_evaluation.json
+|   |   |-- 04_output_layer4_dmn_decision_evaluation.json
 |   |   |-- 04_layer4_decision_summary.md
 |   |   |-- 04_live_generative_recommendation.json
-|   |   |-- 04_recommendation_path_outputs.json
+|   |   |-- 04_output_layer4_recommendation_path_outputs.json
 |   |   |-- 05_execution_manifest.json
 |   |   |-- 05_full_layer_trace_summary.md
-|   |   |-- 05_governed_recommendation_package.json
+|   |   |-- 05_final_governed_recommendation_package.json
 |   |   |-- 05_reviewer_summary.md
 |   |   `-- 05_traceability_index.json
 |   |-- paper_aligned_layer1_demo_20260603_220254/
 |   |   |-- 00_predictive_alert_request.json
-|   |   |-- 01_aggregated_evidence_package.json
+|   |   |-- 01_output_layer1_aggregated_evidence_package.json
 |   |   |-- 01_enterprise_api_calls.json
 |   |   |-- 01_received_predictive_alert.json
 |   |   `-- 01_validation_report.json
 |   |-- paper_aligned_layer2_demo_20260603_221341/
 |   |   |-- 00_predictive_alert_request.json
-|   |   |-- 01_aggregated_evidence_package.json
+|   |   |-- 01_output_layer1_aggregated_evidence_package.json
 |   |   |-- 01_enterprise_api_calls.json
 |   |   |-- 01_received_predictive_alert.json
 |   |   |-- 01_validation_report.json
 |   |   |-- 02_canonical_case_context.json
 |   |   |-- 02_context_enrichment_summary.md
 |   |   |-- 02_contextualization_rule_trace.json
-|   |   `-- 02_layer2_contextualization_result.json
+|   |   `-- 02_output_layer2_contextualization_result.json
 |   |-- paper_aligned_layer3_demo_20260603_221947/
 |   |   |-- 00_predictive_alert_request.json
-|   |   |-- 01_aggregated_evidence_package.json
+|   |   |-- 01_output_layer1_aggregated_evidence_package.json
 |   |   |-- 01_enterprise_api_calls.json
 |   |   |-- 01_received_predictive_alert.json
 |   |   |-- 01_validation_report.json
 |   |   |-- 02_canonical_case_context.json
 |   |   |-- 02_context_enrichment_summary.md
 |   |   |-- 02_contextualization_rule_trace.json
-|   |   |-- 02_layer2_contextualization_result.json
+|   |   |-- 02_output_layer2_contextualization_result.json
 |   |   |-- 03_case_lifecycle_trace.json
-|   |   |-- 03_case_management_state.json
+|   |   |-- 03_output_layer3_case_management_state.json
 |   |   `-- 03_layer3_case_lifecycle_summary.md
 |   |-- paper_aligned_layer4_demo_20260603_223308/
 |   |   |-- 00_predictive_alert_request.json
-|   |   |-- 01_aggregated_evidence_package.json
+|   |   |-- 01_output_layer1_aggregated_evidence_package.json
 |   |   |-- 01_enterprise_api_calls.json
 |   |   |-- 01_received_predictive_alert.json
 |   |   |-- 01_validation_report.json
 |   |   |-- 02_canonical_case_context.json
 |   |   |-- 02_context_enrichment_summary.md
 |   |   |-- 02_contextualization_rule_trace.json
-|   |   |-- 02_layer2_contextualization_result.json
+|   |   |-- 02_output_layer2_contextualization_result.json
 |   |   |-- 03_case_lifecycle_trace.json
-|   |   |-- 03_case_management_state.json
+|   |   |-- 03_output_layer3_case_management_state.json
 |   |   |-- 03_layer3_case_lifecycle_summary.md
 |   |   |-- 04_deterministic_vs_generative_comparison.json
-|   |   |-- 04_dmn_decision_evaluation.json
+|   |   |-- 04_output_layer4_dmn_decision_evaluation.json
 |   |   |-- 04_layer4_decision_summary.md
 |   |   |-- 04_live_generative_recommendation.json
-|   |   `-- 04_recommendation_path_outputs.json
+|   |   `-- 04_output_layer4_recommendation_path_outputs.json
 |   `-- paper_aligned_layer5_demo_20260603_224436/
 |       |-- 00_predictive_alert_request.json
-|       |-- 01_aggregated_evidence_package.json
+|       |-- 01_output_layer1_aggregated_evidence_package.json
 |       |-- 01_enterprise_api_calls.json
 |       |-- 01_received_predictive_alert.json
 |       |-- 01_validation_report.json
 |       |-- 02_canonical_case_context.json
 |       |-- 02_context_enrichment_summary.md
 |       |-- 02_contextualization_rule_trace.json
-|       |-- 02_layer2_contextualization_result.json
+|       |-- 02_output_layer2_contextualization_result.json
 |       |-- 03_case_lifecycle_trace.json
-|       |-- 03_case_management_state.json
+|       |-- 03_output_layer3_case_management_state.json
 |       |-- 03_layer3_case_lifecycle_summary.md
 |       |-- 04_deterministic_vs_generative_comparison.json
-|       |-- 04_dmn_decision_evaluation.json
+|       |-- 04_output_layer4_dmn_decision_evaluation.json
 |       |-- 04_layer4_decision_summary.md
 |       |-- 04_live_generative_recommendation.json
-|       |-- 04_recommendation_path_outputs.json
+|       |-- 04_output_layer4_recommendation_path_outputs.json
 |       |-- 05_execution_manifest.json
 |       |-- 05_full_layer_trace_summary.md
-|       |-- 05_governed_recommendation_package.json
+|       |-- 05_final_governed_recommendation_package.json
 |       |-- 05_reviewer_summary.md
 |       `-- 05_traceability_index.json
 |-- scripts/
@@ -855,12 +855,12 @@ Estas carpetas contienen artefactos como:
 
 - `00_scenario.json`
 - `00_predictive_alert_request.json`
-- `01_aggregated_evidence_package.json`
+- `01_output_layer1_aggregated_evidence_package.json`
 - `01_validation_report.json`
 - `02_canonical_case_context.json`
-- `03_case_management_state.json`
-- `04_dmn_decision_evaluation.json`
-- `05_governed_recommendation_package.json`
+- `03_output_layer3_case_management_state.json`
+- `04_output_layer4_dmn_decision_evaluation.json`
+- `05_final_governed_recommendation_package.json`
 - `05_traceability_index.json`
 - `05_scenario_execution_summary.md`
 

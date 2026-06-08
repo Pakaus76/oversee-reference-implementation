@@ -123,7 +123,7 @@ Suggested review sequence:
 1. `README.md`
 2. `docs/reviewer_demo_walkthrough.md`
 3. `outputs/generative_digital_factory_workbench_20260603_173209/05_reviewer_summary.md`
-4. `outputs/generative_digital_factory_workbench_20260603_173209/05_governed_recommendation_package.json`
+4. `outputs/generative_digital_factory_workbench_20260603_173209/05_final_governed_recommendation_package.json`
 5. `outputs/generative_digital_factory_workbench_20260603_173209/04_deterministic_vs_generative_comparison.json`
 
 <!-- BEGIN: V0.5.0_PAPER_ALIGNED_ALL_LAYERS_DEMO -->

@@ -52,11 +52,11 @@ def test_master_scenarios_execute_real_all_layers_path(scenario_id: str) -> None
         output_dir = Path(result["output_dir"])
 
         assert output_dir.exists()
-        assert (output_dir / "01_aggregated_evidence_package.json").exists()
-        assert (output_dir / "02_layer2_contextualization_result.json").exists()
-        assert (output_dir / "03_case_management_state.json").exists()
-        assert (output_dir / "04_dmn_decision_evaluation.json").exists()
-        assert (output_dir / "05_governed_recommendation_package.json").exists()
+        assert (output_dir / "01_output_layer1_aggregated_evidence_package.json").exists()
+        assert (output_dir / "02_output_layer2_contextualization_result.json").exists()
+        assert (output_dir / "03_output_layer3_case_management_state.json").exists()
+        assert (output_dir / "04_output_layer4_dmn_decision_evaluation.json").exists()
+        assert (output_dir / "05_final_governed_recommendation_package.json").exists()
         assert (output_dir / "05_scenario_execution_summary.md").exists()
 
     finally:

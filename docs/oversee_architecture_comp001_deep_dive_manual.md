@@ -339,7 +339,7 @@ Why it matters:
 It proves that the decision is not based only on the alert.
 ```
 
-### 7.3 `01_aggregated_evidence_package.json`
+### 7.3 `01_output_layer1_aggregated_evidence_package.json`
 
 Stores the consolidated evidence package.
 
@@ -446,7 +446,7 @@ Why it matters:
 It makes contextualization explainable.
 ```
 
-### 8.3 `02_layer2_contextualization_result.json`
+### 8.3 `02_output_layer2_contextualization_result.json`
 
 Stores the final Layer 2 output.
 
@@ -495,7 +495,7 @@ Why it matters:
 It shows how the case evolved before a decision was produced.
 ```
 
-### 9.2 `03_case_management_state.json`
+### 9.2 `03_output_layer3_case_management_state.json`
 
 Stores the current state of the case.
 
@@ -544,7 +544,7 @@ Simple explanation:
 Layer 4 converts context into a governed recommendation.
 ```
 
-### 10.1 `04_dmn_decision_evaluation.json`
+### 10.1 `04_output_layer4_dmn_decision_evaluation.json`
 
 Stores the DMN-like rule evaluation.
 
@@ -575,7 +575,7 @@ Why it matters:
 It makes the recommendation rule-driven and inspectable.
 ```
 
-### 10.2 `04_recommendation_path_outputs.json`
+### 10.2 `04_output_layer4_recommendation_path_outputs.json`
 
 Stores the recommendation-path output.
 
@@ -605,7 +605,7 @@ Simple explanation:
 Layer 5 makes the recommendation auditable and ready for handoff.
 ```
 
-### 11.1 `05_governed_recommendation_package.json`
+### 11.1 `05_final_governed_recommendation_package.json`
 
 This is the main final output of OVERSEE.
 
@@ -693,7 +693,7 @@ It is the easiest artifact to read first after a scenario run.
 The most important final output is:
 
 ```text
-05_governed_recommendation_package.json
+05_final_governed_recommendation_package.json
 ```
 
 But the real value is the complete governed evidence chain:
@@ -701,12 +701,12 @@ But the real value is the complete governed evidence chain:
 ```text
 00_scenario.json
 00_predictive_alert_request.json
-01_aggregated_evidence_package.json
+01_output_layer1_aggregated_evidence_package.json
 01_validation_report.json
 02_canonical_case_context.json
-03_case_management_state.json
-04_dmn_decision_evaluation.json
-05_governed_recommendation_package.json
+03_output_layer3_case_management_state.json
+04_output_layer4_dmn_decision_evaluation.json
+05_final_governed_recommendation_package.json
 05_traceability_index.json
 05_scenario_execution_summary.md
 ```

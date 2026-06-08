@@ -2,7 +2,7 @@
 
 Version baseline: `v0.6.x`  
 Scope: Fernando demo consistency benchmark  
-Generated at: `2026-06-07T11:47:31`
+Generated at: `2026-06-08T13:09:26`
 
 ## 1. Purpose
 

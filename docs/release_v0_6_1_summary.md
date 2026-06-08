@@ -231,14 +231,14 @@ A real scenario execution produces traceable artifacts such as:
 | `00_predictive_alert_request.json` | Predictive alert request generated from executable inputs. |
 | `01_received_predictive_alert.json` | Layer 1 received alert. |
 | `01_enterprise_api_calls.json` | Scenario-backed enterprise API calls. |
-| `01_aggregated_evidence_package.json` | Aggregated evidence package. |
+| `01_output_layer1_aggregated_evidence_package.json` | Aggregated evidence package. |
 | `01_validation_report.json` | Evidence validation report. |
 | `02_canonical_case_context.json` | Canonical case context. |
-| `02_layer2_contextualization_result.json` | Layer 2 contextualization result. |
-| `03_case_management_state.json` | Case lifecycle state. |
-| `04_dmn_decision_evaluation.json` | DMN-like decision rule evaluation. |
-| `04_recommendation_path_outputs.json` | Recommendation path outputs. |
-| `05_governed_recommendation_package.json` | Final governed recommendation package. |
+| `02_output_layer2_contextualization_result.json` | Layer 2 contextualization result. |
+| `03_output_layer3_case_management_state.json` | Case lifecycle state. |
+| `04_output_layer4_dmn_decision_evaluation.json` | DMN-like decision rule evaluation. |
+| `04_output_layer4_recommendation_path_outputs.json` | Recommendation path outputs. |
+| `05_final_governed_recommendation_package.json` | Final governed recommendation package. |
 | `05_traceability_index.json` | Traceability index. |
 | `05_execution_manifest.json` | Execution metadata. |
 | `05_scenario_execution_summary.md` | Human-readable scenario summary. |

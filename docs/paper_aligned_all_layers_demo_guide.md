@@ -65,7 +65,7 @@ Open the outputs in this order during the review.
 00_predictive_alert_request.json
 01_received_predictive_alert.json
 01_enterprise_api_calls.json
-01_aggregated_evidence_package.json
+01_output_layer1_aggregated_evidence_package.json
 01_validation_report.json
 ```
 
@@ -84,7 +84,7 @@ The layer aggregates and validates an evidence package.
 02_contextualization_rule_trace.json
 02_canonical_case_context.json
 02_context_enrichment_summary.md
-02_layer2_contextualization_result.json
+02_output_layer2_contextualization_result.json
 ```
 
 What this shows:
@@ -108,7 +108,7 @@ Layer 4 DMN-like rules = decision and recommendation consolidation.
 
 ```text
 03_case_lifecycle_trace.json
-03_case_management_state.json
+03_output_layer3_case_management_state.json
 03_layer3_case_lifecycle_summary.md
 ```
 
@@ -125,8 +125,8 @@ blockers and decision readiness.
 ### 4. Layer 4 decision and generative comparison
 
 ```text
-04_dmn_decision_evaluation.json
-04_recommendation_path_outputs.json
+04_output_layer4_dmn_decision_evaluation.json
+04_output_layer4_recommendation_path_outputs.json
 04_live_generative_recommendation.json
 04_deterministic_vs_generative_comparison.json
 04_layer4_decision_summary.md
@@ -145,7 +145,7 @@ The generative response is not accepted blindly.
 ### 5. Layer 5 governed package
 
 ```text
-05_governed_recommendation_package.json
+05_final_governed_recommendation_package.json
 05_traceability_index.json
 05_execution_manifest.json
 05_reviewer_summary.md

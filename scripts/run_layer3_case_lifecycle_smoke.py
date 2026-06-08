@@ -4,7 +4,7 @@ The script persists:
 - 01_external_source_payloads.json
 - 02_canonical_case_context.json
 - 03_case_lifecycle_trace.json
-- 03_case_management_state.json
+- 03_output_layer3_case_management_state.json
 """
 
 from __future__ import annotations
@@ -42,7 +42,7 @@ def main() -> None:
         "external_sources": output_dir / "01_external_source_payloads.json",
         "canonical_context": output_dir / "02_canonical_case_context.json",
         "case_lifecycle_trace": output_dir / "03_case_lifecycle_trace.json",
-        "case_management_state": output_dir / "03_case_management_state.json",
+        "case_management_state": output_dir / "03_output_layer3_case_management_state.json",
     }
 
     paths["external_sources"].write_text(

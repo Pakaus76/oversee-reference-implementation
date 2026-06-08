@@ -262,8 +262,8 @@ def execute_one_benchmark_run(
     output_dir = Path(result["output_dir"])
 
     try:
-        governed_package = read_json(output_dir / "05_governed_recommendation_package.json")
-        recommendation_bundle = read_json(output_dir / "04_recommendation_path_outputs.json")
+        governed_package = read_json(output_dir / "05_final_governed_recommendation_package.json")
+        recommendation_bundle = read_json(output_dir / "04_output_layer4_recommendation_path_outputs.json")
 
         stable_payload = {
             "scenario_id": result["scenario_id"],

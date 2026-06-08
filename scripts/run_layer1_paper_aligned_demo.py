@@ -35,7 +35,7 @@ def main() -> None:
         "predictive_alert_request": output_dir / "00_predictive_alert_request.json",
         "received_predictive_alert": output_dir / "01_received_predictive_alert.json",
         "enterprise_api_calls": output_dir / "01_enterprise_api_calls.json",
-        "aggregated_evidence_package": output_dir / "01_aggregated_evidence_package.json",
+        "aggregated_evidence_package": output_dir / "01_output_layer1_aggregated_evidence_package.json",
         "validation_report": output_dir / "01_validation_report.json",
     }
 

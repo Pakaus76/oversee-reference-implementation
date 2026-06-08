@@ -123,13 +123,13 @@ def test_every_executable_scenario_runs_through_real_all_layers_path(
         assert output_dir.exists()
         assert (output_dir / "00_scenario.json").exists()
         assert (output_dir / "00_predictive_alert_request.json").exists()
-        assert (output_dir / "01_aggregated_evidence_package.json").exists()
+        assert (output_dir / "01_output_layer1_aggregated_evidence_package.json").exists()
         assert (output_dir / "01_validation_report.json").exists()
         assert (output_dir / "02_canonical_case_context.json").exists()
-        assert (output_dir / "02_layer2_contextualization_result.json").exists()
-        assert (output_dir / "03_case_management_state.json").exists()
-        assert (output_dir / "04_dmn_decision_evaluation.json").exists()
-        assert (output_dir / "05_governed_recommendation_package.json").exists()
+        assert (output_dir / "02_output_layer2_contextualization_result.json").exists()
+        assert (output_dir / "03_output_layer3_case_management_state.json").exists()
+        assert (output_dir / "04_output_layer4_dmn_decision_evaluation.json").exists()
+        assert (output_dir / "05_final_governed_recommendation_package.json").exists()
         assert (output_dir / "05_scenario_execution_summary.md").exists()
 
     finally:

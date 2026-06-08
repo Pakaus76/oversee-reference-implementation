@@ -31,7 +31,7 @@ def test_data001_triggers_diagnostic_review_from_data_quality_flags() -> None:
             (output_dir / "02_canonical_case_context.json").read_text(encoding="utf-8")
         )
         dmn_evaluation = json.loads(
-            (output_dir / "04_dmn_decision_evaluation.json").read_text(encoding="utf-8")
+            (output_dir / "04_output_layer4_dmn_decision_evaluation.json").read_text(encoding="utf-8")
         )
 
         assert validation_report["valid"] is False

@@ -4,9 +4,9 @@ The script persists:
 - 01_external_source_payloads.json
 - 02_canonical_case_context.json
 - 03_case_lifecycle_trace.json
-- 03_case_management_state.json
-- 04_dmn_decision_evaluation.json
-- 04_recommendation_path_outputs.json
+- 03_output_layer3_case_management_state.json
+- 04_output_layer4_dmn_decision_evaluation.json
+- 04_output_layer4_recommendation_path_outputs.json
 """
 
 from __future__ import annotations
@@ -51,9 +51,9 @@ def main() -> None:
         "external_sources": output_dir / "01_external_source_payloads.json",
         "canonical_context": output_dir / "02_canonical_case_context.json",
         "case_lifecycle_trace": output_dir / "03_case_lifecycle_trace.json",
-        "case_management_state": output_dir / "03_case_management_state.json",
-        "dmn_decision_evaluation": output_dir / "04_dmn_decision_evaluation.json",
-        "recommendation_path_outputs": output_dir / "04_recommendation_path_outputs.json",
+        "case_management_state": output_dir / "03_output_layer3_case_management_state.json",
+        "dmn_decision_evaluation": output_dir / "04_output_layer4_dmn_decision_evaluation.json",
+        "recommendation_path_outputs": output_dir / "04_output_layer4_recommendation_path_outputs.json",
     }
 
     paths["external_sources"].write_text(

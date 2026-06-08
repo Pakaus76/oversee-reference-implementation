@@ -51,13 +51,13 @@ python scripts\run_generative_digital_factory_workbench_smoke.py
 Then open:
 
 ```text
-05_governed_recommendation_package.json
+05_final_governed_recommendation_package.json
 04_deterministic_vs_generative_comparison.json
 04_live_generative_recommendation.json
 00_generative_factory_result.json
 02_canonical_case_context.json
-03_case_management_state.json
-04_dmn_decision_evaluation.json
+03_output_layer3_case_management_state.json
+04_output_layer4_dmn_decision_evaluation.json
 ```
 
 ## How to explain the deterministic-vs-generative difference

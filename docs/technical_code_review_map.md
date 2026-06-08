@@ -214,16 +214,16 @@ The current artifact set is:
 00_predictive_alert_request.json
 01_received_predictive_alert.json
 01_enterprise_api_calls.json
-01_aggregated_evidence_package.json
+01_output_layer1_aggregated_evidence_package.json
 01_validation_report.json
 02_canonical_case_context.json
 02_contextualization_rule_trace.json
-02_layer2_contextualization_result.json
+02_output_layer2_contextualization_result.json
 03_case_lifecycle_trace.json
-03_case_management_state.json
-04_dmn_decision_evaluation.json
-04_recommendation_path_outputs.json
-05_governed_recommendation_package.json
+03_output_layer3_case_management_state.json
+04_output_layer4_dmn_decision_evaluation.json
+04_output_layer4_recommendation_path_outputs.json
+05_final_governed_recommendation_package.json
 05_traceability_index.json
 05_execution_manifest.json
 05_scenario_execution_summary.md
@@ -231,11 +231,11 @@ The current artifact set is:
 
 ---
 
-## 9. Planned artifact naming refinement
+## 9. Applied artifact naming refinement
 
-The next naming refinement should not add the word `output` to every artifact.
+The applied naming refinement does not add the word `output` to every artifact.
 
-The word `output` should only be used for artifacts that represent the main output of one layer and the input to the next layer.
+The word `output` is only used for artifacts that represent the main output of one layer and the input to the next layer.
 
 ### Layer 0 preparation artifacts
 
@@ -420,7 +420,7 @@ A consistency benchmark exists.
 ```text
 Runner function names now make layer responsibility visible.
 Add coordinated module headers and function docstrings.
-Rename only true inter-layer output artifacts with output_layer_X.
+Selective inter-layer artifact naming has been applied with output_layer_X only where appropriate.
 Update affected tests and documentation.
 Prepare a short code-review demo script.
 ```

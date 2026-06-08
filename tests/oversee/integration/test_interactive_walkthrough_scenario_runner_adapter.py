@@ -35,7 +35,7 @@ def test_interactive_adapter_runs_pump_scenario_with_real_artifacts(
     assert state.scenario_source_output_dir is not None
     assert not state.scenario_source_output_dir.exists()
 
-    assert (tmp_path / "real_01_aggregated_evidence_package.json").exists()
-    assert (tmp_path / "real_05_governed_recommendation_package.json").exists()
+    assert (tmp_path / "real_01_output_layer1_aggregated_evidence_package.json").exists()
+    assert (tmp_path / "real_05_final_governed_recommendation_package.json").exists()
     assert len(state.scenario_layer_artifacts["layer1"]) >= 1
     assert len(state.scenario_layer_artifacts["layer5"]) >= 1

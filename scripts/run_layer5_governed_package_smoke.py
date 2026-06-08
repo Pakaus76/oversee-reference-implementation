@@ -4,10 +4,10 @@ The script persists:
 - 01_external_source_payloads.json
 - 02_canonical_case_context.json
 - 03_case_lifecycle_trace.json
-- 03_case_management_state.json
-- 04_dmn_decision_evaluation.json
-- 04_recommendation_path_outputs.json
-- 05_governed_recommendation_package.json
+- 03_output_layer3_case_management_state.json
+- 04_output_layer4_dmn_decision_evaluation.json
+- 04_output_layer4_recommendation_path_outputs.json
+- 05_final_governed_recommendation_package.json
 - 05_traceability_index.json
 - 05_reviewer_summary.md
 - 05_execution_manifest.json
@@ -67,10 +67,10 @@ def main() -> None:
         "external_sources": output_dir / "01_external_source_payloads.json",
         "canonical_context": output_dir / "02_canonical_case_context.json",
         "case_lifecycle_trace": output_dir / "03_case_lifecycle_trace.json",
-        "case_management_state": output_dir / "03_case_management_state.json",
-        "dmn_decision_evaluation": output_dir / "04_dmn_decision_evaluation.json",
-        "recommendation_path_outputs": output_dir / "04_recommendation_path_outputs.json",
-        "governed_recommendation_package": output_dir / "05_governed_recommendation_package.json",
+        "case_management_state": output_dir / "03_output_layer3_case_management_state.json",
+        "dmn_decision_evaluation": output_dir / "04_output_layer4_dmn_decision_evaluation.json",
+        "recommendation_path_outputs": output_dir / "04_output_layer4_recommendation_path_outputs.json",
+        "governed_recommendation_package": output_dir / "05_final_governed_recommendation_package.json",
         "traceability_index": output_dir / "05_traceability_index.json",
         "reviewer_summary": output_dir / "05_reviewer_summary.md",
         "execution_manifest": output_dir / "05_execution_manifest.json",

@@ -109,7 +109,7 @@ Reviewer files:
 
 ```text
 03_case_lifecycle_trace.json
-03_case_management_state.json
+03_output_layer3_case_management_state.json
 ```
 
 This layer shows that the case is not just a static prediction. It is a managed decision case.
@@ -121,8 +121,8 @@ Layer 4 evaluates explicit decision rules and then runs recommendation paths.
 Reviewer files:
 
 ```text
-04_dmn_decision_evaluation.json
-04_recommendation_path_outputs.json
+04_output_layer4_dmn_decision_evaluation.json
+04_output_layer4_recommendation_path_outputs.json
 04_live_generative_recommendation.json
 04_deterministic_vs_generative_comparison.json
 ```
@@ -136,7 +136,7 @@ Layer 5 packages the evidence, recommendation, comparison and traceability.
 Reviewer files:
 
 ```text
-05_governed_recommendation_package.json
+05_final_governed_recommendation_package.json
 05_traceability_index.json
 05_reviewer_summary.md
 05_execution_manifest.json
@@ -150,11 +150,11 @@ Layer 5 is the main evidence package for review.
 2. Open `05_execution_manifest.json`.
 3. Open `00_generative_factory_result.json`.
 4. Open `02_canonical_case_context.json`.
-5. Open `03_case_management_state.json`.
-6. Open `04_dmn_decision_evaluation.json`.
+5. Open `03_output_layer3_case_management_state.json`.
+6. Open `04_output_layer4_dmn_decision_evaluation.json`.
 7. Open `04_live_generative_recommendation.json`.
 8. Open `04_deterministic_vs_generative_comparison.json`.
-9. Open `05_governed_recommendation_package.json`.
+9. Open `05_final_governed_recommendation_package.json`.
 
 ## What the demo proves
 
@@ -207,15 +207,15 @@ Recommended file opening order:
 ```text
 00_predictive_alert_request.json
 01_enterprise_api_calls.json
-01_aggregated_evidence_package.json
+01_output_layer1_aggregated_evidence_package.json
 01_validation_report.json
 02_contextualization_rule_trace.json
 02_canonical_case_context.json
-03_case_management_state.json
-04_dmn_decision_evaluation.json
+03_output_layer3_case_management_state.json
+04_output_layer4_dmn_decision_evaluation.json
 04_live_generative_recommendation.json
 04_deterministic_vs_generative_comparison.json
-05_governed_recommendation_package.json
+05_final_governed_recommendation_package.json
 05_reviewer_summary.md
 05_full_layer_trace_summary.md
 ```
