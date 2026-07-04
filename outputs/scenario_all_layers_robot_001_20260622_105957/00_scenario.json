@@ -1,0 +1,186 @@
+{
+  "scenario_id": "ROBOT-001",
+  "title": "Safety-sensitive robot axis case",
+  "description": "Coverage case where an industrial robot axis abnormality requires safety-sensitive human review before intervention.",
+  "asset_id": "ROBOT-001",
+  "asset_type": "industrial_robot",
+  "failure_mode": "axis_abnormality",
+  "paper_aligned": false,
+  "master_case": false,
+  "master_case_role": "coverage_case_safety_sensitive_review",
+  "decision_pattern": "safety_sensitive_review_required",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Robot axis anomaly; confidence 0.83; 48h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Axis current and vibration drift increasing"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Industrial robot; high criticality; safety-sensitive cell"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "Recent axis calibration notes"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "High production pressure; cell stop requires coordination"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Robot technician available; spare drive available"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Safety-sensitive intervention requires human review"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Safety review task active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Intervention must be coordinated with safety lockout"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "Safety-sensitive high-criticality assets require controlled planning"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Safety review summary prepared"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Controlled intervention proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Safety traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: robot axis anomaly, condition trends, asset criticality, and calibration history",
+    "layer2": "Contextualized decision profile: high urgency, safety-sensitive review required, intervention feasible",
+    "layer3": "Decision-ready case: open, safety review task active, no blockers",
+    "layer4": "Decision record: high priority, controlled planning with human review",
+    "layer5": "Governed recommendation package: safety review summary, traceability index, and controlled intervention proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-ROBOT-001-20260603",
+      "asset_id": "ROBOT-001",
+      "asset_type": "industrial_robot",
+      "line_id": "ROBOT-CELL-01",
+      "suspected_failure_mode": "axis_abnormality",
+      "alert_type": "robot_axis_abnormality_alert",
+      "predictive_horizon_hours": 48,
+      "confidence_score": 0.83,
+      "model_name": "robot_axis_condition_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T12:30:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        1.2,
+        1.5,
+        1.8,
+        2.3,
+        2.7
+      ],
+      "temperature_celsius": [
+        45.0,
+        47.0,
+        50.0,
+        54.0,
+        57.0
+      ],
+      "pressure_bar": [
+        5.5,
+        5.5,
+        5.4,
+        5.4,
+        5.3
+      ],
+      "alarm_count": 2,
+      "last_sensor_timestamp": "2026-06-03T12:25:00Z",
+      "axis_current_amp": [
+        9.0,
+        9.8,
+        10.7,
+        11.5,
+        12.3
+      ]
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 72,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "ROBOT-001",
+        "asset_type": "industrial_robot",
+        "line_id": "ROBOT-CELL-01",
+        "asset_criticality": "high",
+        "criticality_score": 5,
+        "manufacturer": "Reference Robotics",
+        "model": "RR-6X",
+        "location": "Automated assembly cell"
+      },
+      "maintenance_history": {
+        "asset_id": "ROBOT-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": false,
+        "work_orders": [
+          {
+            "work_order_id": "WO-ROBOT-001-2026-0517",
+            "type": "preventive",
+            "failure_mode": "axis_calibration",
+            "duration_hours": 1.8
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "ROBOT-001",
+        "line_id": "ROBOT-CELL-01",
+        "horizon_hours": 72,
+        "production_pressure": "high",
+        "production_load_pct": 90.0,
+        "next_planned_downtime_hours": 36.0,
+        "customer_impact": "high",
+        "shift_demand": "high"
+      },
+      "inventory_and_resources": {
+        "asset_id": "ROBOT-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-ROBOT-AXIS-DRIVE",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "policy_governance": {
+        "asset_type": "industrial_robot",
+        "criticality_score": 5,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_id": "POL-ROBOT-SAFETY-001"
+      }
+    }
+  }
+}

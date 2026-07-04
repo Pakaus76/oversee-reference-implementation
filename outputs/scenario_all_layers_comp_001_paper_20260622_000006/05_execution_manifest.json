@@ -1,0 +1,48 @@
+{
+  "manifest_version": "0.1.0",
+  "created_at": "2026-06-21T22:00:06.336962+00:00",
+  "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_comp_001_paper_20260622_000006",
+  "case_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+  "asset_id": "COMP-001",
+  "package_id": "governed_package_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+  "generated_files": [
+    "00_scenario.json",
+    "00_predictive_alert_request.json",
+    "01_received_predictive_alert.json",
+    "01_enterprise_api_calls.json",
+    "01_output_layer1_aggregated_evidence_package.json",
+    "01_validation_report.json",
+    "02_canonical_case_context.json",
+    "02_contextualization_rule_trace.json",
+    "02_output_layer2_contextualization_result.json",
+    "03_case_lifecycle_trace.json",
+    "03_output_layer3_case_management_state.json",
+    "04_output_layer4_dmn_decision_evaluation.json",
+    "04_output_layer4_recommendation_path_outputs.json",
+    "05_final_governed_recommendation_package.json",
+    "05_traceability_index.json",
+    "05_execution_manifest.json",
+    "05_scenario_execution_summary.md"
+  ],
+  "layer_completion": {
+    "layer_1_external_sources": true,
+    "layer_2_canonical_context": true,
+    "layer_3_case_lifecycle": true,
+    "layer_4_decision_rules": true,
+    "layer_5_governed_package": true
+  },
+  "traceability_count": 6,
+  "status": "completed",
+  "scenario_execution": {
+    "scenario_id": "COMP-001",
+    "scenario_title": "Paper compressor case",
+    "asset_id": "COMP-001",
+    "asset_type": "industrial_air_compressor",
+    "failure_mode": "bearing_degradation",
+    "decision_pattern": "critical_but_feasible_controlled_planning",
+    "master_case": true,
+    "case_id_prefix": "SCENARIO_COMP_001",
+    "scenario_backed_enterprise_api_client": true,
+    "paper_section5_execution": true
+  }
+}

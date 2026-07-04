@@ -1,0 +1,104 @@
+[
+  {
+    "api_name": "scenario_asset_registry_api",
+    "endpoint": "/enterprise/asset-registry/assets/{asset_id}",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "PUMP-001"
+    },
+    "response_payload": {
+      "asset_id": "PUMP-001",
+      "asset_type": "industrial_pump",
+      "line_id": "WATER-LINE-01",
+      "asset_criticality": "high",
+      "criticality_score": 5,
+      "manufacturer": "Reference Pump Systems",
+      "model": "RP-4100",
+      "location": "Process area - water circulation loop"
+    },
+    "called_at": "2026-06-22T08:59:56.978555+00:00"
+  },
+  {
+    "api_name": "scenario_cmms_maintenance_history_api",
+    "endpoint": "/enterprise/cmms/assets/{asset_id}/work-orders",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "PUMP-001",
+      "lookback_days": 180
+    },
+    "response_payload": {
+      "asset_id": "PUMP-001",
+      "lookback_days": 180,
+      "recent_repeated_failures": true,
+      "work_orders": [
+        {
+          "work_order_id": "WO-PUMP-001-2026-0429",
+          "type": "corrective",
+          "failure_mode": "seal_leakage",
+          "duration_hours": 2.5
+        },
+        {
+          "work_order_id": "WO-PUMP-001-2026-0527",
+          "type": "corrective",
+          "failure_mode": "recurring_leakage",
+          "duration_hours": 3.0
+        }
+      ]
+    },
+    "called_at": "2026-06-22T08:59:56.978555+00:00"
+  },
+  {
+    "api_name": "scenario_mes_operational_context_api",
+    "endpoint": "/enterprise/mes/lines/{line_id}/operational-context",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "PUMP-001",
+      "line_id": "WATER-LINE-01",
+      "horizon_hours": 72
+    },
+    "response_payload": {
+      "asset_id": "PUMP-001",
+      "line_id": "WATER-LINE-01",
+      "horizon_hours": 72,
+      "production_pressure": "high",
+      "production_load_pct": 88.0,
+      "next_planned_downtime_hours": 120.0,
+      "customer_impact": "high",
+      "shift_demand": "high"
+    },
+    "called_at": "2026-06-22T08:59:56.978555+00:00"
+  },
+  {
+    "api_name": "scenario_inventory_and_resources_api",
+    "endpoint": "/enterprise/inventory/assets/{asset_id}/resources",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "PUMP-001"
+    },
+    "response_payload": {
+      "asset_id": "PUMP-001",
+      "spare_part_available": false,
+      "spare_part_id": "SP-PUMP-SEAL-KIT",
+      "specialist_technician_available_next_shift": false,
+      "intervention_feasible": false
+    },
+    "called_at": "2026-06-22T08:59:56.978555+00:00"
+  },
+  {
+    "api_name": "scenario_policy_governance_api",
+    "endpoint": "/enterprise/policy-governance/assets/{asset_type}",
+    "method": "GET",
+    "request_parameters": {
+      "asset_type": "industrial_pump",
+      "criticality_score": 5
+    },
+    "response_payload": {
+      "asset_type": "industrial_pump",
+      "criticality_score": 5,
+      "mandatory_human_review_for_high_criticality": true,
+      "expected_human_review_required": true,
+      "policy_id": "POL-PUMP-HIGH-CRIT-001"
+    },
+    "called_at": "2026-06-22T08:59:56.978555+00:00"
+  }
+]

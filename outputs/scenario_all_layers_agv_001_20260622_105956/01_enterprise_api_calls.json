@@ -1,0 +1,98 @@
+[
+  {
+    "api_name": "scenario_asset_registry_api",
+    "endpoint": "/enterprise/asset-registry/assets/{asset_id}",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "AGV-001"
+    },
+    "response_payload": {
+      "asset_id": "AGV-001",
+      "asset_type": "automated_guided_vehicle",
+      "line_id": "LOG-FLEET-01",
+      "asset_criticality": "medium",
+      "criticality_score": 3,
+      "manufacturer": "Reference AGV Systems",
+      "model": "RAGV-50",
+      "location": "Internal logistics fleet"
+    },
+    "called_at": "2026-06-22T08:59:56.281256+00:00"
+  },
+  {
+    "api_name": "scenario_cmms_maintenance_history_api",
+    "endpoint": "/enterprise/cmms/assets/{asset_id}/work-orders",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "AGV-001",
+      "lookback_days": 180
+    },
+    "response_payload": {
+      "asset_id": "AGV-001",
+      "lookback_days": 180,
+      "recent_repeated_failures": false,
+      "work_orders": [
+        {
+          "work_order_id": "WO-AGV-001-2026-0414",
+          "type": "preventive",
+          "failure_mode": "none",
+          "duration_hours": 1.0
+        }
+      ]
+    },
+    "called_at": "2026-06-22T08:59:56.281256+00:00"
+  },
+  {
+    "api_name": "scenario_mes_operational_context_api",
+    "endpoint": "/enterprise/mes/lines/{line_id}/operational-context",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "AGV-001",
+      "line_id": "LOG-FLEET-01",
+      "horizon_hours": 168
+    },
+    "response_payload": {
+      "asset_id": "AGV-001",
+      "line_id": "LOG-FLEET-01",
+      "horizon_hours": 168,
+      "production_pressure": "low",
+      "production_load_pct": 52.0,
+      "next_planned_downtime_hours": 120.0,
+      "customer_impact": "low",
+      "shift_demand": "medium"
+    },
+    "called_at": "2026-06-22T08:59:56.281256+00:00"
+  },
+  {
+    "api_name": "scenario_inventory_and_resources_api",
+    "endpoint": "/enterprise/inventory/assets/{asset_id}/resources",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "AGV-001"
+    },
+    "response_payload": {
+      "asset_id": "AGV-001",
+      "spare_part_available": true,
+      "spare_part_id": "SP-AGV-BATTERY-MODULE",
+      "specialist_technician_available_next_shift": true,
+      "intervention_feasible": true
+    },
+    "called_at": "2026-06-22T08:59:56.281256+00:00"
+  },
+  {
+    "api_name": "scenario_policy_governance_api",
+    "endpoint": "/enterprise/policy-governance/assets/{asset_type}",
+    "method": "GET",
+    "request_parameters": {
+      "asset_type": "automated_guided_vehicle",
+      "criticality_score": 3
+    },
+    "response_payload": {
+      "asset_type": "automated_guided_vehicle",
+      "criticality_score": 3,
+      "mandatory_human_review_for_high_criticality": true,
+      "expected_human_review_required": false,
+      "policy_id": "POL-AGV-REDUNDANT-001"
+    },
+    "called_at": "2026-06-22T08:59:56.281256+00:00"
+  }
+]

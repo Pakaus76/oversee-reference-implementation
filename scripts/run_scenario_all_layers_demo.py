@@ -42,18 +42,19 @@ if str(SRC_PATH) not in sys.path:
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
+#1.0--------------------------------------------------------------------------------------------------------------------------------->
 
-from demo.interactive_walkthrough.scenario_catalog import get_scenario, list_scenarios  # noqa: E402
-from oversee.case_context import build_canonical_case_context  # noqa: E402
+from demo.interactive_walkthrough.scenario_catalog import get_scenario, list_scenarios  # noqa: E402 
+from oversee.case_context import build_canonical_case_context  # noqa: E402 
 from oversee.case_context.contextualization_rules import run_layer2_contextualization  # noqa: E402
 from oversee.case_management import build_case_management_state  # noqa: E402
 from oversee.decision_rules import evaluate_dmn_like_rules, run_recommendation_paths  # noqa: E402
-from oversee.integration.layer1_evidence_pipeline import run_layer1_evidence_pipeline  # noqa: E402
+from oversee.integration.layer1_evidence_pipeline import run_layer1_evidence_pipeline  # noqa: E402 
 from oversee.integration.scenario_backed_enterprise_apis import (  # noqa: E402
-    ScenarioBackedEnterpriseApiClient,
+    ScenarioBackedEnterpriseApiClient, 
 )
 from oversee.integration.scenario_executable_inputs import (  # noqa: E402
-    build_alert_request_from_executable_inputs,
+    build_alert_request_from_executable_inputs, 
     build_case_id_prefix_from_scenario_id,
     validate_executable_inputs,
 )
@@ -61,7 +62,7 @@ from oversee.reporting.governed_recommendation_package import (  # noqa: E402
     build_execution_manifest,
     build_governed_recommendation_package,
 )
-
+#<1.0------------------------------------------------------------------------------------------------------------------------------------
 
 def all_layers_cli_main() -> None:
     """Run the all-layers command-line interface for one executable scenario.
@@ -122,7 +123,7 @@ def all_layers_cli_main() -> None:
     )
 
 
-def run_all_layers_scenario_execution(scenario_id: str) -> dict[str, Any]:
+def run_all_layers_scenario_execution(scenario_id: str) -> dict[str, Any]: #------------------16 - This feature is the full lane.
     """Execute one scenario through the real OVERSEE all-layers path.
     
     Execution sequence:
@@ -141,30 +142,30 @@ def run_all_layers_scenario_execution(scenario_id: str) -> dict[str, Any]:
     the layer objects are created first, and the JSON/Markdown files are written
     afterwards as an audit trail.
     """
-
-    scenario = get_scenario(scenario_id)
-    executable_inputs = scenario.raw.get("executable_inputs")
+#1.1--------------------------------------------------------------------------------------------------------------------------------->
+    scenario = get_scenario(scenario_id) # - Load the complete scene
+    executable_inputs = scenario.raw.get("executable_inputs") # - Extract the executable_inputs block from the JSON of the stage
 
     if not isinstance(executable_inputs, dict):
         raise ValueError(f"Scenario {scenario.scenario_id} has no executable_inputs section.")
 
-    validate_executable_inputs(executable_inputs)
+    validate_executable_inputs(executable_inputs) # - Call scenario_executable_inputs.py to check that the block is well-formed.
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     scenario_slug = scenario.scenario_id.lower().replace("-", "_")
     output_dir = PROJECT_ROOT / "outputs" / f"scenario_all_layers_{scenario_slug}_{timestamp}"
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    alert_request = build_alert_request_from_executable_inputs(executable_inputs)
-    api_client = ScenarioBackedEnterpriseApiClient(executable_inputs)
-    case_id_prefix = build_case_id_prefix_from_scenario_id(scenario.scenario_id)
+    alert_request = build_alert_request_from_executable_inputs(executable_inputs) # - It calls scenario_executable_inputs.py to build the alert that goes into Layer 1
+    api_client = ScenarioBackedEnterpriseApiClient(executable_inputs) # - Use that same executable_inputs block to create the mock APIs client.
+    case_id_prefix = build_case_id_prefix_from_scenario_id(scenario.scenario_id) # - Then run Layer 1, passing the alert to that client.
 
-    layer1_result = run_layer1_evidence_pipeline(
-        alert_request,
-        api_client=api_client,
-        case_id_prefix=case_id_prefix,
+    layer1_result = run_layer1_evidence_pipeline( # - Layer 1 executes and returns an evidence package.
+        alert_request, # The predictive alert prepared from the case Asset COMP-001, ...
+        api_client=api_client, # The simulated APIs client.
+        case_id_prefix=case_id_prefix, # The prefix to construct a traceable case identifier
     )
-    canonical_context = build_canonical_case_context(layer1_result.evidence_package)
+    canonical_context = build_canonical_case_context(layer1_result.evidence_package) # - Finally, evidence package is converted into a canonical context for Layer 2.
     layer2_result = run_layer2_contextualization(canonical_context)
     case_state = build_case_management_state(canonical_context)
     rule_evaluation = evaluate_dmn_like_rules(canonical_context, case_state)
@@ -181,13 +182,16 @@ def run_all_layers_scenario_execution(scenario_id: str) -> dict[str, Any]:
         recommendation_bundle=recommendation_bundle,
     )
 
+#1.1<--------------------------------------------------------------------------------------------------------------------------------
+
+
     paths = {
         "scenario": output_dir / "00_scenario.json",
-        "predictive_alert_request": output_dir / "00_predictive_alert_request.json",
-        "received_predictive_alert": output_dir / "01_received_predictive_alert.json",
-        "enterprise_api_calls": output_dir / "01_enterprise_api_calls.json",
-        "aggregated_evidence_package": output_dir / "01_output_layer1_aggregated_evidence_package.json",
-        "validation_report": output_dir / "01_validation_report.json",
+        "predictive_alert_request": output_dir / "00_predictive_alert_request.json", # <---
+        "received_predictive_alert": output_dir / "01_received_predictive_alert.json", # <---
+        "enterprise_api_calls": output_dir / "01_enterprise_api_calls.json", # <---
+        "aggregated_evidence_package": output_dir / "01_output_layer1_aggregated_evidence_package.json", # <---
+        "validation_report": output_dir / "01_validation_report.json", # <---
         "canonical_case_context": output_dir / "02_canonical_case_context.json",
         "contextualization_rule_trace": output_dir / "02_contextualization_rule_trace.json",
         "layer2_contextualization_result": output_dir / "02_output_layer2_contextualization_result.json",

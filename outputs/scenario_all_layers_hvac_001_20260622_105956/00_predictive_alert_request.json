@@ -1,0 +1,54 @@
+{
+  "alert": {
+    "alert_id": "ALERT-HVAC-001-20260603",
+    "asset_id": "HVAC-001",
+    "asset_type": "industrial_hvac",
+    "line_id": "ENV-HVAC-01",
+    "suspected_failure_mode": "air_handling_degradation",
+    "alert_type": "air_handling_degradation_alert",
+    "predictive_horizon_hours": 120,
+    "confidence_score": 0.72,
+    "model_name": "hvac_condition_monitoring_model",
+    "model_version": "v1.0-reference",
+    "triggered_at": "2026-06-03T13:40:00Z"
+  },
+  "raw_sensor_context": {
+    "sampling_window_hours": 24,
+    "vibration_mms": [
+      0.9,
+      0.9,
+      1.0,
+      1.0,
+      1.1
+    ],
+    "temperature_celsius": [
+      22.0,
+      22.5,
+      23.0,
+      24.0,
+      24.8
+    ],
+    "pressure_bar": [
+      1.8,
+      1.7,
+      1.6,
+      1.5,
+      1.4
+    ],
+    "alarm_count": 1,
+    "last_sensor_timestamp": "2026-06-03T13:35:00Z",
+    "airflow_m3h": [
+      5000,
+      4850,
+      4700,
+      4500,
+      4300
+    ]
+  },
+  "requested_context": {
+    "maintenance_history_lookback_days": 180,
+    "production_context_horizon_hours": 120,
+    "include_inventory_and_resources": true,
+    "include_policy_governance": true
+  }
+}

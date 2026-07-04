@@ -1,0 +1,98 @@
+{
+  "bundle_id": "recommendation_paths_SCENARIO_COMP_003_ALERT-COMP-003-20260603",
+  "case_id": "SCENARIO_COMP_003_ALERT-COMP-003-20260603",
+  "asset_id": "COMP-003",
+  "decision_rule_evaluation_id": "dmn_like_eval_SCENARIO_COMP_003_ALERT-COMP-003-20260603",
+  "path_outputs": [
+    {
+      "path_name": "governed_recommendation_formulation",
+      "path_type": "governed_recommendation_path",
+      "status": "completed",
+      "recommendation": {
+        "recommendation_id": "governed_rec_SCENARIO_COMP_003_ALERT-COMP-003-20260603",
+        "asset_id": "COMP-003",
+        "action": "Escalate the constrained maintenance case, resolve execution blockers, increase monitoring, and prepare intervention once feasibility is restored.",
+        "primary_action": "Escalate the constrained maintenance case, resolve execution blockers, increase monitoring, and prepare intervention once feasibility is restored.",
+        "anchor_action": "Plan immediate inspection and maintenance preparation.",
+        "priority": "critical",
+        "deterministic_anchor_priority": "high",
+        "dmn_like_final_priority": "critical",
+        "recommended_execution_mode": "constrained_execution",
+        "human_review_required": true,
+        "intervention_feasible": false,
+        "decision_ready": false,
+        "transformation_applied": true,
+        "transformation_reasons": [
+          "intervention_not_feasible",
+          "case_not_decision_ready",
+          "constrained_execution_mode"
+        ],
+        "preconditions": [
+          "Restore intervention feasibility before executing physical maintenance.",
+          "Resolve open case blockers before approving execution.",
+          "Resolve listed blockers: specialist_technician_not_available."
+        ],
+        "blockers": [
+          "specialist_technician_not_available"
+        ],
+        "required_reviews": [
+          "Obtain accountable human review before execution."
+        ],
+        "escalations": [
+          "Escalate the constrained execution case to the accountable maintenance and operations owners."
+        ],
+        "contingency_actions": [
+          "Increase monitoring and prepare a contingency plan until resources and approval are available."
+        ],
+        "rationale": "Deterministic anchor proposed: Plan immediate inspection and maintenance preparation. DMN-like final priority: critical Execution mode: constrained_execution Intervention feasible: False Decision ready: False Human review required: True The anchor was transformed because: intervention_not_feasible, case_not_decision_ready, constrained_execution_mode."
+      },
+      "input_refs": [
+        "canonical_context_SCENARIO_COMP_003_ALERT-COMP-003-20260603",
+        "SCENARIO_COMP_003_ALERT-COMP-003-20260603",
+        "dmn_like_eval_SCENARIO_COMP_003_ALERT-COMP-003-20260603"
+      ],
+      "governance_refs": [
+        "compressor_human_review_policy",
+        "compressor_final_priority",
+        "compressor_execution_mode",
+        "recommendation_consistency_constraints"
+      ],
+      "notes": [
+        "The deterministic anchor is used as an initial recommendation.",
+        "Layer 4 formulates a governed recommendation by preserving, constraining, transforming, or escalating the anchor according to feasibility, readiness, execution mode, and governance signals."
+      ]
+    },
+    {
+      "path_name": "dmn_like_governance_summary",
+      "path_type": "rule_governance_summary",
+      "status": "completed",
+      "recommendation": {
+        "case_id": "SCENARIO_COMP_003_ALERT-COMP-003-20260603",
+        "asset_id": "COMP-003",
+        "final_priority": "critical",
+        "recommended_execution_mode": "constrained_execution",
+        "human_review_required": true,
+        "intervention_feasible": false,
+        "decision_ready": false,
+        "triggered_rule_count": 5
+      },
+      "input_refs": [
+        "canonical_context_SCENARIO_COMP_003_ALERT-COMP-003-20260603",
+        "SCENARIO_COMP_003_ALERT-COMP-003-20260603",
+        "dmn_like_eval_SCENARIO_COMP_003_ALERT-COMP-003-20260603"
+      ],
+      "governance_refs": [
+        "DMN_R001",
+        "DMN_R002",
+        "DMN_R004",
+        "DMN_R005",
+        "DMN_R006"
+      ],
+      "notes": [
+        "This output summarizes explicit rule evaluation before final governed packaging."
+      ]
+    }
+  ],
+  "bundle_version": "0.1.0",
+  "path_count": 2
+}

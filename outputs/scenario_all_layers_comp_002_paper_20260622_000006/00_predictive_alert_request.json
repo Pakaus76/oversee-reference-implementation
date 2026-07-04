@@ -1,0 +1,47 @@
+{
+  "alert": {
+    "alert_id": "ALERT-COMP-002-20260603",
+    "asset_id": "COMP-002",
+    "asset_type": "industrial_air_compressor",
+    "line_id": "PKG-LINE-02",
+    "suspected_failure_mode": "bearing_degradation",
+    "alert_type": "predictive_degradation_alert",
+    "predictive_horizon_hours": 48,
+    "confidence_score": 0.86,
+    "model_name": "compressor_failure_risk_model",
+    "model_version": "v1.0-reference",
+    "triggered_at": "2026-06-03T08:30:00Z"
+  },
+  "raw_sensor_context": {
+    "sampling_window_hours": 24,
+    "vibration_mms": [
+      1.5,
+      1.8,
+      2.2,
+      2.7,
+      3.0
+    ],
+    "temperature_celsius": [
+      73.5,
+      77.0,
+      80.8,
+      84.6,
+      88.0
+    ],
+    "pressure_bar": [
+      7.9,
+      7.7,
+      7.5,
+      7.2,
+      7.0
+    ],
+    "alarm_count": 3,
+    "last_sensor_timestamp": "2026-06-03T08:25:00Z"
+  },
+  "requested_context": {
+    "maintenance_history_lookback_days": 180,
+    "production_context_horizon_hours": 72,
+    "include_inventory_and_resources": true,
+    "include_policy_governance": true
+  }
+}

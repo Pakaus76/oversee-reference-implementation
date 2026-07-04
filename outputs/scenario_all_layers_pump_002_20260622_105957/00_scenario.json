@@ -1,0 +1,179 @@
+{
+  "scenario_id": "PUMP-002",
+  "title": "Pump spare available but technician unavailable case",
+  "description": "Coverage case where the spare part exists but technician availability blocks immediate execution.",
+  "asset_id": "PUMP-002",
+  "asset_type": "industrial_pump",
+  "failure_mode": "bearing_wear",
+  "paper_aligned": false,
+  "master_case": false,
+  "master_case_role": "coverage_case_partial_resource_constraint",
+  "decision_pattern": "spare_available_technician_unavailable",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Pump bearing wear alert; confidence 0.80; 72h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Vibration increasing; temperature moderately rising"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Industrial pump; medium-high criticality; process loop"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "No repeated recent failure"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "Medium production pressure; feasible stop in 48h"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Bearing kit available; specialist technician unavailable next shift"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review recommended because resource constraint affects execution"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Resource coordination task active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Planning blocked until technician is confirmed"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "Partial resource constraint requires deferred planning"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Resource constraint summary prepared"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Deferred work-order proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Resource constraint traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: pump bearing alert, condition trends, asset context, and maintenance history",
+    "layer2": "Contextualized decision profile: medium-high urgency, spare available, technician unavailable",
+    "layer3": "Decision-ready case: open, resource coordination active, technician blocker visible",
+    "layer4": "Decision record: medium priority, constrained execution recommended",
+    "layer5": "Governed recommendation package: resource summary, traceability index, and deferred work-order proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-PUMP-002-20260603",
+      "asset_id": "PUMP-002",
+      "asset_type": "industrial_pump",
+      "line_id": "WATER-LINE-02",
+      "suspected_failure_mode": "bearing_wear",
+      "alert_type": "bearing_wear_alert",
+      "predictive_horizon_hours": 72,
+      "confidence_score": 0.8,
+      "model_name": "pump_bearing_risk_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T13:50:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        1.4,
+        1.7,
+        2.0,
+        2.3,
+        2.6
+      ],
+      "temperature_celsius": [
+        55.0,
+        57.0,
+        59.0,
+        62.0,
+        64.0
+      ],
+      "pressure_bar": [
+        4.8,
+        4.7,
+        4.6,
+        4.5,
+        4.4
+      ],
+      "alarm_count": 2,
+      "last_sensor_timestamp": "2026-06-03T13:45:00Z"
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 72,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "PUMP-002",
+        "asset_type": "industrial_pump",
+        "line_id": "WATER-LINE-02",
+        "asset_criticality": "medium",
+        "criticality_score": 4,
+        "manufacturer": "Reference Pump Systems",
+        "model": "RP-3000",
+        "location": "Secondary process water loop"
+      },
+      "maintenance_history": {
+        "asset_id": "PUMP-002",
+        "lookback_days": 180,
+        "recent_repeated_failures": false,
+        "work_orders": [
+          {
+            "work_order_id": "WO-PUMP-002-2026-0402",
+            "type": "preventive",
+            "failure_mode": "none",
+            "duration_hours": 1.4
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "PUMP-002",
+        "line_id": "WATER-LINE-02",
+        "horizon_hours": 72,
+        "production_pressure": "medium",
+        "production_load_pct": 76.0,
+        "next_planned_downtime_hours": 48.0,
+        "customer_impact": "medium",
+        "shift_demand": "medium"
+      },
+      "inventory_and_resources": {
+        "asset_id": "PUMP-002",
+        "spare_part_available": true,
+        "spare_part_id": "SP-PUMP-BEARING-KIT",
+        "specialist_technician_available_next_shift": false,
+        "intervention_feasible": false
+      },
+      "policy_governance": {
+        "asset_type": "industrial_pump",
+        "criticality_score": 4,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_id": "POL-PUMP-RESOURCE-002"
+      }
+    }
+  }
+}

@@ -1,4 +1,99 @@
-"""Build canonical compressor case context from external source payloads."""
+"""Build canonical compressor case context from external source payloads.
+
+Receives: layer1_result.evidence_package --> the evidence package added by Layer 1.
+
+What it does: Transforms it into a CanonicalCaseContext. The evidence package is a folder containing several documents.
+The canonical context is a clean record.
+Evidence package:
+
+- payload asset_registry
+- payload sensor_historian
+- payload predictive_maintenance
+- payload maintenance_history
+- payload production_planning
+- payload inventory_and_resources
+- payload policy_governance
+
+Canonical context:
+
+- asset
+- predictive_evidence
+- operational_context
+- maintenance_resources
+- governance_policy
+- data_quality_flags
+- key_risk_drivers
+
+Layer 2 should not directly handle seven separate payloads; it needs a common structure.
+
+The evidence package maintains source-by-source traceability. The canonical context reorganizes this information into 
+a cleaner case structure so that Layer 2 can apply contextualization rules.
+
+The builder creates a by_source dictionary, requires the asset_registry, sensor_historian, predictive_maintenance, 
+maintenance_history, production_planning, inventory_and_resources, and policy_governance sources, and uses them
+to construct the canonical blocks for asset, predictive evidence, operational context, maintenance resources, and governance:
+
+It groups payloads by source --> by_source = {payload.source_name: payload for payload in source_package.payloads}
+This allows for quick access to each source by name.
+
+Instead of looping through a list at a time, it does:
+
+- give me asset_registry,
+- give me sensor_historian,
+- give me predictive_maintenance...
+
+Requires that all necessary sources be present
+
+- asset_registry = _require_source(by_source, "asset_registry")
+- sensor_historian = _require_source(by_source, "sensor_historian")
+- predictive_maintenance = _require_source(by_source, "predictive_maintenance")
+- maintenance_history = _require_source(by_source, "maintenance_history")
+- production_planning = _require_source(by_source, "production_planning")
+- inventory = _require_source(by_source, "inventory_and_resources")
+- policy = _require_source(by_source, "policy_governance")
+
+Thus, if a key source is missing, the context would not be reliable. 
+Here, the canonical context is forced to not be built with incomplete information.
+If a critical source is missing, the builder must fail or flag the problem.
+
+Construct `asset` --> asset = CanonicalAssetContext(...) because subsequent rules need to know what asset it is and how critical it is:
+
+- asset_id
+- asset_type
+- line_id
+- criticality_label
+- criticality_score
+- process_role
+
+Construct `predictive_evidence` --> predictive_evidence = PredictiveEvidenceContext(...) because subsequent rules need to know what the alert predicts and with what technical signals:
+
+- alert_type
+- estimated_time_to_failure_hours
+- confidence_score
+- alert_severity
+- vibration_trend
+- temperature_trend
+
+Construct `operational_context` --> operational_context = OperationalContext(...) because a maintenance decision also depends on the production context:
+
+- production_load_pct
+- next_planned_downtime_hours
+- production_pressure
+- business_impact_if_unavailable
+
+Construct `maintenance_resources` --> maintenance_resources = MaintenanceResourceContext(...) because it determines if there is actual capacity to act:
+- recent_repeated_failures
+- spare_part_available
+- specialist_technician_available_next_shift
+- intervention_feasible
+
+It constructs `governance_policy` --> governance_policy = GovernancePolicyContext(...) because OVERSEE should not be an opaque recommendation. If the policy requires human review, it must be recorded:
+
+- mandatory_human_review_for_high_criticality
+- expected_human_review_required
+- computed_human_review_required
+
+"""
 
 from __future__ import annotations
 
@@ -14,13 +109,18 @@ from oversee.case_context.canonical_case_context import (
 )
 from oversee.external_sources import ExternalSourcePackage, ExternalSourcePayload
 
+#5.2 >-------------------------------------------------------------------------------------------------------------------------------
 
 def build_canonical_case_context(
     source_package: ExternalSourcePackage,
 ) -> CanonicalCaseContext:
     """Build a Layer 2 canonical context from Layer 1 external payloads."""
 
+#5.3 >-------------------------------------------------------------------------------------------------------------------------------
+
     by_source = {payload.source_name: payload for payload in source_package.payloads}
+
+#5.4 >-------------------------------------------------------------------------------------------------------------------------------
 
     asset_registry = _require_source(by_source, "asset_registry")
     sensor_historian = _require_source(by_source, "sensor_historian")
@@ -29,6 +129,8 @@ def build_canonical_case_context(
     production_planning = _require_source(by_source, "production_planning")
     inventory = _require_source(by_source, "inventory_and_resources")
     policy = _require_source(by_source, "policy_governance")
+
+#5.5 >-------------------------------------------------------------------------------------------------------------------------------
 
     asset = CanonicalAssetContext(
         asset_id=source_package.asset_id,

@@ -1,0 +1,113 @@
+{
+  "evaluation_id": "dmn_like_eval_SCENARIO_SENSOR_001_ALERT-SENSOR-001-20260603",
+  "case_id": "SCENARIO_SENSOR_001_ALERT-SENSOR-001-20260603",
+  "asset_id": "SENSOR-001",
+  "source_context_id": "canonical_context_SCENARIO_SENSOR_001_ALERT-SENSOR-001-20260603",
+  "source_case_state": "evidence_review",
+  "rules": [
+    {
+      "rule_id": "DMN_R001",
+      "rule_name": "Failure horizon urgency",
+      "decision_table": "compressor_urgency_assessment",
+      "status": "evaluated",
+      "input_fields": {
+        "estimated_time_to_failure_hours": 96.0,
+        "alert_severity": "high"
+      },
+      "output_fields": {
+        "urgency": "medium"
+      },
+      "triggered": false,
+      "rationale": "Estimated failure horizon is within one week."
+    },
+    {
+      "rule_id": "DMN_R002",
+      "rule_name": "Asset criticality classification",
+      "decision_table": "compressor_criticality_assessment",
+      "status": "evaluated",
+      "input_fields": {
+        "asset_criticality_label": "medium",
+        "asset_criticality_score": 3
+      },
+      "output_fields": {
+        "criticality_band": "medium"
+      },
+      "triggered": false,
+      "rationale": "Asset criticality score is medium."
+    },
+    {
+      "rule_id": "DMN_R003",
+      "rule_name": "Intervention feasibility",
+      "decision_table": "compressor_intervention_feasibility",
+      "status": "evaluated",
+      "input_fields": {
+        "spare_part_available": true,
+        "specialist_technician_available_next_shift": true
+      },
+      "output_fields": {
+        "intervention_feasible": true
+      },
+      "triggered": true,
+      "rationale": "Spare part and specialist support are available."
+    },
+    {
+      "rule_id": "DMN_R004",
+      "rule_name": "Accountable human review requirement",
+      "decision_table": "compressor_human_review_policy",
+      "status": "evaluated",
+      "input_fields": {
+        "computed_human_review_required": true,
+        "case_state_human_review_required": true
+      },
+      "output_fields": {
+        "human_review_required": true
+      },
+      "triggered": true,
+      "rationale": "High criticality or high-severity evidence requires accountable review."
+    },
+    {
+      "rule_id": "DMN_R005",
+      "rule_name": "Execution constraint assessment",
+      "decision_table": "compressor_execution_mode",
+      "status": "evaluated",
+      "input_fields": {
+        "production_pressure": "medium",
+        "next_planned_downtime_hours": 72.0,
+        "intervention_feasible": true,
+        "data_quality_flags": [
+          "sensor_historian:sensor_drift_requires_calibration_check"
+        ]
+      },
+      "output_fields": {
+        "recommended_execution_mode": "diagnostic_review"
+      },
+      "triggered": true,
+      "rationale": "Data quality flags are present. The case should remain in diagnostic review before releasing an execution recommendation."
+    },
+    {
+      "rule_id": "DMN_R006",
+      "rule_name": "Final priority consolidation",
+      "decision_table": "compressor_final_priority",
+      "status": "evaluated",
+      "input_fields": {
+        "urgency": "medium",
+        "criticality_band": "medium",
+        "intervention_feasible": true,
+        "human_review_required": true,
+        "recommended_execution_mode": "diagnostic_review"
+      },
+      "output_fields": {
+        "final_priority": "medium",
+        "escalation_required": false
+      },
+      "triggered": true,
+      "rationale": "Final priority consolidated from urgency=medium, criticality=medium, intervention_feasible=True, human_review_required=True, execution_mode=diagnostic_review."
+    }
+  ],
+  "final_priority": "medium",
+  "recommended_execution_mode": "diagnostic_review",
+  "human_review_required": true,
+  "intervention_feasible": true,
+  "decision_rule_version": "0.1.0",
+  "triggered_rule_count": 4
+}

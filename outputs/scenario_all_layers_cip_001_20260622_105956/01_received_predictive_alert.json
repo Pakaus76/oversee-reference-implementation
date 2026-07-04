@@ -1,0 +1,60 @@
+{
+  "endpoint": "POST /oversee/api/v1/predictive-alerts",
+  "received_at": "2026-06-22T08:59:56.408291+00:00",
+  "accepted": true,
+  "validation_errors": [],
+  "request_payload": {
+    "alert": {
+      "alert_id": "ALERT-CIP-001-20260603",
+      "asset_id": "CIP-001",
+      "asset_type": "cip_system",
+      "line_id": "CIP-LINE-01",
+      "suspected_failure_mode": "cleaning_cycle_reliability_issue",
+      "alert_type": "cip_cleaning_reliability_alert",
+      "predictive_horizon_hours": 72,
+      "confidence_score": 0.79,
+      "model_name": "cip_reliability_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T13:30:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        0.6,
+        0.6,
+        0.7,
+        0.7,
+        0.8
+      ],
+      "temperature_celsius": [
+        68.0,
+        70.0,
+        66.0,
+        73.0,
+        69.0
+      ],
+      "pressure_bar": [
+        2.5,
+        2.8,
+        2.2,
+        3.0,
+        2.4
+      ],
+      "alarm_count": 2,
+      "last_sensor_timestamp": "2026-06-03T13:25:00Z",
+      "cleaning_cycle_deviation_index": [
+        0.1,
+        0.2,
+        0.35,
+        0.42,
+        0.55
+      ]
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 72,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    }
+  }
+}

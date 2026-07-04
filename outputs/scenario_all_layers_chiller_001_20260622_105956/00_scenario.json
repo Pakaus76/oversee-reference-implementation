@@ -1,0 +1,186 @@
+{
+  "scenario_id": "CHILLER-001",
+  "title": "Chiller energy efficiency degradation case",
+  "description": "Coverage case where an industrial chiller is degrading in energy efficiency rather than approaching immediate failure.",
+  "asset_id": "CHILLER-001",
+  "asset_type": "industrial_chiller",
+  "failure_mode": "energy_efficiency_degradation",
+  "paper_aligned": false,
+  "master_case": false,
+  "master_case_role": "coverage_case_energy_optimization",
+  "decision_pattern": "energy_optimization_action",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Efficiency degradation alert; confidence 0.74; 168h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Energy consumption increasing; temperature control still stable"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Industrial chiller; medium criticality; utility system"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "No recent failures; cleaning overdue"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "Medium production pressure; service can be planned"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Cleaning materials and technician available"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review recommended for energy-impacting utility issue"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Optimization task active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Service can be planned in utility maintenance window"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "Energy efficiency degradation should trigger optimization planning"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Energy optimization summary prepared"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Chiller cleaning and inspection proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Energy optimization traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: chiller efficiency degradation, energy trend, asset context, and maintenance history",
+    "layer2": "Contextualized decision profile: medium urgency, optimization opportunity, intervention feasible",
+    "layer3": "Decision-ready case: open, optimization task active, no blockers",
+    "layer4": "Decision record: medium priority, optimization planning recommended",
+    "layer5": "Governed recommendation package: energy summary, traceability index, and service proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-CHILLER-001-20260603",
+      "asset_id": "CHILLER-001",
+      "asset_type": "industrial_chiller",
+      "line_id": "UTIL-CHILLER-01",
+      "suspected_failure_mode": "energy_efficiency_degradation",
+      "alert_type": "energy_efficiency_degradation_alert",
+      "predictive_horizon_hours": 168,
+      "confidence_score": 0.74,
+      "model_name": "chiller_efficiency_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T12:40:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        0.9,
+        0.9,
+        1.0,
+        1.0,
+        1.1
+      ],
+      "temperature_celsius": [
+        6.0,
+        6.2,
+        6.5,
+        6.8,
+        7.0
+      ],
+      "pressure_bar": [
+        3.2,
+        3.3,
+        3.4,
+        3.5,
+        3.6
+      ],
+      "alarm_count": 0,
+      "last_sensor_timestamp": "2026-06-03T12:35:00Z",
+      "energy_kwh": [
+        420.0,
+        438.0,
+        455.0,
+        470.0,
+        486.0
+      ]
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 168,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "CHILLER-001",
+        "asset_type": "industrial_chiller",
+        "line_id": "UTIL-CHILLER-01",
+        "asset_criticality": "medium",
+        "criticality_score": 3,
+        "manufacturer": "Reference Cooling Systems",
+        "model": "RC-1000",
+        "location": "Utility area - chilled water system"
+      },
+      "maintenance_history": {
+        "asset_id": "CHILLER-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": false,
+        "work_orders": [
+          {
+            "work_order_id": "WO-CHILLER-001-2026-0218",
+            "type": "preventive",
+            "failure_mode": "none",
+            "duration_hours": 2.0
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "CHILLER-001",
+        "line_id": "UTIL-CHILLER-01",
+        "horizon_hours": 168,
+        "production_pressure": "medium",
+        "production_load_pct": 70.0,
+        "next_planned_downtime_hours": 96.0,
+        "customer_impact": "medium",
+        "shift_demand": "medium"
+      },
+      "inventory_and_resources": {
+        "asset_id": "CHILLER-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-CHILLER-CLEANING-KIT",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "policy_governance": {
+        "asset_type": "industrial_chiller",
+        "criticality_score": 3,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": false,
+        "policy_id": "POL-CHILLER-ENERGY-001"
+      }
+    }
+  }
+}

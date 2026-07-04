@@ -1,0 +1,8 @@
+demonstration_aspect,comp_001,comp_002,interpretation
+Asset type,industrial_air_compressor,industrial_air_compressor,Comparable asset type.
+Predictive condition,confidence=0.88; horizon=48h,confidence=0.86; horizon=48h,Predictive conditions are comparable and do not alone explain the recommendation divergence.
+Operational context,high load; downtime in 36.0h,very_high load; downtime=None,The operational context starts to separate the scenarios.
+Resource feasibility,spare=True; technician=True; feasible=True,spare=False; technician=False; feasible=False,Resource feasibility is a major source of divergence.
+Governance context,human_review=True; escalation=False,human_review=True; escalation=True,"Both require human review, but only COMP-002 requires management escalation."
+Layer 2 divergence,Operationally feasible and governance-cleared.,Operationally constrained and escalation-required.,The main divergence begins at contextualization.
+Expected governed recommendation,Controlled planned intervention.,"Deferred intervention, enhanced monitoring, and escalation.",Similar prediction does not imply similar recommendation.

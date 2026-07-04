@@ -22,6 +22,7 @@ import copy
 import re
 from typing import Any
 
+#2.0--------------------------------------------------------------------------------------------------------------------------------->
 
 REQUIRED_EXECUTABLE_INPUT_SECTIONS = {
     "alert",
@@ -29,6 +30,8 @@ REQUIRED_EXECUTABLE_INPUT_SECTIONS = {
     "requested_context",
     "enterprise_sources",
 }
+
+#2.0--------------------------------------------------------------------------------------------------------------------------------
 
 REQUIRED_ALERT_FIELDS = {
     "alert_id",
@@ -39,6 +42,8 @@ REQUIRED_ALERT_FIELDS = {
     "predictive_horizon_hours",
     "confidence_score",
 }
+
+#2.0<--------------------------------------------------------------------------------------------------------------------------------
 
 REQUIRED_RAW_SENSOR_FIELDS = {
     "vibration_mms",
@@ -61,6 +66,7 @@ REQUIRED_ENTERPRISE_SOURCES = {
     "policy_governance",
 }
 
+#2.1--------------------------------------------------------------------------------------------------------------------------------->
 
 def build_alert_request_from_executable_inputs(
     executable_inputs: dict[str, Any],
@@ -70,6 +76,9 @@ def build_alert_request_from_executable_inputs(
     The function extracts the controlled alert payload from a scenario and adds the
     case identifier expected by the Layer 1 pipeline. It is the bridge between
     scenario data and the operational alert intake contract.
+
+    - I separated the alert from the enterprise sources. The alert comes in as a Layer 1 request, 
+    while the enterprise sources remain behind the ScenarioBackedEnterpriseApiClient, which simulates the external APIs.
     """
 
     validate_executable_inputs(executable_inputs)
@@ -78,8 +87,9 @@ def build_alert_request_from_executable_inputs(
         "alert": copy.deepcopy(executable_inputs["alert"]),
         "raw_sensor_context": copy.deepcopy(executable_inputs["raw_sensor_context"]),
         "requested_context": copy.deepcopy(executable_inputs["requested_context"]),
-    }
+    } # enterprise resources are not included in the alert here.
 
+#2.1<--------------------------------------------------------------------------------------------------------------------------------
 
 def validate_executable_inputs(executable_inputs: dict[str, Any]) -> None:
     """Validate the minimal structure required for executable scenarios.

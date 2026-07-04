@@ -1,0 +1,47 @@
+{
+  "manifest_version": "0.1.0",
+  "created_at": "2026-06-22T08:59:56.740665+00:00",
+  "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_gear_001_20260622_105956",
+  "case_id": "SCENARIO_GEAR_001_ALERT-GEAR-001-20260603",
+  "asset_id": "GEAR-001",
+  "package_id": "governed_package_SCENARIO_GEAR_001_ALERT-GEAR-001-20260603",
+  "generated_files": [
+    "00_scenario.json",
+    "00_predictive_alert_request.json",
+    "01_received_predictive_alert.json",
+    "01_enterprise_api_calls.json",
+    "01_output_layer1_aggregated_evidence_package.json",
+    "01_validation_report.json",
+    "02_canonical_case_context.json",
+    "02_contextualization_rule_trace.json",
+    "02_output_layer2_contextualization_result.json",
+    "03_case_lifecycle_trace.json",
+    "03_output_layer3_case_management_state.json",
+    "04_output_layer4_dmn_decision_evaluation.json",
+    "04_output_layer4_recommendation_path_outputs.json",
+    "05_final_governed_recommendation_package.json",
+    "05_traceability_index.json",
+    "05_execution_manifest.json",
+    "05_scenario_execution_summary.md"
+  ],
+  "layer_completion": {
+    "layer_1_external_sources": true,
+    "layer_2_canonical_context": true,
+    "layer_3_case_lifecycle": true,
+    "layer_4_decision_rules": true,
+    "layer_5_governed_package": true
+  },
+  "traceability_count": 6,
+  "status": "completed",
+  "scenario_execution": {
+    "scenario_id": "GEAR-001",
+    "scenario_title": "Repeated gearbox wear case",
+    "asset_id": "GEAR-001",
+    "asset_type": "gearbox",
+    "failure_mode": "repeated_gear_wear",
+    "decision_pattern": "high_recurrence_risk_intervention",
+    "master_case": false,
+    "case_id_prefix": "SCENARIO_GEAR_001",
+    "scenario_backed_enterprise_api_client": true
+  }
+}

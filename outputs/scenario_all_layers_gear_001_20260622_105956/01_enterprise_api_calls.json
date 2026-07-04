@@ -1,0 +1,104 @@
+[
+  {
+    "api_name": "scenario_asset_registry_api",
+    "endpoint": "/enterprise/asset-registry/assets/{asset_id}",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "GEAR-001"
+    },
+    "response_payload": {
+      "asset_id": "GEAR-001",
+      "asset_type": "gearbox",
+      "line_id": "DRIVE-LINE-01",
+      "asset_criticality": "high",
+      "criticality_score": 5,
+      "manufacturer": "Reference Gear Systems",
+      "model": "RG-800",
+      "location": "Main drive train"
+    },
+    "called_at": "2026-06-22T08:59:56.712824+00:00"
+  },
+  {
+    "api_name": "scenario_cmms_maintenance_history_api",
+    "endpoint": "/enterprise/cmms/assets/{asset_id}/work-orders",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "GEAR-001",
+      "lookback_days": 180
+    },
+    "response_payload": {
+      "asset_id": "GEAR-001",
+      "lookback_days": 180,
+      "recent_repeated_failures": true,
+      "work_orders": [
+        {
+          "work_order_id": "WO-GEAR-001-2026-0412",
+          "type": "corrective",
+          "failure_mode": "gear_wear",
+          "duration_hours": 4.0
+        },
+        {
+          "work_order_id": "WO-GEAR-001-2026-0526",
+          "type": "corrective",
+          "failure_mode": "oil_contamination",
+          "duration_hours": 2.5
+        }
+      ]
+    },
+    "called_at": "2026-06-22T08:59:56.712824+00:00"
+  },
+  {
+    "api_name": "scenario_mes_operational_context_api",
+    "endpoint": "/enterprise/mes/lines/{line_id}/operational-context",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "GEAR-001",
+      "line_id": "DRIVE-LINE-01",
+      "horizon_hours": 72
+    },
+    "response_payload": {
+      "asset_id": "GEAR-001",
+      "line_id": "DRIVE-LINE-01",
+      "horizon_hours": 72,
+      "production_pressure": "high",
+      "production_load_pct": 84.0,
+      "next_planned_downtime_hours": 48.0,
+      "customer_impact": "high",
+      "shift_demand": "high"
+    },
+    "called_at": "2026-06-22T08:59:56.712824+00:00"
+  },
+  {
+    "api_name": "scenario_inventory_and_resources_api",
+    "endpoint": "/enterprise/inventory/assets/{asset_id}/resources",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "GEAR-001"
+    },
+    "response_payload": {
+      "asset_id": "GEAR-001",
+      "spare_part_available": true,
+      "spare_part_id": "SP-GEAR-INSPECTION-KIT",
+      "specialist_technician_available_next_shift": true,
+      "intervention_feasible": true
+    },
+    "called_at": "2026-06-22T08:59:56.712824+00:00"
+  },
+  {
+    "api_name": "scenario_policy_governance_api",
+    "endpoint": "/enterprise/policy-governance/assets/{asset_type}",
+    "method": "GET",
+    "request_parameters": {
+      "asset_type": "gearbox",
+      "criticality_score": 5
+    },
+    "response_payload": {
+      "asset_type": "gearbox",
+      "criticality_score": 5,
+      "mandatory_human_review_for_high_criticality": true,
+      "expected_human_review_required": true,
+      "policy_id": "POL-GEAR-HIGH-CRIT-001"
+    },
+    "called_at": "2026-06-22T08:59:56.712824+00:00"
+  }
+]

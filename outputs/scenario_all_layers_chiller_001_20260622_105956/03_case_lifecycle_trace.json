@@ -1,0 +1,136 @@
+[
+  {
+    "event_id": "SCENARIO_CHILLER_001_ALERT-CHILLER-001-20260603_evt_001_case_opened",
+    "sequence": 1,
+    "event_type": "case_opened",
+    "event_name": "Compressor decision case opened",
+    "status": "completed",
+    "source_layer": "Layer 3",
+    "occurred_at": "2026-06-22T08:59:56.370642+00:00",
+    "evidence_refs": [
+      "canonical_context_SCENARIO_CHILLER_001_ALERT-CHILLER-001-20260603"
+    ],
+    "details": {
+      "asset_id": "CHILLER-001",
+      "line_id": "UTIL-CHILLER-01"
+    }
+  },
+  {
+    "event_id": "SCENARIO_CHILLER_001_ALERT-CHILLER-001-20260603_evt_002_external_evidence_received",
+    "sequence": 2,
+    "event_type": "external_evidence_received",
+    "event_name": "External source evidence received",
+    "status": "completed",
+    "source_layer": "Layer 1",
+    "occurred_at": "2026-06-22T08:59:56.370642+00:00",
+    "evidence_refs": [
+      "asset_registry",
+      "sensor_historian",
+      "predictive_maintenance",
+      "maintenance_history",
+      "production_planning",
+      "inventory_and_resources",
+      "policy_governance"
+    ],
+    "details": {
+      "source_payload_count": 7,
+      "source_names": [
+        "asset_registry",
+        "sensor_historian",
+        "predictive_maintenance",
+        "maintenance_history",
+        "production_planning",
+        "inventory_and_resources",
+        "policy_governance"
+      ]
+    }
+  },
+  {
+    "event_id": "SCENARIO_CHILLER_001_ALERT-CHILLER-001-20260603_evt_003_canonical_context_built",
+    "sequence": 3,
+    "event_type": "canonical_context_built",
+    "event_name": "Canonical case context built",
+    "status": "completed",
+    "source_layer": "Layer 2",
+    "occurred_at": "2026-06-22T08:59:56.370642+00:00",
+    "evidence_refs": [
+      "canonical_context_SCENARIO_CHILLER_001_ALERT-CHILLER-001-20260603"
+    ],
+    "details": {
+      "criticality_score": 3,
+      "estimated_time_to_failure_hours": 168.0,
+      "confidence_score": 0.74
+    }
+  },
+  {
+    "event_id": "SCENARIO_CHILLER_001_ALERT-CHILLER-001-20260603_evt_004_risk_assessment_completed",
+    "sequence": 4,
+    "event_type": "risk_assessment_completed",
+    "event_name": "Risk drivers identified from canonical context",
+    "status": "completed",
+    "source_layer": "Layer 3",
+    "occurred_at": "2026-06-22T08:59:56.370642+00:00",
+    "evidence_refs": [
+      "canonical_context_SCENARIO_CHILLER_001_ALERT-CHILLER-001-20260603"
+    ],
+    "details": {
+      "key_risk_drivers": [
+        "intervention_resources_available",
+        "human_review_required"
+      ],
+      "data_quality_flags": []
+    }
+  },
+  {
+    "event_id": "SCENARIO_CHILLER_001_ALERT-CHILLER-001-20260603_evt_005_human_review_requirement_identified",
+    "sequence": 5,
+    "event_type": "human_review_requirement_identified",
+    "event_name": "Accountable human review requirement identified",
+    "status": "completed",
+    "source_layer": "Layer 3",
+    "occurred_at": "2026-06-22T08:59:56.370642+00:00",
+    "evidence_refs": [
+      "policy_governance",
+      "canonical_context_SCENARIO_CHILLER_001_ALERT-CHILLER-001-20260603"
+    ],
+    "details": {
+      "human_review_required": true,
+      "criticality_score": 3,
+      "alert_severity": "high"
+    }
+  },
+  {
+    "event_id": "SCENARIO_CHILLER_001_ALERT-CHILLER-001-20260603_evt_006_maintenance_planning_task_created",
+    "sequence": 6,
+    "event_type": "maintenance_planning_task_created",
+    "event_name": "Maintenance planning task created",
+    "status": "not_required",
+    "source_layer": "Layer 3",
+    "occurred_at": "2026-06-22T08:59:56.370642+00:00",
+    "evidence_refs": [
+      "inventory_and_resources",
+      "production_planning"
+    ],
+    "details": {
+      "maintenance_planning_required": false,
+      "intervention_feasible": true,
+      "next_planned_downtime_hours": 96.0
+    }
+  },
+  {
+    "event_id": "SCENARIO_CHILLER_001_ALERT-CHILLER-001-20260603_evt_007_decision_milestone_reached",
+    "sequence": 7,
+    "event_type": "decision_milestone_reached",
+    "event_name": "Case is ready for decision rule evaluation",
+    "status": "blocked",
+    "source_layer": "Layer 3",
+    "occurred_at": "2026-06-22T08:59:56.370642+00:00",
+    "evidence_refs": [
+      "canonical_context_SCENARIO_CHILLER_001_ALERT-CHILLER-001-20260603"
+    ],
+    "details": {
+      "decision_ready": false,
+      "blockers": []
+    }
+  }
+]

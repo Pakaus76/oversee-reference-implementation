@@ -1,0 +1,54 @@
+{
+  "alert": {
+    "alert_id": "ALERT-PACK-001-20260603",
+    "asset_id": "PACK-001",
+    "asset_type": "packaging_line_asset",
+    "line_id": "PACK-LINE-02",
+    "suspected_failure_mode": "intermittent_stoppages",
+    "alert_type": "intermittent_stoppage_alert",
+    "predictive_horizon_hours": 72,
+    "confidence_score": 0.81,
+    "model_name": "packaging_bottleneck_risk_model",
+    "model_version": "v1.0-reference",
+    "triggered_at": "2026-06-03T13:20:00Z"
+  },
+  "raw_sensor_context": {
+    "sampling_window_hours": 24,
+    "vibration_mms": [
+      1.2,
+      1.4,
+      1.6,
+      1.8,
+      2.0
+    ],
+    "temperature_celsius": [
+      46.0,
+      47.0,
+      49.0,
+      50.0,
+      52.0
+    ],
+    "pressure_bar": [
+      4.2,
+      4.2,
+      4.1,
+      4.1,
+      4.0
+    ],
+    "alarm_count": 3,
+    "last_sensor_timestamp": "2026-06-03T13:15:00Z",
+    "micro_stop_count": [
+      4,
+      6,
+      9,
+      11,
+      14
+    ]
+  },
+  "requested_context": {
+    "maintenance_history_lookback_days": 180,
+    "production_context_horizon_hours": 72,
+    "include_inventory_and_resources": true,
+    "include_policy_governance": true
+  }
+}

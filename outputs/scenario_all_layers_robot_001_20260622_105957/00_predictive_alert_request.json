@@ -1,0 +1,54 @@
+{
+  "alert": {
+    "alert_id": "ALERT-ROBOT-001-20260603",
+    "asset_id": "ROBOT-001",
+    "asset_type": "industrial_robot",
+    "line_id": "ROBOT-CELL-01",
+    "suspected_failure_mode": "axis_abnormality",
+    "alert_type": "robot_axis_abnormality_alert",
+    "predictive_horizon_hours": 48,
+    "confidence_score": 0.83,
+    "model_name": "robot_axis_condition_model",
+    "model_version": "v1.0-reference",
+    "triggered_at": "2026-06-03T12:30:00Z"
+  },
+  "raw_sensor_context": {
+    "sampling_window_hours": 24,
+    "vibration_mms": [
+      1.2,
+      1.5,
+      1.8,
+      2.3,
+      2.7
+    ],
+    "temperature_celsius": [
+      45.0,
+      47.0,
+      50.0,
+      54.0,
+      57.0
+    ],
+    "pressure_bar": [
+      5.5,
+      5.5,
+      5.4,
+      5.4,
+      5.3
+    ],
+    "alarm_count": 2,
+    "last_sensor_timestamp": "2026-06-03T12:25:00Z",
+    "axis_current_amp": [
+      9.0,
+      9.8,
+      10.7,
+      11.5,
+      12.3
+    ]
+  },
+  "requested_context": {
+    "maintenance_history_lookback_days": 180,
+    "production_context_horizon_hours": 72,
+    "include_inventory_and_resources": true,
+    "include_policy_governance": true
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "scenario_id": "SENSOR-001",
+  "title": "Critical sensor drift suspected case",
+  "description": "Coverage case where the likely issue is a measurement problem rather than an asset fault. It demonstrates sensor validation before intervention.",
+  "asset_id": "SENSOR-001",
+  "asset_type": "critical_sensor",
+  "failure_mode": "sensor_drift_suspected",
+  "paper_aligned": false,
+  "master_case": false,
+  "master_case_role": "coverage_case_sensor_validation",
+  "decision_pattern": "validate_sensor_before_asset_intervention",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Sensor drift alert; confidence 0.64; 96h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "One channel drifting while related variables remain stable"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Critical sensor; medium criticality; measurement chain"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "No recent asset failure; calibration due soon"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "Medium production pressure; calibration can be scheduled"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Calibration kit available; technician available"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review recommended before acting on questionable measurement"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Sensor validation task active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Asset intervention blocked until sensor is validated"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "Sensor drift flags require diagnostic review"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Sensor validation summary prepared"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Calibration work-order proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Measurement validation traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Evidence package with quality flags: suspected sensor drift, stable related variables, asset context, and calibration history",
+    "layer2": "Contextualized decision profile: evidence quality concern, diagnostic review recommended",
+    "layer3": "Decision-ready case: open, sensor validation task active, evidence blocker visible",
+    "layer4": "Decision record: medium priority, diagnostic review before asset intervention",
+    "layer5": "Governed recommendation package: sensor validation summary, traceability index, and calibration proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-SENSOR-001-20260603",
+      "asset_id": "SENSOR-001",
+      "asset_type": "critical_sensor",
+      "line_id": "PROC-LINE-05",
+      "suspected_failure_mode": "sensor_drift_suspected",
+      "alert_type": "sensor_drift_suspected_alert",
+      "predictive_horizon_hours": 96,
+      "confidence_score": 0.64,
+      "model_name": "sensor_health_monitoring_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T14:10:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "temperature_celsius": [
+        62.0,
+        66.0,
+        72.0,
+        79.0,
+        86.0
+      ],
+      "pressure_bar": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "alarm_count": 1,
+      "last_sensor_timestamp": "2026-06-03T14:05:00Z",
+      "reference_temperature_celsius": [
+        62.0,
+        62.1,
+        62.0,
+        62.2,
+        62.1
+      ],
+      "data_quality_flags": [
+        "sensor_drift_requires_calibration_check"
+      ]
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 96,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "SENSOR-001",
+        "asset_type": "critical_sensor",
+        "line_id": "PROC-LINE-05",
+        "asset_criticality": "medium",
+        "criticality_score": 3,
+        "manufacturer": "Reference Sensor Systems",
+        "model": "RS-10",
+        "location": "Measurement chain - process line 5"
+      },
+      "maintenance_history": {
+        "asset_id": "SENSOR-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": false,
+        "work_orders": [
+          {
+            "work_order_id": "WO-SENSOR-001-2026-0221",
+            "type": "calibration",
+            "failure_mode": "none",
+            "duration_hours": 0.7
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "SENSOR-001",
+        "line_id": "PROC-LINE-05",
+        "horizon_hours": 96,
+        "production_pressure": "medium",
+        "production_load_pct": 70.0,
+        "next_planned_downtime_hours": 72.0,
+        "customer_impact": "medium",
+        "shift_demand": "medium"
+      },
+      "inventory_and_resources": {
+        "asset_id": "SENSOR-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-SENSOR-CALIBRATION-KIT",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "policy_governance": {
+        "asset_type": "critical_sensor",
+        "criticality_score": 3,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": false,
+        "policy_id": "POL-SENSOR-DIAG-001"
+      }
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "case_id": "SCENARIO_FAN_001_ALERT-FAN-001-20260603",
+  "asset_id": "FAN-001",
+  "canonical_context": {
+    "context_id": "canonical_context_SCENARIO_FAN_001_ALERT-FAN-001-20260603",
+    "case_id": "SCENARIO_FAN_001_ALERT-FAN-001-20260603",
+    "asset": {
+      "asset_id": "FAN-001",
+      "asset_type": "industrial_fan",
+      "line_id": "VENT-LINE-01",
+      "criticality_label": "low",
+      "criticality_score": 2,
+      "process_role": null
+    },
+    "predictive_evidence": {
+      "alert_type": "mild_vibration_drift_alert",
+      "estimated_time_to_failure_hours": 240.0,
+      "confidence_score": 0.58,
+      "alert_severity": "high",
+      "vibration_trend": "increasing",
+      "temperature_trend": "increasing"
+    },
+    "operational_context": {
+      "production_load_pct": 45.0,
+      "next_planned_downtime_hours": 168.0,
+      "production_pressure": "low",
+      "business_impact_if_unavailable": null
+    },
+    "maintenance_resources": {
+      "recent_repeated_failures": false,
+      "spare_part_available": true,
+      "specialist_technician_available_next_shift": true,
+      "intervention_feasible": true
+    },
+    "governance_policy": {
+      "mandatory_human_review_for_high_criticality": true,
+      "expected_human_review_required": false,
+      "computed_human_review_required": true
+    },
+    "source_payload_count": 7,
+    "source_names": [
+      "asset_registry",
+      "sensor_historian",
+      "predictive_maintenance",
+      "maintenance_history",
+      "production_planning",
+      "inventory_and_resources",
+      "policy_governance"
+    ],
+    "data_quality_flags": [],
+    "key_risk_drivers": [
+      "intervention_resources_available",
+      "human_review_required"
+    ],
+    "context_version": "0.1.0"
+  },
+  "rule_trace": [
+    {
+      "rule_id": "L2_R001",
+      "rule_name": "Technical urgency from failure horizon",
+      "condition": "IF estimated_time_to_failure_hours <= 72 THEN technical_urgency = high",
+      "triggered": false,
+      "output_field": "technical_urgency",
+      "output_value": "medium",
+      "rationale": "Short failure horizon increases technical urgency."
+    },
+    {
+      "rule_id": "L2_R002",
+      "rule_name": "Asset escalation from criticality",
+      "condition": "IF criticality_score >= 5 THEN asset_escalation = required",
+      "triggered": false,
+      "output_field": "asset_escalation",
+      "output_value": "not_required",
+      "rationale": "High-criticality assets require explicit escalation."
+    },
+    {
+      "rule_id": "L2_R003",
+      "rule_name": "Operational constraint from production pressure",
+      "condition": "IF production_pressure = high THEN operational_constraint = high",
+      "triggered": false,
+      "output_field": "operational_constraint",
+      "output_value": "medium",
+      "rationale": "High production pressure constrains maintenance timing."
+    },
+    {
+      "rule_id": "L2_R004",
+      "rule_name": "Downtime window proximity",
+      "condition": "IF next_planned_downtime_hours <= 48 THEN downtime_window = near",
+      "triggered": false,
+      "output_field": "downtime_window",
+      "output_value": "distant",
+      "rationale": "A near downtime window creates a feasible planning opportunity."
+    },
+    {
+      "rule_id": "L2_R005",
+      "rule_name": "Intervention feasibility from resources",
+      "condition": "IF spare_part_available = true AND specialist_technician_available_next_shift = true THEN intervention_feasible = true",
+      "triggered": true,
+      "output_field": "intervention_feasible",
+      "output_value": true,
+      "rationale": "Available spare parts and specialist capacity make intervention feasible."
+    },
+    {
+      "rule_id": "L2_R006",
+      "rule_name": "Recurrence risk from repeated failures",
+      "condition": "IF recent_repeated_failures = true THEN recurrence_risk = high",
+      "triggered": false,
+      "output_field": "recurrence_risk",
+      "output_value": "normal",
+      "rationale": "Recent repeated failures increase recurrence risk."
+    },
+    {
+      "rule_id": "L2_R007",
+      "rule_name": "Human review requirement from governance policy",
+      "condition": "IF high criticality policy applies THEN human_review_required = true",
+      "triggered": true,
+      "output_field": "human_review_required",
+      "output_value": true,
+      "rationale": "Governance policy requires accountable human review."
+    },
+    {
+      "rule_id": "L2_R008",
+      "rule_name": "Layer 2 decision readiness",
+      "condition": "IF technical urgency, feasibility and governance context exist THEN layer2_decision_ready = true",
+      "triggered": true,
+      "output_field": "layer2_decision_ready",
+      "output_value": true,
+      "rationale": "Layer 2 has enough contextualized evidence for downstream case lifecycle and decision logic."
+    }
+  ],
+  "derived_context": {
+    "technical_urgency": "medium",
+    "asset_escalation": "not_required",
+    "operational_constraint": "medium",
+    "downtime_window": "distant",
+    "intervention_feasible": true,
+    "recurrence_risk": "normal",
+    "human_review_required": true,
+    "layer2_decision_ready": true
+  },
+  "layer2_ready": true
+}

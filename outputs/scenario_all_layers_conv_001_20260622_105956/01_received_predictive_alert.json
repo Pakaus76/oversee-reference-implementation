@@ -1,0 +1,67 @@
+{
+  "endpoint": "POST /oversee/api/v1/predictive-alerts",
+  "received_at": "2026-06-22T08:59:56.578433+00:00",
+  "accepted": true,
+  "validation_errors": [],
+  "request_payload": {
+    "alert": {
+      "alert_id": "ALERT-CONV-001-20260603",
+      "asset_id": "CONV-001",
+      "asset_type": "conveyor_system",
+      "line_id": "PACK-LINE-01",
+      "suspected_failure_mode": "belt_drive_degradation",
+      "alert_type": "belt_drive_degradation_alert",
+      "predictive_horizon_hours": 36,
+      "confidence_score": 0.84,
+      "model_name": "conveyor_drive_risk_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T11:00:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        1.9,
+        2.2,
+        2.7,
+        3.0,
+        3.4
+      ],
+      "temperature_celsius": [
+        58.0,
+        61.5,
+        65.0,
+        68.5,
+        72.0
+      ],
+      "pressure_bar": [
+        6.0,
+        6.0,
+        5.9,
+        5.9,
+        5.8
+      ],
+      "motor_current_amp": [
+        18.0,
+        19.4,
+        21.1,
+        23.0,
+        24.8
+      ],
+      "belt_tracking_deviation_mm": [
+        2.0,
+        3.5,
+        5.0,
+        7.0,
+        9.0
+      ],
+      "alarm_count": 4,
+      "last_sensor_timestamp": "2026-06-03T10:55:00Z"
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 96,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    }
+  }
+}

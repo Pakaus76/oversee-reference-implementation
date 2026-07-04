@@ -1,0 +1,85 @@
+{
+  "bundle_id": "recommendation_paths_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+  "case_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+  "asset_id": "COMP-001",
+  "decision_rule_evaluation_id": "dmn_like_eval_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+  "path_outputs": [
+    {
+      "path_name": "governed_recommendation_formulation",
+      "path_type": "governed_recommendation_path",
+      "status": "completed",
+      "recommendation": {
+        "recommendation_id": "governed_rec_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "asset_id": "COMP-001",
+        "action": "Plan immediate inspection and maintenance preparation.",
+        "primary_action": "Plan immediate inspection and maintenance preparation.",
+        "anchor_action": "Plan immediate inspection and maintenance preparation.",
+        "priority": "high",
+        "deterministic_anchor_priority": "high",
+        "dmn_like_final_priority": "high",
+        "recommended_execution_mode": "controlled_planning",
+        "human_review_required": true,
+        "intervention_feasible": true,
+        "decision_ready": true,
+        "transformation_applied": false,
+        "transformation_reasons": [],
+        "preconditions": [],
+        "blockers": [],
+        "required_reviews": [
+          "Obtain accountable human review before execution."
+        ],
+        "escalations": [],
+        "contingency_actions": [],
+        "rationale": "Deterministic anchor proposed: Plan immediate inspection and maintenance preparation. DMN-like final priority: high Execution mode: controlled_planning Intervention feasible: True Decision ready: True Human review required: True The anchor was preserved because the case is feasible and decision-ready."
+      },
+      "input_refs": [
+        "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "dmn_like_eval_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+      ],
+      "governance_refs": [
+        "compressor_human_review_policy",
+        "compressor_final_priority",
+        "compressor_execution_mode",
+        "recommendation_consistency_constraints"
+      ],
+      "notes": [
+        "The deterministic anchor is used as an initial recommendation.",
+        "Layer 4 formulates a governed recommendation by preserving, constraining, transforming, or escalating the anchor according to feasibility, readiness, execution mode, and governance signals."
+      ]
+    },
+    {
+      "path_name": "dmn_like_governance_summary",
+      "path_type": "rule_governance_summary",
+      "status": "completed",
+      "recommendation": {
+        "case_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "asset_id": "COMP-001",
+        "final_priority": "high",
+        "recommended_execution_mode": "controlled_planning",
+        "human_review_required": true,
+        "intervention_feasible": true,
+        "decision_ready": true,
+        "triggered_rule_count": 6
+      },
+      "input_refs": [
+        "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "dmn_like_eval_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+      ],
+      "governance_refs": [
+        "DMN_R001",
+        "DMN_R002",
+        "DMN_R003",
+        "DMN_R004",
+        "DMN_R005",
+        "DMN_R006"
+      ],
+      "notes": [
+        "This output summarizes explicit rule evaluation before final governed packaging."
+      ]
+    }
+  ],
+  "bundle_version": "0.1.0",
+  "path_count": 2
+}

@@ -1,0 +1,185 @@
+{
+  "scenario_id": "COMP-001",
+  "title": "Paper compressor case",
+  "description": "Industrial air compressor with bearing degradation risk. This is the default case aligned with Figure 3 and Section 4.",
+  "asset_id": "COMP-001",
+  "asset_type": "industrial_air_compressor",
+  "failure_mode": "bearing_degradation",
+  "paper_aligned": true,
+  "master_case": true,
+  "master_case_role": "main_paper_case",
+  "decision_pattern": "critical_but_feasible_controlled_planning",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Bearing degradation alert; confidence 0.88; 48h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Rising vibration and temperature trend"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Industrial air compressor; high criticality; utility area"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "Repeated bearing interventions in past 6 months"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "High production pressure; next feasible stop in 36h"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Bearing kit available; technician available next shift"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review mandatory for high-criticality intervention"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Case owner assigned; review queue active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Preparation feasible for next downtime window"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "High-priority rule: degradation risk + narrow downtime window"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Reviewer summary prepared for maintenance lead"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Work-order proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: alert, condition trends, asset criticality, and maintenance history",
+    "layer2": "Contextualized decision profile: high urgency, near downtime window, intervention feasible, review required",
+    "layer3": "Decision-ready case: open, 2 tasks active, 5 milestones reached, no blockers",
+    "layer4": "Decision record: high priority, controlled planning, human review retained",
+    "layer5": "Governed recommendation package: reviewer summary, traceability index, and work-order proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-COMP-001-20260603",
+      "asset_id": "COMP-001",
+      "asset_type": "industrial_air_compressor",
+      "line_id": "PKG-LINE-01",
+      "suspected_failure_mode": "bearing_degradation",
+      "alert_type": "predictive_degradation_alert",
+      "predictive_horizon_hours": 48,
+      "confidence_score": 0.88,
+      "model_name": "compressor_failure_risk_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T08:30:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        1.4,
+        1.7,
+        2.1,
+        2.6,
+        2.9
+      ],
+      "temperature_celsius": [
+        74.0,
+        77.5,
+        81.2,
+        85.0,
+        88.5
+      ],
+      "pressure_bar": [
+        7.8,
+        7.6,
+        7.4,
+        7.1,
+        6.9
+      ],
+      "alarm_count": 3,
+      "last_sensor_timestamp": "2026-06-03T08:25:00Z"
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 72,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "COMP-001",
+        "asset_type": "industrial_air_compressor",
+        "line_id": "PKG-LINE-01",
+        "asset_criticality": "high",
+        "criticality_score": 5,
+        "manufacturer": "Reference Compressor Systems",
+        "model": "RC-5500",
+        "location": "Packaging area - compressor station"
+      },
+      "maintenance_history": {
+        "asset_id": "COMP-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": true,
+        "work_orders": [
+          {
+            "work_order_id": "WO-COMP-001-2026-0418",
+            "type": "corrective",
+            "failure_mode": "vibration_anomaly",
+            "duration_hours": 2.0
+          },
+          {
+            "work_order_id": "WO-COMP-001-2026-0522",
+            "type": "corrective",
+            "failure_mode": "bearing_noise",
+            "duration_hours": 3.5
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "COMP-001",
+        "line_id": "PKG-LINE-01",
+        "horizon_hours": 72,
+        "production_pressure": "high",
+        "production_load_pct": 92.0,
+        "next_planned_downtime_hours": 36.0,
+        "customer_impact": "medium",
+        "shift_demand": "high"
+      },
+      "inventory_and_resources": {
+        "asset_id": "COMP-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-COMP-BEARING-KIT",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "policy_governance": {
+        "asset_type": "industrial_air_compressor",
+        "criticality_score": 5,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_id": "POL-COMP-HIGH-CRIT-001"
+      }
+    }
+  }
+}

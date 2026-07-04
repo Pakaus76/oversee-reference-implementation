@@ -1,0 +1,141 @@
+{
+  "package_id": "governed_package_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+  "case_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+  "asset_id": "COMP-001",
+  "generated_at": "2026-06-21T22:00:06.269927+00:00",
+  "final_recommendation": {
+    "case_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+    "asset_id": "COMP-001",
+    "recommended_action": "Plan immediate inspection and maintenance preparation.",
+    "priority": "high",
+    "deterministic_anchor_priority": "high",
+    "recommended_execution_mode": "controlled_planning",
+    "human_review_required": true,
+    "intervention_feasible": true,
+    "decision_ready": true,
+    "key_risk_drivers": [
+      "high_asset_criticality",
+      "short_failure_horizon",
+      "high_model_confidence",
+      "high_production_pressure",
+      "recent_repeated_failures",
+      "intervention_resources_available",
+      "human_review_required"
+    ],
+    "rationale": "Final recommendation combines explicit DMN-like governance outputs, case lifecycle readiness and the migrated deterministic anchor recommendation."
+  },
+  "governance_summary": {
+    "source_payload_count": 7,
+    "source_names": [
+      "asset_registry",
+      "sensor_historian",
+      "predictive_maintenance",
+      "maintenance_history",
+      "production_planning",
+      "inventory_and_resources",
+      "policy_governance"
+    ],
+    "canonical_context_id": "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+    "case_lifecycle_stage": "decision_ready",
+    "case_event_count": 7,
+    "case_task_count": 2,
+    "case_milestone_count": 5,
+    "triggered_rule_count": 6,
+    "decision_rule_evaluation_id": "dmn_like_eval_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+    "recommendation_path_count": 2,
+    "human_review_required": true,
+    "decision_ready": true
+  },
+  "traceability_index": [
+    {
+      "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_001_layer_1",
+      "layer": "Layer 1",
+      "artifact_name": "external_source_payloads",
+      "artifact_type": "external_source_package",
+      "source_refs": [
+        "asset_registry",
+        "sensor_historian",
+        "predictive_maintenance",
+        "maintenance_history",
+        "production_planning",
+        "inventory_and_resources",
+        "policy_governance"
+      ],
+      "summary": "Industrial information is exposed as external source payloads."
+    },
+    {
+      "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_002_layer_2",
+      "layer": "Layer 2",
+      "artifact_name": "canonical_case_context",
+      "artifact_type": "canonical_context",
+      "source_refs": [
+        "asset_registry",
+        "sensor_historian",
+        "predictive_maintenance",
+        "maintenance_history",
+        "production_planning",
+        "inventory_and_resources",
+        "policy_governance"
+      ],
+      "summary": "External payloads are normalized into a canonical compressor case context."
+    },
+    {
+      "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_003_layer_3",
+      "layer": "Layer 3",
+      "artifact_name": "case_management_state",
+      "artifact_type": "case_lifecycle",
+      "source_refs": [
+        "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+      ],
+      "summary": "The compressor case is managed through events, tasks and milestones."
+    },
+    {
+      "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_004_layer_4_rules",
+      "layer": "Layer 4",
+      "artifact_name": "dmn_like_decision_evaluation",
+      "artifact_type": "decision_rules",
+      "source_refs": [
+        "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+      ],
+      "summary": "Explicit DMN-like rules evaluate urgency, criticality, feasibility, review and priority."
+    },
+    {
+      "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_005_layer_4_paths",
+      "layer": "Layer 4",
+      "artifact_name": "recommendation_path_outputs",
+      "artifact_type": "recommendation_paths",
+      "source_refs": [
+        "dmn_like_eval_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+      ],
+      "summary": "Recommendation paths produce decision outputs under governance context."
+    },
+    {
+      "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_006_layer_5",
+      "layer": "Layer 5",
+      "artifact_name": "governed_recommendation_package",
+      "artifact_type": "governed_package",
+      "source_refs": [
+        "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "dmn_like_eval_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "recommendation_paths_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+      ],
+      "summary": "All evidence is packaged into a governed recommendation with traceability."
+    }
+  ],
+  "layer_completion": {
+    "layer_1_external_sources": true,
+    "layer_2_canonical_context": true,
+    "layer_3_case_lifecycle": true,
+    "layer_4_decision_rules": true,
+    "layer_5_governed_package": true
+  },
+  "reviewer_notes": [
+    "This package is generated from an end-to-end five-layer OVERSEE execution.",
+    "The package is inspectable and preserves source-to-recommendation traceability.",
+    "The current recommendation path uses the migrated deterministic anchor plus explicit DMN-like governance context."
+  ],
+  "package_version": "0.1.0",
+  "traceability_count": 6
+}

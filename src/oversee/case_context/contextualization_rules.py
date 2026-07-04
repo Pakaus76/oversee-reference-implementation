@@ -70,6 +70,7 @@ class Layer2ContextualizationResult:
             "layer2_ready": self.layer2_ready,
         }
 
+#6.0 >-------------------------------------------------------------------------------------------------------------------------------
 
 def run_layer2_contextualization(
     canonical_context: CanonicalCaseContext,
@@ -93,6 +94,7 @@ def run_layer2_contextualization(
         layer2_ready=bool(derived_context.get("layer2_decision_ready", False)),
     )
 
+#6.1 >-------------------------------------------------------------------------------------------------------------------------------
 
 def apply_contextualization_rules(
     canonical_context: CanonicalCaseContext,

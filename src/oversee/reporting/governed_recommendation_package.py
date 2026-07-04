@@ -7,8 +7,9 @@ Purpose:
 
 Architectural role:
     Layer 5 does not decide the case again. It packages the already-governed
-    decision into a reviewer-facing and audit-ready structure, including
-    traceability entries, execution metadata and final recommendation fields.
+    recommendation formulated by Layer 4 into a reviewer-facing and audit-ready
+    structure, including traceability entries, execution metadata and final
+    recommendation fields.
 
 Final output:
     05_final_governed_recommendation_package.json
@@ -28,11 +29,7 @@ from oversee.external_sources import ExternalSourcePackage
 
 @dataclass(slots=True)
 class TraceabilityEntry:
-    """One traceability entry linking sources, layers and generated artifacts.
-    
-    Traceability entries make it possible to see which layer produced which piece
-    of evidence or reasoning and where that information is persisted.
-    """
+    """One traceability entry linking sources, layers and generated artifacts."""
 
     trace_id: str
     layer: str
@@ -43,18 +40,12 @@ class TraceabilityEntry:
 
     def to_dict(self) -> dict[str, Any]:
         """Return a JSON-serializable representation."""
-
         return asdict(self)
 
 
 @dataclass(slots=True)
 class GovernedRecommendationPackage:
-    """Complete Layer 5 governed package for one OVERSEE case.
-    
-    The package combines the final recommendation, governance summary,
-    traceability index, reviewer summary and supporting references needed for
-    human review and workflow handoff.
-    """
+    """Complete Layer 5 governed package for one OVERSEE case."""
 
     package_id: str
     case_id: str
@@ -70,17 +61,14 @@ class GovernedRecommendationPackage:
     @property
     def traceability_count(self) -> int:
         """Return number of traceability entries."""
-
         return len(self.traceability_index)
 
     def traceability_dicts(self) -> list[dict[str, Any]]:
         """Return traceability entries as dictionaries."""
-
         return [entry.to_dict() for entry in self.traceability_index]
 
     def to_dict(self) -> dict[str, Any]:
         """Return a JSON-serializable representation."""
-
         data = asdict(self)
         data["traceability_index"] = self.traceability_dicts()
         data["traceability_count"] = self.traceability_count
@@ -96,17 +84,19 @@ def build_governed_recommendation_package(
     recommendation_bundle: RecommendationPathBundle,
 ) -> GovernedRecommendationPackage:
     """Build the Layer 5 governed recommendation package.
-    
-    The function receives all upstream layer outputs and assembles the final
-    reviewable package. It does not overwrite Layer 4 decisions; it preserves them
-    with traceability and reviewer-facing explanation.
+
+    Layer 5 consumes the governed recommendation formulated by Layer 4.
+    It does not reconstruct the decision and does not fall back to the
+    deterministic anchor as the final recommendation path.
     """
 
     generated_at = _utc_now()
-    deterministic_recommendation = _find_path_recommendation(
+
+    governed_recommendation = _find_path_recommendation(
         recommendation_bundle,
-        path_name="deterministic_anchor",
+        path_name="governed_recommendation_formulation",
     )
+
     governance_summary = _build_governance_summary(
         source_package=source_package,
         canonical_context=canonical_context,
@@ -114,12 +104,14 @@ def build_governed_recommendation_package(
         rule_evaluation=rule_evaluation,
         recommendation_bundle=recommendation_bundle,
     )
+
     final_recommendation = _build_final_recommendation(
         canonical_context=canonical_context,
         case_state=case_state,
         rule_evaluation=rule_evaluation,
-        deterministic_recommendation=deterministic_recommendation,
+        governed_recommendation=governed_recommendation,
     )
+
     traceability_index = _build_traceability_index(
         source_package=source_package,
         canonical_context=canonical_context,
@@ -146,17 +138,13 @@ def build_governed_recommendation_package(
         reviewer_notes=[
             "This package is generated from an end-to-end five-layer OVERSEE execution.",
             "The package is inspectable and preserves source-to-recommendation traceability.",
-            "The current recommendation path uses the migrated deterministic anchor plus explicit DMN-like governance context.",
+            "Layer 5 packages the governed recommendation formulated by Layer 4 without re-deciding the case.",
         ],
     )
 
 
 def build_reviewer_summary_markdown(package: GovernedRecommendationPackage) -> str:
-    """Build a compact reviewer-facing Markdown summary.
-    
-    The summary translates the governed package into a human-readable view for
-    maintenance, operations or review stakeholders.
-    """
+    """Build a compact reviewer-facing Markdown summary."""
 
     recommendation = package.final_recommendation
     governance = package.governance_summary
@@ -175,44 +163,52 @@ def build_reviewer_summary_markdown(package: GovernedRecommendationPackage) -> s
         f"- Priority: {recommendation.get('priority')}",
         f"- Execution mode: {recommendation.get('recommended_execution_mode')}",
         f"- Human review required: {recommendation.get('human_review_required')}",
+        f"- Intervention feasible: {recommendation.get('intervention_feasible')}",
         f"- Decision ready: {recommendation.get('decision_ready')}",
+        f"- Transformation applied: {recommendation.get('transformation_applied')}",
         "",
-        "## Governance summary",
+        "## Preconditions and controls",
         "",
-        f"- Source payloads: {governance.get('source_payload_count')}",
-        f"- Triggered rules: {governance.get('triggered_rule_count')}",
-        f"- Recommendation paths: {governance.get('recommendation_path_count')}",
-        f"- Traceability entries: {package.traceability_count}",
-        "",
-        "## Layer completion",
-        "",
-        "| Layer | Complete |",
-        "|---|---:|",
     ]
+
+    for item in recommendation.get("preconditions", []):
+        lines.append(f"- Precondition: {item}")
+
+    for item in recommendation.get("required_reviews", []):
+        lines.append(f"- Required review: {item}")
+
+    for item in recommendation.get("escalations", []):
+        lines.append(f"- Escalation: {item}")
+
+    for item in recommendation.get("contingency_actions", []):
+        lines.append(f"- Contingency: {item}")
+
+    lines.extend(
+        [
+            "",
+            "## Governance summary",
+            "",
+            f"- Source payloads: {governance.get('source_payload_count')}",
+            f"- Triggered rules: {governance.get('triggered_rule_count')}",
+            f"- Recommendation paths: {governance.get('recommendation_path_count')}",
+            f"- Traceability entries: {package.traceability_count}",
+            "",
+            "## Layer completion",
+            "",
+            "| Layer | Complete |",
+            "|---|---:|",
+        ]
+    )
 
     for layer_name, complete in package.layer_completion.items():
         lines.append(f"| {layer_name} | {complete} |")
 
-    lines.extend(
-        [
-            "",
-            "## Reviewer notes",
-            "",
-        ]
-    )
+    lines.extend(["", "## Reviewer notes", ""])
 
     for note in package.reviewer_notes:
         lines.append(f"- {note}")
 
-    lines.extend(
-        [
-            "",
-            "## Traceability overview",
-            "",
-            "| Layer | Artifact | Summary |",
-            "|---|---|---|",
-        ]
-    )
+    lines.extend(["", "## Traceability overview", "", "| Layer | Artifact | Summary |", "|---|---|---|"])
 
     for entry in package.traceability_index:
         lines.append(f"| {entry.layer} | {entry.artifact_name} | {entry.summary} |")
@@ -226,11 +222,7 @@ def build_execution_manifest(
     package: GovernedRecommendationPackage,
     generated_files: list[str],
 ) -> dict[str, Any]:
-    """Build an execution manifest for the output directory.
-    
-    The manifest records generated files, scenario metadata and execution context
-    so reviewers can audit what was produced in one run.
-    """
+    """Build an execution manifest for the output directory."""
 
     return {
         "manifest_version": "0.1.0",
@@ -251,30 +243,56 @@ def _build_final_recommendation(
     canonical_context: CanonicalCaseContext,
     case_state: CaseManagementState,
     rule_evaluation: DecisionRuleEvaluation,
-    deterministic_recommendation: dict[str, Any],
+    governed_recommendation: dict[str, Any],
 ) -> dict[str, Any]:
-    """Build the final governed recommendation view."""
+    """Build the final governed recommendation view from Layer 4 output."""
 
-    action = deterministic_recommendation.get(
+    action = governed_recommendation.get(
         "action",
         "Prepare controlled compressor inspection or intervention.",
     )
-    anchor_priority = deterministic_recommendation.get("priority")
 
     return {
         "case_id": canonical_context.case_id,
         "asset_id": canonical_context.asset.asset_id,
         "recommended_action": action,
+        "primary_action": governed_recommendation.get("primary_action", action),
+        "anchor_action": governed_recommendation.get("anchor_action"),
         "priority": rule_evaluation.final_priority,
-        "deterministic_anchor_priority": anchor_priority,
+        "deterministic_anchor_priority": governed_recommendation.get(
+            "deterministic_anchor_priority"
+        ),
+        "dmn_like_final_priority": governed_recommendation.get(
+            "dmn_like_final_priority",
+            rule_evaluation.final_priority,
+        ),
         "recommended_execution_mode": rule_evaluation.recommended_execution_mode,
         "human_review_required": rule_evaluation.human_review_required,
         "intervention_feasible": rule_evaluation.intervention_feasible,
         "decision_ready": case_state.decision_ready,
+        "transformation_applied": governed_recommendation.get(
+            "transformation_applied",
+            False,
+        ),
+        "transformation_reasons": governed_recommendation.get(
+            "transformation_reasons",
+            [],
+        ),
+        "preconditions": governed_recommendation.get("preconditions", []),
+        "blockers": governed_recommendation.get("blockers", []),
+        "required_reviews": governed_recommendation.get("required_reviews", []),
+        "escalations": governed_recommendation.get("escalations", []),
+        "contingency_actions": governed_recommendation.get(
+            "contingency_actions",
+            [],
+        ),
         "key_risk_drivers": canonical_context.key_risk_drivers,
-        "rationale": (
-            "Final recommendation combines explicit DMN-like governance outputs, "
-            "case lifecycle readiness and the migrated deterministic anchor recommendation."
+        "rationale": governed_recommendation.get(
+            "rationale",
+            (
+                "Final recommendation packages the governed recommendation "
+                "formulated by Layer 4."
+            ),
         ),
     }
 
@@ -348,7 +366,10 @@ def _build_traceability_index(
             artifact_name="dmn_like_decision_evaluation",
             artifact_type="decision_rules",
             source_refs=[canonical_context.context_id, case_state.case_id],
-            summary="Explicit DMN-like rules evaluate urgency, criticality, feasibility, review and priority.",
+            summary=(
+                "Explicit DMN-like rules evaluate urgency, criticality, "
+                "feasibility, review and priority."
+            ),
         ),
         TraceabilityEntry(
             trace_id=f"{source_package.case_id}_trace_005_layer_4_paths",
@@ -356,7 +377,10 @@ def _build_traceability_index(
             artifact_name="recommendation_path_outputs",
             artifact_type="recommendation_paths",
             source_refs=[rule_evaluation.evaluation_id],
-            summary="Recommendation paths produce decision outputs under governance context.",
+            summary=(
+                "Layer 4 formulates a governed recommendation under feasibility, "
+                "readiness, execution-mode and governance constraints."
+            ),
         ),
         TraceabilityEntry(
             trace_id=f"{source_package.case_id}_trace_006_layer_5",
@@ -369,7 +393,10 @@ def _build_traceability_index(
                 rule_evaluation.evaluation_id,
                 recommendation_bundle.bundle_id,
             ],
-            summary="All evidence is packaged into a governed recommendation with traceability.",
+            summary=(
+                "Layer 5 packages the governed recommendation with traceability "
+                "and reviewer-facing controls."
+            ),
         ),
     ]
 
@@ -390,5 +417,4 @@ def _find_path_recommendation(
 
 def _utc_now() -> str:
     """Return an ISO-8601 UTC timestamp."""
-
     return datetime.now(timezone.utc).isoformat()

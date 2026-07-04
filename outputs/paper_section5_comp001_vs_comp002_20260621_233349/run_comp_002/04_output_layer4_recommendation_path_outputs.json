@@ -1,0 +1,66 @@
+{
+  "bundle_id": "recommendation_paths_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+  "case_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+  "asset_id": "COMP-002",
+  "decision_rule_evaluation_id": "dmn_like_eval_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+  "path_outputs": [
+    {
+      "path_name": "deterministic_anchor",
+      "path_type": "existing_recommendation_path",
+      "status": "completed",
+      "recommendation": {
+        "recommendation_id": "det_anchor_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+        "asset_id": "COMP-002",
+        "action": "Monitor the asset and review the next maintenance window.",
+        "rationale": "deterministic anchor baseline urgency assessment: 'low'. deterministic anchor operational importance assessment: 'standard'. deterministic anchor evidence reliability assessment: 'acceptable'. deterministic anchor final consolidated priority: 'low'.",
+        "priority": "low",
+        "dmn_like_final_priority": "medium",
+        "recommended_execution_mode": "standard_planning",
+        "human_review_required": true
+      },
+      "input_refs": [
+        "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+        "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+        "dmn_like_eval_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+      ],
+      "governance_refs": [
+        "compressor_human_review_policy",
+        "compressor_final_priority"
+      ],
+      "notes": [
+        "The deterministic anchor is executed after explicit DMN-like rule evaluation.",
+        "DMN-like rule outputs are preserved as governance context; they do not overwrite the anchor recommendation."
+      ]
+    },
+    {
+      "path_name": "dmn_like_governance_summary",
+      "path_type": "rule_governance_summary",
+      "status": "completed",
+      "recommendation": {
+        "case_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+        "asset_id": "COMP-002",
+        "final_priority": "medium",
+        "recommended_execution_mode": "standard_planning",
+        "human_review_required": true,
+        "intervention_feasible": true,
+        "decision_ready": false,
+        "triggered_rule_count": 3
+      },
+      "input_refs": [
+        "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+        "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+        "dmn_like_eval_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+      ],
+      "governance_refs": [
+        "DMN_R003",
+        "DMN_R004",
+        "DMN_R006"
+      ],
+      "notes": [
+        "This output summarizes explicit rule evaluation before final governed packaging."
+      ]
+    }
+  ],
+  "bundle_version": "0.1.0",
+  "path_count": 2
+}

@@ -1,0 +1,214 @@
+{
+  "package_id": "layer1_evidence_package_SCENARIO_PACK_001_ALERT-PACK-001-20260603",
+  "case_id": "SCENARIO_PACK_001_ALERT-PACK-001-20260603",
+  "asset_id": "PACK-001",
+  "line_id": "PACK-LINE-02",
+  "created_at": "2026-06-22T08:59:56.900131+00:00",
+  "payloads": [
+    {
+      "source_name": "asset_registry",
+      "source_system": "enterprise_asset_registry_api",
+      "source_type": "master_data",
+      "endpoint": "/enterprise/asset-registry/assets/{asset_id}",
+      "generated_at": "2026-06-22T08:59:56.900131+00:00",
+      "case_id": "SCENARIO_PACK_001_ALERT-PACK-001-20260603",
+      "asset_id": "PACK-001",
+      "line_id": "PACK-LINE-02",
+      "raw_payload": {
+        "asset_id": "PACK-001",
+        "asset_type": "packaging_line_asset",
+        "line_id": "PACK-LINE-02",
+        "asset_criticality": "medium",
+        "criticality_score": 4,
+        "manufacturer": "Reference Packaging Systems",
+        "model": "RP-300",
+        "location": "Packaging bottleneck station"
+      },
+      "normalized_fields": {
+        "asset_type": "packaging_line_asset",
+        "asset_criticality": "medium",
+        "criticality_score": 4
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "sensor_historian",
+      "source_system": "predictive_agent_payload",
+      "source_type": "raw_sensor_context",
+      "endpoint": "embedded_in_predictive_alert_request",
+      "generated_at": "2026-06-22T08:59:56.900131+00:00",
+      "case_id": "SCENARIO_PACK_001_ALERT-PACK-001-20260603",
+      "asset_id": "PACK-001",
+      "line_id": "PACK-LINE-02",
+      "raw_payload": {
+        "sampling_window_hours": 24,
+        "vibration_mms": [
+          1.2,
+          1.4,
+          1.6,
+          1.8,
+          2.0
+        ],
+        "temperature_celsius": [
+          46.0,
+          47.0,
+          49.0,
+          50.0,
+          52.0
+        ],
+        "pressure_bar": [
+          4.2,
+          4.2,
+          4.1,
+          4.1,
+          4.0
+        ],
+        "alarm_count": 3,
+        "last_sensor_timestamp": "2026-06-03T13:15:00Z",
+        "micro_stop_count": [
+          4,
+          6,
+          9,
+          11,
+          14
+        ]
+      },
+      "normalized_fields": {
+        "vibration_trend": "increasing",
+        "temperature_trend": "increasing",
+        "sensor_severity": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "predictive_maintenance",
+      "source_system": "predictive_maintenance_agent",
+      "source_type": "model_inference",
+      "endpoint": "POST /oversee/api/v1/predictive-alerts",
+      "generated_at": "2026-06-22T08:59:56.900131+00:00",
+      "case_id": "SCENARIO_PACK_001_ALERT-PACK-001-20260603",
+      "asset_id": "PACK-001",
+      "line_id": "PACK-LINE-02",
+      "raw_payload": {
+        "alert_id": "ALERT-PACK-001-20260603",
+        "asset_id": "PACK-001",
+        "asset_type": "packaging_line_asset",
+        "line_id": "PACK-LINE-02",
+        "suspected_failure_mode": "intermittent_stoppages",
+        "alert_type": "intermittent_stoppage_alert",
+        "predictive_horizon_hours": 72,
+        "confidence_score": 0.81,
+        "model_name": "packaging_bottleneck_risk_model",
+        "model_version": "v1.0-reference",
+        "triggered_at": "2026-06-03T13:20:00Z"
+      },
+      "normalized_fields": {
+        "alert_type": "intermittent_stoppage_alert",
+        "estimated_time_to_failure_hours": 72.0,
+        "confidence_score": 0.81,
+        "alert_severity": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "maintenance_history",
+      "source_system": "enterprise_cmms_api",
+      "source_type": "work_order_history",
+      "endpoint": "/enterprise/cmms/assets/{asset_id}/work-orders",
+      "generated_at": "2026-06-22T08:59:56.900131+00:00",
+      "case_id": "SCENARIO_PACK_001_ALERT-PACK-001-20260603",
+      "asset_id": "PACK-001",
+      "line_id": "PACK-LINE-02",
+      "raw_payload": {
+        "asset_id": "PACK-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": true,
+        "work_orders": [
+          {
+            "work_order_id": "WO-PACK-001-2026-0528",
+            "type": "corrective",
+            "failure_mode": "micro_stoppages",
+            "duration_hours": 1.0
+          }
+        ]
+      },
+      "normalized_fields": {
+        "recent_repeated_failures": true
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "production_planning",
+      "source_system": "enterprise_mes_api",
+      "source_type": "operational_context",
+      "endpoint": "/enterprise/mes/lines/{line_id}/operational-context",
+      "generated_at": "2026-06-22T08:59:56.900131+00:00",
+      "case_id": "SCENARIO_PACK_001_ALERT-PACK-001-20260603",
+      "asset_id": "PACK-001",
+      "line_id": "PACK-LINE-02",
+      "raw_payload": {
+        "asset_id": "PACK-001",
+        "line_id": "PACK-LINE-02",
+        "horizon_hours": 72,
+        "production_pressure": "high",
+        "production_load_pct": 94.0,
+        "next_planned_downtime_hours": 24.0,
+        "customer_impact": "high",
+        "shift_demand": "high"
+      },
+      "normalized_fields": {
+        "production_load_pct": 94.0,
+        "next_planned_downtime_hours": 24.0,
+        "production_pressure": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "inventory_and_resources",
+      "source_system": "enterprise_inventory_api",
+      "source_type": "resource_availability",
+      "endpoint": "/enterprise/inventory/assets/{asset_id}/resources",
+      "generated_at": "2026-06-22T08:59:56.900131+00:00",
+      "case_id": "SCENARIO_PACK_001_ALERT-PACK-001-20260603",
+      "asset_id": "PACK-001",
+      "line_id": "PACK-LINE-02",
+      "raw_payload": {
+        "asset_id": "PACK-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-PACK-ADJUSTMENT-KIT",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "normalized_fields": {
+        "spare_part_available": true,
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "policy_governance",
+      "source_system": "enterprise_policy_governance_api",
+      "source_type": "governance_policy",
+      "endpoint": "/enterprise/policy-governance/assets/{asset_type}",
+      "generated_at": "2026-06-22T08:59:56.900131+00:00",
+      "case_id": "SCENARIO_PACK_001_ALERT-PACK-001-20260603",
+      "asset_id": "PACK-001",
+      "line_id": "PACK-LINE-02",
+      "raw_payload": {
+        "asset_type": "packaging_line_asset",
+        "criticality_score": 4,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_id": "POL-PACK-BOTTLENECK-001"
+      },
+      "normalized_fields": {
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true
+      },
+      "data_quality_flags": []
+    }
+  ],
+  "package_version": "0.1.0",
+  "source_count": 7
+}

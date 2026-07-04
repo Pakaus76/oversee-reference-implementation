@@ -1,0 +1,219 @@
+{
+  "package_id": "layer1_evidence_package_SCENARIO_VALVE_001_ALERT-VALVE-001-20260603",
+  "case_id": "SCENARIO_VALVE_001_ALERT-VALVE-001-20260603",
+  "asset_id": "VALVE-001",
+  "line_id": "PROC-LINE-04",
+  "created_at": "2026-06-22T08:59:57.189749+00:00",
+  "payloads": [
+    {
+      "source_name": "asset_registry",
+      "source_system": "enterprise_asset_registry_api",
+      "source_type": "master_data",
+      "endpoint": "/enterprise/asset-registry/assets/{asset_id}",
+      "generated_at": "2026-06-22T08:59:57.189749+00:00",
+      "case_id": "SCENARIO_VALVE_001_ALERT-VALVE-001-20260603",
+      "asset_id": "VALVE-001",
+      "line_id": "PROC-LINE-04",
+      "raw_payload": {
+        "asset_id": "VALVE-001",
+        "asset_type": "critical_valve",
+        "line_id": "PROC-LINE-04",
+        "asset_criticality": "medium",
+        "criticality_score": 4,
+        "manufacturer": "Reference Valve Systems",
+        "model": "RV-90",
+        "location": "Process isolation loop"
+      },
+      "normalized_fields": {
+        "asset_type": "critical_valve",
+        "asset_criticality": "medium",
+        "criticality_score": 4
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "sensor_historian",
+      "source_system": "predictive_agent_payload",
+      "source_type": "raw_sensor_context",
+      "endpoint": "embedded_in_predictive_alert_request",
+      "generated_at": "2026-06-22T08:59:57.189749+00:00",
+      "case_id": "SCENARIO_VALVE_001_ALERT-VALVE-001-20260603",
+      "asset_id": "VALVE-001",
+      "line_id": "PROC-LINE-04",
+      "raw_payload": {
+        "sampling_window_hours": 24,
+        "vibration_mms": [
+          0.7,
+          0.7,
+          0.8,
+          0.7,
+          0.8
+        ],
+        "temperature_celsius": [
+          44.0,
+          44.1,
+          44.0,
+          44.2,
+          44.1
+        ],
+        "pressure_bar": [
+          6.5,
+          6.5,
+          6.4,
+          6.5,
+          6.5
+        ],
+        "alarm_count": 1,
+        "last_sensor_timestamp": "2026-06-03T12:55:00Z",
+        "actuation_delay_ms": [
+          120,
+          180,
+          130,
+          260,
+          125
+        ],
+        "data_quality_flags": [
+          "intermittent_actuation_signal_requires_confirmation"
+        ]
+      },
+      "normalized_fields": {
+        "vibration_trend": "increasing",
+        "temperature_trend": "increasing",
+        "sensor_severity": "high"
+      },
+      "data_quality_flags": [
+        "intermittent_actuation_signal_requires_confirmation"
+      ]
+    },
+    {
+      "source_name": "predictive_maintenance",
+      "source_system": "predictive_maintenance_agent",
+      "source_type": "model_inference",
+      "endpoint": "POST /oversee/api/v1/predictive-alerts",
+      "generated_at": "2026-06-22T08:59:57.189749+00:00",
+      "case_id": "SCENARIO_VALVE_001_ALERT-VALVE-001-20260603",
+      "asset_id": "VALVE-001",
+      "line_id": "PROC-LINE-04",
+      "raw_payload": {
+        "alert_id": "ALERT-VALVE-001-20260603",
+        "asset_id": "VALVE-001",
+        "asset_type": "critical_valve",
+        "line_id": "PROC-LINE-04",
+        "suspected_failure_mode": "intermittent_actuation_fault",
+        "alert_type": "intermittent_valve_actuation_alert",
+        "predictive_horizon_hours": 96,
+        "confidence_score": 0.69,
+        "model_name": "valve_actuation_monitoring_model",
+        "model_version": "v1.0-reference",
+        "triggered_at": "2026-06-03T13:00:00Z"
+      },
+      "normalized_fields": {
+        "alert_type": "intermittent_valve_actuation_alert",
+        "estimated_time_to_failure_hours": 96.0,
+        "confidence_score": 0.69,
+        "alert_severity": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "maintenance_history",
+      "source_system": "enterprise_cmms_api",
+      "source_type": "work_order_history",
+      "endpoint": "/enterprise/cmms/assets/{asset_id}/work-orders",
+      "generated_at": "2026-06-22T08:59:57.189749+00:00",
+      "case_id": "SCENARIO_VALVE_001_ALERT-VALVE-001-20260603",
+      "asset_id": "VALVE-001",
+      "line_id": "PROC-LINE-04",
+      "raw_payload": {
+        "asset_id": "VALVE-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": false,
+        "work_orders": [
+          {
+            "work_order_id": "WO-VALVE-001-2026-0309",
+            "type": "preventive",
+            "failure_mode": "none",
+            "duration_hours": 0.9
+          }
+        ]
+      },
+      "normalized_fields": {
+        "recent_repeated_failures": false
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "production_planning",
+      "source_system": "enterprise_mes_api",
+      "source_type": "operational_context",
+      "endpoint": "/enterprise/mes/lines/{line_id}/operational-context",
+      "generated_at": "2026-06-22T08:59:57.189749+00:00",
+      "case_id": "SCENARIO_VALVE_001_ALERT-VALVE-001-20260603",
+      "asset_id": "VALVE-001",
+      "line_id": "PROC-LINE-04",
+      "raw_payload": {
+        "asset_id": "VALVE-001",
+        "line_id": "PROC-LINE-04",
+        "horizon_hours": 96,
+        "production_pressure": "medium",
+        "production_load_pct": 76.0,
+        "next_planned_downtime_hours": 72.0,
+        "customer_impact": "medium",
+        "shift_demand": "medium"
+      },
+      "normalized_fields": {
+        "production_load_pct": 76.0,
+        "next_planned_downtime_hours": 72.0,
+        "production_pressure": "medium"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "inventory_and_resources",
+      "source_system": "enterprise_inventory_api",
+      "source_type": "resource_availability",
+      "endpoint": "/enterprise/inventory/assets/{asset_id}/resources",
+      "generated_at": "2026-06-22T08:59:57.189749+00:00",
+      "case_id": "SCENARIO_VALVE_001_ALERT-VALVE-001-20260603",
+      "asset_id": "VALVE-001",
+      "line_id": "PROC-LINE-04",
+      "raw_payload": {
+        "asset_id": "VALVE-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-VALVE-ACTUATOR-STD",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "normalized_fields": {
+        "spare_part_available": true,
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "policy_governance",
+      "source_system": "enterprise_policy_governance_api",
+      "source_type": "governance_policy",
+      "endpoint": "/enterprise/policy-governance/assets/{asset_type}",
+      "generated_at": "2026-06-22T08:59:57.189749+00:00",
+      "case_id": "SCENARIO_VALVE_001_ALERT-VALVE-001-20260603",
+      "asset_id": "VALVE-001",
+      "line_id": "PROC-LINE-04",
+      "raw_payload": {
+        "asset_type": "critical_valve",
+        "criticality_score": 4,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_id": "POL-VALVE-DIAG-001"
+      },
+      "normalized_fields": {
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true
+      },
+      "data_quality_flags": []
+    }
+  ],
+  "package_version": "0.1.0",
+  "source_count": 7
+}

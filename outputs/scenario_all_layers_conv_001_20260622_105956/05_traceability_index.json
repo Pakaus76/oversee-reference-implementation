@@ -1,0 +1,78 @@
+[
+  {
+    "trace_id": "SCENARIO_CONV_001_ALERT-CONV-001-20260603_trace_001_layer_1",
+    "layer": "Layer 1",
+    "artifact_name": "external_source_payloads",
+    "artifact_type": "external_source_package",
+    "source_refs": [
+      "asset_registry",
+      "sensor_historian",
+      "predictive_maintenance",
+      "maintenance_history",
+      "production_planning",
+      "inventory_and_resources",
+      "policy_governance"
+    ],
+    "summary": "Industrial information is exposed as external source payloads."
+  },
+  {
+    "trace_id": "SCENARIO_CONV_001_ALERT-CONV-001-20260603_trace_002_layer_2",
+    "layer": "Layer 2",
+    "artifact_name": "canonical_case_context",
+    "artifact_type": "canonical_context",
+    "source_refs": [
+      "asset_registry",
+      "sensor_historian",
+      "predictive_maintenance",
+      "maintenance_history",
+      "production_planning",
+      "inventory_and_resources",
+      "policy_governance"
+    ],
+    "summary": "External payloads are normalized into a canonical compressor case context."
+  },
+  {
+    "trace_id": "SCENARIO_CONV_001_ALERT-CONV-001-20260603_trace_003_layer_3",
+    "layer": "Layer 3",
+    "artifact_name": "case_management_state",
+    "artifact_type": "case_lifecycle",
+    "source_refs": [
+      "canonical_context_SCENARIO_CONV_001_ALERT-CONV-001-20260603"
+    ],
+    "summary": "The compressor case is managed through events, tasks and milestones."
+  },
+  {
+    "trace_id": "SCENARIO_CONV_001_ALERT-CONV-001-20260603_trace_004_layer_4_rules",
+    "layer": "Layer 4",
+    "artifact_name": "dmn_like_decision_evaluation",
+    "artifact_type": "decision_rules",
+    "source_refs": [
+      "canonical_context_SCENARIO_CONV_001_ALERT-CONV-001-20260603",
+      "SCENARIO_CONV_001_ALERT-CONV-001-20260603"
+    ],
+    "summary": "Explicit DMN-like rules evaluate urgency, criticality, feasibility, review and priority."
+  },
+  {
+    "trace_id": "SCENARIO_CONV_001_ALERT-CONV-001-20260603_trace_005_layer_4_paths",
+    "layer": "Layer 4",
+    "artifact_name": "recommendation_path_outputs",
+    "artifact_type": "recommendation_paths",
+    "source_refs": [
+      "dmn_like_eval_SCENARIO_CONV_001_ALERT-CONV-001-20260603"
+    ],
+    "summary": "Layer 4 formulates a governed recommendation under feasibility, readiness, execution-mode and governance constraints."
+  },
+  {
+    "trace_id": "SCENARIO_CONV_001_ALERT-CONV-001-20260603_trace_006_layer_5",
+    "layer": "Layer 5",
+    "artifact_name": "governed_recommendation_package",
+    "artifact_type": "governed_package",
+    "source_refs": [
+      "canonical_context_SCENARIO_CONV_001_ALERT-CONV-001-20260603",
+      "SCENARIO_CONV_001_ALERT-CONV-001-20260603",
+      "dmn_like_eval_SCENARIO_CONV_001_ALERT-CONV-001-20260603",
+      "recommendation_paths_SCENARIO_CONV_001_ALERT-CONV-001-20260603"
+    ],
+    "summary": "Layer 5 packages the governed recommendation with traceability and reviewer-facing controls."
+  }
+]

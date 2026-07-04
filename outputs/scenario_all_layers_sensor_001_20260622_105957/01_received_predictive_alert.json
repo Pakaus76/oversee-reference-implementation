@@ -1,0 +1,63 @@
+{
+  "endpoint": "POST /oversee/api/v1/predictive-alerts",
+  "received_at": "2026-06-22T08:59:57.144763+00:00",
+  "accepted": true,
+  "validation_errors": [],
+  "request_payload": {
+    "alert": {
+      "alert_id": "ALERT-SENSOR-001-20260603",
+      "asset_id": "SENSOR-001",
+      "asset_type": "critical_sensor",
+      "line_id": "PROC-LINE-05",
+      "suspected_failure_mode": "sensor_drift_suspected",
+      "alert_type": "sensor_drift_suspected_alert",
+      "predictive_horizon_hours": 96,
+      "confidence_score": 0.64,
+      "model_name": "sensor_health_monitoring_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T14:10:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "temperature_celsius": [
+        62.0,
+        66.0,
+        72.0,
+        79.0,
+        86.0
+      ],
+      "pressure_bar": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "alarm_count": 1,
+      "last_sensor_timestamp": "2026-06-03T14:05:00Z",
+      "reference_temperature_celsius": [
+        62.0,
+        62.1,
+        62.0,
+        62.2,
+        62.1
+      ],
+      "data_quality_flags": [
+        "sensor_drift_requires_calibration_check"
+      ]
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 96,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    }
+  }
+}

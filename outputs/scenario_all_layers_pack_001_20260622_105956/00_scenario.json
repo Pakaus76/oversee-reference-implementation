@@ -1,0 +1,186 @@
+{
+  "scenario_id": "PACK-001",
+  "title": "Packaging bottleneck stoppage case",
+  "description": "Coverage case where an asset is not the most critical technically but causes a strong flow bottleneck.",
+  "asset_id": "PACK-001",
+  "asset_type": "packaging_line_asset",
+  "failure_mode": "intermittent_stoppages",
+  "paper_aligned": false,
+  "master_case": false,
+  "master_case_role": "coverage_case_bottleneck_priority",
+  "decision_pattern": "bottleneck_driven_operational_priority",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Intermittent stoppage alert; confidence 0.81; 72h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Stop frequency increasing; vibration moderate"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Packaging asset; medium criticality but line bottleneck"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "Several minor stoppage notes in recent weeks"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "High production pressure; bottleneck causes flow losses"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Adjustment kit available; technician available next shift"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review recommended due to bottleneck impact"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Operational priority task active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Short intervention can be planned between batches"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "Bottleneck impact raises operational priority"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Bottleneck impact summary prepared"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Short intervention proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Bottleneck traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: intermittent stoppage alert, flow context, asset data, and stoppage history",
+    "layer2": "Contextualized decision profile: high production pressure, bottleneck impact, feasible intervention",
+    "layer3": "Decision-ready case: open, operational priority task active, no blockers",
+    "layer4": "Decision record: high priority, controlled planning recommended",
+    "layer5": "Governed recommendation package: bottleneck summary, traceability index, and intervention proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-PACK-001-20260603",
+      "asset_id": "PACK-001",
+      "asset_type": "packaging_line_asset",
+      "line_id": "PACK-LINE-02",
+      "suspected_failure_mode": "intermittent_stoppages",
+      "alert_type": "intermittent_stoppage_alert",
+      "predictive_horizon_hours": 72,
+      "confidence_score": 0.81,
+      "model_name": "packaging_bottleneck_risk_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T13:20:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        1.2,
+        1.4,
+        1.6,
+        1.8,
+        2.0
+      ],
+      "temperature_celsius": [
+        46.0,
+        47.0,
+        49.0,
+        50.0,
+        52.0
+      ],
+      "pressure_bar": [
+        4.2,
+        4.2,
+        4.1,
+        4.1,
+        4.0
+      ],
+      "alarm_count": 3,
+      "last_sensor_timestamp": "2026-06-03T13:15:00Z",
+      "micro_stop_count": [
+        4,
+        6,
+        9,
+        11,
+        14
+      ]
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 72,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "PACK-001",
+        "asset_type": "packaging_line_asset",
+        "line_id": "PACK-LINE-02",
+        "asset_criticality": "medium",
+        "criticality_score": 4,
+        "manufacturer": "Reference Packaging Systems",
+        "model": "RP-300",
+        "location": "Packaging bottleneck station"
+      },
+      "maintenance_history": {
+        "asset_id": "PACK-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": true,
+        "work_orders": [
+          {
+            "work_order_id": "WO-PACK-001-2026-0528",
+            "type": "corrective",
+            "failure_mode": "micro_stoppages",
+            "duration_hours": 1.0
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "PACK-001",
+        "line_id": "PACK-LINE-02",
+        "horizon_hours": 72,
+        "production_pressure": "high",
+        "production_load_pct": 94.0,
+        "next_planned_downtime_hours": 24.0,
+        "customer_impact": "high",
+        "shift_demand": "high"
+      },
+      "inventory_and_resources": {
+        "asset_id": "PACK-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-PACK-ADJUSTMENT-KIT",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "policy_governance": {
+        "asset_type": "packaging_line_asset",
+        "criticality_score": 4,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_id": "POL-PACK-BOTTLENECK-001"
+      }
+    }
+  }
+}

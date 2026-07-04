@@ -5,6 +5,8 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from typing import Any
 
+#7.0 >-------------------------------------------------------------------------------------------------------------------------------
+
 
 @dataclass(slots=True)
 class CaseLifecycleEvent:

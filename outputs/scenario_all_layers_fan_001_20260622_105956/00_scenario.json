@@ -1,0 +1,179 @@
+{
+  "scenario_id": "FAN-001",
+  "title": "Low-criticality fan monitoring case",
+  "description": "Coverage case where a low-criticality industrial fan shows mild vibration drift. It demonstrates that OVERSEE can recommend monitoring instead of urgent maintenance.",
+  "asset_id": "FAN-001",
+  "asset_type": "industrial_fan",
+  "failure_mode": "mild_vibration_drift",
+  "paper_aligned": false,
+  "master_case": false,
+  "master_case_role": "coverage_case_low_criticality_monitoring",
+  "decision_pattern": "low_criticality_monitoring",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Mild vibration drift; confidence 0.58; 240h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Slow vibration increase; temperature stable"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Auxiliary fan; low criticality; redundant ventilation path"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "No recent repeated failures"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "Low production pressure; maintenance can be bundled later"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Standard bearing available; technician available this week"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review not mandatory for low-criticality auxiliary asset"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Monitoring case opened; no escalation task active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Inspection can be grouped with routine checks"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "Low urgency and low criticality should remain in monitoring"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Monitoring note prepared"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Routine inspection suggestion ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Monitoring traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: mild fan vibration drift, stable temperature, low criticality, and clean maintenance history",
+    "layer2": "Contextualized decision profile: low urgency, redundant asset, intervention feasible if needed, review not mandatory",
+    "layer3": "Decision-ready case: open, monitoring task active, no blockers",
+    "layer4": "Decision record: low priority, monitoring recommended",
+    "layer5": "Governed recommendation package: monitoring note, traceability index, and routine inspection suggestion"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-FAN-001-20260603",
+      "asset_id": "FAN-001",
+      "asset_type": "industrial_fan",
+      "line_id": "VENT-LINE-01",
+      "suspected_failure_mode": "mild_vibration_drift",
+      "alert_type": "mild_vibration_drift_alert",
+      "predictive_horizon_hours": 240,
+      "confidence_score": 0.58,
+      "model_name": "fan_condition_monitoring_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T12:00:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        0.8,
+        0.9,
+        1.0,
+        1.0,
+        1.1
+      ],
+      "temperature_celsius": [
+        38.0,
+        38.1,
+        38.0,
+        38.2,
+        38.1
+      ],
+      "pressure_bar": [
+        1.2,
+        1.2,
+        1.2,
+        1.2,
+        1.1
+      ],
+      "alarm_count": 0,
+      "last_sensor_timestamp": "2026-06-03T11:55:00Z"
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 240,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "FAN-001",
+        "asset_type": "industrial_fan",
+        "line_id": "VENT-LINE-01",
+        "asset_criticality": "low",
+        "criticality_score": 2,
+        "manufacturer": "Reference Air Systems",
+        "model": "RF-200",
+        "location": "Auxiliary ventilation area"
+      },
+      "maintenance_history": {
+        "asset_id": "FAN-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": false,
+        "work_orders": [
+          {
+            "work_order_id": "WO-FAN-001-2026-0205",
+            "type": "preventive",
+            "failure_mode": "none",
+            "duration_hours": 0.8
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "FAN-001",
+        "line_id": "VENT-LINE-01",
+        "horizon_hours": 240,
+        "production_pressure": "low",
+        "production_load_pct": 45.0,
+        "next_planned_downtime_hours": 168.0,
+        "customer_impact": "low",
+        "shift_demand": "low"
+      },
+      "inventory_and_resources": {
+        "asset_id": "FAN-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-FAN-BEARING-STD",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "policy_governance": {
+        "asset_type": "industrial_fan",
+        "criticality_score": 2,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": false,
+        "policy_id": "POL-FAN-LOW-CRIT-001"
+      }
+    }
+  }
+}

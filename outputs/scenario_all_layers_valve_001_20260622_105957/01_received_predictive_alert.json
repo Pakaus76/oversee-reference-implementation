@@ -1,0 +1,63 @@
+{
+  "endpoint": "POST /oversee/api/v1/predictive-alerts",
+  "received_at": "2026-06-22T08:59:57.189749+00:00",
+  "accepted": true,
+  "validation_errors": [],
+  "request_payload": {
+    "alert": {
+      "alert_id": "ALERT-VALVE-001-20260603",
+      "asset_id": "VALVE-001",
+      "asset_type": "critical_valve",
+      "line_id": "PROC-LINE-04",
+      "suspected_failure_mode": "intermittent_actuation_fault",
+      "alert_type": "intermittent_valve_actuation_alert",
+      "predictive_horizon_hours": 96,
+      "confidence_score": 0.69,
+      "model_name": "valve_actuation_monitoring_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T13:00:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        0.7,
+        0.7,
+        0.8,
+        0.7,
+        0.8
+      ],
+      "temperature_celsius": [
+        44.0,
+        44.1,
+        44.0,
+        44.2,
+        44.1
+      ],
+      "pressure_bar": [
+        6.5,
+        6.5,
+        6.4,
+        6.5,
+        6.5
+      ],
+      "alarm_count": 1,
+      "last_sensor_timestamp": "2026-06-03T12:55:00Z",
+      "actuation_delay_ms": [
+        120,
+        180,
+        130,
+        260,
+        125
+      ],
+      "data_quality_flags": [
+        "intermittent_actuation_signal_requires_confirmation"
+      ]
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 96,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    }
+  }
+}

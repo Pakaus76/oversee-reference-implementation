@@ -1,0 +1,283 @@
+{
+  "case_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+  "asset_id": "COMP-001",
+  "case_status": "open",
+  "lifecycle_stage": "decision_ready",
+  "current_layer": "Layer 3 - CMMN-inspired case lifecycle",
+  "opened_at": "2026-06-12T13:44:27.506774+00:00",
+  "human_review_required": true,
+  "maintenance_planning_required": true,
+  "decision_ready": true,
+  "events": [
+    {
+      "event_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_evt_001_case_opened",
+      "sequence": 1,
+      "event_type": "case_opened",
+      "event_name": "Compressor decision case opened",
+      "status": "completed",
+      "source_layer": "Layer 3",
+      "occurred_at": "2026-06-12T13:44:27.506774+00:00",
+      "evidence_refs": [
+        "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+      ],
+      "details": {
+        "asset_id": "COMP-001",
+        "line_id": "PKG-LINE-01"
+      }
+    },
+    {
+      "event_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_evt_002_external_evidence_received",
+      "sequence": 2,
+      "event_type": "external_evidence_received",
+      "event_name": "External source evidence received",
+      "status": "completed",
+      "source_layer": "Layer 1",
+      "occurred_at": "2026-06-12T13:44:27.506774+00:00",
+      "evidence_refs": [
+        "asset_registry",
+        "sensor_historian",
+        "predictive_maintenance",
+        "maintenance_history",
+        "production_planning",
+        "inventory_and_resources",
+        "policy_governance"
+      ],
+      "details": {
+        "source_payload_count": 7,
+        "source_names": [
+          "asset_registry",
+          "sensor_historian",
+          "predictive_maintenance",
+          "maintenance_history",
+          "production_planning",
+          "inventory_and_resources",
+          "policy_governance"
+        ]
+      }
+    },
+    {
+      "event_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_evt_003_canonical_context_built",
+      "sequence": 3,
+      "event_type": "canonical_context_built",
+      "event_name": "Canonical case context built",
+      "status": "completed",
+      "source_layer": "Layer 2",
+      "occurred_at": "2026-06-12T13:44:27.506774+00:00",
+      "evidence_refs": [
+        "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+      ],
+      "details": {
+        "criticality_score": 5,
+        "estimated_time_to_failure_hours": 48.0,
+        "confidence_score": 0.88
+      }
+    },
+    {
+      "event_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_evt_004_risk_assessment_completed",
+      "sequence": 4,
+      "event_type": "risk_assessment_completed",
+      "event_name": "Risk drivers identified from canonical context",
+      "status": "completed",
+      "source_layer": "Layer 3",
+      "occurred_at": "2026-06-12T13:44:27.506774+00:00",
+      "evidence_refs": [
+        "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+      ],
+      "details": {
+        "key_risk_drivers": [
+          "high_asset_criticality",
+          "short_failure_horizon",
+          "high_model_confidence",
+          "high_production_pressure",
+          "recent_repeated_failures",
+          "intervention_resources_available",
+          "human_review_required"
+        ],
+        "data_quality_flags": []
+      }
+    },
+    {
+      "event_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_evt_005_human_review_requirement_identified",
+      "sequence": 5,
+      "event_type": "human_review_requirement_identified",
+      "event_name": "Accountable human review requirement identified",
+      "status": "completed",
+      "source_layer": "Layer 3",
+      "occurred_at": "2026-06-12T13:44:27.506774+00:00",
+      "evidence_refs": [
+        "policy_governance",
+        "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+      ],
+      "details": {
+        "human_review_required": true,
+        "criticality_score": 5,
+        "alert_severity": "high"
+      }
+    },
+    {
+      "event_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_evt_006_maintenance_planning_task_created",
+      "sequence": 6,
+      "event_type": "maintenance_planning_task_created",
+      "event_name": "Maintenance planning task created",
+      "status": "completed",
+      "source_layer": "Layer 3",
+      "occurred_at": "2026-06-12T13:44:27.506774+00:00",
+      "evidence_refs": [
+        "inventory_and_resources",
+        "production_planning"
+      ],
+      "details": {
+        "maintenance_planning_required": true,
+        "intervention_feasible": true,
+        "next_planned_downtime_hours": 36.0
+      }
+    },
+    {
+      "event_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_evt_007_decision_milestone_reached",
+      "sequence": 7,
+      "event_type": "decision_milestone_reached",
+      "event_name": "Case is ready for decision rule evaluation",
+      "status": "completed",
+      "source_layer": "Layer 3",
+      "occurred_at": "2026-06-12T13:44:27.506774+00:00",
+      "evidence_refs": [
+        "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+      ],
+      "details": {
+        "decision_ready": true,
+        "blockers": []
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_task_human_review",
+      "task_type": "human_review",
+      "task_name": "Review compressor risk and approve decision path",
+      "status": "open",
+      "required_role": "maintenance_decision_owner",
+      "trigger": "high criticality or high-severity predictive alert",
+      "source_layer": "Layer 3",
+      "evidence_refs": [
+        "policy_governance",
+        "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+      ],
+      "details": {
+        "criticality_score": 5,
+        "alert_severity": "high",
+        "created_at": "2026-06-12T13:44:27.506774+00:00"
+      }
+    },
+    {
+      "task_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_task_maintenance_planning",
+      "task_type": "maintenance_planning",
+      "task_name": "Prepare controlled compressor inspection or intervention",
+      "status": "open",
+      "required_role": "maintenance_planner",
+      "trigger": "short failure horizon with intervention resources available",
+      "source_layer": "Layer 3",
+      "evidence_refs": [
+        "predictive_maintenance",
+        "inventory_and_resources"
+      ],
+      "details": {
+        "estimated_time_to_failure_hours": 48.0,
+        "spare_part_available": true,
+        "specialist_available": true,
+        "created_at": "2026-06-12T13:44:27.506774+00:00"
+      }
+    }
+  ],
+  "milestones": [
+    {
+      "milestone_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_ms_external_evidence_complete",
+      "milestone_name": "External evidence complete",
+      "status": "reached",
+      "source_layer": "Layer 1",
+      "reached_at": "2026-06-12T13:44:27.506774+00:00",
+      "criteria": [
+        "asset registry payload present",
+        "predictive maintenance payload present",
+        "production planning payload present",
+        "policy payload present"
+      ],
+      "evidence_refs": [
+        "asset_registry",
+        "sensor_historian",
+        "predictive_maintenance",
+        "maintenance_history",
+        "production_planning",
+        "inventory_and_resources",
+        "policy_governance"
+      ]
+    },
+    {
+      "milestone_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_ms_canonical_context_available",
+      "milestone_name": "Canonical context available",
+      "status": "reached",
+      "source_layer": "Layer 2",
+      "reached_at": "2026-06-12T13:44:27.506774+00:00",
+      "criteria": [
+        "canonical asset context built",
+        "predictive evidence normalized",
+        "operational context normalized",
+        "governance policy normalized"
+      ],
+      "evidence_refs": [
+        "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+      ]
+    },
+    {
+      "milestone_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_ms_human_review_identified",
+      "milestone_name": "Human review identified",
+      "status": "reached",
+      "source_layer": "Layer 3",
+      "reached_at": "2026-06-12T13:44:27.506774+00:00",
+      "criteria": [
+        "high criticality or high severity",
+        "policy requires accountable human review"
+      ],
+      "evidence_refs": [
+        "policy_governance",
+        "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+      ]
+    },
+    {
+      "milestone_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_ms_maintenance_planning_required",
+      "milestone_name": "Maintenance planning required",
+      "status": "reached",
+      "source_layer": "Layer 3",
+      "reached_at": "2026-06-12T13:44:27.506774+00:00",
+      "criteria": [
+        "short failure horizon",
+        "resources support controlled planning"
+      ],
+      "evidence_refs": [
+        "predictive_maintenance",
+        "inventory_and_resources"
+      ]
+    },
+    {
+      "milestone_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_ms_decision_ready",
+      "milestone_name": "Decision-ready case package",
+      "status": "reached",
+      "source_layer": "Layer 3",
+      "reached_at": "2026-06-12T13:44:27.506774+00:00",
+      "criteria": [
+        "external evidence received",
+        "canonical context built",
+        "human review requirement evaluated",
+        "maintenance planning requirement evaluated",
+        "no unresolved blockers"
+      ],
+      "evidence_refs": [
+        "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+      ]
+    }
+  ],
+  "blockers": [],
+  "lifecycle_version": "0.1.0",
+  "event_count": 7,
+  "task_count": 2,
+  "milestone_count": 5
+}

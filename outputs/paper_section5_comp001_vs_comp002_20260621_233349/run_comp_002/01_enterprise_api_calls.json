@@ -1,0 +1,98 @@
+[
+  {
+    "api_name": "scenario_asset_registry_api",
+    "endpoint": "/enterprise/asset-registry/assets/{asset_id}",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "COMP-002"
+    },
+    "response_payload": {
+      "asset_id": "COMP-002",
+      "asset_type": "industrial_air_compressor",
+      "line_id": "PKG-LINE-02",
+      "asset_criticality": "medium",
+      "criticality_score": 3,
+      "manufacturer": "Reference Compressor Systems",
+      "model": "RC-3200",
+      "location": "Packaging area - auxiliary compressor"
+    },
+    "called_at": "2026-06-21T21:34:00.197880+00:00"
+  },
+  {
+    "api_name": "scenario_cmms_maintenance_history_api",
+    "endpoint": "/enterprise/cmms/assets/{asset_id}/work-orders",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "COMP-002",
+      "lookback_days": 180
+    },
+    "response_payload": {
+      "asset_id": "COMP-002",
+      "lookback_days": 180,
+      "recent_repeated_failures": false,
+      "work_orders": [
+        {
+          "work_order_id": "WO-COMP-002-2026-0311",
+          "type": "preventive",
+          "failure_mode": "none",
+          "duration_hours": 1.5
+        }
+      ]
+    },
+    "called_at": "2026-06-21T21:34:00.197880+00:00"
+  },
+  {
+    "api_name": "scenario_mes_operational_context_api",
+    "endpoint": "/enterprise/mes/lines/{line_id}/operational-context",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "COMP-002",
+      "line_id": "PKG-LINE-02",
+      "horizon_hours": 168
+    },
+    "response_payload": {
+      "asset_id": "COMP-002",
+      "line_id": "PKG-LINE-02",
+      "horizon_hours": 168,
+      "production_pressure": "medium",
+      "production_load_pct": 67.0,
+      "next_planned_downtime_hours": 96.0,
+      "customer_impact": "low",
+      "shift_demand": "medium"
+    },
+    "called_at": "2026-06-21T21:34:00.197880+00:00"
+  },
+  {
+    "api_name": "scenario_inventory_and_resources_api",
+    "endpoint": "/enterprise/inventory/assets/{asset_id}/resources",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "COMP-002"
+    },
+    "response_payload": {
+      "asset_id": "COMP-002",
+      "spare_part_available": true,
+      "spare_part_id": "SP-COMP-STANDARD-BEARING",
+      "specialist_technician_available_next_shift": true,
+      "intervention_feasible": true
+    },
+    "called_at": "2026-06-21T21:34:00.197880+00:00"
+  },
+  {
+    "api_name": "scenario_policy_governance_api",
+    "endpoint": "/enterprise/policy-governance/assets/{asset_type}",
+    "method": "GET",
+    "request_parameters": {
+      "asset_type": "industrial_air_compressor",
+      "criticality_score": 3
+    },
+    "response_payload": {
+      "asset_type": "industrial_air_compressor",
+      "criticality_score": 3,
+      "mandatory_human_review_for_high_criticality": true,
+      "expected_human_review_required": false,
+      "policy_id": "POL-COMP-MEDIUM-CRIT-001"
+    },
+    "called_at": "2026-06-21T21:34:00.197880+00:00"
+  }
+]

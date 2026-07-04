@@ -26,6 +26,7 @@ from oversee.case_management.case_lifecycle import (
     CaseTask,
 )
 
+#7.0 >-------------------------------------------------------------------------------------------------------------------------------
 
 def build_case_management_state(
     canonical_context: CanonicalCaseContext,
@@ -41,7 +42,7 @@ def build_case_management_state(
     case_id = canonical_context.case_id
     asset_id = canonical_context.asset.asset_id
 
-    human_review_required = canonical_context.governance_policy.computed_human_review_required
+    human_review_required = canonical_context.governance_policy.computed_human_review_required #--
     maintenance_planning_required = _requires_maintenance_planning(canonical_context)
     blockers = _build_blockers(canonical_context)
     decision_ready = human_review_required and maintenance_planning_required and not blockers
@@ -374,6 +375,7 @@ def _build_milestones(
         ),
     ]
 
+#7.0 >-------------------------------------------------------------------------------------------------------------------------------
 
 def _requires_maintenance_planning(context: CanonicalCaseContext) -> bool:
     """Return whether a maintenance planning task should be opened."""

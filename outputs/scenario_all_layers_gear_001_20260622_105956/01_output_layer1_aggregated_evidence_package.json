@@ -1,0 +1,220 @@
+{
+  "package_id": "layer1_evidence_package_SCENARIO_GEAR_001_ALERT-GEAR-001-20260603",
+  "case_id": "SCENARIO_GEAR_001_ALERT-GEAR-001-20260603",
+  "asset_id": "GEAR-001",
+  "line_id": "DRIVE-LINE-01",
+  "created_at": "2026-06-22T08:59:56.712824+00:00",
+  "payloads": [
+    {
+      "source_name": "asset_registry",
+      "source_system": "enterprise_asset_registry_api",
+      "source_type": "master_data",
+      "endpoint": "/enterprise/asset-registry/assets/{asset_id}",
+      "generated_at": "2026-06-22T08:59:56.712824+00:00",
+      "case_id": "SCENARIO_GEAR_001_ALERT-GEAR-001-20260603",
+      "asset_id": "GEAR-001",
+      "line_id": "DRIVE-LINE-01",
+      "raw_payload": {
+        "asset_id": "GEAR-001",
+        "asset_type": "gearbox",
+        "line_id": "DRIVE-LINE-01",
+        "asset_criticality": "high",
+        "criticality_score": 5,
+        "manufacturer": "Reference Gear Systems",
+        "model": "RG-800",
+        "location": "Main drive train"
+      },
+      "normalized_fields": {
+        "asset_type": "gearbox",
+        "asset_criticality": "high",
+        "criticality_score": 5
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "sensor_historian",
+      "source_system": "predictive_agent_payload",
+      "source_type": "raw_sensor_context",
+      "endpoint": "embedded_in_predictive_alert_request",
+      "generated_at": "2026-06-22T08:59:56.712824+00:00",
+      "case_id": "SCENARIO_GEAR_001_ALERT-GEAR-001-20260603",
+      "asset_id": "GEAR-001",
+      "line_id": "DRIVE-LINE-01",
+      "raw_payload": {
+        "sampling_window_hours": 24,
+        "vibration_mms": [
+          1.7,
+          2.0,
+          2.5,
+          2.9,
+          3.2
+        ],
+        "temperature_celsius": [
+          64.0,
+          67.0,
+          71.0,
+          75.0,
+          79.0
+        ],
+        "pressure_bar": [
+          2.8,
+          2.8,
+          2.7,
+          2.7,
+          2.6
+        ],
+        "alarm_count": 2,
+        "last_sensor_timestamp": "2026-06-03T12:15:00Z",
+        "oil_particle_index": [
+          0.2,
+          0.3,
+          0.45,
+          0.58,
+          0.74
+        ]
+      },
+      "normalized_fields": {
+        "vibration_trend": "increasing",
+        "temperature_trend": "increasing",
+        "sensor_severity": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "predictive_maintenance",
+      "source_system": "predictive_maintenance_agent",
+      "source_type": "model_inference",
+      "endpoint": "POST /oversee/api/v1/predictive-alerts",
+      "generated_at": "2026-06-22T08:59:56.712824+00:00",
+      "case_id": "SCENARIO_GEAR_001_ALERT-GEAR-001-20260603",
+      "asset_id": "GEAR-001",
+      "line_id": "DRIVE-LINE-01",
+      "raw_payload": {
+        "alert_id": "ALERT-GEAR-001-20260603",
+        "asset_id": "GEAR-001",
+        "asset_type": "gearbox",
+        "line_id": "DRIVE-LINE-01",
+        "suspected_failure_mode": "repeated_gear_wear",
+        "alert_type": "gear_wear_alert",
+        "predictive_horizon_hours": 60,
+        "confidence_score": 0.86,
+        "model_name": "gearbox_wear_risk_model",
+        "model_version": "v1.0-reference",
+        "triggered_at": "2026-06-03T12:20:00Z"
+      },
+      "normalized_fields": {
+        "alert_type": "gear_wear_alert",
+        "estimated_time_to_failure_hours": 60.0,
+        "confidence_score": 0.86,
+        "alert_severity": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "maintenance_history",
+      "source_system": "enterprise_cmms_api",
+      "source_type": "work_order_history",
+      "endpoint": "/enterprise/cmms/assets/{asset_id}/work-orders",
+      "generated_at": "2026-06-22T08:59:56.712824+00:00",
+      "case_id": "SCENARIO_GEAR_001_ALERT-GEAR-001-20260603",
+      "asset_id": "GEAR-001",
+      "line_id": "DRIVE-LINE-01",
+      "raw_payload": {
+        "asset_id": "GEAR-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": true,
+        "work_orders": [
+          {
+            "work_order_id": "WO-GEAR-001-2026-0412",
+            "type": "corrective",
+            "failure_mode": "gear_wear",
+            "duration_hours": 4.0
+          },
+          {
+            "work_order_id": "WO-GEAR-001-2026-0526",
+            "type": "corrective",
+            "failure_mode": "oil_contamination",
+            "duration_hours": 2.5
+          }
+        ]
+      },
+      "normalized_fields": {
+        "recent_repeated_failures": true
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "production_planning",
+      "source_system": "enterprise_mes_api",
+      "source_type": "operational_context",
+      "endpoint": "/enterprise/mes/lines/{line_id}/operational-context",
+      "generated_at": "2026-06-22T08:59:56.712824+00:00",
+      "case_id": "SCENARIO_GEAR_001_ALERT-GEAR-001-20260603",
+      "asset_id": "GEAR-001",
+      "line_id": "DRIVE-LINE-01",
+      "raw_payload": {
+        "asset_id": "GEAR-001",
+        "line_id": "DRIVE-LINE-01",
+        "horizon_hours": 72,
+        "production_pressure": "high",
+        "production_load_pct": 84.0,
+        "next_planned_downtime_hours": 48.0,
+        "customer_impact": "high",
+        "shift_demand": "high"
+      },
+      "normalized_fields": {
+        "production_load_pct": 84.0,
+        "next_planned_downtime_hours": 48.0,
+        "production_pressure": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "inventory_and_resources",
+      "source_system": "enterprise_inventory_api",
+      "source_type": "resource_availability",
+      "endpoint": "/enterprise/inventory/assets/{asset_id}/resources",
+      "generated_at": "2026-06-22T08:59:56.712824+00:00",
+      "case_id": "SCENARIO_GEAR_001_ALERT-GEAR-001-20260603",
+      "asset_id": "GEAR-001",
+      "line_id": "DRIVE-LINE-01",
+      "raw_payload": {
+        "asset_id": "GEAR-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-GEAR-INSPECTION-KIT",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "normalized_fields": {
+        "spare_part_available": true,
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "policy_governance",
+      "source_system": "enterprise_policy_governance_api",
+      "source_type": "governance_policy",
+      "endpoint": "/enterprise/policy-governance/assets/{asset_type}",
+      "generated_at": "2026-06-22T08:59:56.712824+00:00",
+      "case_id": "SCENARIO_GEAR_001_ALERT-GEAR-001-20260603",
+      "asset_id": "GEAR-001",
+      "line_id": "DRIVE-LINE-01",
+      "raw_payload": {
+        "asset_type": "gearbox",
+        "criticality_score": 5,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_id": "POL-GEAR-HIGH-CRIT-001"
+      },
+      "normalized_fields": {
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true
+      },
+      "data_quality_flags": []
+    }
+  ],
+  "package_version": "0.1.0",
+  "source_count": 7
+}

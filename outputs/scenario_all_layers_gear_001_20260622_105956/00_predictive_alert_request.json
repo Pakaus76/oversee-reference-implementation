@@ -1,0 +1,54 @@
+{
+  "alert": {
+    "alert_id": "ALERT-GEAR-001-20260603",
+    "asset_id": "GEAR-001",
+    "asset_type": "gearbox",
+    "line_id": "DRIVE-LINE-01",
+    "suspected_failure_mode": "repeated_gear_wear",
+    "alert_type": "gear_wear_alert",
+    "predictive_horizon_hours": 60,
+    "confidence_score": 0.86,
+    "model_name": "gearbox_wear_risk_model",
+    "model_version": "v1.0-reference",
+    "triggered_at": "2026-06-03T12:20:00Z"
+  },
+  "raw_sensor_context": {
+    "sampling_window_hours": 24,
+    "vibration_mms": [
+      1.7,
+      2.0,
+      2.5,
+      2.9,
+      3.2
+    ],
+    "temperature_celsius": [
+      64.0,
+      67.0,
+      71.0,
+      75.0,
+      79.0
+    ],
+    "pressure_bar": [
+      2.8,
+      2.8,
+      2.7,
+      2.7,
+      2.6
+    ],
+    "alarm_count": 2,
+    "last_sensor_timestamp": "2026-06-03T12:15:00Z",
+    "oil_particle_index": [
+      0.2,
+      0.3,
+      0.45,
+      0.58,
+      0.74
+    ]
+  },
+  "requested_context": {
+    "maintenance_history_lookback_days": 180,
+    "production_context_horizon_hours": 72,
+    "include_inventory_and_resources": true,
+    "include_policy_governance": true
+  }
+}

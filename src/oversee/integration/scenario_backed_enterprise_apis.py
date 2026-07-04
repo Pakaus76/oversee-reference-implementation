@@ -24,6 +24,7 @@ from typing import Any
 
 from oversee.integration.simulated_enterprise_apis import EnterpriseApiCall
 
+#3.0 --------------------------------------------------------------------------------------------------------------------------------->
 
 class ScenarioBackedEnterpriseApiClient:
     """Enterprise API client backed by one scenario's executable inputs.
@@ -41,6 +42,8 @@ class ScenarioBackedEnterpriseApiClient:
         "policy_governance",
     }
 
+#3.1 --------------------------------------------------------------------------------------------------------------------------------->
+
     def __init__(self, executable_inputs: dict[str, Any]) -> None:
         """Create a scenario-backed enterprise API client.
         
@@ -53,12 +56,18 @@ class ScenarioBackedEnterpriseApiClient:
         self.enterprise_sources = self._extract_enterprise_sources(executable_inputs)
         self.calls: list[EnterpriseApiCall] = []
 
+#3.2 -------------------------------------------------------------------------------------------------------------------------------->
+
     def get_asset_metadata(self, *, asset_id: str) -> dict[str, Any]:
-        """Return asset registry and engineering master-data evidence.
+        """Return Asset Registry and engineering master-data evidence.
         
         In a real implementation this method could query an asset registry or
         engineering master-data system. In the demo it returns the scenario-backed
         payload used by Layer 1 evidence aggregation.
+
+        - It helps us to know what type of asset we are dealing with and what its criticality is.
+        This simulated API would be equivalent to querying an asset registry or engineering master system.
+        For COMP-001, it returns the asset data: asset type, criticality, and role in the process.
         """
 
         response = self._copy_source_payload("asset_metadata")
@@ -73,12 +82,17 @@ class ScenarioBackedEnterpriseApiClient:
         )
 
         return response
+    
+#3.2 --------------------------------------------------------------------------------------------------------------------------------
 
     def get_maintenance_history(self, *, asset_id: str, lookback_days: int) -> dict[str, Any]:
         """Return CMMS/EAM maintenance-history evidence.
         
-        The method supplies historical work orders, repeated interventions and related
-        maintenance context for the requested asset.
+        The method supplies historical work orders, repeated interventions and related maintenance context for the requested asset.
+
+        - It helps to determine if this asset has already had repeated problems, recent interventions, or historical signs of failure.
+        This API simulates a query to the CMMS. I pass it the asset_id and a window back,
+        for example 90 days, and it returns the relevant maintenance history.
         """
 
         response = self._copy_source_payload("maintenance_history")
@@ -101,6 +115,8 @@ class ScenarioBackedEnterpriseApiClient:
 
         return response
 
+#3.2 --------------------------------------------------------------------------------------------------------------------------------
+
     def get_operational_context(
         self,
         *,
@@ -110,8 +126,11 @@ class ScenarioBackedEnterpriseApiClient:
     ) -> dict[str, Any]:
         """Return ERP/MES production and operational-context evidence.
         
-        The method supplies production pressure, downtime-window and planning context
-        needed for downstream contextualization and decision readiness.
+        The method supplies production pressure, downtime-window and planning context needed for downstream contextualization and decision readiness.
+
+        -It helps determine if there's production pressure, when the next shutdown window is, and what the impact of losing the asset would be.
+        This API simulates a query to the MES/ERP. It's not enough to know that the compressor is degrading;
+        I need to know if the line is loaded, if there's an upcoming shutdown window, and what the impact of inaction would be.
         """
 
         response = self._copy_source_payload("operational_context")
@@ -144,11 +163,16 @@ class ScenarioBackedEnterpriseApiClient:
 
         return response
 
+#3.2 --------------------------------------------------------------------------------------------------------------------------------
+
     def get_inventory_and_resources(self, *, asset_id: str) -> dict[str, Any]:
         """Return MRO inventory and workforce-availability evidence.
         
         The method supplies spare-part availability, technician availability and other
         resource constraints used later by contextualization and decision logic.
+
+        - It helps determine if the intervention is feasible.
+        This API answers a very practical question: even if the case is urgent, do I have a spare part and a technician available to intervene?
         """
 
         response = self._copy_source_payload("inventory_and_resources")
@@ -168,11 +192,16 @@ class ScenarioBackedEnterpriseApiClient:
 
         return response
 
+#3.2 --------------------------------------------------------------------------------------------------------------------------------
+
     def get_policy_governance(self, *, asset_type: str, criticality_score: int) -> dict[str, Any]:
         """Return policy-governance and compliance evidence.
         
         The method supplies review rules, criticality constraints and policy checks
         that become part of the evidence package and downstream governed decision.
+
+        - This API helps determine whether, due to criticality or internal policy, a decision requires human review.
+        This API simulates governance rules. If the asset is critical, policy may mandate human review before implementing the recommendation.
         """
 
         response = self._copy_source_payload("policy_governance")
@@ -202,12 +231,18 @@ class ScenarioBackedEnterpriseApiClient:
 
         return response
 
+#3.2 --------------------------------------------------------------------------------------------------------------------------------
+
     def call_trace(self) -> list[dict[str, Any]]:
         """Return all scenario-backed enterprise API calls as dictionaries.
         
         The trace shows which simulated source methods were called and what payload was
         returned. It helps reviewers distinguish source access from internal OVERSEE
         reasoning.
+
+        -It serves to audit which sources were consulted.
+        This allows us to demonstrate that Layer 1 did not invent the data. 
+        It called specific methods of the boundary API, and that trace is then saved in 01_enterprise_api_calls.json.
         """
 
         return [call.to_dict() for call in self.calls]

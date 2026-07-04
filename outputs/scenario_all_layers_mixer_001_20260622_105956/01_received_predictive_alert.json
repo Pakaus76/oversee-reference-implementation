@@ -1,0 +1,60 @@
+{
+  "endpoint": "POST /oversee/api/v1/predictive-alerts",
+  "received_at": "2026-06-22T08:59:56.799344+00:00",
+  "accepted": true,
+  "validation_errors": [],
+  "request_payload": {
+    "alert": {
+      "alert_id": "ALERT-MIXER-001-20260603",
+      "asset_id": "MIXER-001",
+      "asset_type": "industrial_mixer",
+      "line_id": "PROC-MIX-01",
+      "suspected_failure_mode": "mixing_instability",
+      "alert_type": "mixing_instability_alert",
+      "predictive_horizon_hours": 48,
+      "confidence_score": 0.85,
+      "model_name": "mixer_quality_risk_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T14:20:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        1.3,
+        1.6,
+        2.0,
+        2.5,
+        3.0
+      ],
+      "temperature_celsius": [
+        50.0,
+        52.0,
+        55.0,
+        58.0,
+        61.0
+      ],
+      "pressure_bar": [
+        3.0,
+        3.0,
+        2.9,
+        2.9,
+        2.8
+      ],
+      "alarm_count": 3,
+      "last_sensor_timestamp": "2026-06-03T14:15:00Z",
+      "torque_variability_pct": [
+        4.0,
+        6.0,
+        9.0,
+        12.0,
+        15.0
+      ]
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 72,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    }
+  }
+}

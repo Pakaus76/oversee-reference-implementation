@@ -1,0 +1,223 @@
+{
+  "package_id": "layer1_evidence_package_SCENARIO_DATA_001_ALERT-DATA-001-20260603",
+  "case_id": "SCENARIO_DATA_001_ALERT-DATA-001-20260603",
+  "asset_id": "DATA-001",
+  "line_id": "PROC-LINE-02",
+  "created_at": "2026-06-22T08:59:56.628505+00:00",
+  "payloads": [
+    {
+      "source_name": "asset_registry",
+      "source_system": "enterprise_asset_registry_api",
+      "source_type": "master_data",
+      "endpoint": "/enterprise/asset-registry/assets/{asset_id}",
+      "generated_at": "2026-06-22T08:59:56.628505+00:00",
+      "case_id": "SCENARIO_DATA_001_ALERT-DATA-001-20260603",
+      "asset_id": "DATA-001",
+      "line_id": "PROC-LINE-02",
+      "raw_payload": {
+        "asset_id": "DATA-001",
+        "asset_type": "electric_motor",
+        "line_id": "PROC-LINE-02",
+        "asset_criticality": "medium",
+        "criticality_score": 3,
+        "manufacturer": "Reference Motor Systems",
+        "model": "RM-180",
+        "location": "Process support area"
+      },
+      "normalized_fields": {
+        "asset_type": "electric_motor",
+        "asset_criticality": "medium",
+        "criticality_score": 3
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "sensor_historian",
+      "source_system": "predictive_agent_payload",
+      "source_type": "raw_sensor_context",
+      "endpoint": "embedded_in_predictive_alert_request",
+      "generated_at": "2026-06-22T08:59:56.628505+00:00",
+      "case_id": "SCENARIO_DATA_001_ALERT-DATA-001-20260603",
+      "asset_id": "DATA-001",
+      "line_id": "PROC-LINE-02",
+      "raw_payload": {
+        "sampling_window_hours": 24,
+        "vibration_mms": [
+          1.0,
+          1.0,
+          1.1,
+          1.0,
+          1.1
+        ],
+        "temperature_celsius": [
+          70.0,
+          76.0,
+          84.0,
+          91.0,
+          96.0
+        ],
+        "pressure_bar": [
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          4.0
+        ],
+        "current_amp": [
+          30.0,
+          30.4,
+          30.1,
+          30.2,
+          30.3
+        ],
+        "sensor_health": "thermal_channel_requires_review",
+        "evidence_quality_note": "Temperature trend increases while vibration and current remain stable.",
+        "data_quality_flags": [
+          "contradictory_temperature_vibration_evidence",
+          "thermal_channel_requires_review"
+        ],
+        "alarm_count": 1,
+        "last_sensor_timestamp": "2026-06-03T11:25:00Z"
+      },
+      "normalized_fields": {
+        "vibration_trend": "increasing",
+        "temperature_trend": "increasing",
+        "sensor_severity": "high"
+      },
+      "data_quality_flags": [
+        "contradictory_temperature_vibration_evidence",
+        "thermal_channel_requires_review"
+      ]
+    },
+    {
+      "source_name": "predictive_maintenance",
+      "source_system": "predictive_maintenance_agent",
+      "source_type": "model_inference",
+      "endpoint": "POST /oversee/api/v1/predictive-alerts",
+      "generated_at": "2026-06-22T08:59:56.628505+00:00",
+      "case_id": "SCENARIO_DATA_001_ALERT-DATA-001-20260603",
+      "asset_id": "DATA-001",
+      "line_id": "PROC-LINE-02",
+      "raw_payload": {
+        "alert_id": "ALERT-DATA-001-20260603",
+        "asset_id": "DATA-001",
+        "asset_type": "electric_motor",
+        "line_id": "PROC-LINE-02",
+        "suspected_failure_mode": "contradictory_thermal_vibration_evidence",
+        "alert_type": "moderate_anomaly_with_conflicting_evidence",
+        "predictive_horizon_hours": 120,
+        "confidence_score": 0.66,
+        "model_name": "motor_condition_risk_model",
+        "model_version": "v1.0-reference",
+        "triggered_at": "2026-06-03T11:30:00Z"
+      },
+      "normalized_fields": {
+        "alert_type": "moderate_anomaly_with_conflicting_evidence",
+        "estimated_time_to_failure_hours": 120.0,
+        "confidence_score": 0.66,
+        "alert_severity": "high"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "maintenance_history",
+      "source_system": "enterprise_cmms_api",
+      "source_type": "work_order_history",
+      "endpoint": "/enterprise/cmms/assets/{asset_id}/work-orders",
+      "generated_at": "2026-06-22T08:59:56.628505+00:00",
+      "case_id": "SCENARIO_DATA_001_ALERT-DATA-001-20260603",
+      "asset_id": "DATA-001",
+      "line_id": "PROC-LINE-02",
+      "raw_payload": {
+        "asset_id": "DATA-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": false,
+        "work_orders": [
+          {
+            "work_order_id": "WO-DATA-001-2026-0320",
+            "type": "preventive",
+            "failure_mode": "none",
+            "duration_hours": 1.0
+          }
+        ]
+      },
+      "normalized_fields": {
+        "recent_repeated_failures": false
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "production_planning",
+      "source_system": "enterprise_mes_api",
+      "source_type": "operational_context",
+      "endpoint": "/enterprise/mes/lines/{line_id}/operational-context",
+      "generated_at": "2026-06-22T08:59:56.628505+00:00",
+      "case_id": "SCENARIO_DATA_001_ALERT-DATA-001-20260603",
+      "asset_id": "DATA-001",
+      "line_id": "PROC-LINE-02",
+      "raw_payload": {
+        "asset_id": "DATA-001",
+        "line_id": "PROC-LINE-02",
+        "horizon_hours": 120,
+        "production_pressure": "medium",
+        "production_load_pct": 72.0,
+        "next_planned_downtime_hours": 72.0,
+        "customer_impact": "medium",
+        "shift_demand": "medium"
+      },
+      "normalized_fields": {
+        "production_load_pct": 72.0,
+        "next_planned_downtime_hours": 72.0,
+        "production_pressure": "medium"
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "inventory_and_resources",
+      "source_system": "enterprise_inventory_api",
+      "source_type": "resource_availability",
+      "endpoint": "/enterprise/inventory/assets/{asset_id}/resources",
+      "generated_at": "2026-06-22T08:59:56.628505+00:00",
+      "case_id": "SCENARIO_DATA_001_ALERT-DATA-001-20260603",
+      "asset_id": "DATA-001",
+      "line_id": "PROC-LINE-02",
+      "raw_payload": {
+        "asset_id": "DATA-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-MOTOR-BEARING-STD",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "normalized_fields": {
+        "spare_part_available": true,
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "data_quality_flags": []
+    },
+    {
+      "source_name": "policy_governance",
+      "source_system": "enterprise_policy_governance_api",
+      "source_type": "governance_policy",
+      "endpoint": "/enterprise/policy-governance/assets/{asset_type}",
+      "generated_at": "2026-06-22T08:59:56.628505+00:00",
+      "case_id": "SCENARIO_DATA_001_ALERT-DATA-001-20260603",
+      "asset_id": "DATA-001",
+      "line_id": "PROC-LINE-02",
+      "raw_payload": {
+        "asset_type": "electric_motor",
+        "criticality_score": 3,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": false,
+        "policy_id": "POL-MOTOR-MEDIUM-CRIT-001"
+      },
+      "normalized_fields": {
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": false
+      },
+      "data_quality_flags": []
+    }
+  ],
+  "package_version": "0.1.0",
+  "source_count": 7
+}

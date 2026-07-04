@@ -1,0 +1,86 @@
+{
+  "bundle_id": "recommendation_paths_SCENARIO_AGV_001_ALERT-AGV-001-20260603",
+  "case_id": "SCENARIO_AGV_001_ALERT-AGV-001-20260603",
+  "asset_id": "AGV-001",
+  "decision_rule_evaluation_id": "dmn_like_eval_SCENARIO_AGV_001_ALERT-AGV-001-20260603",
+  "path_outputs": [
+    {
+      "path_name": "governed_recommendation_formulation",
+      "path_type": "governed_recommendation_path",
+      "status": "completed",
+      "recommendation": {
+        "recommendation_id": "governed_rec_SCENARIO_AGV_001_ALERT-AGV-001-20260603",
+        "asset_id": "AGV-001",
+        "action": "Escalate the constrained maintenance case, resolve execution blockers, increase monitoring, and prepare intervention once feasibility is restored.",
+        "primary_action": "Escalate the constrained maintenance case, resolve execution blockers, increase monitoring, and prepare intervention once feasibility is restored.",
+        "anchor_action": "Monitor the asset and review the next maintenance window.",
+        "priority": "medium",
+        "deterministic_anchor_priority": "low",
+        "dmn_like_final_priority": "medium",
+        "recommended_execution_mode": "standard_planning",
+        "human_review_required": true,
+        "intervention_feasible": true,
+        "decision_ready": false,
+        "transformation_applied": true,
+        "transformation_reasons": [
+          "case_not_decision_ready"
+        ],
+        "preconditions": [
+          "Resolve open case blockers before approving execution."
+        ],
+        "blockers": [],
+        "required_reviews": [
+          "Obtain accountable human review before execution."
+        ],
+        "escalations": [],
+        "contingency_actions": [],
+        "rationale": "Deterministic anchor proposed: Monitor the asset and review the next maintenance window. DMN-like final priority: medium Execution mode: standard_planning Intervention feasible: True Decision ready: False Human review required: True The anchor was transformed because: case_not_decision_ready."
+      },
+      "input_refs": [
+        "canonical_context_SCENARIO_AGV_001_ALERT-AGV-001-20260603",
+        "SCENARIO_AGV_001_ALERT-AGV-001-20260603",
+        "dmn_like_eval_SCENARIO_AGV_001_ALERT-AGV-001-20260603"
+      ],
+      "governance_refs": [
+        "compressor_human_review_policy",
+        "compressor_final_priority",
+        "compressor_execution_mode",
+        "recommendation_consistency_constraints"
+      ],
+      "notes": [
+        "The deterministic anchor is used as an initial recommendation.",
+        "Layer 4 formulates a governed recommendation by preserving, constraining, transforming, or escalating the anchor according to feasibility, readiness, execution mode, and governance signals."
+      ]
+    },
+    {
+      "path_name": "dmn_like_governance_summary",
+      "path_type": "rule_governance_summary",
+      "status": "completed",
+      "recommendation": {
+        "case_id": "SCENARIO_AGV_001_ALERT-AGV-001-20260603",
+        "asset_id": "AGV-001",
+        "final_priority": "medium",
+        "recommended_execution_mode": "standard_planning",
+        "human_review_required": true,
+        "intervention_feasible": true,
+        "decision_ready": false,
+        "triggered_rule_count": 3
+      },
+      "input_refs": [
+        "canonical_context_SCENARIO_AGV_001_ALERT-AGV-001-20260603",
+        "SCENARIO_AGV_001_ALERT-AGV-001-20260603",
+        "dmn_like_eval_SCENARIO_AGV_001_ALERT-AGV-001-20260603"
+      ],
+      "governance_refs": [
+        "DMN_R003",
+        "DMN_R004",
+        "DMN_R006"
+      ],
+      "notes": [
+        "This output summarizes explicit rule evaluation before final governed packaging."
+      ]
+    }
+  ],
+  "bundle_version": "0.1.0",
+  "path_count": 2
+}

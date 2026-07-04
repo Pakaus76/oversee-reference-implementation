@@ -1,0 +1,186 @@
+{
+  "scenario_id": "AGV-001",
+  "title": "Redundant AGV battery degradation case",
+  "description": "Coverage case where a redundant automated guided vehicle has battery degradation that can be planned without urgent disruption.",
+  "asset_id": "AGV-001",
+  "asset_type": "automated_guided_vehicle",
+  "failure_mode": "battery_degradation",
+  "paper_aligned": false,
+  "master_case": false,
+  "master_case_role": "coverage_case_redundant_asset_planning",
+  "decision_pattern": "redundant_asset_planned_replacement",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Battery degradation alert; confidence 0.77; 168h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Battery health decreasing; route completion still acceptable"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "AGV; medium criticality; fleet redundancy available"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "No recent emergency failures"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "Low production impact due to fleet redundancy"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Battery module available; technician available this week"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review not mandatory for redundant planned replacement"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Replacement planning task active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Battery replacement can be scheduled in weekly maintenance"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "Redundancy allows planned replacement rather than urgent action"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Fleet impact summary prepared"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Battery replacement proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Fleet replacement traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: battery degradation alert, fleet context, asset redundancy, and maintenance history",
+    "layer2": "Contextualized decision profile: medium urgency, redundant capacity, feasible planned replacement",
+    "layer3": "Decision-ready case: open, replacement planning task active, no blockers",
+    "layer4": "Decision record: medium priority, planned replacement recommended",
+    "layer5": "Governed recommendation package: fleet summary, traceability index, and replacement proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-AGV-001-20260603",
+      "asset_id": "AGV-001",
+      "asset_type": "automated_guided_vehicle",
+      "line_id": "LOG-FLEET-01",
+      "suspected_failure_mode": "battery_degradation",
+      "alert_type": "battery_degradation_alert",
+      "predictive_horizon_hours": 168,
+      "confidence_score": 0.77,
+      "model_name": "agv_battery_health_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T13:10:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        0.5,
+        0.5,
+        0.5,
+        0.6,
+        0.6
+      ],
+      "temperature_celsius": [
+        32.0,
+        33.0,
+        34.0,
+        35.0,
+        36.0
+      ],
+      "pressure_bar": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "alarm_count": 0,
+      "last_sensor_timestamp": "2026-06-03T13:05:00Z",
+      "battery_health_pct": [
+        82.0,
+        80.0,
+        78.0,
+        75.0,
+        72.0
+      ]
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 168,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "AGV-001",
+        "asset_type": "automated_guided_vehicle",
+        "line_id": "LOG-FLEET-01",
+        "asset_criticality": "medium",
+        "criticality_score": 3,
+        "manufacturer": "Reference AGV Systems",
+        "model": "RAGV-50",
+        "location": "Internal logistics fleet"
+      },
+      "maintenance_history": {
+        "asset_id": "AGV-001",
+        "lookback_days": 180,
+        "recent_repeated_failures": false,
+        "work_orders": [
+          {
+            "work_order_id": "WO-AGV-001-2026-0414",
+            "type": "preventive",
+            "failure_mode": "none",
+            "duration_hours": 1.0
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "AGV-001",
+        "line_id": "LOG-FLEET-01",
+        "horizon_hours": 168,
+        "production_pressure": "low",
+        "production_load_pct": 52.0,
+        "next_planned_downtime_hours": 120.0,
+        "customer_impact": "low",
+        "shift_demand": "medium"
+      },
+      "inventory_and_resources": {
+        "asset_id": "AGV-001",
+        "spare_part_available": true,
+        "spare_part_id": "SP-AGV-BATTERY-MODULE",
+        "specialist_technician_available_next_shift": true,
+        "intervention_feasible": true
+      },
+      "policy_governance": {
+        "asset_type": "automated_guided_vehicle",
+        "criticality_score": 3,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": false,
+        "policy_id": "POL-AGV-REDUNDANT-001"
+      }
+    }
+  }
+}

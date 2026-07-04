@@ -1,0 +1,1735 @@
+{
+  "manifest": {
+    "generated_at": "20260622_103706",
+    "purpose": "Section 5 paper-facing COMP-001 vs COMP-002 demonstration",
+    "source_scenario_files": {
+      "COMP-001": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\demo\\interactive_walkthrough\\scenarios\\comp_001_paper.json",
+      "COMP-002": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\demo\\interactive_walkthrough\\scenarios\\comp_002_paper.json"
+    },
+    "source_run_dirs": {
+      "COMP-001": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_comp_001_paper_20260622_103706",
+      "COMP-002": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_comp_002_paper_20260622_103706"
+    },
+    "section5_output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\paper_section5_comp001_vs_comp002_20260622_103706",
+    "catalog_independent_execution": true
+  },
+  "scenario_overview": {
+    "COMP-001": {
+      "asset_id": "COMP-001",
+      "asset_type": "industrial_air_compressor",
+      "failure_mode": "bearing_degradation",
+      "decision_pattern": "critical_but_feasible_controlled_planning",
+      "confidence_score": 0.88,
+      "predictive_horizon_hours": 48,
+      "production_pressure": "high",
+      "production_load_pct": 92.0,
+      "next_planned_downtime_hours": 36.0,
+      "spare_part_available": true,
+      "technician_available_next_shift": true,
+      "intervention_feasible": true,
+      "human_review_required": true,
+      "management_escalation_required": false
+    },
+    "COMP-002": {
+      "asset_id": "COMP-002",
+      "asset_type": "industrial_air_compressor",
+      "failure_mode": "bearing_degradation",
+      "decision_pattern": "critical_but_constrained_escalation",
+      "confidence_score": 0.86,
+      "predictive_horizon_hours": 48,
+      "production_pressure": "very_high",
+      "production_load_pct": 98.0,
+      "next_planned_downtime_hours": null,
+      "spare_part_available": false,
+      "technician_available_next_shift": false,
+      "intervention_feasible": false,
+      "human_review_required": true,
+      "management_escalation_required": true
+    }
+  },
+  "cross_scenario_matrix": [
+    {
+      "demonstration_aspect": "Asset type",
+      "comp_001": "industrial_air_compressor",
+      "comp_002": "industrial_air_compressor",
+      "interpretation": "Comparable asset type."
+    },
+    {
+      "demonstration_aspect": "Predictive condition",
+      "comp_001": "confidence=0.88; horizon=48h",
+      "comp_002": "confidence=0.86; horizon=48h",
+      "interpretation": "Predictive conditions are comparable and do not alone explain the recommendation divergence."
+    },
+    {
+      "demonstration_aspect": "Operational context",
+      "comp_001": "high load; downtime in 36.0h",
+      "comp_002": "very_high load; downtime=None",
+      "interpretation": "The operational context starts to separate the scenarios."
+    },
+    {
+      "demonstration_aspect": "Resource feasibility",
+      "comp_001": "spare=True; technician=True; feasible=True",
+      "comp_002": "spare=False; technician=False; feasible=False",
+      "interpretation": "Resource feasibility is a major source of divergence."
+    },
+    {
+      "demonstration_aspect": "Governance context",
+      "comp_001": "human_review=True; escalation=False",
+      "comp_002": "human_review=True; escalation=True",
+      "interpretation": "Both require human review, but only COMP-002 requires management escalation."
+    },
+    {
+      "demonstration_aspect": "Layer 2 divergence",
+      "comp_001": "Operationally feasible and governance-cleared.",
+      "comp_002": "Operationally constrained and escalation-required.",
+      "interpretation": "The main divergence begins at contextualization."
+    },
+    {
+      "demonstration_aspect": "Expected governed recommendation",
+      "comp_001": "Controlled planned intervention.",
+      "comp_002": "Deferred intervention, enhanced monitoring, and escalation.",
+      "interpretation": "Similar prediction does not imply similar recommendation."
+    }
+  ],
+  "selected_artifacts": {
+    "COMP-001": {
+      "canonical_context": {
+        "context_id": "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "case_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "asset": {
+          "asset_id": "COMP-001",
+          "asset_type": "industrial_air_compressor",
+          "line_id": "PKG-LINE-01",
+          "criticality_label": "high",
+          "criticality_score": 5,
+          "process_role": null
+        },
+        "predictive_evidence": {
+          "alert_type": "predictive_degradation_alert",
+          "estimated_time_to_failure_hours": 48.0,
+          "confidence_score": 0.88,
+          "alert_severity": "high",
+          "vibration_trend": "increasing",
+          "temperature_trend": "increasing"
+        },
+        "operational_context": {
+          "production_load_pct": 92.0,
+          "next_planned_downtime_hours": 36.0,
+          "production_pressure": "high",
+          "business_impact_if_unavailable": null
+        },
+        "maintenance_resources": {
+          "recent_repeated_failures": true,
+          "spare_part_available": true,
+          "specialist_technician_available_next_shift": true,
+          "intervention_feasible": true
+        },
+        "governance_policy": {
+          "mandatory_human_review_for_high_criticality": true,
+          "expected_human_review_required": true,
+          "computed_human_review_required": true
+        },
+        "source_payload_count": 7,
+        "source_names": [
+          "asset_registry",
+          "sensor_historian",
+          "predictive_maintenance",
+          "maintenance_history",
+          "production_planning",
+          "inventory_and_resources",
+          "policy_governance"
+        ],
+        "data_quality_flags": [],
+        "key_risk_drivers": [
+          "high_asset_criticality",
+          "short_failure_horizon",
+          "high_model_confidence",
+          "high_production_pressure",
+          "recent_repeated_failures",
+          "intervention_resources_available",
+          "human_review_required"
+        ],
+        "context_version": "0.1.0"
+      },
+      "layer2_contextualization": {
+        "case_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "asset_id": "COMP-001",
+        "canonical_context": {
+          "context_id": "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+          "case_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+          "asset": {
+            "asset_id": "COMP-001",
+            "asset_type": "industrial_air_compressor",
+            "line_id": "PKG-LINE-01",
+            "criticality_label": "high",
+            "criticality_score": 5,
+            "process_role": null
+          },
+          "predictive_evidence": {
+            "alert_type": "predictive_degradation_alert",
+            "estimated_time_to_failure_hours": 48.0,
+            "confidence_score": 0.88,
+            "alert_severity": "high",
+            "vibration_trend": "increasing",
+            "temperature_trend": "increasing"
+          },
+          "operational_context": {
+            "production_load_pct": 92.0,
+            "next_planned_downtime_hours": 36.0,
+            "production_pressure": "high",
+            "business_impact_if_unavailable": null
+          },
+          "maintenance_resources": {
+            "recent_repeated_failures": true,
+            "spare_part_available": true,
+            "specialist_technician_available_next_shift": true,
+            "intervention_feasible": true
+          },
+          "governance_policy": {
+            "mandatory_human_review_for_high_criticality": true,
+            "expected_human_review_required": true,
+            "computed_human_review_required": true
+          },
+          "source_payload_count": 7,
+          "source_names": [
+            "asset_registry",
+            "sensor_historian",
+            "predictive_maintenance",
+            "maintenance_history",
+            "production_planning",
+            "inventory_and_resources",
+            "policy_governance"
+          ],
+          "data_quality_flags": [],
+          "key_risk_drivers": [
+            "high_asset_criticality",
+            "short_failure_horizon",
+            "high_model_confidence",
+            "high_production_pressure",
+            "recent_repeated_failures",
+            "intervention_resources_available",
+            "human_review_required"
+          ],
+          "context_version": "0.1.0"
+        },
+        "rule_trace": [
+          {
+            "rule_id": "L2_R001",
+            "rule_name": "Technical urgency from failure horizon",
+            "condition": "IF estimated_time_to_failure_hours <= 72 THEN technical_urgency = high",
+            "triggered": true,
+            "output_field": "technical_urgency",
+            "output_value": "high",
+            "rationale": "Short failure horizon increases technical urgency."
+          },
+          {
+            "rule_id": "L2_R002",
+            "rule_name": "Asset escalation from criticality",
+            "condition": "IF criticality_score >= 5 THEN asset_escalation = required",
+            "triggered": true,
+            "output_field": "asset_escalation",
+            "output_value": "required",
+            "rationale": "High-criticality assets require explicit escalation."
+          },
+          {
+            "rule_id": "L2_R003",
+            "rule_name": "Operational constraint from production pressure",
+            "condition": "IF production_pressure = high THEN operational_constraint = high",
+            "triggered": true,
+            "output_field": "operational_constraint",
+            "output_value": "high",
+            "rationale": "High production pressure constrains maintenance timing."
+          },
+          {
+            "rule_id": "L2_R004",
+            "rule_name": "Downtime window proximity",
+            "condition": "IF next_planned_downtime_hours <= 48 THEN downtime_window = near",
+            "triggered": true,
+            "output_field": "downtime_window",
+            "output_value": "near",
+            "rationale": "A near downtime window creates a feasible planning opportunity."
+          },
+          {
+            "rule_id": "L2_R005",
+            "rule_name": "Intervention feasibility from resources",
+            "condition": "IF spare_part_available = true AND specialist_technician_available_next_shift = true THEN intervention_feasible = true",
+            "triggered": true,
+            "output_field": "intervention_feasible",
+            "output_value": true,
+            "rationale": "Available spare parts and specialist capacity make intervention feasible."
+          },
+          {
+            "rule_id": "L2_R006",
+            "rule_name": "Recurrence risk from repeated failures",
+            "condition": "IF recent_repeated_failures = true THEN recurrence_risk = high",
+            "triggered": true,
+            "output_field": "recurrence_risk",
+            "output_value": "high",
+            "rationale": "Recent repeated failures increase recurrence risk."
+          },
+          {
+            "rule_id": "L2_R007",
+            "rule_name": "Human review requirement from governance policy",
+            "condition": "IF high criticality policy applies THEN human_review_required = true",
+            "triggered": true,
+            "output_field": "human_review_required",
+            "output_value": true,
+            "rationale": "Governance policy requires accountable human review."
+          },
+          {
+            "rule_id": "L2_R008",
+            "rule_name": "Layer 2 decision readiness",
+            "condition": "IF technical urgency, feasibility and governance context exist THEN layer2_decision_ready = true",
+            "triggered": true,
+            "output_field": "layer2_decision_ready",
+            "output_value": true,
+            "rationale": "Layer 2 has enough contextualized evidence for downstream case lifecycle and decision logic."
+          }
+        ],
+        "derived_context": {
+          "technical_urgency": "high",
+          "asset_escalation": "required",
+          "operational_constraint": "high",
+          "downtime_window": "near",
+          "intervention_feasible": true,
+          "recurrence_risk": "high",
+          "human_review_required": true,
+          "layer2_decision_ready": true
+        },
+        "layer2_ready": true
+      },
+      "layer3_case_state": {
+        "case_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "asset_id": "COMP-001",
+        "case_status": "open",
+        "lifecycle_stage": "decision_ready",
+        "current_layer": "Layer 3 - CMMN-inspired case lifecycle",
+        "opened_at": "2026-06-22T08:37:06.839294+00:00",
+        "human_review_required": true,
+        "maintenance_planning_required": true,
+        "decision_ready": true,
+        "events": [
+          {
+            "event_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_evt_001_case_opened",
+            "sequence": 1,
+            "event_type": "case_opened",
+            "event_name": "Compressor decision case opened",
+            "status": "completed",
+            "source_layer": "Layer 3",
+            "occurred_at": "2026-06-22T08:37:06.839294+00:00",
+            "evidence_refs": [
+              "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+            ],
+            "details": {
+              "asset_id": "COMP-001",
+              "line_id": "PKG-LINE-01"
+            }
+          },
+          {
+            "event_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_evt_002_external_evidence_received",
+            "sequence": 2,
+            "event_type": "external_evidence_received",
+            "event_name": "External source evidence received",
+            "status": "completed",
+            "source_layer": "Layer 1",
+            "occurred_at": "2026-06-22T08:37:06.839294+00:00",
+            "evidence_refs": [
+              "asset_registry",
+              "sensor_historian",
+              "predictive_maintenance",
+              "maintenance_history",
+              "production_planning",
+              "inventory_and_resources",
+              "policy_governance"
+            ],
+            "details": {
+              "source_payload_count": 7,
+              "source_names": [
+                "asset_registry",
+                "sensor_historian",
+                "predictive_maintenance",
+                "maintenance_history",
+                "production_planning",
+                "inventory_and_resources",
+                "policy_governance"
+              ]
+            }
+          },
+          {
+            "event_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_evt_003_canonical_context_built",
+            "sequence": 3,
+            "event_type": "canonical_context_built",
+            "event_name": "Canonical case context built",
+            "status": "completed",
+            "source_layer": "Layer 2",
+            "occurred_at": "2026-06-22T08:37:06.839294+00:00",
+            "evidence_refs": [
+              "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+            ],
+            "details": {
+              "criticality_score": 5,
+              "estimated_time_to_failure_hours": 48.0,
+              "confidence_score": 0.88
+            }
+          },
+          {
+            "event_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_evt_004_risk_assessment_completed",
+            "sequence": 4,
+            "event_type": "risk_assessment_completed",
+            "event_name": "Risk drivers identified from canonical context",
+            "status": "completed",
+            "source_layer": "Layer 3",
+            "occurred_at": "2026-06-22T08:37:06.839294+00:00",
+            "evidence_refs": [
+              "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+            ],
+            "details": {
+              "key_risk_drivers": [
+                "high_asset_criticality",
+                "short_failure_horizon",
+                "high_model_confidence",
+                "high_production_pressure",
+                "recent_repeated_failures",
+                "intervention_resources_available",
+                "human_review_required"
+              ],
+              "data_quality_flags": []
+            }
+          },
+          {
+            "event_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_evt_005_human_review_requirement_identified",
+            "sequence": 5,
+            "event_type": "human_review_requirement_identified",
+            "event_name": "Accountable human review requirement identified",
+            "status": "completed",
+            "source_layer": "Layer 3",
+            "occurred_at": "2026-06-22T08:37:06.839294+00:00",
+            "evidence_refs": [
+              "policy_governance",
+              "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+            ],
+            "details": {
+              "human_review_required": true,
+              "criticality_score": 5,
+              "alert_severity": "high"
+            }
+          },
+          {
+            "event_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_evt_006_maintenance_planning_task_created",
+            "sequence": 6,
+            "event_type": "maintenance_planning_task_created",
+            "event_name": "Maintenance planning task created",
+            "status": "completed",
+            "source_layer": "Layer 3",
+            "occurred_at": "2026-06-22T08:37:06.839294+00:00",
+            "evidence_refs": [
+              "inventory_and_resources",
+              "production_planning"
+            ],
+            "details": {
+              "maintenance_planning_required": true,
+              "intervention_feasible": true,
+              "next_planned_downtime_hours": 36.0
+            }
+          },
+          {
+            "event_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_evt_007_decision_milestone_reached",
+            "sequence": 7,
+            "event_type": "decision_milestone_reached",
+            "event_name": "Case is ready for decision rule evaluation",
+            "status": "completed",
+            "source_layer": "Layer 3",
+            "occurred_at": "2026-06-22T08:37:06.839294+00:00",
+            "evidence_refs": [
+              "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+            ],
+            "details": {
+              "decision_ready": true,
+              "blockers": []
+            }
+          }
+        ],
+        "tasks": [
+          {
+            "task_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_task_human_review",
+            "task_type": "human_review",
+            "task_name": "Review compressor risk and approve decision path",
+            "status": "open",
+            "required_role": "maintenance_decision_owner",
+            "trigger": "high criticality or high-severity predictive alert",
+            "source_layer": "Layer 3",
+            "evidence_refs": [
+              "policy_governance",
+              "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+            ],
+            "details": {
+              "criticality_score": 5,
+              "alert_severity": "high",
+              "created_at": "2026-06-22T08:37:06.839294+00:00"
+            }
+          },
+          {
+            "task_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_task_maintenance_planning",
+            "task_type": "maintenance_planning",
+            "task_name": "Prepare controlled compressor inspection or intervention",
+            "status": "open",
+            "required_role": "maintenance_planner",
+            "trigger": "short failure horizon with intervention resources available",
+            "source_layer": "Layer 3",
+            "evidence_refs": [
+              "predictive_maintenance",
+              "inventory_and_resources"
+            ],
+            "details": {
+              "estimated_time_to_failure_hours": 48.0,
+              "spare_part_available": true,
+              "specialist_available": true,
+              "created_at": "2026-06-22T08:37:06.839294+00:00"
+            }
+          }
+        ],
+        "milestones": [
+          {
+            "milestone_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_ms_external_evidence_complete",
+            "milestone_name": "External evidence complete",
+            "status": "reached",
+            "source_layer": "Layer 1",
+            "reached_at": "2026-06-22T08:37:06.839294+00:00",
+            "criteria": [
+              "asset registry payload present",
+              "predictive maintenance payload present",
+              "production planning payload present",
+              "policy payload present"
+            ],
+            "evidence_refs": [
+              "asset_registry",
+              "sensor_historian",
+              "predictive_maintenance",
+              "maintenance_history",
+              "production_planning",
+              "inventory_and_resources",
+              "policy_governance"
+            ]
+          },
+          {
+            "milestone_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_ms_canonical_context_available",
+            "milestone_name": "Canonical context available",
+            "status": "reached",
+            "source_layer": "Layer 2",
+            "reached_at": "2026-06-22T08:37:06.839294+00:00",
+            "criteria": [
+              "canonical asset context built",
+              "predictive evidence normalized",
+              "operational context normalized",
+              "governance policy normalized"
+            ],
+            "evidence_refs": [
+              "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+            ]
+          },
+          {
+            "milestone_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_ms_human_review_identified",
+            "milestone_name": "Human review identified",
+            "status": "reached",
+            "source_layer": "Layer 3",
+            "reached_at": "2026-06-22T08:37:06.839294+00:00",
+            "criteria": [
+              "high criticality or high severity",
+              "policy requires accountable human review"
+            ],
+            "evidence_refs": [
+              "policy_governance",
+              "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+            ]
+          },
+          {
+            "milestone_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_ms_maintenance_planning_required",
+            "milestone_name": "Maintenance planning required",
+            "status": "reached",
+            "source_layer": "Layer 3",
+            "reached_at": "2026-06-22T08:37:06.839294+00:00",
+            "criteria": [
+              "short failure horizon",
+              "resources support controlled planning"
+            ],
+            "evidence_refs": [
+              "predictive_maintenance",
+              "inventory_and_resources"
+            ]
+          },
+          {
+            "milestone_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_ms_decision_ready",
+            "milestone_name": "Decision-ready case package",
+            "status": "reached",
+            "source_layer": "Layer 3",
+            "reached_at": "2026-06-22T08:37:06.839294+00:00",
+            "criteria": [
+              "external evidence received",
+              "canonical context built",
+              "human review requirement evaluated",
+              "maintenance planning requirement evaluated",
+              "no unresolved blockers"
+            ],
+            "evidence_refs": [
+              "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+            ]
+          }
+        ],
+        "blockers": [],
+        "lifecycle_version": "0.1.0",
+        "event_count": 7,
+        "task_count": 2,
+        "milestone_count": 5
+      },
+      "layer4_recommendation": {
+        "bundle_id": "recommendation_paths_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "case_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "asset_id": "COMP-001",
+        "decision_rule_evaluation_id": "dmn_like_eval_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "path_outputs": [
+          {
+            "path_name": "governed_recommendation_formulation",
+            "path_type": "governed_recommendation_path",
+            "status": "completed",
+            "recommendation": {
+              "recommendation_id": "governed_rec_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+              "asset_id": "COMP-001",
+              "action": "Plan immediate inspection and maintenance preparation.",
+              "primary_action": "Plan immediate inspection and maintenance preparation.",
+              "anchor_action": "Plan immediate inspection and maintenance preparation.",
+              "priority": "high",
+              "deterministic_anchor_priority": "high",
+              "dmn_like_final_priority": "high",
+              "recommended_execution_mode": "controlled_planning",
+              "human_review_required": true,
+              "intervention_feasible": true,
+              "decision_ready": true,
+              "transformation_applied": false,
+              "transformation_reasons": [],
+              "preconditions": [],
+              "blockers": [],
+              "required_reviews": [
+                "Obtain accountable human review before execution."
+              ],
+              "escalations": [],
+              "contingency_actions": [],
+              "rationale": "Deterministic anchor proposed: Plan immediate inspection and maintenance preparation. DMN-like final priority: high Execution mode: controlled_planning Intervention feasible: True Decision ready: True Human review required: True The anchor was preserved because the case is feasible and decision-ready."
+            },
+            "input_refs": [
+              "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+              "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+              "dmn_like_eval_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+            ],
+            "governance_refs": [
+              "compressor_human_review_policy",
+              "compressor_final_priority",
+              "compressor_execution_mode",
+              "recommendation_consistency_constraints"
+            ],
+            "notes": [
+              "The deterministic anchor is used as an initial recommendation.",
+              "Layer 4 formulates a governed recommendation by preserving, constraining, transforming, or escalating the anchor according to feasibility, readiness, execution mode, and governance signals."
+            ]
+          },
+          {
+            "path_name": "dmn_like_governance_summary",
+            "path_type": "rule_governance_summary",
+            "status": "completed",
+            "recommendation": {
+              "case_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+              "asset_id": "COMP-001",
+              "final_priority": "high",
+              "recommended_execution_mode": "controlled_planning",
+              "human_review_required": true,
+              "intervention_feasible": true,
+              "decision_ready": true,
+              "triggered_rule_count": 6
+            },
+            "input_refs": [
+              "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+              "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+              "dmn_like_eval_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+            ],
+            "governance_refs": [
+              "DMN_R001",
+              "DMN_R002",
+              "DMN_R003",
+              "DMN_R004",
+              "DMN_R005",
+              "DMN_R006"
+            ],
+            "notes": [
+              "This output summarizes explicit rule evaluation before final governed packaging."
+            ]
+          }
+        ],
+        "bundle_version": "0.1.0",
+        "path_count": 2
+      },
+      "layer5_package": {
+        "package_id": "governed_package_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "case_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+        "asset_id": "COMP-001",
+        "generated_at": "2026-06-22T08:37:06.839294+00:00",
+        "final_recommendation": {
+          "case_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+          "asset_id": "COMP-001",
+          "recommended_action": "Plan immediate inspection and maintenance preparation.",
+          "primary_action": "Plan immediate inspection and maintenance preparation.",
+          "anchor_action": "Plan immediate inspection and maintenance preparation.",
+          "priority": "high",
+          "deterministic_anchor_priority": "high",
+          "dmn_like_final_priority": "high",
+          "recommended_execution_mode": "controlled_planning",
+          "human_review_required": true,
+          "intervention_feasible": true,
+          "decision_ready": true,
+          "transformation_applied": false,
+          "transformation_reasons": [],
+          "preconditions": [],
+          "blockers": [],
+          "required_reviews": [
+            "Obtain accountable human review before execution."
+          ],
+          "escalations": [],
+          "contingency_actions": [],
+          "key_risk_drivers": [
+            "high_asset_criticality",
+            "short_failure_horizon",
+            "high_model_confidence",
+            "high_production_pressure",
+            "recent_repeated_failures",
+            "intervention_resources_available",
+            "human_review_required"
+          ],
+          "rationale": "Deterministic anchor proposed: Plan immediate inspection and maintenance preparation. DMN-like final priority: high Execution mode: controlled_planning Intervention feasible: True Decision ready: True Human review required: True The anchor was preserved because the case is feasible and decision-ready."
+        },
+        "governance_summary": {
+          "source_payload_count": 7,
+          "source_names": [
+            "asset_registry",
+            "sensor_historian",
+            "predictive_maintenance",
+            "maintenance_history",
+            "production_planning",
+            "inventory_and_resources",
+            "policy_governance"
+          ],
+          "canonical_context_id": "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+          "case_lifecycle_stage": "decision_ready",
+          "case_event_count": 7,
+          "case_task_count": 2,
+          "case_milestone_count": 5,
+          "triggered_rule_count": 6,
+          "decision_rule_evaluation_id": "dmn_like_eval_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+          "recommendation_path_count": 2,
+          "human_review_required": true,
+          "decision_ready": true
+        },
+        "traceability_index": [
+          {
+            "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_001_layer_1",
+            "layer": "Layer 1",
+            "artifact_name": "external_source_payloads",
+            "artifact_type": "external_source_package",
+            "source_refs": [
+              "asset_registry",
+              "sensor_historian",
+              "predictive_maintenance",
+              "maintenance_history",
+              "production_planning",
+              "inventory_and_resources",
+              "policy_governance"
+            ],
+            "summary": "Industrial information is exposed as external source payloads."
+          },
+          {
+            "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_002_layer_2",
+            "layer": "Layer 2",
+            "artifact_name": "canonical_case_context",
+            "artifact_type": "canonical_context",
+            "source_refs": [
+              "asset_registry",
+              "sensor_historian",
+              "predictive_maintenance",
+              "maintenance_history",
+              "production_planning",
+              "inventory_and_resources",
+              "policy_governance"
+            ],
+            "summary": "External payloads are normalized into a canonical compressor case context."
+          },
+          {
+            "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_003_layer_3",
+            "layer": "Layer 3",
+            "artifact_name": "case_management_state",
+            "artifact_type": "case_lifecycle",
+            "source_refs": [
+              "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+            ],
+            "summary": "The compressor case is managed through events, tasks and milestones."
+          },
+          {
+            "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_004_layer_4_rules",
+            "layer": "Layer 4",
+            "artifact_name": "dmn_like_decision_evaluation",
+            "artifact_type": "decision_rules",
+            "source_refs": [
+              "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+              "SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+            ],
+            "summary": "Explicit DMN-like rules evaluate urgency, criticality, feasibility, review and priority."
+          },
+          {
+            "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_005_layer_4_paths",
+            "layer": "Layer 4",
+            "artifact_name": "recommendation_path_outputs",
+            "artifact_type": "recommendation_paths",
+            "source_refs": [
+              "dmn_like_eval_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+            ],
+            "summary": "Layer 4 formulates a governed recommendation under feasibility, readiness, execution-mode and governance constraints."
+          },
+          {
+            "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_006_layer_5",
+            "layer": "Layer 5",
+            "artifact_name": "governed_recommendation_package",
+            "artifact_type": "governed_package",
+            "source_refs": [
+              "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+              "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+              "dmn_like_eval_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+              "recommendation_paths_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+            ],
+            "summary": "Layer 5 packages the governed recommendation with traceability and reviewer-facing controls."
+          }
+        ],
+        "layer_completion": {
+          "layer_1_external_sources": true,
+          "layer_2_canonical_context": true,
+          "layer_3_case_lifecycle": true,
+          "layer_4_decision_rules": true,
+          "layer_5_governed_package": true
+        },
+        "reviewer_notes": [
+          "This package is generated from an end-to-end five-layer OVERSEE execution.",
+          "The package is inspectable and preserves source-to-recommendation traceability.",
+          "Layer 5 packages the governed recommendation formulated by Layer 4 without re-deciding the case."
+        ],
+        "package_version": "0.1.0",
+        "traceability_count": 6
+      },
+      "traceability": [
+        {
+          "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_001_layer_1",
+          "layer": "Layer 1",
+          "artifact_name": "external_source_payloads",
+          "artifact_type": "external_source_package",
+          "source_refs": [
+            "asset_registry",
+            "sensor_historian",
+            "predictive_maintenance",
+            "maintenance_history",
+            "production_planning",
+            "inventory_and_resources",
+            "policy_governance"
+          ],
+          "summary": "Industrial information is exposed as external source payloads."
+        },
+        {
+          "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_002_layer_2",
+          "layer": "Layer 2",
+          "artifact_name": "canonical_case_context",
+          "artifact_type": "canonical_context",
+          "source_refs": [
+            "asset_registry",
+            "sensor_historian",
+            "predictive_maintenance",
+            "maintenance_history",
+            "production_planning",
+            "inventory_and_resources",
+            "policy_governance"
+          ],
+          "summary": "External payloads are normalized into a canonical compressor case context."
+        },
+        {
+          "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_003_layer_3",
+          "layer": "Layer 3",
+          "artifact_name": "case_management_state",
+          "artifact_type": "case_lifecycle",
+          "source_refs": [
+            "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+          ],
+          "summary": "The compressor case is managed through events, tasks and milestones."
+        },
+        {
+          "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_004_layer_4_rules",
+          "layer": "Layer 4",
+          "artifact_name": "dmn_like_decision_evaluation",
+          "artifact_type": "decision_rules",
+          "source_refs": [
+            "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+            "SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+          ],
+          "summary": "Explicit DMN-like rules evaluate urgency, criticality, feasibility, review and priority."
+        },
+        {
+          "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_005_layer_4_paths",
+          "layer": "Layer 4",
+          "artifact_name": "recommendation_path_outputs",
+          "artifact_type": "recommendation_paths",
+          "source_refs": [
+            "dmn_like_eval_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+          ],
+          "summary": "Layer 4 formulates a governed recommendation under feasibility, readiness, execution-mode and governance constraints."
+        },
+        {
+          "trace_id": "SCENARIO_COMP_001_ALERT-COMP-001-20260603_trace_006_layer_5",
+          "layer": "Layer 5",
+          "artifact_name": "governed_recommendation_package",
+          "artifact_type": "governed_package",
+          "source_refs": [
+            "canonical_context_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+            "SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+            "dmn_like_eval_SCENARIO_COMP_001_ALERT-COMP-001-20260603",
+            "recommendation_paths_SCENARIO_COMP_001_ALERT-COMP-001-20260603"
+          ],
+          "summary": "Layer 5 packages the governed recommendation with traceability and reviewer-facing controls."
+        }
+      ]
+    },
+    "COMP-002": {
+      "canonical_context": {
+        "context_id": "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+        "case_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+        "asset": {
+          "asset_id": "COMP-002",
+          "asset_type": "industrial_air_compressor",
+          "line_id": "PKG-LINE-02",
+          "criticality_label": "high",
+          "criticality_score": 5,
+          "process_role": null
+        },
+        "predictive_evidence": {
+          "alert_type": "predictive_degradation_alert",
+          "estimated_time_to_failure_hours": 48.0,
+          "confidence_score": 0.86,
+          "alert_severity": "high",
+          "vibration_trend": "increasing",
+          "temperature_trend": "increasing"
+        },
+        "operational_context": {
+          "production_load_pct": 98.0,
+          "next_planned_downtime_hours": 36.0,
+          "production_pressure": "very_high",
+          "business_impact_if_unavailable": null
+        },
+        "maintenance_resources": {
+          "recent_repeated_failures": true,
+          "spare_part_available": false,
+          "specialist_technician_available_next_shift": false,
+          "intervention_feasible": false
+        },
+        "governance_policy": {
+          "mandatory_human_review_for_high_criticality": true,
+          "expected_human_review_required": true,
+          "computed_human_review_required": true
+        },
+        "source_payload_count": 7,
+        "source_names": [
+          "asset_registry",
+          "sensor_historian",
+          "predictive_maintenance",
+          "maintenance_history",
+          "production_planning",
+          "inventory_and_resources",
+          "policy_governance"
+        ],
+        "data_quality_flags": [],
+        "key_risk_drivers": [
+          "high_asset_criticality",
+          "short_failure_horizon",
+          "high_model_confidence",
+          "recent_repeated_failures",
+          "human_review_required"
+        ],
+        "context_version": "0.1.0"
+      },
+      "layer2_contextualization": {
+        "case_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+        "asset_id": "COMP-002",
+        "canonical_context": {
+          "context_id": "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+          "case_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+          "asset": {
+            "asset_id": "COMP-002",
+            "asset_type": "industrial_air_compressor",
+            "line_id": "PKG-LINE-02",
+            "criticality_label": "high",
+            "criticality_score": 5,
+            "process_role": null
+          },
+          "predictive_evidence": {
+            "alert_type": "predictive_degradation_alert",
+            "estimated_time_to_failure_hours": 48.0,
+            "confidence_score": 0.86,
+            "alert_severity": "high",
+            "vibration_trend": "increasing",
+            "temperature_trend": "increasing"
+          },
+          "operational_context": {
+            "production_load_pct": 98.0,
+            "next_planned_downtime_hours": 36.0,
+            "production_pressure": "very_high",
+            "business_impact_if_unavailable": null
+          },
+          "maintenance_resources": {
+            "recent_repeated_failures": true,
+            "spare_part_available": false,
+            "specialist_technician_available_next_shift": false,
+            "intervention_feasible": false
+          },
+          "governance_policy": {
+            "mandatory_human_review_for_high_criticality": true,
+            "expected_human_review_required": true,
+            "computed_human_review_required": true
+          },
+          "source_payload_count": 7,
+          "source_names": [
+            "asset_registry",
+            "sensor_historian",
+            "predictive_maintenance",
+            "maintenance_history",
+            "production_planning",
+            "inventory_and_resources",
+            "policy_governance"
+          ],
+          "data_quality_flags": [],
+          "key_risk_drivers": [
+            "high_asset_criticality",
+            "short_failure_horizon",
+            "high_model_confidence",
+            "recent_repeated_failures",
+            "human_review_required"
+          ],
+          "context_version": "0.1.0"
+        },
+        "rule_trace": [
+          {
+            "rule_id": "L2_R001",
+            "rule_name": "Technical urgency from failure horizon",
+            "condition": "IF estimated_time_to_failure_hours <= 72 THEN technical_urgency = high",
+            "triggered": true,
+            "output_field": "technical_urgency",
+            "output_value": "high",
+            "rationale": "Short failure horizon increases technical urgency."
+          },
+          {
+            "rule_id": "L2_R002",
+            "rule_name": "Asset escalation from criticality",
+            "condition": "IF criticality_score >= 5 THEN asset_escalation = required",
+            "triggered": true,
+            "output_field": "asset_escalation",
+            "output_value": "required",
+            "rationale": "High-criticality assets require explicit escalation."
+          },
+          {
+            "rule_id": "L2_R003",
+            "rule_name": "Operational constraint from production pressure",
+            "condition": "IF production_pressure = high THEN operational_constraint = high",
+            "triggered": false,
+            "output_field": "operational_constraint",
+            "output_value": "medium",
+            "rationale": "High production pressure constrains maintenance timing."
+          },
+          {
+            "rule_id": "L2_R004",
+            "rule_name": "Downtime window proximity",
+            "condition": "IF next_planned_downtime_hours <= 48 THEN downtime_window = near",
+            "triggered": true,
+            "output_field": "downtime_window",
+            "output_value": "near",
+            "rationale": "A near downtime window creates a feasible planning opportunity."
+          },
+          {
+            "rule_id": "L2_R005",
+            "rule_name": "Intervention feasibility from resources",
+            "condition": "IF spare_part_available = true AND specialist_technician_available_next_shift = true THEN intervention_feasible = true",
+            "triggered": false,
+            "output_field": "intervention_feasible",
+            "output_value": false,
+            "rationale": "Available spare parts and specialist capacity make intervention feasible."
+          },
+          {
+            "rule_id": "L2_R006",
+            "rule_name": "Recurrence risk from repeated failures",
+            "condition": "IF recent_repeated_failures = true THEN recurrence_risk = high",
+            "triggered": true,
+            "output_field": "recurrence_risk",
+            "output_value": "high",
+            "rationale": "Recent repeated failures increase recurrence risk."
+          },
+          {
+            "rule_id": "L2_R007",
+            "rule_name": "Human review requirement from governance policy",
+            "condition": "IF high criticality policy applies THEN human_review_required = true",
+            "triggered": true,
+            "output_field": "human_review_required",
+            "output_value": true,
+            "rationale": "Governance policy requires accountable human review."
+          },
+          {
+            "rule_id": "L2_R008",
+            "rule_name": "Layer 2 decision readiness",
+            "condition": "IF technical urgency, feasibility and governance context exist THEN layer2_decision_ready = true",
+            "triggered": true,
+            "output_field": "layer2_decision_ready",
+            "output_value": true,
+            "rationale": "Layer 2 has enough contextualized evidence for downstream case lifecycle and decision logic."
+          }
+        ],
+        "derived_context": {
+          "technical_urgency": "high",
+          "asset_escalation": "required",
+          "operational_constraint": "medium",
+          "downtime_window": "near",
+          "intervention_feasible": false,
+          "recurrence_risk": "high",
+          "human_review_required": true,
+          "layer2_decision_ready": true
+        },
+        "layer2_ready": true
+      },
+      "layer3_case_state": {
+        "case_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+        "asset_id": "COMP-002",
+        "case_status": "open",
+        "lifecycle_stage": "evidence_review",
+        "current_layer": "Layer 3 - CMMN-inspired case lifecycle",
+        "opened_at": "2026-06-22T08:37:06.929102+00:00",
+        "human_review_required": true,
+        "maintenance_planning_required": false,
+        "decision_ready": false,
+        "events": [
+          {
+            "event_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_evt_001_case_opened",
+            "sequence": 1,
+            "event_type": "case_opened",
+            "event_name": "Compressor decision case opened",
+            "status": "completed",
+            "source_layer": "Layer 3",
+            "occurred_at": "2026-06-22T08:37:06.929102+00:00",
+            "evidence_refs": [
+              "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ],
+            "details": {
+              "asset_id": "COMP-002",
+              "line_id": "PKG-LINE-02"
+            }
+          },
+          {
+            "event_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_evt_002_external_evidence_received",
+            "sequence": 2,
+            "event_type": "external_evidence_received",
+            "event_name": "External source evidence received",
+            "status": "completed",
+            "source_layer": "Layer 1",
+            "occurred_at": "2026-06-22T08:37:06.929102+00:00",
+            "evidence_refs": [
+              "asset_registry",
+              "sensor_historian",
+              "predictive_maintenance",
+              "maintenance_history",
+              "production_planning",
+              "inventory_and_resources",
+              "policy_governance"
+            ],
+            "details": {
+              "source_payload_count": 7,
+              "source_names": [
+                "asset_registry",
+                "sensor_historian",
+                "predictive_maintenance",
+                "maintenance_history",
+                "production_planning",
+                "inventory_and_resources",
+                "policy_governance"
+              ]
+            }
+          },
+          {
+            "event_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_evt_003_canonical_context_built",
+            "sequence": 3,
+            "event_type": "canonical_context_built",
+            "event_name": "Canonical case context built",
+            "status": "completed",
+            "source_layer": "Layer 2",
+            "occurred_at": "2026-06-22T08:37:06.929102+00:00",
+            "evidence_refs": [
+              "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ],
+            "details": {
+              "criticality_score": 5,
+              "estimated_time_to_failure_hours": 48.0,
+              "confidence_score": 0.86
+            }
+          },
+          {
+            "event_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_evt_004_risk_assessment_completed",
+            "sequence": 4,
+            "event_type": "risk_assessment_completed",
+            "event_name": "Risk drivers identified from canonical context",
+            "status": "completed",
+            "source_layer": "Layer 3",
+            "occurred_at": "2026-06-22T08:37:06.929102+00:00",
+            "evidence_refs": [
+              "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ],
+            "details": {
+              "key_risk_drivers": [
+                "high_asset_criticality",
+                "short_failure_horizon",
+                "high_model_confidence",
+                "recent_repeated_failures",
+                "human_review_required"
+              ],
+              "data_quality_flags": []
+            }
+          },
+          {
+            "event_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_evt_005_human_review_requirement_identified",
+            "sequence": 5,
+            "event_type": "human_review_requirement_identified",
+            "event_name": "Accountable human review requirement identified",
+            "status": "completed",
+            "source_layer": "Layer 3",
+            "occurred_at": "2026-06-22T08:37:06.929102+00:00",
+            "evidence_refs": [
+              "policy_governance",
+              "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ],
+            "details": {
+              "human_review_required": true,
+              "criticality_score": 5,
+              "alert_severity": "high"
+            }
+          },
+          {
+            "event_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_evt_006_maintenance_planning_task_created",
+            "sequence": 6,
+            "event_type": "maintenance_planning_task_created",
+            "event_name": "Maintenance planning task created",
+            "status": "not_required",
+            "source_layer": "Layer 3",
+            "occurred_at": "2026-06-22T08:37:06.929102+00:00",
+            "evidence_refs": [
+              "inventory_and_resources",
+              "production_planning"
+            ],
+            "details": {
+              "maintenance_planning_required": false,
+              "intervention_feasible": false,
+              "next_planned_downtime_hours": 36.0
+            }
+          },
+          {
+            "event_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_evt_007_decision_milestone_reached",
+            "sequence": 7,
+            "event_type": "decision_milestone_reached",
+            "event_name": "Case is ready for decision rule evaluation",
+            "status": "blocked",
+            "source_layer": "Layer 3",
+            "occurred_at": "2026-06-22T08:37:06.929102+00:00",
+            "evidence_refs": [
+              "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ],
+            "details": {
+              "decision_ready": false,
+              "blockers": [
+                "spare_part_not_available",
+                "specialist_technician_not_available"
+              ]
+            }
+          }
+        ],
+        "tasks": [
+          {
+            "task_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_task_human_review",
+            "task_type": "human_review",
+            "task_name": "Review compressor risk and approve decision path",
+            "status": "open",
+            "required_role": "maintenance_decision_owner",
+            "trigger": "high criticality or high-severity predictive alert",
+            "source_layer": "Layer 3",
+            "evidence_refs": [
+              "policy_governance",
+              "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ],
+            "details": {
+              "criticality_score": 5,
+              "alert_severity": "high",
+              "created_at": "2026-06-22T08:37:06.929102+00:00"
+            }
+          },
+          {
+            "task_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_task_blocker_resolution",
+            "task_type": "blocker_resolution",
+            "task_name": "Resolve missing evidence or resource blockers",
+            "status": "open",
+            "required_role": "case_owner",
+            "trigger": "case has blockers before decision readiness",
+            "source_layer": "Layer 3",
+            "evidence_refs": [
+              "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ],
+            "details": {
+              "blockers": [
+                "spare_part_not_available",
+                "specialist_technician_not_available"
+              ],
+              "created_at": "2026-06-22T08:37:06.929102+00:00"
+            }
+          }
+        ],
+        "milestones": [
+          {
+            "milestone_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_ms_external_evidence_complete",
+            "milestone_name": "External evidence complete",
+            "status": "reached",
+            "source_layer": "Layer 1",
+            "reached_at": "2026-06-22T08:37:06.929102+00:00",
+            "criteria": [
+              "asset registry payload present",
+              "predictive maintenance payload present",
+              "production planning payload present",
+              "policy payload present"
+            ],
+            "evidence_refs": [
+              "asset_registry",
+              "sensor_historian",
+              "predictive_maintenance",
+              "maintenance_history",
+              "production_planning",
+              "inventory_and_resources",
+              "policy_governance"
+            ]
+          },
+          {
+            "milestone_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_ms_canonical_context_available",
+            "milestone_name": "Canonical context available",
+            "status": "reached",
+            "source_layer": "Layer 2",
+            "reached_at": "2026-06-22T08:37:06.929102+00:00",
+            "criteria": [
+              "canonical asset context built",
+              "predictive evidence normalized",
+              "operational context normalized",
+              "governance policy normalized"
+            ],
+            "evidence_refs": [
+              "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ]
+          },
+          {
+            "milestone_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_ms_human_review_identified",
+            "milestone_name": "Human review identified",
+            "status": "reached",
+            "source_layer": "Layer 3",
+            "reached_at": "2026-06-22T08:37:06.929102+00:00",
+            "criteria": [
+              "high criticality or high severity",
+              "policy requires accountable human review"
+            ],
+            "evidence_refs": [
+              "policy_governance",
+              "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ]
+          },
+          {
+            "milestone_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_ms_maintenance_planning_required",
+            "milestone_name": "Maintenance planning required",
+            "status": "not_required",
+            "source_layer": "Layer 3",
+            "reached_at": null,
+            "criteria": [
+              "short failure horizon",
+              "resources support controlled planning"
+            ],
+            "evidence_refs": [
+              "predictive_maintenance",
+              "inventory_and_resources"
+            ]
+          },
+          {
+            "milestone_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_ms_decision_ready",
+            "milestone_name": "Decision-ready case package",
+            "status": "blocked",
+            "source_layer": "Layer 3",
+            "reached_at": null,
+            "criteria": [
+              "external evidence received",
+              "canonical context built",
+              "human review requirement evaluated",
+              "maintenance planning requirement evaluated",
+              "no unresolved blockers"
+            ],
+            "evidence_refs": [
+              "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ]
+          }
+        ],
+        "blockers": [
+          "spare_part_not_available",
+          "specialist_technician_not_available"
+        ],
+        "lifecycle_version": "0.1.0",
+        "event_count": 7,
+        "task_count": 2,
+        "milestone_count": 5
+      },
+      "layer4_recommendation": {
+        "bundle_id": "recommendation_paths_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+        "case_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+        "asset_id": "COMP-002",
+        "decision_rule_evaluation_id": "dmn_like_eval_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+        "path_outputs": [
+          {
+            "path_name": "governed_recommendation_formulation",
+            "path_type": "governed_recommendation_path",
+            "status": "completed",
+            "recommendation": {
+              "recommendation_id": "governed_rec_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+              "asset_id": "COMP-002",
+              "action": "Escalate the constrained maintenance case, resolve execution blockers, increase monitoring, and prepare intervention once feasibility is restored.",
+              "primary_action": "Escalate the constrained maintenance case, resolve execution blockers, increase monitoring, and prepare intervention once feasibility is restored.",
+              "anchor_action": "Plan immediate inspection and maintenance preparation.",
+              "priority": "high",
+              "deterministic_anchor_priority": "high",
+              "dmn_like_final_priority": "high",
+              "recommended_execution_mode": "constrained_execution",
+              "human_review_required": true,
+              "intervention_feasible": false,
+              "decision_ready": false,
+              "transformation_applied": true,
+              "transformation_reasons": [
+                "intervention_not_feasible",
+                "case_not_decision_ready",
+                "constrained_execution_mode"
+              ],
+              "preconditions": [
+                "Restore intervention feasibility before executing physical maintenance.",
+                "Resolve open case blockers before approving execution.",
+                "Resolve listed blockers: spare_part_not_available, specialist_technician_not_available."
+              ],
+              "blockers": [
+                "spare_part_not_available",
+                "specialist_technician_not_available"
+              ],
+              "required_reviews": [
+                "Obtain accountable human review before execution."
+              ],
+              "escalations": [
+                "Escalate the constrained execution case to the accountable maintenance and operations owners."
+              ],
+              "contingency_actions": [
+                "Increase monitoring and prepare a contingency plan until resources and approval are available."
+              ],
+              "rationale": "Deterministic anchor proposed: Plan immediate inspection and maintenance preparation. DMN-like final priority: high Execution mode: constrained_execution Intervention feasible: False Decision ready: False Human review required: True The anchor was transformed because: intervention_not_feasible, case_not_decision_ready, constrained_execution_mode."
+            },
+            "input_refs": [
+              "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+              "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+              "dmn_like_eval_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ],
+            "governance_refs": [
+              "compressor_human_review_policy",
+              "compressor_final_priority",
+              "compressor_execution_mode",
+              "recommendation_consistency_constraints"
+            ],
+            "notes": [
+              "The deterministic anchor is used as an initial recommendation.",
+              "Layer 4 formulates a governed recommendation by preserving, constraining, transforming, or escalating the anchor according to feasibility, readiness, execution mode, and governance signals."
+            ]
+          },
+          {
+            "path_name": "dmn_like_governance_summary",
+            "path_type": "rule_governance_summary",
+            "status": "completed",
+            "recommendation": {
+              "case_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+              "asset_id": "COMP-002",
+              "final_priority": "high",
+              "recommended_execution_mode": "constrained_execution",
+              "human_review_required": true,
+              "intervention_feasible": false,
+              "decision_ready": false,
+              "triggered_rule_count": 5
+            },
+            "input_refs": [
+              "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+              "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+              "dmn_like_eval_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ],
+            "governance_refs": [
+              "DMN_R001",
+              "DMN_R002",
+              "DMN_R004",
+              "DMN_R005",
+              "DMN_R006"
+            ],
+            "notes": [
+              "This output summarizes explicit rule evaluation before final governed packaging."
+            ]
+          }
+        ],
+        "bundle_version": "0.1.0",
+        "path_count": 2
+      },
+      "layer5_package": {
+        "package_id": "governed_package_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+        "case_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+        "asset_id": "COMP-002",
+        "generated_at": "2026-06-22T08:37:06.929102+00:00",
+        "final_recommendation": {
+          "case_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+          "asset_id": "COMP-002",
+          "recommended_action": "Escalate the constrained maintenance case, resolve execution blockers, increase monitoring, and prepare intervention once feasibility is restored.",
+          "primary_action": "Escalate the constrained maintenance case, resolve execution blockers, increase monitoring, and prepare intervention once feasibility is restored.",
+          "anchor_action": "Plan immediate inspection and maintenance preparation.",
+          "priority": "high",
+          "deterministic_anchor_priority": "high",
+          "dmn_like_final_priority": "high",
+          "recommended_execution_mode": "constrained_execution",
+          "human_review_required": true,
+          "intervention_feasible": false,
+          "decision_ready": false,
+          "transformation_applied": true,
+          "transformation_reasons": [
+            "intervention_not_feasible",
+            "case_not_decision_ready",
+            "constrained_execution_mode"
+          ],
+          "preconditions": [
+            "Restore intervention feasibility before executing physical maintenance.",
+            "Resolve open case blockers before approving execution.",
+            "Resolve listed blockers: spare_part_not_available, specialist_technician_not_available."
+          ],
+          "blockers": [
+            "spare_part_not_available",
+            "specialist_technician_not_available"
+          ],
+          "required_reviews": [
+            "Obtain accountable human review before execution."
+          ],
+          "escalations": [
+            "Escalate the constrained execution case to the accountable maintenance and operations owners."
+          ],
+          "contingency_actions": [
+            "Increase monitoring and prepare a contingency plan until resources and approval are available."
+          ],
+          "key_risk_drivers": [
+            "high_asset_criticality",
+            "short_failure_horizon",
+            "high_model_confidence",
+            "recent_repeated_failures",
+            "human_review_required"
+          ],
+          "rationale": "Deterministic anchor proposed: Plan immediate inspection and maintenance preparation. DMN-like final priority: high Execution mode: constrained_execution Intervention feasible: False Decision ready: False Human review required: True The anchor was transformed because: intervention_not_feasible, case_not_decision_ready, constrained_execution_mode."
+        },
+        "governance_summary": {
+          "source_payload_count": 7,
+          "source_names": [
+            "asset_registry",
+            "sensor_historian",
+            "predictive_maintenance",
+            "maintenance_history",
+            "production_planning",
+            "inventory_and_resources",
+            "policy_governance"
+          ],
+          "canonical_context_id": "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+          "case_lifecycle_stage": "evidence_review",
+          "case_event_count": 7,
+          "case_task_count": 2,
+          "case_milestone_count": 5,
+          "triggered_rule_count": 5,
+          "decision_rule_evaluation_id": "dmn_like_eval_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+          "recommendation_path_count": 2,
+          "human_review_required": true,
+          "decision_ready": false
+        },
+        "traceability_index": [
+          {
+            "trace_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_trace_001_layer_1",
+            "layer": "Layer 1",
+            "artifact_name": "external_source_payloads",
+            "artifact_type": "external_source_package",
+            "source_refs": [
+              "asset_registry",
+              "sensor_historian",
+              "predictive_maintenance",
+              "maintenance_history",
+              "production_planning",
+              "inventory_and_resources",
+              "policy_governance"
+            ],
+            "summary": "Industrial information is exposed as external source payloads."
+          },
+          {
+            "trace_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_trace_002_layer_2",
+            "layer": "Layer 2",
+            "artifact_name": "canonical_case_context",
+            "artifact_type": "canonical_context",
+            "source_refs": [
+              "asset_registry",
+              "sensor_historian",
+              "predictive_maintenance",
+              "maintenance_history",
+              "production_planning",
+              "inventory_and_resources",
+              "policy_governance"
+            ],
+            "summary": "External payloads are normalized into a canonical compressor case context."
+          },
+          {
+            "trace_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_trace_003_layer_3",
+            "layer": "Layer 3",
+            "artifact_name": "case_management_state",
+            "artifact_type": "case_lifecycle",
+            "source_refs": [
+              "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ],
+            "summary": "The compressor case is managed through events, tasks and milestones."
+          },
+          {
+            "trace_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_trace_004_layer_4_rules",
+            "layer": "Layer 4",
+            "artifact_name": "dmn_like_decision_evaluation",
+            "artifact_type": "decision_rules",
+            "source_refs": [
+              "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+              "SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ],
+            "summary": "Explicit DMN-like rules evaluate urgency, criticality, feasibility, review and priority."
+          },
+          {
+            "trace_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_trace_005_layer_4_paths",
+            "layer": "Layer 4",
+            "artifact_name": "recommendation_path_outputs",
+            "artifact_type": "recommendation_paths",
+            "source_refs": [
+              "dmn_like_eval_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ],
+            "summary": "Layer 4 formulates a governed recommendation under feasibility, readiness, execution-mode and governance constraints."
+          },
+          {
+            "trace_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_trace_006_layer_5",
+            "layer": "Layer 5",
+            "artifact_name": "governed_recommendation_package",
+            "artifact_type": "governed_package",
+            "source_refs": [
+              "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+              "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+              "dmn_like_eval_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+              "recommendation_paths_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+            ],
+            "summary": "Layer 5 packages the governed recommendation with traceability and reviewer-facing controls."
+          }
+        ],
+        "layer_completion": {
+          "layer_1_external_sources": true,
+          "layer_2_canonical_context": true,
+          "layer_3_case_lifecycle": true,
+          "layer_4_decision_rules": true,
+          "layer_5_governed_package": true
+        },
+        "reviewer_notes": [
+          "This package is generated from an end-to-end five-layer OVERSEE execution.",
+          "The package is inspectable and preserves source-to-recommendation traceability.",
+          "Layer 5 packages the governed recommendation formulated by Layer 4 without re-deciding the case."
+        ],
+        "package_version": "0.1.0",
+        "traceability_count": 6
+      },
+      "traceability": [
+        {
+          "trace_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_trace_001_layer_1",
+          "layer": "Layer 1",
+          "artifact_name": "external_source_payloads",
+          "artifact_type": "external_source_package",
+          "source_refs": [
+            "asset_registry",
+            "sensor_historian",
+            "predictive_maintenance",
+            "maintenance_history",
+            "production_planning",
+            "inventory_and_resources",
+            "policy_governance"
+          ],
+          "summary": "Industrial information is exposed as external source payloads."
+        },
+        {
+          "trace_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_trace_002_layer_2",
+          "layer": "Layer 2",
+          "artifact_name": "canonical_case_context",
+          "artifact_type": "canonical_context",
+          "source_refs": [
+            "asset_registry",
+            "sensor_historian",
+            "predictive_maintenance",
+            "maintenance_history",
+            "production_planning",
+            "inventory_and_resources",
+            "policy_governance"
+          ],
+          "summary": "External payloads are normalized into a canonical compressor case context."
+        },
+        {
+          "trace_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_trace_003_layer_3",
+          "layer": "Layer 3",
+          "artifact_name": "case_management_state",
+          "artifact_type": "case_lifecycle",
+          "source_refs": [
+            "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+          ],
+          "summary": "The compressor case is managed through events, tasks and milestones."
+        },
+        {
+          "trace_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_trace_004_layer_4_rules",
+          "layer": "Layer 4",
+          "artifact_name": "dmn_like_decision_evaluation",
+          "artifact_type": "decision_rules",
+          "source_refs": [
+            "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+            "SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+          ],
+          "summary": "Explicit DMN-like rules evaluate urgency, criticality, feasibility, review and priority."
+        },
+        {
+          "trace_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_trace_005_layer_4_paths",
+          "layer": "Layer 4",
+          "artifact_name": "recommendation_path_outputs",
+          "artifact_type": "recommendation_paths",
+          "source_refs": [
+            "dmn_like_eval_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+          ],
+          "summary": "Layer 4 formulates a governed recommendation under feasibility, readiness, execution-mode and governance constraints."
+        },
+        {
+          "trace_id": "SCENARIO_COMP_002_ALERT-COMP-002-20260603_trace_006_layer_5",
+          "layer": "Layer 5",
+          "artifact_name": "governed_recommendation_package",
+          "artifact_type": "governed_package",
+          "source_refs": [
+            "canonical_context_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+            "SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+            "dmn_like_eval_SCENARIO_COMP_002_ALERT-COMP-002-20260603",
+            "recommendation_paths_SCENARIO_COMP_002_ALERT-COMP-002-20260603"
+          ],
+          "summary": "Layer 5 packages the governed recommendation with traceability and reviewer-facing controls."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "alert": {
+    "alert_id": "ALERT-PUMP-001-20260603",
+    "asset_id": "PUMP-001",
+    "asset_type": "industrial_pump",
+    "line_id": "WATER-LINE-01",
+    "suspected_failure_mode": "seal_degradation",
+    "alert_type": "seal_degradation_alert",
+    "predictive_horizon_hours": 72,
+    "confidence_score": 0.82,
+    "model_name": "pump_seal_risk_model",
+    "model_version": "v1.0-reference",
+    "triggered_at": "2026-06-03T10:20:00Z"
+  },
+  "raw_sensor_context": {
+    "sampling_window_hours": 24,
+    "vibration_mms": [
+      1.8,
+      2.0,
+      2.4,
+      2.8,
+      3.1
+    ],
+    "temperature_celsius": [
+      61.0,
+      62.5,
+      64.0,
+      66.0,
+      68.0
+    ],
+    "pressure_bar": [
+      5.2,
+      5.0,
+      4.7,
+      4.5,
+      4.2
+    ],
+    "leakage_index": [
+      0.2,
+      0.28,
+      0.36,
+      0.48,
+      0.61
+    ],
+    "alarm_count": 2,
+    "last_sensor_timestamp": "2026-06-03T10:15:00Z"
+  },
+  "requested_context": {
+    "maintenance_history_lookback_days": 180,
+    "production_context_horizon_hours": 72,
+    "include_inventory_and_resources": true,
+    "include_policy_governance": true
+  }
+}

@@ -1,0 +1,104 @@
+[
+  {
+    "api_name": "scenario_asset_registry_api",
+    "endpoint": "/enterprise/asset-registry/assets/{asset_id}",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "CONV-001"
+    },
+    "response_payload": {
+      "asset_id": "CONV-001",
+      "asset_type": "conveyor_system",
+      "line_id": "PACK-LINE-01",
+      "asset_criticality": "high",
+      "criticality_score": 5,
+      "manufacturer": "Reference Conveyor Systems",
+      "model": "RCV-900",
+      "location": "Packaging line - main product transfer"
+    },
+    "called_at": "2026-06-22T08:59:56.578433+00:00"
+  },
+  {
+    "api_name": "scenario_cmms_maintenance_history_api",
+    "endpoint": "/enterprise/cmms/assets/{asset_id}/work-orders",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "CONV-001",
+      "lookback_days": 180
+    },
+    "response_payload": {
+      "asset_id": "CONV-001",
+      "lookback_days": 180,
+      "recent_repeated_failures": true,
+      "work_orders": [
+        {
+          "work_order_id": "WO-CONV-001-2026-0415",
+          "type": "corrective",
+          "failure_mode": "belt_tracking_issue",
+          "duration_hours": 1.5
+        },
+        {
+          "work_order_id": "WO-CONV-001-2026-0529",
+          "type": "corrective",
+          "failure_mode": "drive_vibration",
+          "duration_hours": 2.0
+        }
+      ]
+    },
+    "called_at": "2026-06-22T08:59:56.578433+00:00"
+  },
+  {
+    "api_name": "scenario_mes_operational_context_api",
+    "endpoint": "/enterprise/mes/lines/{line_id}/operational-context",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "CONV-001",
+      "line_id": "PACK-LINE-01",
+      "horizon_hours": 96
+    },
+    "response_payload": {
+      "asset_id": "CONV-001",
+      "line_id": "PACK-LINE-01",
+      "horizon_hours": 96,
+      "production_pressure": "high",
+      "production_load_pct": 96.0,
+      "next_planned_downtime_hours": 96.0,
+      "customer_impact": "high",
+      "shift_demand": "high"
+    },
+    "called_at": "2026-06-22T08:59:56.578433+00:00"
+  },
+  {
+    "api_name": "scenario_inventory_and_resources_api",
+    "endpoint": "/enterprise/inventory/assets/{asset_id}/resources",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "CONV-001"
+    },
+    "response_payload": {
+      "asset_id": "CONV-001",
+      "spare_part_available": true,
+      "spare_part_id": "SP-CONV-BELT-DRIVE-KIT",
+      "specialist_technician_available_next_shift": true,
+      "intervention_feasible": true
+    },
+    "called_at": "2026-06-22T08:59:56.578433+00:00"
+  },
+  {
+    "api_name": "scenario_policy_governance_api",
+    "endpoint": "/enterprise/policy-governance/assets/{asset_type}",
+    "method": "GET",
+    "request_parameters": {
+      "asset_type": "conveyor_system",
+      "criticality_score": 5
+    },
+    "response_payload": {
+      "asset_type": "conveyor_system",
+      "criticality_score": 5,
+      "mandatory_human_review_for_high_criticality": true,
+      "expected_human_review_required": true,
+      "policy_id": "POL-CONV-HIGH-CRIT-001"
+    },
+    "called_at": "2026-06-22T08:59:56.578433+00:00"
+  }
+]

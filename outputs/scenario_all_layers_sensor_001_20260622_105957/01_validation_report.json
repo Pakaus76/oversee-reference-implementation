@@ -1,0 +1,9 @@
+{
+  "valid": false,
+  "missing_sources": [],
+  "payloads_with_quality_flags": [
+    "sensor_historian"
+  ],
+  "payload_count": 7,
+  "required_source_count": 7
+}

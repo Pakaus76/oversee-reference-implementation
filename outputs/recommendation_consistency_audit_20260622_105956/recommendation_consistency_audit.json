@@ -1,0 +1,142 @@
+[
+  {
+    "scenario_id": "AGV-001",
+    "asset_id": "AGV-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_agv_001_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "BOILER-001",
+    "asset_id": "BOILER-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_boiler_001_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "CHILLER-001",
+    "asset_id": "CHILLER-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_chiller_001_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "CIP-001",
+    "asset_id": "CIP-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_cip_001_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "COMP-001",
+    "asset_id": "COMP-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_comp_001_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "COMP-002",
+    "asset_id": "COMP-002",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_comp_002_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "COMP-003",
+    "asset_id": "COMP-003",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_comp_003_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "CONV-001",
+    "asset_id": "CONV-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_conv_001_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "DATA-001",
+    "asset_id": "DATA-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_data_001_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "FAN-001",
+    "asset_id": "FAN-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_fan_001_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "GEAR-001",
+    "asset_id": "GEAR-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_gear_001_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "HVAC-001",
+    "asset_id": "HVAC-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_hvac_001_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "MIXER-001",
+    "asset_id": "MIXER-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_mixer_001_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "MOTOR-001",
+    "asset_id": "MOTOR-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_motor_001_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "PACK-001",
+    "asset_id": "PACK-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_pack_001_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "PUMP-001",
+    "asset_id": "PUMP-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_pump_001_20260622_105956",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "PUMP-002",
+    "asset_id": "PUMP-002",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_pump_002_20260622_105957",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "ROBOT-001",
+    "asset_id": "ROBOT-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_robot_001_20260622_105957",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "SENSOR-001",
+    "asset_id": "SENSOR-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_sensor_001_20260622_105957",
+    "status": "PASS",
+    "issues": []
+  },
+  {
+    "scenario_id": "VALVE-001",
+    "asset_id": "VALVE-001",
+    "output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_valve_001_20260622_105957",
+    "status": "PASS",
+    "issues": []
+  }
+]

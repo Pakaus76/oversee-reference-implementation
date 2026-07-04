@@ -1,0 +1,179 @@
+{
+  "scenario_id": "COMP-003",
+  "title": "Rapid compressor degradation with missing specialist case",
+  "description": "Coverage case where compressor degradation is urgent but specialist availability blocks execution.",
+  "asset_id": "COMP-003",
+  "asset_type": "industrial_air_compressor",
+  "failure_mode": "rapid_degradation_missing_specialist",
+  "paper_aligned": false,
+  "master_case": false,
+  "master_case_role": "coverage_case_high_urgency_missing_specialist",
+  "decision_pattern": "high_urgency_missing_specialist_escalation",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Rapid degradation alert; confidence 0.91; 18h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Vibration, temperature, and pressure deterioration"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Air compressor; high criticality; utility backbone"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "Recent instability notes"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "High production pressure; downtime window close but narrow"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Compressor kit available; specialist not available"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review mandatory for high criticality and missing specialist"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Escalation task active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Planning blocked until specialist is confirmed"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "High urgency with missing specialist requires escalation"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Specialist escalation summary prepared"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Escalated work-order proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Specialist constraint traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: rapid compressor degradation alert, condition deterioration, high criticality, and maintenance notes",
+    "layer2": "Contextualized decision profile: critical urgency, missing specialist, review required",
+    "layer3": "Decision-ready case: open, escalation task active, specialist blocker visible",
+    "layer4": "Decision record: critical priority, constrained execution recommended",
+    "layer5": "Governed recommendation package: escalation summary, traceability index, and escalated work-order proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-COMP-003-20260603",
+      "asset_id": "COMP-003",
+      "asset_type": "industrial_air_compressor",
+      "line_id": "UTIL-COMP-03",
+      "suspected_failure_mode": "rapid_degradation_missing_specialist",
+      "alert_type": "rapid_compressor_degradation_alert",
+      "predictive_horizon_hours": 18,
+      "confidence_score": 0.91,
+      "model_name": "compressor_failure_risk_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T14:00:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        2.1,
+        2.8,
+        3.5,
+        4.2,
+        4.9
+      ],
+      "temperature_celsius": [
+        82.0,
+        88.0,
+        94.0,
+        101.0,
+        108.0
+      ],
+      "pressure_bar": [
+        7.5,
+        7.1,
+        6.8,
+        6.2,
+        5.8
+      ],
+      "alarm_count": 6,
+      "last_sensor_timestamp": "2026-06-03T13:55:00Z"
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 72,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "COMP-003",
+        "asset_type": "industrial_air_compressor",
+        "line_id": "UTIL-COMP-03",
+        "asset_criticality": "high",
+        "criticality_score": 5,
+        "manufacturer": "Reference Compressor Systems",
+        "model": "RC-6500",
+        "location": "Utility backbone compressor station"
+      },
+      "maintenance_history": {
+        "asset_id": "COMP-003",
+        "lookback_days": 180,
+        "recent_repeated_failures": true,
+        "work_orders": [
+          {
+            "work_order_id": "WO-COMP-003-2026-0525",
+            "type": "corrective",
+            "failure_mode": "instability",
+            "duration_hours": 2.5
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "COMP-003",
+        "line_id": "UTIL-COMP-03",
+        "horizon_hours": 72,
+        "production_pressure": "high",
+        "production_load_pct": 95.0,
+        "next_planned_downtime_hours": 18.0,
+        "customer_impact": "high",
+        "shift_demand": "high"
+      },
+      "inventory_and_resources": {
+        "asset_id": "COMP-003",
+        "spare_part_available": true,
+        "spare_part_id": "SP-COMP-RAPID-KIT",
+        "specialist_technician_available_next_shift": false,
+        "intervention_feasible": false
+      },
+      "policy_governance": {
+        "asset_type": "industrial_air_compressor",
+        "criticality_score": 5,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "policy_id": "POL-COMP-SPECIALIST-003"
+      }
+    }
+  }
+}

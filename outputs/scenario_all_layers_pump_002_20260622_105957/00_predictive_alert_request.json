@@ -1,0 +1,47 @@
+{
+  "alert": {
+    "alert_id": "ALERT-PUMP-002-20260603",
+    "asset_id": "PUMP-002",
+    "asset_type": "industrial_pump",
+    "line_id": "WATER-LINE-02",
+    "suspected_failure_mode": "bearing_wear",
+    "alert_type": "bearing_wear_alert",
+    "predictive_horizon_hours": 72,
+    "confidence_score": 0.8,
+    "model_name": "pump_bearing_risk_model",
+    "model_version": "v1.0-reference",
+    "triggered_at": "2026-06-03T13:50:00Z"
+  },
+  "raw_sensor_context": {
+    "sampling_window_hours": 24,
+    "vibration_mms": [
+      1.4,
+      1.7,
+      2.0,
+      2.3,
+      2.6
+    ],
+    "temperature_celsius": [
+      55.0,
+      57.0,
+      59.0,
+      62.0,
+      64.0
+    ],
+    "pressure_bar": [
+      4.8,
+      4.7,
+      4.6,
+      4.5,
+      4.4
+    ],
+    "alarm_count": 2,
+    "last_sensor_timestamp": "2026-06-03T13:45:00Z"
+  },
+  "requested_context": {
+    "maintenance_history_lookback_days": 180,
+    "production_context_horizon_hours": 72,
+    "include_inventory_and_resources": true,
+    "include_policy_governance": true
+  }
+}

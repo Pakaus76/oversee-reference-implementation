@@ -1,0 +1,74 @@
+[
+  {
+    "rule_id": "L2_R001",
+    "rule_name": "Technical urgency from failure horizon",
+    "condition": "IF estimated_time_to_failure_hours <= 72 THEN technical_urgency = high",
+    "triggered": true,
+    "output_field": "technical_urgency",
+    "output_value": "high",
+    "rationale": "Short failure horizon increases technical urgency."
+  },
+  {
+    "rule_id": "L2_R002",
+    "rule_name": "Asset escalation from criticality",
+    "condition": "IF criticality_score >= 5 THEN asset_escalation = required",
+    "triggered": true,
+    "output_field": "asset_escalation",
+    "output_value": "required",
+    "rationale": "High-criticality assets require explicit escalation."
+  },
+  {
+    "rule_id": "L2_R003",
+    "rule_name": "Operational constraint from production pressure",
+    "condition": "IF production_pressure = high THEN operational_constraint = high",
+    "triggered": true,
+    "output_field": "operational_constraint",
+    "output_value": "high",
+    "rationale": "High production pressure constrains maintenance timing."
+  },
+  {
+    "rule_id": "L2_R004",
+    "rule_name": "Downtime window proximity",
+    "condition": "IF next_planned_downtime_hours <= 48 THEN downtime_window = near",
+    "triggered": false,
+    "output_field": "downtime_window",
+    "output_value": "distant",
+    "rationale": "A near downtime window creates a feasible planning opportunity."
+  },
+  {
+    "rule_id": "L2_R005",
+    "rule_name": "Intervention feasibility from resources",
+    "condition": "IF spare_part_available = true AND specialist_technician_available_next_shift = true THEN intervention_feasible = true",
+    "triggered": true,
+    "output_field": "intervention_feasible",
+    "output_value": true,
+    "rationale": "Available spare parts and specialist capacity make intervention feasible."
+  },
+  {
+    "rule_id": "L2_R006",
+    "rule_name": "Recurrence risk from repeated failures",
+    "condition": "IF recent_repeated_failures = true THEN recurrence_risk = high",
+    "triggered": true,
+    "output_field": "recurrence_risk",
+    "output_value": "high",
+    "rationale": "Recent repeated failures increase recurrence risk."
+  },
+  {
+    "rule_id": "L2_R007",
+    "rule_name": "Human review requirement from governance policy",
+    "condition": "IF high criticality policy applies THEN human_review_required = true",
+    "triggered": true,
+    "output_field": "human_review_required",
+    "output_value": true,
+    "rationale": "Governance policy requires accountable human review."
+  },
+  {
+    "rule_id": "L2_R008",
+    "rule_name": "Layer 2 decision readiness",
+    "condition": "IF technical urgency, feasibility and governance context exist THEN layer2_decision_ready = true",
+    "triggered": true,
+    "output_field": "layer2_decision_ready",
+    "output_value": true,
+    "rationale": "Layer 2 has enough contextualized evidence for downstream case lifecycle and decision logic."
+  }
+]

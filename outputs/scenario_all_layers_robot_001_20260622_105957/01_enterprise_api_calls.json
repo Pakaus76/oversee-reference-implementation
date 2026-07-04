@@ -1,0 +1,98 @@
+[
+  {
+    "api_name": "scenario_asset_registry_api",
+    "endpoint": "/enterprise/asset-registry/assets/{asset_id}",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "ROBOT-001"
+    },
+    "response_payload": {
+      "asset_id": "ROBOT-001",
+      "asset_type": "industrial_robot",
+      "line_id": "ROBOT-CELL-01",
+      "asset_criticality": "high",
+      "criticality_score": 5,
+      "manufacturer": "Reference Robotics",
+      "model": "RR-6X",
+      "location": "Automated assembly cell"
+    },
+    "called_at": "2026-06-22T08:59:57.093044+00:00"
+  },
+  {
+    "api_name": "scenario_cmms_maintenance_history_api",
+    "endpoint": "/enterprise/cmms/assets/{asset_id}/work-orders",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "ROBOT-001",
+      "lookback_days": 180
+    },
+    "response_payload": {
+      "asset_id": "ROBOT-001",
+      "lookback_days": 180,
+      "recent_repeated_failures": false,
+      "work_orders": [
+        {
+          "work_order_id": "WO-ROBOT-001-2026-0517",
+          "type": "preventive",
+          "failure_mode": "axis_calibration",
+          "duration_hours": 1.8
+        }
+      ]
+    },
+    "called_at": "2026-06-22T08:59:57.093044+00:00"
+  },
+  {
+    "api_name": "scenario_mes_operational_context_api",
+    "endpoint": "/enterprise/mes/lines/{line_id}/operational-context",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "ROBOT-001",
+      "line_id": "ROBOT-CELL-01",
+      "horizon_hours": 72
+    },
+    "response_payload": {
+      "asset_id": "ROBOT-001",
+      "line_id": "ROBOT-CELL-01",
+      "horizon_hours": 72,
+      "production_pressure": "high",
+      "production_load_pct": 90.0,
+      "next_planned_downtime_hours": 36.0,
+      "customer_impact": "high",
+      "shift_demand": "high"
+    },
+    "called_at": "2026-06-22T08:59:57.093044+00:00"
+  },
+  {
+    "api_name": "scenario_inventory_and_resources_api",
+    "endpoint": "/enterprise/inventory/assets/{asset_id}/resources",
+    "method": "GET",
+    "request_parameters": {
+      "asset_id": "ROBOT-001"
+    },
+    "response_payload": {
+      "asset_id": "ROBOT-001",
+      "spare_part_available": true,
+      "spare_part_id": "SP-ROBOT-AXIS-DRIVE",
+      "specialist_technician_available_next_shift": true,
+      "intervention_feasible": true
+    },
+    "called_at": "2026-06-22T08:59:57.093044+00:00"
+  },
+  {
+    "api_name": "scenario_policy_governance_api",
+    "endpoint": "/enterprise/policy-governance/assets/{asset_type}",
+    "method": "GET",
+    "request_parameters": {
+      "asset_type": "industrial_robot",
+      "criticality_score": 5
+    },
+    "response_payload": {
+      "asset_type": "industrial_robot",
+      "criticality_score": 5,
+      "mandatory_human_review_for_high_criticality": true,
+      "expected_human_review_required": true,
+      "policy_id": "POL-ROBOT-SAFETY-001"
+    },
+    "called_at": "2026-06-22T08:59:57.093044+00:00"
+  }
+]

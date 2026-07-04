@@ -1,0 +1,14 @@
+{
+  "generated_at": "20260622_094320",
+  "purpose": "Section 5 paper-facing COMP-001 vs COMP-002 demonstration",
+  "source_scenario_files": {
+    "COMP-001": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\demo\\interactive_walkthrough\\scenarios\\comp_001_paper.json",
+    "COMP-002": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\demo\\interactive_walkthrough\\scenarios\\comp_002_paper.json"
+  },
+  "source_run_dirs": {
+    "COMP-001": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_comp_001_paper_20260622_094320",
+    "COMP-002": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\scenario_all_layers_comp_002_paper_20260622_094320"
+  },
+  "section5_output_dir": "C:\\Users\\franc\\OneDrive\\Documentos\\oversee-reference-implementation\\outputs\\paper_section5_comp001_vs_comp002_20260622_094320",
+  "catalog_independent_execution": true
+}

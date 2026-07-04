@@ -1,0 +1,54 @@
+{
+  "alert": {
+    "alert_id": "ALERT-MOTOR-001-20260603",
+    "asset_id": "MOTOR-001",
+    "asset_type": "electric_motor",
+    "line_id": "PROC-LINE-03",
+    "suspected_failure_mode": "moderate_overheating",
+    "alert_type": "moderate_overheating_alert",
+    "predictive_horizon_hours": 96,
+    "confidence_score": 0.78,
+    "model_name": "motor_condition_risk_model",
+    "model_version": "v1.0-reference",
+    "triggered_at": "2026-06-03T12:10:00Z"
+  },
+  "raw_sensor_context": {
+    "sampling_window_hours": 24,
+    "vibration_mms": [
+      1.1,
+      1.1,
+      1.2,
+      1.2,
+      1.3
+    ],
+    "temperature_celsius": [
+      74.0,
+      78.0,
+      82.0,
+      86.0,
+      89.0
+    ],
+    "pressure_bar": [
+      3.8,
+      3.8,
+      3.8,
+      3.7,
+      3.7
+    ],
+    "alarm_count": 1,
+    "last_sensor_timestamp": "2026-06-03T12:05:00Z",
+    "current_amp": [
+      28.0,
+      29.2,
+      30.0,
+      30.8,
+      31.5
+    ]
+  },
+  "requested_context": {
+    "maintenance_history_lookback_days": 180,
+    "production_context_horizon_hours": 96,
+    "include_inventory_and_resources": true,
+    "include_policy_governance": true
+  }
+}

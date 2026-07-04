@@ -1,0 +1,34 @@
+{
+  "COMP-001": {
+    "asset_id": "COMP-001",
+    "asset_type": "industrial_air_compressor",
+    "failure_mode": "bearing_degradation",
+    "decision_pattern": "critical_but_feasible_controlled_planning",
+    "confidence_score": 0.88,
+    "predictive_horizon_hours": 48,
+    "production_pressure": "high",
+    "production_load_pct": 92.0,
+    "next_planned_downtime_hours": 36.0,
+    "spare_part_available": true,
+    "technician_available_next_shift": true,
+    "intervention_feasible": true,
+    "human_review_required": true,
+    "management_escalation_required": false
+  },
+  "COMP-002": {
+    "asset_id": "COMP-002",
+    "asset_type": "industrial_air_compressor",
+    "failure_mode": "bearing_degradation",
+    "decision_pattern": "critical_but_constrained_escalation",
+    "confidence_score": 0.86,
+    "predictive_horizon_hours": 48,
+    "production_pressure": "very_high",
+    "production_load_pct": 98.0,
+    "next_planned_downtime_hours": null,
+    "spare_part_available": false,
+    "technician_available_next_shift": false,
+    "intervention_feasible": false,
+    "human_review_required": true,
+    "management_escalation_required": true
+  }
+}

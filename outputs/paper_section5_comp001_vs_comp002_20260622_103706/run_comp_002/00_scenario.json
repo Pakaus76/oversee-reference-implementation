@@ -1,0 +1,186 @@
+{
+  "scenario_id": "COMP-002",
+  "title": "Paper compressor constrained case",
+  "description": "Industrial air compressor with comparable bearing degradation risk but constrained operational and governance context. Designed for Section 5 comparison against COMP-001.",
+  "asset_id": "COMP-002",
+  "asset_type": "industrial_air_compressor",
+  "failure_mode": "bearing_degradation",
+  "paper_aligned": true,
+  "master_case": true,
+  "master_case_role": "section5_comparison_case",
+  "decision_pattern": "critical_but_constrained_escalation",
+  "layer_inputs": {
+    "layer1": [
+      {
+        "source": "PdM analytics service",
+        "information": "Bearing degradation alert; confidence 0.86; 48h horizon"
+      },
+      {
+        "source": "Condition monitoring / historian",
+        "information": "Rising vibration and temperature trend"
+      },
+      {
+        "source": "Asset registry / engineering master data",
+        "information": "Industrial air compressor; high criticality; utility area"
+      },
+      {
+        "source": "CMMS / EAM",
+        "information": "Repeated bearing interventions in past 6 months"
+      }
+    ],
+    "layer2": [
+      {
+        "source": "ERP / MES / production planning",
+        "information": "Very high production pressure; no feasible stop within 72h"
+      },
+      {
+        "source": "MRO inventory / workforce planning",
+        "information": "Bearing kit unavailable; specialist technician unavailable for next 72h"
+      },
+      {
+        "source": "Policy governance / compliance rules",
+        "information": "Human review and management escalation required before intervention"
+      }
+    ],
+    "layer3": [
+      {
+        "source": "Case / workflow management",
+        "information": "Case owner assigned; escalation queue active"
+      },
+      {
+        "source": "Maintenance planning / scheduling",
+        "information": "Preparation blocked by spare-part and workforce constraints"
+      }
+    ],
+    "layer4": [
+      {
+        "source": "Decision rules repository",
+        "information": "Escalation rule: degradation risk + infeasible intervention + operational constraint"
+      }
+    ],
+    "layer5": [
+      {
+        "source": "Human review interface",
+        "information": "Escalation summary prepared for maintenance and operations leads"
+      },
+      {
+        "source": "CMMS / EAM workflow",
+        "information": "Monitoring and contingency work-order proposal ready"
+      },
+      {
+        "source": "Audit / traceability repository",
+        "information": "Traceability record stored"
+      }
+    ]
+  },
+  "expected_layer_outputs": {
+    "layer1": "Validated evidence package: alert, condition trends, asset criticality, and maintenance history",
+    "layer2": "Contextualized decision profile: high urgency, no feasible downtime window, intervention constrained, escalation required",
+    "layer3": "Escalation-required case: open, blockers active, escalation path required",
+    "layer4": "Decision record: high priority, deferred intervention, enhanced monitoring, management escalation",
+    "layer5": "Governed recommendation package: escalation summary, traceability index, and monitoring/contingency proposal"
+  },
+  "executable_inputs": {
+    "alert": {
+      "alert_id": "ALERT-COMP-002-20260603",
+      "asset_id": "COMP-002",
+      "asset_type": "industrial_air_compressor",
+      "line_id": "PKG-LINE-02",
+      "suspected_failure_mode": "bearing_degradation",
+      "alert_type": "predictive_degradation_alert",
+      "predictive_horizon_hours": 48,
+      "confidence_score": 0.86,
+      "model_name": "compressor_failure_risk_model",
+      "model_version": "v1.0-reference",
+      "triggered_at": "2026-06-03T08:30:00Z"
+    },
+    "raw_sensor_context": {
+      "sampling_window_hours": 24,
+      "vibration_mms": [
+        1.5,
+        1.8,
+        2.2,
+        2.7,
+        3.0
+      ],
+      "temperature_celsius": [
+        73.5,
+        77.0,
+        80.8,
+        84.6,
+        88.0
+      ],
+      "pressure_bar": [
+        7.9,
+        7.7,
+        7.5,
+        7.2,
+        7.0
+      ],
+      "alarm_count": 3,
+      "last_sensor_timestamp": "2026-06-03T08:25:00Z"
+    },
+    "requested_context": {
+      "maintenance_history_lookback_days": 180,
+      "production_context_horizon_hours": 72,
+      "include_inventory_and_resources": true,
+      "include_policy_governance": true
+    },
+    "enterprise_sources": {
+      "asset_metadata": {
+        "asset_id": "COMP-002",
+        "asset_type": "industrial_air_compressor",
+        "line_id": "PKG-LINE-02",
+        "asset_criticality": "high",
+        "criticality_score": 5,
+        "manufacturer": "Reference Compressor Systems",
+        "model": "RC-5500",
+        "location": "Packaging area - compressor station"
+      },
+      "maintenance_history": {
+        "asset_id": "COMP-002",
+        "lookback_days": 180,
+        "recent_repeated_failures": true,
+        "work_orders": [
+          {
+            "work_order_id": "WO-COMP-002-2026-0416",
+            "type": "corrective",
+            "failure_mode": "vibration_anomaly",
+            "duration_hours": 2.2
+          },
+          {
+            "work_order_id": "WO-COMP-002-2026-0520",
+            "type": "corrective",
+            "failure_mode": "bearing_noise",
+            "duration_hours": 3.8
+          }
+        ]
+      },
+      "operational_context": {
+        "asset_id": "COMP-002",
+        "line_id": "PKG-LINE-02",
+        "horizon_hours": 72,
+        "production_pressure": "very_high",
+        "production_load_pct": 98.0,
+        "next_planned_downtime_hours": null,
+        "customer_impact": "high",
+        "shift_demand": "very_high"
+      },
+      "inventory_and_resources": {
+        "asset_id": "COMP-002",
+        "spare_part_available": false,
+        "spare_part_id": "SP-COMP-BEARING-KIT",
+        "specialist_technician_available_next_shift": false,
+        "intervention_feasible": false
+      },
+      "policy_governance": {
+        "asset_type": "industrial_air_compressor",
+        "criticality_score": 5,
+        "mandatory_human_review_for_high_criticality": true,
+        "expected_human_review_required": true,
+        "management_escalation_required": true,
+        "policy_id": "POL-COMP-HIGH-CRIT-ESC-002"
+      }
+    }
+  }
+}
